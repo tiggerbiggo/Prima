@@ -1,6 +1,7 @@
 package Core;
 
 import Graphics.*;
+import Presets.MapGenerator;
 import Processing.*;
 
 import javax.imageio.ImageIO;
@@ -13,21 +14,13 @@ public class Main
     public static void main(String[] args)
     {
         Main inst = new Main();
-        inst.doThing(500, 500, 6);
+        inst.doThing(501, 501, 6);
     }
 
     public void doThing(int x, int y, int threadNum)
     {
         System.out.println("Started build, making initial map...");
-        float2[][] map = new float2[x][y];
-
-        for(int i=0; i<x; i++)
-        {
-            for(int j=0; j<y; j++)
-            {
-                map[i][j] = new float2(i/(x/(float)Math.PI), j/(y/(float)Math.PI));
-            }
-        }
+        float2[][] map = MapGenerator.standard(x, y, new float2(-2, 0), new float2(5, 5));
 
         System.out.println("Transforming map...");
         FormulaTask formulaTask = new FormulaTask(map){
@@ -37,12 +30,12 @@ public class Main
                 x = in.getX();
                 y = in.getY();
 
-                float z = (0.5f*y)%(1.0f/height); //0.5f
-                z -= (0.5f/height);
+                float z = ((0.5f*height)*height*y)%(height); //0.5f
+                z -= (0.5/height);
 
-                if(z<0) x = (float)Math.PI-x;
+                //if(z<0) x = (float)Math.PI-x;
 
-                y=(float)Math.sin(Math.cos(x*2)*y*5);
+                y=(float)Math.sin(Math.cosh(x)*Math.cos(y));
 
 
                 //x = (float)Math.sin(x);
@@ -70,7 +63,7 @@ public class Main
                                 Color.white,
                                 Color.blue,
                                 true),
-                        50);
+                        60);
         manager = new ProcessManager(threadNum, renderTask);
         manager.runAndWait();
 
