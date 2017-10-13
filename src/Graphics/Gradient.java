@@ -14,16 +14,18 @@ import java.util.Arrays;
 public class Gradient
 {
     Color c1, c2;
+    boolean loop;
 
-    public Gradient(Color c1, Color c2) throws IllegalArgumentException{
+    public Gradient(Color c1, Color c2, boolean loop) throws IllegalArgumentException{
         this.c1 = c1;
         this.c2 = c2;
+        this.loop = loop;
     }
     public Gradient(){
-        this(Color.black, Color.white);
+        this(Color.black, Color.white, false);
     }
 
-    public Color evaluate(float a, boolean loop){
+    public Color evaluate(float a){
         if(a > 1) a = Calculation.modLoop(a, 1);
         if(loop) {
             if(a<0.5f){

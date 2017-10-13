@@ -1,42 +1,35 @@
 package Core;
 
-import Graphics.Gradient;
-import Graphics.RenderMode;
-import Graphics.RenderTask;
-import Processing.ExampleTask;
-import Processing.FormulaTask;
-import Processing.ProcessManager;
-import javafx.scene.paint.*;
+import Graphics.*;
+import Processing.*;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.Color;
-import java.io.BufferedWriter;
+import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileWriter;
-import java.sql.Time;
-import java.util.Timer;
 
 public class Main
 {
     public static void main(String[] args)
     {
         Main inst = new Main();
-        inst.doThing(10, 5, 6);
+        inst.doThing(500, 500, 6);
     }
 
     public void doThing(int x, int y, int threadNum)
     {
+        System.out.println("Started build, making initial map...");
         float2[][] map = new float2[x][y];
 
         for(int i=0; i<x; i++)
         {
             for(int j=0; j<y; j++)
             {
-                map[i][j] = new float2(i/1000.0f, j/1000.0f);
+                map[i][j] = new float2(i/(x/(float)Math.PI), j/(y/(float)Math.PI));
             }
         }
 
+        System.out.println("Transforming map...");
         FormulaTask formulaTask = new FormulaTask(map){
             @Override
             public void doFormula(float2 in) {
@@ -44,48 +37,50 @@ public class Main
                 x = in.getX();
                 y = in.getY();
 
-                in.set(1+(float)Math.sin(3.0*x), 1+(float)Math.cos(3.0*y));
+                float z = (0.5f*y)%(1.0f/height); //0.5f
+                z -= (0.5f/height);
+
+                if(z<0) x = (float)Math.PI-x;
+
+                y=(float)Math.sin(Math.cos(x*2)*y*5);
+
+
+                //x = (float)Math.sin(x);
+
+                in.set(Math.abs(x), Math.abs(y));
             }
         };
 
         ProcessManager manager = new ProcessManager(threadNum, formulaTask);
-        Thread t = new Thread(manager);
-        t.run();
+        manager.runAndWait();
 
-        while(t.isAlive())
-        {
-            try
-            {
-                wait();
-            }
-            catch(Exception e) {}
-        }
+        System.out.println("Flattening map...");
 
-        RenderTask renderTask = new RenderTask(map, RenderMode.ADD, new Gradient(Color.blue, Color.MAGENTA));
+        PreRenderTask preRenderTask = new PreRenderTask(map, RenderMode.ADD);
+        manager = new ProcessManager(threadNum, preRenderTask);
+        manager.runAndWait();
 
-        manager =
-                new ProcessManager(threadNum, renderTask);
-        t = new Thread(manager);
+        float[][] calculatedMap = preRenderTask.getOutMap();
 
-        t.run();
+        System.out.println("Rendering...");
+        RenderSequenceTask renderTask =
+                new RenderSequenceTask(
+                        calculatedMap,
+                        new Gradient(
+                                Color.white,
+                                Color.blue,
+                                true),
+                        50);
+        manager = new ProcessManager(threadNum, renderTask);
+        manager.runAndWait();
 
-        while(t.isAlive())
-        {
-            try
-            {
-                wait();
-            }
-            catch(Exception e) {}
-        }
+        BufferedImage[] imgSequence = renderTask.getImgSequence();
 
-        try {
-            File out = new File("test" + ".png");
-            ImageIO.write(renderTask.getImage(), "png", out);
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
+        System.out.println("Finished Construction, File out in progress...");
+
+        FileManager.writeGif(imgSequence, "ItsAGif");
+
+        System.out.println("Done!");
     }
 
     public static void printArray(Object[][] array)

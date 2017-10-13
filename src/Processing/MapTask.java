@@ -4,9 +4,9 @@ import Core.float2;
 public abstract class MapTask extends Task
 {
     protected float2[][] map;
-    private int current = 0;
-    private int max;
-    private int width, height;
+    protected int current = 0;
+    protected int max;
+    protected int width, height;
 
     public MapTask(float2[][] map)
     {
@@ -23,13 +23,6 @@ public abstract class MapTask extends Task
     public Object getNext() {
         if(current <=-1 || isDone()) return null;
 
-        if(current == 49)
-        {
-            System.out.println("doing a thing");
-        }
-
-        System.out.printf("Current: %d\ncurrent %%(width): %d \ncurrent/height: %d\n\n",
-                current, current%(width), current/ height);
         float2 got = map[current%width][current/ width];
         current++;
         return got;

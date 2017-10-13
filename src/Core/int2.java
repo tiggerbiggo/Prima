@@ -1,8 +1,5 @@
 package Core;
 
-/**
- * Created by Administrator on 12/10/2017.
- */
 public class int2
 {
     private int x, y;

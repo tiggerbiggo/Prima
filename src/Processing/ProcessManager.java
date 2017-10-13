@@ -24,6 +24,19 @@ public class ProcessManager implements Runnable
         }
     }
 
+    public void runAndWait()
+    {
+        run();
+        while(isAlive())
+        {
+            try
+            {
+                wait();
+            }
+            catch(Exception e) {}
+        }
+    }
+
     @Override
     public synchronized void run() throws IllegalThreadStateException
     {
@@ -52,7 +65,6 @@ public class ProcessManager implements Runnable
         {
             if(t.isAlive()) return true;
         }
-        System.out.println("Threads are dead");
         return false;
     }
 }

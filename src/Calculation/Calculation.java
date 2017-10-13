@@ -1,8 +1,5 @@
 package Calculation;
 
-/**
- * Created by Administrator on 12/10/2017.
- */
 public class Calculation {
 
 

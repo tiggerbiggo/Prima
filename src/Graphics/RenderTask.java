@@ -10,12 +10,11 @@ import java.awt.image.BufferedImage;
 public class RenderTask extends Task
 {
     BufferedImage img;
-    float2[][] map;
+    float[][] map;
     int width, height, current, max;
-    RenderMode mode;
     Gradient g;
 
-    public RenderTask(float2[][] map, RenderMode mode, Gradient g) throws IllegalArgumentException
+    public RenderTask(float[][] map, Gradient g) throws IllegalArgumentException
     {
         if(map == null) throw new IllegalArgumentException("Map must be non-null");
 
@@ -28,41 +27,34 @@ public class RenderTask extends Task
 
         this.map = map;
         this.g = g;
-        this.mode = mode;
     }
 
 
     @Override
-    public void doTask(Object in) {
+    public void doTask(Object in)
+    {
         int2 converted = convertObject(in);
-        if(in == null) return;
+        if(converted == null) return;
 
-        float result = 0;
+        float result = getResult(converted);
 
+        img.setRGB(converted.getX(), converted.getY(), g.evaluate(result).getRGB());
+    }
+
+    protected float getResult(int2 in)
+    {
         int x, y;
-        x = converted.getX();
-        y = converted.getY();
+        x = in.getX();
+        y = in.getY();
 
-        float2 cache = map[x][y];
-
-        switch(mode)
-        {
-            case ADD:
-                result = cache.getX() + cache.getY();
-                break;
-            case MULTIPLY:
-                result = cache.getX() * cache.getY();
-                break;
-        }
-
-        img.setRGB(x, y, g.evaluate(result, false).getRGB());
+        return map[x][y];
     }
 
     @Override
     public Object getNext() {
         if(current <=-1 || isDone()) return null;
 
-        return new int2(current%(width -1), current++/ height);
+        return new int2(current%width, current++/ width);
     }
 
     @Override

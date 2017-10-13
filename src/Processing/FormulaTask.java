@@ -1,10 +1,6 @@
 package Processing;
-
 import Core.float2;
 
-/**
- * Created by Administrator on 12/10/2017.
- */
 public class FormulaTask extends MapTask
 {
     public FormulaTask(float2[][] map)
