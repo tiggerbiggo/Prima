@@ -14,13 +14,13 @@ public class Main
     public static void main(String[] args)
     {
         Main inst = new Main();
-        inst.doThing(501, 501, 6);
+        inst.doThing(1000, 500, 6);
     }
 
     public void doThing(int x, int y, int threadNum)
     {
         System.out.println("Started build, making initial map...");
-        float2[][] map = MapGenerator.standard(x, y, new float2(-2, 0), new float2(5, 5));
+        float2[][] map = MapGenerator.standard(x, y, new float2(10, (float)Math.PI/2), new float2(0.1f, 0.01f));
 
         System.out.println("Transforming map...");
         FormulaTask formulaTask = new FormulaTask(map){
