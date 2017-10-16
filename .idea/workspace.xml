@@ -1,9 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Prima:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="ef23bb54-a5f7-45e9-940e-1c0ac002a0b7" name="Default" comment="" />
+    <list default="true" id="ef23bb54-a5f7-45e9-940e-1c0ac002a0b7" name="Default" comment="Changes. Lots of changes.">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/Prima_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/calculation/Calculation.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/calculation/ColorTools.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Builder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/FileManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/GifSequenceWriter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Main.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/float2.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/int2.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/graphics/Gradient.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/graphics/GradientPoint.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/graphics/RenderMode.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/MapGenerator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/MapTransformPresets.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/MapTypes.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/TransformTypes.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/ProcessManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/Processor.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/Task.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/map/ExampleTask.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/map/MapTask.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/map/MapTransformTask.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/render/PreRenderTask.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/render/RenderSequenceTask.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/render/RenderTask.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Prima/Calculation/Calculation.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Prima/Calculation/ColorTools.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Prima/Core/FileManager.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Prima/Core/GifSequenceWriter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Prima/Core/Main$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Prima/Core/Main.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Prima/Core/float2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Prima/Core/int2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Prima/Graphics/Gradient.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Prima/Graphics/GradientPoint.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Prima/Graphics/PreRenderTask$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Prima/Graphics/PreRenderTask.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Prima/Graphics/RenderMode.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Prima/Graphics/RenderSequenceTask.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Prima/Graphics/RenderTask.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Prima/Presets/MapGenerator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Prima/Processing/ExampleTask.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Prima/Processing/FormulaTask.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Prima/Processing/MapTask.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Prima/Processing/ProcessManager.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Prima/Processing/Processor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Prima/Processing/Task.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Calculation/Calculation.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Calculation/ColorTools.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Core/FileManager.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Core/GifSequenceWriter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Core/Main.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Core/float2.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Core/int2.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Graphics/Gradient.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Graphics/GradientPoint.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Graphics/RenderMode.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Presets/MapGenerator.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Processing/FormulaTask.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Processing/ProcessManager.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Processing/Processor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Processing/Task.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Processing/Tasks/MapTasks/ExampleTask.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Processing/Tasks/MapTasks/MapTask.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Processing/Tasks/RenderTasks/PreRenderTask.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Processing/Tasks/RenderTasks/RenderSequenceTask.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Processing/Tasks/RenderTasks/RenderTask.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Prima.iml" afterPath="$PROJECT_DIR$/Prima.iml" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path=".idea/dataSources.local.xml" />
+    <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,11 +98,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Core/Main.java">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="21" column="67" lean-forward="true" selection-start-line="21" selection-start-column="67" selection-end-line="21" selection-end-column="67" />
+            <state relative-caret-position="119">
+              <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -31,96 +110,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MapGenerator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Presets/MapGenerator.java">
+      <file leaf-file-name="Builder.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Builder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="30" column="17" lean-forward="false" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FormulaTask.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Processing/FormulaTask.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+            <state relative-caret-position="170">
+              <caret line="25" column="5" lean-forward="false" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
               <folding>
-                <element signature="e#127#128#0" expanded="true" />
-                <element signature="e#153#154#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RenderSequenceTask.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Graphics/RenderSequenceTask.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="37" column="91" lean-forward="false" selection-start-line="37" selection-start-column="91" selection-end-line="37" selection-end-column="91" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1422#1423#0" expanded="true" />
-                <element signature="e#1456#1457#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RenderTask.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Graphics/RenderTask.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="28" column="19" lean-forward="false" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PreRenderTask.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Graphics/PreRenderTask.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#852#853#0" expanded="true" />
-                <element signature="e#889#890#0" expanded="true" />
-                <element signature="e#1626#1627#0" expanded="true" />
-                <element signature="e#1655#1656#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MapTask.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Processing/MapTask.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GifSequenceWriter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Core/GifSequenceWriter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="4" column="41" lean-forward="false" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FileManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Core/FileManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#842#843#0" expanded="true" />
+                <element signature="e#879#880#0" expanded="true" />
+                <element signature="method#Builder#0;class#Builder#0" expanded="false" />
+                <element signature="method#fullBuildAndWrite#0;class#Builder#0" expanded="false" />
+                <element signature="method#doTransform#0;class#Builder#0" expanded="false" />
+                <element signature="method#renderSequence#0;class#Builder#0" expanded="false" />
+                <element signature="method#render#0;class#Builder#0" expanded="false" />
+                <element signature="method#writeGif#0;class#Builder#0" expanded="false" />
+                <element signature="method#setSize#0;class#Builder#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -131,6 +135,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JavaFXApplication" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -153,18 +159,46 @@
       <list>
         <option value="$PROJECT_DIR$/src/Graphics/Gradient.java" />
         <option value="$PROJECT_DIR$/src/Calculation/Calculation.java" />
-        <option value="$PROJECT_DIR$/src/Processing/FormulaTask.java" />
         <option value="$PROJECT_DIR$/src/Core/int2.java" />
         <option value="$PROJECT_DIR$/src/Processing/ProcessManager.java" />
         <option value="$PROJECT_DIR$/src/Graphics/PreRenderClass.java" />
-        <option value="$PROJECT_DIR$/src/Graphics/PreRenderTask.java" />
-        <option value="$PROJECT_DIR$/src/Graphics/RenderTask.java" />
-        <option value="$PROJECT_DIR$/src/Graphics/RenderSequenceTask.java" />
         <option value="$PROJECT_DIR$/src/Core/GifSequenceWriter.java" />
         <option value="$PROJECT_DIR$/src/Core/FileManager.java" />
+        <option value="$PROJECT_DIR$/src/Processing/FormulaTask.java" />
+        <option value="$PROJECT_DIR$/src/Processing/ExampleTask.java" />
         <option value="$PROJECT_DIR$/src/Processing/MapTask.java" />
+        <option value="$PROJECT_DIR$/src/Processing/Processor.java" />
+        <option value="$PROJECT_DIR$/src/Graphics/PreRenderTask.java" />
+        <option value="$PROJECT_DIR$/src/Graphics/RenderSequenceTask.java" />
+        <option value="$PROJECT_DIR$/src/Graphics/RenderTask.java" />
+        <option value="$PROJECT_DIR$/src/Processing/Task.java" />
+        <option value="$PROJECT_DIR$/src/Presets/TransformTypes.java" />
+        <option value="$PROJECT_DIR$/src/Processing/MapTransformTask.java" />
+        <option value="$PROJECT_DIR$/src/Presets/MapTransformPresets.java" />
+        <option value="$PROJECT_DIR$/src/Processing/RenderTask.java" />
+        <option value="$PROJECT_DIR$/src/Processing/MapTasks/MapTransformTask.java" />
+        <option value="$PROJECT_DIR$/src/Processing/RenderTasks/RenderTask.java" />
+        <option value="$PROJECT_DIR$/src/Processing/Tasks/RenderTasks/RenderTask.java" />
+        <option value="$PROJECT_DIR$/src/Processing/Tasks/Task.java" />
+        <option value="$PROJECT_DIR$/src/Presets/MapTypes.java" />
         <option value="$PROJECT_DIR$/src/Presets/MapGenerator.java" />
+        <option value="$PROJECT_DIR$/src/Core/Builder.java" />
+        <option value="$PROJECT_DIR$/src/Core/float2.java" />
         <option value="$PROJECT_DIR$/src/Core/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Graphics/Gradient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Presets/TransformTypes.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Presets/MapTransformPresets.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Core/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Core/FileManager.java" />
+        <option value="$PROJECT_DIR$/src/gui/java/main/Main.java" />
+        <option value="$PROJECT_DIR$/src/gui/java/main/GUIMain.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/Presets/MapTransformPresets.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/Presets/MapTransformPresets.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/Presets/MapTransformPresets.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/MapTransformPresets.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Builder.java" />
       </list>
     </option>
   </component>
@@ -172,11 +206,18 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
   </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1050" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1696" />
+    <option name="height" value="1026" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -196,11 +237,79 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="ProjectPane" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Prima" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Prima" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Prima" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Prima" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Prima" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Prima" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Prima" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Prima" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Prima" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Prima" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="prima" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Prima" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Prima" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="prima" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Prima" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Prima" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="prima" type="462c0819:PsiDirectoryNode" />
+              <item name="processing" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Prima" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Prima" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="prima" type="462c0819:PsiDirectoryNode" />
+              <item name="processing" type="462c0819:PsiDirectoryNode" />
+              <item name="tasks" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Prima" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -210,9 +319,11 @@
     <property name="dynamic.classpath" value="false" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
-    <property name="settings.editor.selected.configurable" value="settings.github" />
-    <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -230,11 +341,11 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="Core.*" />
+          <option name="PATTERN" value="com.tiggerbiggo.prima.core.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="MAIN_CLASS_NAME" value="Core.Main" />
+      <option name="MAIN_CLASS_NAME" value="com.tiggerbiggo.prima.core.Main" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -520,23 +631,23 @@
     <option name="totallyTimeSpent" value="12673000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3269663" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953367" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3269663" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921347" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.228125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25366747" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -549,9 +660,40 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" x="92" y="92" width="1496" height="826" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3274918" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3274918" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953367" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22797619" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -559,18 +701,12 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fixed 2 bugs in one go&#10;&#10;~Fixed bug where images would have a diagonal line across them with a slightly different color offset&#10;&#10;~Fixed a fatal bug that would crash the program with an ArrayIndexOutOfBounds exception, turns out I was doing my math wrong and accidentally going out of bounds." />
     <MESSAGE value="Additions:&#10;&#10;+Gifs now function correctly, animated images finally :D&#10;&#10;Fixed 2 bugs in one go here :P&#10;&#10;~Fixed bug where images would have a diagonal line across them with a slightly different color offset&#10;~Fixed a fatal bug that would crash the program with an ArrayIndexOutOfBounds exception, turns out I was doing my math wrong and accidentally going out of bounds.&#10;&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Additions:&#10;&#10;+Gifs now function correctly, animated images finally :D&#10;&#10;Fixed 2 bugs in one go here :P&#10;&#10;~Fixed bug where images would have a diagonal line across them with a slightly different color offset&#10;~Fixed a fatal bug that would crash the program with an ArrayIndexOutOfBounds exception, turns out I was doing my math wrong and accidentally going out of bounds.&#10;&#10;" />
+    <MESSAGE value="Changes. Lots of changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes. Lots of changes." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Core/Main.java</url>
-          <line>2</line>
-          <properties />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="1" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -579,7 +715,42 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Core/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/TransformTypes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/graphics/Gradient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="26" column="14" lean-forward="false" selection-start-line="26" selection-start-column="14" selection-end-line="26" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/calculation/Calculation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="52" column="6" lean-forward="false" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="6" />
+          <folding>
+            <element signature="e#1722#1723#0" expanded="false" />
+            <element signature="e#1751#1752#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -589,38 +760,143 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Presets/MapGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/MapTransformPresets.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="30" column="17" lean-forward="false" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+        <state relative-caret-position="408">
+          <caret line="24" column="34" lean-forward="false" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Graphics/RenderSequenceTask.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/calculation/Calculation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="52" column="6" lean-forward="true" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="6" />
+          <folding>
+            <element signature="e#1722#1723#0" expanded="false" />
+            <element signature="e#1751#1752#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/graphics/Gradient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="28" column="14" lean-forward="false" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/MapGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="17" lean-forward="false" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/map/MapTransformTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/render/RenderTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="28" column="19" lean-forward="false" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/render/RenderSequenceTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="37" column="91" lean-forward="false" selection-start-line="37" selection-start-column="91" selection-end-line="37" selection-end-column="91" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/render/PreRenderTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/map/MapTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/GifSequenceWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="41" lean-forward="false" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/FileManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/MapGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="30" column="17" lean-forward="false" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/render/RenderSequenceTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="37" column="91" lean-forward="false" selection-start-line="37" selection-start-column="91" selection-end-line="37" selection-end-column="91" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1422#1423#0" expanded="true" />
-            <element signature="e#1456#1457#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Processing/FormulaTask.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/map/MapTransformTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <element signature="e#127#128#0" expanded="true" />
-            <element signature="e#153#154#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Graphics/RenderTask.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/render/RenderTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483">
           <caret line="28" column="19" lean-forward="false" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
@@ -628,21 +904,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Graphics/PreRenderTask.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/render/PreRenderTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#852#853#0" expanded="true" />
-            <element signature="e#889#890#0" expanded="true" />
-            <element signature="e#1626#1627#0" expanded="true" />
-            <element signature="e#1655#1656#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Processing/MapTask.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/map/MapTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
@@ -650,141 +922,209 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Core/GifSequenceWriter.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/GifSequenceWriter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
           <caret line="4" column="41" lean-forward="false" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Core/FileManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/FileManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Graphics/Gradient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="27" column="35" lean-forward="false" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Core/int2.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/int2.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Calculation/Calculation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="57" column="42" lean-forward="false" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Processing/ProcessManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="66" column="9" lean-forward="false" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Graphics/PreRenderTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#852#853#0" expanded="true" />
-            <element signature="e#889#890#0" expanded="true" />
-            <element signature="e#1626#1627#0" expanded="true" />
-            <element signature="e#1655#1656#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Graphics/RenderTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="28" column="19" lean-forward="false" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://E:/Tryptamine/src/tryptamine/GifSequenceWriter.java" />
-    <entry file="file://$PROJECT_DIR$/src/Core/GifSequenceWriter.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/GifSequenceWriter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
+        <state relative-caret-position="68">
           <caret line="4" column="41" lean-forward="false" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://E:/Tryptamine/src/tryptamine/fileManager.java" />
-    <entry file="file://$PROJECT_DIR$/src/Core/FileManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/Processor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="119">
+          <caret line="7" column="15" lean-forward="false" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Processing/MapTask.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/ProcessManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
+        <state relative-caret-position="408">
+          <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/map/MapTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="4" column="22" lean-forward="false" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/map/ExampleTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Processing/FormulaTask.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/map/MapTransformTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state relative-caret-position="51">
+          <caret line="3" column="13" lean-forward="false" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/render/PreRenderTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
           <folding>
-            <element signature="e#127#128#0" expanded="true" />
-            <element signature="e#153#154#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Graphics/RenderSequenceTask.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/render/RenderSequenceTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="37" column="91" lean-forward="false" selection-start-line="37" selection-start-column="91" selection-end-line="37" selection-end-column="91" />
+        <state relative-caret-position="119">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1422#1423#0" expanded="true" />
-            <element signature="e#1456#1457#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Presets/MapGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/render/RenderTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="30" column="17" lean-forward="false" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+        <state relative-caret-position="68">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Core/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/MapGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="21" column="67" lean-forward="true" selection-start-line="21" selection-start-column="67" selection-end-line="21" selection-end-column="67" />
+        <state relative-caret-position="510">
+          <caret line="30" column="5" lean-forward="false" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/float2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="41" column="51" lean-forward="false" selection-start-line="41" selection-start-column="51" selection-end-line="41" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/calculation/Calculation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="52" column="6" lean-forward="false" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="6" />
+          <folding>
+            <element signature="e#1722#1723#0" expanded="false" />
+            <element signature="e#1751#1752#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/graphics/Gradient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="26" column="14" lean-forward="false" selection-start-line="26" selection-start-column="14" selection-end-line="26" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/MapTypes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="11" lean-forward="false" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/TransformTypes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/FileManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="13" column="99" lean-forward="false" selection-start-line="13" selection-start-column="99" selection-end-line="13" selection-end-column="99" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/java/main/GUIMain.java" />
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/MapTransformPresets.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/Task.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Builder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="25" column="5" lean-forward="false" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+          <folding>
+            <element signature="e#842#843#0" expanded="true" />
+            <element signature="e#879#880#0" expanded="true" />
+            <element signature="method#Builder#0;class#Builder#0" expanded="false" />
+            <element signature="method#fullBuildAndWrite#0;class#Builder#0" expanded="false" />
+            <element signature="method#doTransform#0;class#Builder#0" expanded="false" />
+            <element signature="method#renderSequence#0;class#Builder#0" expanded="false" />
+            <element signature="method#render#0;class#Builder#0" expanded="false" />
+            <element signature="method#writeGif#0;class#Builder#0" expanded="false" />
+            <element signature="method#setSize#0;class#Builder#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -792,9 +1132,81 @@
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>Prima:jar</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Prima</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ProjectJDKs.UI">
         <settings>
           <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
           <splitter-proportions>
             <option name="proportions">
               <list>
