@@ -11,131 +11,117 @@ import com.tiggerbiggo.prima.processing.tasks.map.MapTransformTask;
 import com.tiggerbiggo.prima.processing.tasks.render.PreRenderTask;
 import com.tiggerbiggo.prima.processing.tasks.render.RenderSequenceTask;
 import com.tiggerbiggo.prima.processing.tasks.render.RenderTask;
+import javafx.util.Callback;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Builder
 {
-    int threadNum, x, y;
+    private int threadNum;
+    private float2 offset, scale;
+    private MapTypes mapType;
+    private TransformTypes transformType;
+    private Gradient g;
 
-    boolean printProgress = false;
-
-    public void setPrint(boolean state)
-    {
-        printProgress = state;
-    }
-
-    public Builder(int threadNum, int x, int y)
-    {
+    public Builder(int threadNum, float2 offset, float2 scale, MapTypes mapType, TransformTypes transformType, Gradient g) {
         this.threadNum = threadNum;
-        this.x = x;
-        this.y = y;
+        this.offset = offset;
+        this.scale = scale;
+        this.mapType = mapType;
+        this.transformType = transformType;
+        this.g = g;
+    }
+    public Builder(){
+        this(8,
+                new float2(0,0),
+                new float2(1,1),
+                MapTypes.REGULAR,
+                TransformTypes.SINSIN,
+                new Gradient(Color.black, Color.white, true));
     }
 
-    public void fullBuildAndWrite(float2 offset, float2 scale, MapTypes mapType, TransformTypes transformType, int numOfFrames, Gradient g, String filename)
+    public BufferedImage build(int x, int y)
     {
-        writeGif(
-                fullBuildSequence(
-                        offset,
-                        scale,
-                        mapType,
-                        transformType,
-                        numOfFrames,
-                        g),
-                filename);
-    }
-
-    public BufferedImage[] fullBuildSequence(float2 offset, float2 scale, MapTypes mapType, TransformTypes transformType, int numOfFrames, Gradient g)
-    {
-        print("Started build, making initial map...");
+        //Create map
         float2[][] map = MapGenerator.getMap(x, y, offset, scale, mapType);
-        return transformAndRenderSequence(map, transformType, g, numOfFrames);
-    }
 
-    public BufferedImage fullBuild(float2 offset, float2 scale, MapTypes mapType, TransformTypes transformType, Gradient g)
-    {
-        print("Started build, making initial map...");
-        float2[][] map = MapGenerator.getMap(x, y, offset, scale, mapType);
-        return transformAndRender(map, transformType, g);
-    }
-
-    public BufferedImage[] transformAndRenderSequence(float2[][] map, TransformTypes transformType,  Gradient g, int numOfFrames)
-    {
-        print("Transforming map...");
-        doTransform(map, transformType);
-
-        print("Flattening  and rendering map...");
-        return renderSequence(map, numOfFrames, g);
-    }
-
-    public BufferedImage transformAndRender(float2[][] map, TransformTypes transformType,  Gradient g)
-    {
-        print("Transforming map...");
-        doTransform(map, transformType);
-
-        print("Flattening  and rendering map...");
-        return render(map, g);
-    }
-
-    public void doTransform(float2[][] map, TransformTypes type)
-    {
-        MapTransformTask mapTransformTask = MapTransformPresets.getPreset(map, type);
-
+        //Transform map
+        MapTransformTask mapTransformTask = MapTransformPresets.getPreset(map, transformType);
         ProcessManager manager = new ProcessManager(threadNum, mapTransformTask);
         manager.runAndWait();
-    }
 
-    public BufferedImage[] renderSequence(float2[][] map, int frames, Gradient g)
-    {
-        float[][] calculatedMap = preRender(map);
-
-        System.out.println("Rendering...");
-        RenderSequenceTask renderTask =
-                new RenderSequenceTask(calculatedMap,g,frames);
-
-        ProcessManager manager = new ProcessManager(threadNum, renderTask);
+        //Flatten map
+        PreRenderTask preRenderTask = new PreRenderTask(map, RenderMode.ADD);
+        manager = new ProcessManager(threadNum, preRenderTask);
         manager.runAndWait();
+        float[][] calculatedMap = preRenderTask.getOutMap();
 
-        return renderTask.getImgSequence();
-    }
-
-    public BufferedImage render(float2[][] map, Gradient g)
-    {
-        float[][] calculatedMap = preRender(map);
-
+        //Render
         RenderTask renderTask = new RenderTask(calculatedMap, g);
-
-        ProcessManager manager = new ProcessManager(threadNum, renderTask);
+        manager = new ProcessManager(threadNum, renderTask);
         manager.runAndWait();
 
         return renderTask.getImage();
     }
 
-    public float[][] preRender(float2[][] map)
+    public BufferedImage[] build(int x, int y, int frameNum)
     {
-        PreRenderTask preRenderTask = new PreRenderTask(map, RenderMode.ADD);
-        ProcessManager manager = new ProcessManager(threadNum, preRenderTask);
+        //Create map
+        float2[][] map = MapGenerator.getMap(x, y, offset, scale, mapType);
+
+        //Transform map
+        MapTransformTask mapTransformTask = MapTransformPresets.getPreset(map, transformType);
+        ProcessManager manager = new ProcessManager(threadNum, mapTransformTask);
         manager.runAndWait();
 
-        return preRenderTask.getOutMap();
+        //Flatten map
+        PreRenderTask preRenderTask = new PreRenderTask(map, RenderMode.ADD);
+        manager = new ProcessManager(threadNum, preRenderTask);
+        manager.runAndWait();
+        float[][] calculatedMap = preRenderTask.getOutMap();
+
+        //Render
+        RenderSequenceTask renderSequenceTask = new RenderSequenceTask(calculatedMap, g, frameNum);
+        manager = new ProcessManager(threadNum, renderSequenceTask);
+        manager.runAndWait();
+
+        return renderSequenceTask.getImgSequence();
     }
 
-    public void writeGif(BufferedImage[] imgSequence, String filename)
-    {
-        if(imgSequence == null)return;
-        FileManager.writeGif(imgSequence, filename);
+    public int getThreadNum() {
+        return threadNum;
     }
 
-    void print(String s)
-    {
-        if(printProgress) System.out.println(s);
+    public void setThreadNum(int threadNum) {
+        if(threadNum <=0) return;
+        this.threadNum = threadNum;
     }
 
-    public void setSize(int x, int y)
-    {
-        if(x <=0 || y<=0) return;
+    public float2 getOffset() {
+        return offset;
+    }
 
-        this.x = x;
-        this.y = y;
+    public void setOffset(float2 offset) {
+        if(offset == null) return;
+        this.offset = offset;
+    }
+
+    public float2 getScale() {
+        return scale;
+    }
+
+    public void setScale(float2 scale) {
+        if(scale == null) return;
+        this.scale = scale;
+    }
+
+    public Gradient getGradient() {
+        return g;
+    }
+
+    public void setGradient(Gradient g) {
+        if(g == null) return;
+        this.g = g;
     }
 }

@@ -5,23 +5,17 @@ import com.tiggerbiggo.prima.presets.MapTypes;
 import com.tiggerbiggo.prima.presets.TransformTypes;
 
 import java.awt.*;
+import java.io.File;
 
 public class Main
 {
     public static void main(String[] args)
     {
-        Builder b = new Builder(8, 500, 500);
-        b.setPrint(true);
+        Gradient g = new Gradient(Color.blue, Color.green, true);
+        Builder b = new Builder(8, new float2(0, 0),
+                new float2(10, 10),MapTypes.REGULAR,
+                TransformTypes.SINSIN,g);
 
-        Gradient g = new Gradient(Color.black, Color.red, true);
-
-        b.fullBuildAndWrite(
-                new float2(0, 0),
-                new float2(5, 5),
-                MapTypes.REGULAR,
-                TransformTypes.MAGNETISM,
-                60,
-                g,
-                "Ayylmao");
+        FileManager.writeGif(b.build(300, 300, 60), "Giffy");
     }
 }
