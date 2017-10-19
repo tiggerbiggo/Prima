@@ -124,4 +124,12 @@ public class Builder
         if(g == null) return;
         this.g = g;
     }
+
+    public TransformTypes getTransformType() {
+        return transformType;
+    }
+
+    public void setTransformType(TransformTypes transformType) {
+        this.transformType = transformType;
+    }
 }

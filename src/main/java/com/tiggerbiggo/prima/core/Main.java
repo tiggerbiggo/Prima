@@ -14,7 +14,7 @@ public class Main
         Gradient g = new Gradient(Color.blue, Color.green, true);
         Builder b = new Builder(8, new float2(0, 0),
                 new float2(10, 10),MapTypes.REGULAR,
-                TransformTypes.SINSIN,g);
+                TransformTypes.MAGNETISM,g);
 
         FileManager.writeGif(b.build(300, 300, 60), "Giffy");
     }
