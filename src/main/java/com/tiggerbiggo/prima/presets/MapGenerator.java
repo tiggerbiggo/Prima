@@ -6,8 +6,10 @@ public class MapGenerator
 
     public static float2[][] getMap(int width, int height, float2 offset, float2 scale, MapTypes type) throws IllegalArgumentException
     {
-        if(width <=0 || height <=0 || offset == null || scale == null)
-            throw new IllegalArgumentException("One or more arguments in constructor is invalid");
+        width = Math.max(1, width);
+        height = Math.max(1, height);
+        if(offset == null || scale == null)
+            throw new IllegalArgumentException("Either Offset or Scale are null.");
 
         float2[][] map = new float2[width][height];
 
