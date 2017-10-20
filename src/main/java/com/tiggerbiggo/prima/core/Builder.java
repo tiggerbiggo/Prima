@@ -89,6 +89,11 @@ public class Builder
         return renderSequenceTask.getImgSequence();
     }
 
+    public void write(int x, int y, int frameNum, String filename)
+    {
+        FileManager.writeGif(build(x, y, frameNum), filename);
+    }
+
     public int getThreadNum() {
         return threadNum;
     }
