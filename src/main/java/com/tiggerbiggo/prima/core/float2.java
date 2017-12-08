@@ -32,10 +32,43 @@ public class float2 {
         this.y = y;
     }
 
+    public float toFloat()
+    {
+        return x + y;
+    }
+
     @Override
     public String toString()
     {
         return String.format("X: %f, Y: %f", x, y);
+    }
+
+    public static float2 add(float2 a, float2 b)
+    {
+        return new float2(
+                a.getX() + b.getX(),
+                a.getY() + b.getY());
+    }
+
+    public static float2 multiply(float2 a, float2 b)
+    {
+        return new float2(
+                a.getX() * b.getX(),
+                a.getY() * b.getY());
+    }
+
+    public static float2 subtract(float2 a, float2 b)
+    {
+        return new float2(
+                a.getX() - b.getX(),
+                a.getY() - b.getY());
+    }
+
+    public static float2 abs(float2 in)
+    {
+        return new float2(
+                Math.abs(in.getX()),
+                Math.abs(in.getY()));
     }
 
     public static final float2 ZERO = new float2(0,0);

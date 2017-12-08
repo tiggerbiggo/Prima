@@ -1,21 +1,61 @@
 package com.tiggerbiggo.prima.core;
 
 import com.tiggerbiggo.prima.graphics.Gradient;
+import com.tiggerbiggo.prima.presets.MapGenerator;
 import com.tiggerbiggo.prima.presets.MapTypes;
 import com.tiggerbiggo.prima.presets.TransformTypes;
+import com.tiggerbiggo.prima.processing.fragment.*;
 
 import java.awt.*;
-import java.io.File;
 
 public class Main
 {
     public static void main(String[] args)
     {
-        Gradient g = new Gradient(Color.blue, Color.green, true);
-        Builder b = new Builder(8, new float2(0, 0),
-                new float2(10, 10),MapTypes.REGULAR,
-                TransformTypes.MAGNETISM,g);
+        Gradient g = new Gradient(Color.blue, Color.black, true);
+        Gradient h = new Gradient(Color.black, Color.red, true);
 
-        FileManager.writeGif(b.build(300, 300, 60), "Giffy");
+        Fragment<float2>[][] frags;
+        Fragment<Color[]>[][] render;
+
+        frags = MapGenerator.getFragMap(300,300, new float2(-3, -3), new float2(10f, 10f),MapTypes.REGULAR);
+
+        render = new Fragment[frags.length][frags[0].length];
+
+        for(int i=0; i<frags.length; i++)
+        {
+            if(i % 40 == 0)
+                System.out.printf("Building, %f percent.\n", ((float)i/frags.length)*100);
+            for(int j=0; j<frags[0].length; j++)
+            {
+                TransformFragment B = new TransformFragment(frags[i][j], TransformTypes.TANNY.getPreset());
+                TransformFragment A = new TransformFragment(B, TransformTypes.OTHER.getPreset());
+
+                //TransformFragment A = new TransformFragment(B, TransformTypes.TANNY.getPreset());
+                //CombineFragment combine = new CombineFragment(A, B, CombineType.MULTIPLY);
+
+                RenderFragment renderFragment = new RenderFragment(A, 60, g);
+
+                if((i+j)%2 == 0)
+                    renderFragment.setGradient(h);
+
+                render[i][j] = renderFragment;
+            }
+        }
+
+        Builder b = new Builder(render);
+
+        b.startBuild();
+
+        b.joinAll();
+
+        System.out.println("Writing...");
+        FileManager.writeGif(b.getImgs(),"YayAnotherTest");
+
+        //Builder b = new Builder(8, new float2(0, 0),
+        //        new float2(10, 10),MapTypes.REGULAR,
+        //        TransformTypes.MAGNETISM,g);
+
+        //FileManager.writeGif(b.build(300, 300, 60), "Giffy");
     }
 }

@@ -6,135 +6,151 @@ import com.tiggerbiggo.prima.presets.MapGenerator;
 import com.tiggerbiggo.prima.presets.MapTransformPresets;
 import com.tiggerbiggo.prima.presets.MapTypes;
 import com.tiggerbiggo.prima.presets.TransformTypes;
-import com.tiggerbiggo.prima.processing.ProcessManager;
-import com.tiggerbiggo.prima.processing.tasks.map.MapTransformTask;
-import com.tiggerbiggo.prima.processing.tasks.render.PreRenderTask;
-import com.tiggerbiggo.prima.processing.tasks.render.RenderSequenceTask;
-import com.tiggerbiggo.prima.processing.tasks.render.RenderTask;
+import com.tiggerbiggo.prima.processing.fragment.Fragment;
 import javafx.util.Callback;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Stack;
 
-public class Builder
+public class Builder implements Runnable
 {
-    private int threadNum;
-    private float2 offset, scale;
-    private MapTypes mapType;
-    private TransformTypes transformType;
-    private Gradient g;
+    public static final int THREADNUM = 6;
 
-    public Builder(int threadNum, float2 offset, float2 scale, MapTypes mapType, TransformTypes transformType, Gradient g) {
-        this.threadNum = threadNum;
-        this.offset = offset;
-        this.scale = scale;
-        this.mapType = mapType;
-        this.transformType = transformType;
-        this.g = g;
-    }
-    public Builder(){
-        this(8,
-                new float2(0,0),
-                new float2(1,1),
-                MapTypes.REGULAR,
-                TransformTypes.SINSIN,
-                new Gradient(Color.black, Color.white, true));
-    }
+    private Thread[] threads;
+    private boolean setup = false;
+    private boolean isDone = false;
+    private Stack<int2> fragList;
+    private Fragment<Color[]>[][] fragMap;
+    private BufferedImage[] imgs = null;
+    private int w, h, n;
+    private int current, max;
 
-    public BufferedImage build(int x, int y)
+    public Builder(Fragment<Color[]>[][] fragMap)
     {
-        //Create map
-        float2[][] map = MapGenerator.getMap(x, y, offset, scale, mapType);
+        try {
+            if (fragMap == null || fragMap.length <= 0 || fragMap[0].length <= 0) {
+                throw new IllegalArgumentException("Invalid FragMap");
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            throw new IllegalArgumentException("FragMap is either null or otherwise invalid");
+        }
+        fragList = new Stack<>();
 
-        //Transform map
-        MapTransformTask mapTransformTask = MapTransformPresets.getPreset(map, transformType);
-        ProcessManager manager = new ProcessManager(threadNum, mapTransformTask);
-        manager.runAndWait();
+        this.fragMap = fragMap;
 
-        //Flatten map
-        PreRenderTask preRenderTask = new PreRenderTask(map, RenderMode.ADD);
-        manager = new ProcessManager(threadNum, preRenderTask);
-        manager.runAndWait();
-        float[][] calculatedMap = preRenderTask.getOutMap();
+        w = fragMap.length;
+        h = fragMap[0].length;
+        n = fragMap[0][0].get().length;
 
-        //Render
-        RenderTask renderTask = new RenderTask(calculatedMap, g);
-        manager = new ProcessManager(threadNum, renderTask);
-        manager.runAndWait();
+        for(int i=0; i<w; i++)
+            for (int j=0; j<h; j++)
+                fragList.add(new int2(i, j));
 
-        return renderTask.getImage();
+        max = fragList.size();
+        current = 0;
+
+        Collections.shuffle(fragList); //optional
     }
 
-    public BufferedImage[] build(int x, int y, int frameNum)
+    public void startBuild()
     {
-        //Create map
-        float2[][] map = MapGenerator.getMap(x, y, offset, scale, mapType);
+        imgs = new BufferedImage[n];
+        for(int i=0; i<n; i++)
+        {
+            imgs[i] = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+        }
 
-        //Transform map
-        MapTransformTask mapTransformTask = MapTransformPresets.getPreset(map, transformType);
-        ProcessManager manager = new ProcessManager(threadNum, mapTransformTask);
-        manager.runAndWait();
-
-        //Flatten map
-        PreRenderTask preRenderTask = new PreRenderTask(map, RenderMode.ADD);
-        manager = new ProcessManager(threadNum, preRenderTask);
-        manager.runAndWait();
-        float[][] calculatedMap = preRenderTask.getOutMap();
-
-        //Render
-        RenderSequenceTask renderSequenceTask = new RenderSequenceTask(calculatedMap, g, frameNum);
-        manager = new ProcessManager(threadNum, renderSequenceTask);
-        manager.runAndWait();
-
-        return renderSequenceTask.getImgSequence();
+        threads = new Thread[THREADNUM];
+        for(int i=0; i<THREADNUM; i++)
+        {
+            threads[i] = new Thread(this);
+        }
+        setup = true;
+        for(Thread t : threads)
+        {
+            t.start();
+        }
     }
 
-    public void write(int x, int y, int frameNum, String filename)
+    @Override
+    public void run() {
+        if(setup)
+        {
+            int2 pos = getNext();
+            while(pos != null) {
+                current++;
+
+                if(current % 5000 == 0)
+                    System.out.printf("%f percent.\n", ((float)current/max)*100);
+
+                Color[] colors = fragMap[pos.getX()][pos.getY()].get();
+                if(colors.length != n)
+                {
+                    break;
+                }
+                else
+                {
+                    for(int i=0; i<n; i++)
+                    {
+                        imgs[i].setRGB(pos.getX(), pos.getY(), colors[i].getRGB());
+                    }
+                }
+                pos = getNext();
+            }
+        }
+    }
+
+    private synchronized int2 getNext()
     {
-        FileManager.writeGif(build(x, y, frameNum), filename);
+        if(fragList.isEmpty())
+            return null;
+        return fragList.pop();
     }
 
-    public int getThreadNum() {
-        return threadNum;
+    /**Joins all currently working threads in this object to the thread that called this method.
+     * This effectively results in the thread waiting until the build operation has completed.
+     */
+    public void joinAll()
+    {
+        if(setup)
+        {
+            for(Thread t : threads)
+            {
+                try {
+                    t.join();
+                }
+                catch(InterruptedException e) { }
+            }
+        }
     }
 
-    public void setThreadNum(int threadNum) {
-        if(threadNum <=0) return;
-        this.threadNum = threadNum;
+    public boolean isDone()
+    {
+        if (!isDone) {
+            if (!setup) {
+                return false;
+            }
+            for (int i = 0; i < THREADNUM; i++) {
+                try {
+                    if (threads[i].isAlive())
+                        return false;
+                } catch (Exception e) {
+                    return false;
+                }
+            }
+            isDone = true;
+            return true;
+        }
+        else return true;
     }
 
-    public float2 getOffset() {
-        return offset;
-    }
-
-    public void setOffset(float2 offset) {
-        if(offset == null) return;
-        this.offset = offset;
-    }
-
-    public float2 getScale() {
-        return scale;
-    }
-
-    public void setScale(float2 scale) {
-        if(scale == null) return;
-        this.scale = scale;
-    }
-
-    public Gradient getGradient() {
-        return g;
-    }
-
-    public void setGradient(Gradient g) {
-        if(g == null) return;
-        this.g = g;
-    }
-
-    public TransformTypes getTransformType() {
-        return transformType;
-    }
-
-    public void setTransformType(TransformTypes transformType) {
-        this.transformType = transformType;
+    public BufferedImage[] getImgs() {
+        return imgs;
     }
 }
