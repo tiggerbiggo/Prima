@@ -33,16 +33,18 @@ public class MapGenerator {
         dy/=height;
 
         for(int i=0; i<width; i++){
-            for(int j=0; i<height; j++){
+            for(int j=0; j<height; j++){
+                if(i == 300 || j == 300)
+                    System.out.println("Break here!");
                 map[i][j] = new ConstFragment(
                         new float2(
                                 x1+(i*dx),
-                                y1+(i*dy)
+                                y1+(j*dy)
                         )
                 );
             }
         }
 
-        return null;
+        return map;
     }
 }

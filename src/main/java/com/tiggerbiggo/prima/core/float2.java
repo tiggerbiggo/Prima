@@ -8,8 +8,12 @@ public class float2 {
         this.x = x;
         this.y = y;
     }
+    public float2(float xy)
+    {
+        this(xy, xy);
+    }
     public float2(){
-        this(0, 0);
+        this(0);
     }
 
     //Getters
@@ -35,6 +39,11 @@ public class float2 {
     public float toFloat()
     {
         return x + y;
+    }
+
+    public float magnitude()
+    {
+        return (float)Math.sqrt((x*x)+(y*y));
     }
 
     @Override

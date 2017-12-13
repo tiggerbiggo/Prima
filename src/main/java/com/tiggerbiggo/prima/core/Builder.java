@@ -1,17 +1,8 @@
 package com.tiggerbiggo.prima.core;
-
-import com.tiggerbiggo.prima.graphics.Gradient;
-import com.tiggerbiggo.prima.graphics.RenderMode;
-import com.tiggerbiggo.prima.presets.MapGenerator;
-import com.tiggerbiggo.prima.presets.MapTransformPresets;
-import com.tiggerbiggo.prima.presets.MapTypes;
-import com.tiggerbiggo.prima.presets.TransformTypes;
 import com.tiggerbiggo.prima.processing.fragment.Fragment;
-import javafx.util.Callback;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
 

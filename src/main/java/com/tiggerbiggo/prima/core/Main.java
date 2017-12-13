@@ -18,7 +18,7 @@ public class Main
         Fragment<float2>[][] frags;
         Fragment<Color[]>[][] render;
 
-        frags = MapGenerator.getFragMap(300,300, new float2(-3, -3), new float2(10f, 10f),MapTypes.REGULAR);
+        frags = MapGenerator.getFragMap(300,300, new float2(-2, -2), new float2(2, 2));
 
         render = new Fragment[frags.length][frags[0].length];
 
@@ -28,13 +28,15 @@ public class Main
                 System.out.printf("Building, %f percent.\n", ((float)i/frags.length)*100);
             for(int j=0; j<frags[0].length; j++)
             {
-                TransformFragment B = new TransformFragment(frags[i][j], TransformTypes.TANNY.getPreset());
-                TransformFragment A = new TransformFragment(B, TransformTypes.OTHER.getPreset());
+                MandelFragment M = new MandelFragment(frags[i][j],100);
+                ValueFragment V = new ValueFragment(new float2(0.1f));
+
+                CombineFragment C = new CombineFragment(M, V, CombineType.MULTIPLY);
 
                 //TransformFragment A = new TransformFragment(B, TransformTypes.TANNY.getPreset());
                 //CombineFragment combine = new CombineFragment(A, B, CombineType.MULTIPLY);
 
-                RenderFragment renderFragment = new RenderFragment(A, 60, g);
+                RenderFragment renderFragment = new RenderFragment(C, 60, g);
 
                 if((i+j)%2 == 0)
                     renderFragment.setGradient(h);
