@@ -46,6 +46,8 @@ public class float2 {
         return (float)Math.sqrt((x*x)+(y*y));
     }
 
+    public float2 mod(float mod){return new float2(x%mod, y%mod);}
+
     @Override
     public String toString()
     {

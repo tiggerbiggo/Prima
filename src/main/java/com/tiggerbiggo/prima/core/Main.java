@@ -18,7 +18,11 @@ public class Main
         Fragment<float2>[][] frags;
         Fragment<Color[]>[][] render;
 
-        frags = MapGenerator.getFragMap(300,300, new float2(-2, -2), new float2(2, 2));
+        frags = MapGenerator.getFragMap(
+                300,
+                300,
+                new float2(-0.748792294966034f, -0.449056629141275f),
+                new float2(-0.565217386915955f, -0.328301905627316f));
 
         render = new Fragment[frags.length][frags[0].length];
 
@@ -29,7 +33,7 @@ public class Main
             for(int j=0; j<frags[0].length; j++)
             {
                 MandelFragment M = new MandelFragment(frags[i][j],100);
-                ValueFragment V = new ValueFragment(new float2(0.1f));
+                ValueFragment V = new ValueFragment(new float2(0.01f));
 
                 CombineFragment C = new CombineFragment(M, V, CombineType.MULTIPLY);
 
@@ -37,9 +41,6 @@ public class Main
                 //CombineFragment combine = new CombineFragment(A, B, CombineType.MULTIPLY);
 
                 RenderFragment renderFragment = new RenderFragment(C, 60, g);
-
-                if((i+j)%2 == 0)
-                    renderFragment.setGradient(h);
 
                 render[i][j] = renderFragment;
             }
