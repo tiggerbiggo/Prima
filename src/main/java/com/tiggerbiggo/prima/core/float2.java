@@ -17,10 +17,10 @@ public class float2 {
     }
 
     //Getters
-    public float getX() {
+    public float X() {
         return x;
     }
-    public float getY() {
+    public float Y() {
         return y;
     }
 
@@ -57,29 +57,29 @@ public class float2 {
     public static float2 add(float2 a, float2 b)
     {
         return new float2(
-                a.getX() + b.getX(),
-                a.getY() + b.getY());
+                a.X() + b.X(),
+                a.Y() + b.Y());
     }
 
     public static float2 multiply(float2 a, float2 b)
     {
         return new float2(
-                a.getX() * b.getX(),
-                a.getY() * b.getY());
+                a.X() * b.X(),
+                a.Y() * b.Y());
     }
 
     public static float2 subtract(float2 a, float2 b)
     {
         return new float2(
-                a.getX() - b.getX(),
-                a.getY() - b.getY());
+                a.X() - b.X(),
+                a.Y() - b.Y());
     }
 
     public static float2 abs(float2 in)
     {
         return new float2(
-                Math.abs(in.getX()),
-                Math.abs(in.getY()));
+                Math.abs(in.X()),
+                Math.abs(in.Y()));
     }
 
     public static final float2 ZERO = new float2(0,0);

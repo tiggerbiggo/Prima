@@ -1,6 +1,8 @@
 package com.tiggerbiggo.prima.processing.fragment;
 
 import com.tiggerbiggo.prima.core.float2;
+import com.tiggerbiggo.prima.core.int2;
+import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 import com.tiggerbiggo.prima.graphics.Gradient;
 
 import java.awt.*;
@@ -45,5 +47,31 @@ public class RenderFragment implements Fragment<Color[]>
         }
 
         return cA;
+    }
+
+    @Override
+    public Fragment<Color[]>[][] build(int2 dims) throws IllegalMapSizeException {
+        Fragment<float2>[][] map;
+        try {
+            map = in.build(dims);
+        }
+        catch(IllegalMapSizeException ex)
+        {
+            throw ex;
+        }
+
+        if(Fragment.checkArrayDims(map, dims))
+        {
+            RenderFragment[][] thisArray = new RenderFragment[dims.X()][dims.Y()];
+            for(int i=0; i<dims.X(); i++)
+            {
+                for(int j=0; j<dims.Y(); j++)
+                {
+                    thisArray[i][j] = new RenderFragment(map[i][j], num, g);
+                }
+            }
+            return thisArray;
+        }
+        else throw new IllegalMapSizeException();
     }
 }

@@ -3,7 +3,6 @@ package com.tiggerbiggo.prima.presets;
 import com.tiggerbiggo.prima.core.float2;
 
 import java.util.function.BiFunction;
-import java.util.function.Function;
 
 public enum Transform {
     SINSIN((x, y) -> {
@@ -42,6 +41,6 @@ public enum Transform {
     }
 
     public float2 doFormula(float2 in) {
-        return function.apply(in.getX(), in.getY());
+        return function.apply(in.X(), in.Y());
     }
 }

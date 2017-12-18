@@ -1,9 +1,10 @@
 package com.tiggerbiggo.prima.core;
 
+import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 import com.tiggerbiggo.prima.graphics.Gradient;
 import com.tiggerbiggo.prima.presets.MapGenerator;
 import com.tiggerbiggo.prima.presets.MapTypes;
-import com.tiggerbiggo.prima.presets.TransformTypes;
+import com.tiggerbiggo.prima.presets.Transform;
 import com.tiggerbiggo.prima.processing.fragment.*;
 
 import java.awt.*;
@@ -16,44 +17,48 @@ public class Main
         Gradient h = new Gradient(Color.black, Color.red, true);
 
         Fragment<float2>[][] frags;
-        Fragment<Color[]>[][] render;
+        Fragment<Color[]> render;
 
-        frags = MapGenerator.getFragMap(
-                300,
-                300,
-                new float2(-0.748792294966034f, -0.449056629141275f),
-                new float2(-0.565217386915955f, -0.328301905627316f));
+        Fragment<float2> initMap = new MapGenFragment(float2.ZERO, float2.ONE);
 
-        render = new Fragment[frags.length][frags[0].length];
+        TransformFragment T = new TransformFragment(initMap, Transform.SINSIN);
 
-        for(int i=0; i<frags.length; i++)
-        {
-            if(i % 40 == 0)
-                System.out.printf("Building, %f percent.\n", ((float)i/frags.length)*100);
-            for(int j=0; j<frags[0].length; j++)
-            {
-                MandelFragment M = new MandelFragment(frags[i][j],100);
-                ValueFragment V = new ValueFragment(new float2(0.01f));
+        render = new RenderFragment(T, 60, g);
 
-                CombineFragment C = new CombineFragment(M, V, CombineType.MULTIPLY);
+        int2[] sizes = {
+                new int2(300, 300),
+                new int2(500, 500),
+                new int2(700, 700),
+                new int2(1000, 1000)
+        };
 
-                //TransformFragment A = new TransformFragment(B, TransformTypes.TANNY.getPreset());
-                //CombineFragment combine = new CombineFragment(A, B, CombineType.MULTIPLY);
+        String[] filenames = {
+                "300",
+                "500",
+                "700",
+                "1000"
+        };
 
-                RenderFragment renderFragment = new RenderFragment(C, 60, g);
+        try {
+            for(int i=0; i<sizes.length; i++) {
+                Builder b = new Builder(render.build(sizes[i]));
+                b.startBuild();
+                b.joinAll();
 
-                render[i][j] = renderFragment;
+                System.out.println("Writing...");
+                FileManager.writeGif(b.getImgs(), filenames[i]);
             }
         }
+        catch (IllegalMapSizeException ex)
+        {
+            ex.printStackTrace();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
 
-        Builder b = new Builder(render);
 
-        b.startBuild();
-
-        b.joinAll();
-
-        System.out.println("Writing...");
-        FileManager.writeGif(b.getImgs(),"YayAnotherTest");
 
         //Builder b = new Builder(8, new float2(0, 0),
         //        new float2(10, 10),MapTypes.REGULAR,

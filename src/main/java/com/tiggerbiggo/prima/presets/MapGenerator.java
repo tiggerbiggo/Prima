@@ -20,11 +20,11 @@ public class MapGenerator {
 
         float x1, x2, y1, y2, dx, dy;
 
-        x1=topLeft.getX();
-        x2=bottomRight.getX();
+        x1=topLeft.X();
+        x2=bottomRight.X();
 
-        y1=topLeft.getY();
-        y2=bottomRight.getY();
+        y1=topLeft.Y();
+        y2=bottomRight.Y();
 
         dx = x2-x1;
         dy = y2-y1;

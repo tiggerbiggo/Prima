@@ -14,10 +14,10 @@ public class int2
     }
 
     //Getters
-    public int getX() {
+    public int X() {
         return x;
     }
-    public int getY() {
+    public int Y() {
         return y;
     }
 

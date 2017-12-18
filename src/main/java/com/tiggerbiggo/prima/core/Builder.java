@@ -80,7 +80,7 @@ public class Builder implements Runnable
                 if(current % 5000 == 0)
                     System.out.printf("%f percent.\n", ((float)current/max)*100);
 
-                Color[] colors = fragMap[pos.getX()][pos.getY()].get();
+                Color[] colors = fragMap[pos.X()][pos.Y()].get();
                 if(colors.length != n)
                 {
                     break;
@@ -89,7 +89,7 @@ public class Builder implements Runnable
                 {
                     for(int i=0; i<n; i++)
                     {
-                        imgs[i].setRGB(pos.getX(), pos.getY(), colors[i].getRGB());
+                        imgs[i].setRGB(pos.X(), pos.Y(), colors[i].getRGB());
                     }
                 }
                 pos = getNext();

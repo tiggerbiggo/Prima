@@ -1,6 +1,8 @@
 package com.tiggerbiggo.prima.processing.fragment;
 
 import com.tiggerbiggo.prima.core.float2;
+import com.tiggerbiggo.prima.core.int2;
+import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 import com.tiggerbiggo.prima.processing.ColorProperty;
 
 import java.awt.image.BufferedImage;
@@ -41,5 +43,10 @@ public class ImageConvertFragment implements Fragment<float2>{
 
 
         return point;
+    }
+
+    @Override
+    public Fragment<float2>[][] build(int2 dims) throws IllegalMapSizeException {
+        return new Fragment[0][];
     }
 }
