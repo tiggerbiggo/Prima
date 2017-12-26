@@ -5,65 +5,68 @@ import com.tiggerbiggo.prima.graphics.Gradient;
 import com.tiggerbiggo.prima.presets.MapGenerator;
 import com.tiggerbiggo.prima.presets.MapTypes;
 import com.tiggerbiggo.prima.presets.Transform;
+import com.tiggerbiggo.prima.processing.ColorProperty;
 import com.tiggerbiggo.prima.processing.fragment.*;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class Main
 {
+
     public static void main(String[] args)
     {
-        Gradient g = new Gradient(Color.blue, Color.black, true);
-        Gradient h = new Gradient(Color.black, Color.red, true);
-
-        Fragment<float2>[][] frags;
-        Fragment<Color[]> render;
-
-        Fragment<float2> initMap = new MapGenFragment(float2.ZERO, float2.ONE);
-
-        TransformFragment T = new TransformFragment(initMap, Transform.SINSIN);
-
-        render = new RenderFragment(T, 60, g);
-
-        int2[] sizes = {
-                new int2(300, 300),
-                new int2(500, 500),
-                new int2(700, 700),
-                new int2(1000, 1000)
-        };
+        Gradient g = new Gradient(Color.white, Color.blue, true);
 
         String[] filenames = {
-                "300",
-                "500",
-                "700",
-                "1000"
+                "conchie.png"
         };
 
-        try {
-            for(int i=0; i<sizes.length; i++) {
-                Builder b = new Builder(render.build(sizes[i]));
-                b.startBuild();
-                b.joinAll();
+        int[] scales = {
+                2,
+                1,
+                1
+        };
 
-                System.out.println("Writing...");
-                FileManager.writeGif(b.getImgs(), filenames[i]);
-            }
-        }
-        catch (IllegalMapSizeException ex)
+        for(int i=0; i<filenames.length; i++)
         {
-            ex.printStackTrace();
+            doImage(filenames[i], filenames[i], g, scales[i]);
         }
-        catch(Exception e)
+    }
+
+    public static void doImage(String imageName, String outName, Gradient g, int scaleFactor)
+    {
+        BufferedImage img = null;
+
+        try
         {
-            e.printStackTrace();
+            img = ImageIO.read(new File(imageName));
+        }
+        catch (Exception e)
+        {
+            System.exit(1);
         }
 
+        MapGenFragment gen = new MapGenFragment(new float2(0), new float2(1));
+        //TransformFragment t = new TransformFragment(gen, Transform.TANNY);
+        //CombineFragment combine = new CombineFragment(t, new ConstFragment(new float2(1)), CombineType.ADD);
+        ImageConvertFragment convert = new ImageConvertFragment(img, gen, ColorProperty.V);
+        RenderFragment render = new RenderFragment(convert, 60, g);
 
+        try
+        {
+            Builder B = new Builder(render.build(new int2(img.getWidth()/scaleFactor, img.getHeight()/scaleFactor)));
+            B.startBuild();
+            B.joinAll();
 
-        //Builder b = new Builder(8, new float2(0, 0),
-        //        new float2(10, 10),MapTypes.REGULAR,
-        //        TransformTypes.MAGNETISM,g);
+            FileManager.writeGif(B.getImgs(), outName);
+        }
+        catch (Exception e)
+        {
 
-        //FileManager.writeGif(b.build(300, 300, 60), "Giffy");
+        }
     }
 }

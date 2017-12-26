@@ -23,8 +23,29 @@ public class ColorTools
 
     public static float getHue(Color in)
     {
+        if(getSaturation(in) == 0)
+            return 0;
 
-        return 0;
+        float min, max;
+        min = getMin(in);
+        max = getMax(in);
+
+        float redc = (max - in.getRed()) / (max - min);
+        float greenc = (max - in.getGreen()) / (max - min);
+        float bluec = (max - in.getBlue()) / (max - min);
+
+        float hue;
+
+        if (in.getRed() == max)
+            hue = bluec - greenc;
+        else if (in.getGreen() == max)
+            hue = 2.0f + redc - bluec;
+        else
+            hue = 4.0f + greenc - redc;
+        hue = hue / 6.0f;
+        if (hue < 0)
+            hue = hue + 1.0f;
+        return hue;
     }
 
     public static int getMax(Color in){

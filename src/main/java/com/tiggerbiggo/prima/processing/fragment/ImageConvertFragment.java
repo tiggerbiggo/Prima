@@ -5,6 +5,7 @@ import com.tiggerbiggo.prima.core.int2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 import com.tiggerbiggo.prima.processing.ColorProperty;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class ImageConvertFragment implements Fragment<float2>{
@@ -19,6 +20,12 @@ public class ImageConvertFragment implements Fragment<float2>{
         this.convX = convX;
         this.convY = convY;
     }
+
+    public ImageConvertFragment(BufferedImage img, Fragment<float2> pos, ColorProperty conv)
+    {
+        this(img, pos, conv, conv);
+    }
+
     /*
     (0,0)   +---------------+   (1,0)
             |               |
@@ -34,19 +41,56 @@ public class ImageConvertFragment implements Fragment<float2>{
         float2 point = pos.get();
 
         point = point.mod(1);
+        point = float2.abs(point);
         point = float2.multiply(
                 point,
                 new float2(
                         img.getWidth(),
                         img.getHeight()
                 ));
+        try {
+            Color c = new Color(img.getRGB(point.iX(), point.iY()));
+            point.set(
+                    convX.convert(c),
+                    convY.convert(c)
+            );
 
+            return point;
+        }
+        catch(Exception e)
+        {
+            System.out.println("ayy");
+        }
 
-        return point;
+        return null;
+
     }
 
     @Override
     public Fragment<float2>[][] build(int2 dims) throws IllegalMapSizeException {
-        return new Fragment[0][];
+        Fragment<float2>[][] map;
+        try
+        {
+            map = pos.build(dims);
+        }
+        catch (IllegalMapSizeException ex)
+        {
+            throw ex;
+        }
+
+        if(Fragment.checkArrayDims(map, dims))
+        {
+            ImageConvertFragment[][] thisArray = new ImageConvertFragment[dims.X()][dims.Y()];
+            for(int i=0; i<dims.X(); i++)
+            {
+                for(int j=0; j<dims.Y(); j++)
+                {
+                    thisArray[i][j] = new ImageConvertFragment(img, map[i][j], convX, convY);
+                }
+            }
+            return thisArray;
+        }
+
+        throw new IllegalMapSizeException();
     }
 }

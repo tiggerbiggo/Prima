@@ -47,16 +47,19 @@ public class Builder implements Runnable
         current = 0;
 
         Collections.shuffle(fragList); //optional
-    }
 
-    public void startBuild()
-    {
         imgs = new BufferedImage[n];
         for(int i=0; i<n; i++)
         {
             imgs[i] = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
         }
+    }
 
+    public void callback()
+    {}
+
+    public void startBuild()
+    {
         threads = new Thread[THREADNUM];
         for(int i=0; i<THREADNUM; i++)
         {
@@ -93,6 +96,7 @@ public class Builder implements Runnable
                     }
                 }
                 pos = getNext();
+                callback();
             }
         }
     }
@@ -102,6 +106,11 @@ public class Builder implements Runnable
         if(fragList.isEmpty())
             return null;
         return fragList.pop();
+    }
+
+    public int getCurrent()
+    {
+        return current;
     }
 
     /**Joins all currently working threads in this object to the thread that called this method.

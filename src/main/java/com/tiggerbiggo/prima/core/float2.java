@@ -20,9 +20,12 @@ public class float2 {
     public float X() {
         return x;
     }
-    public float Y() {
-        return y;
+    public float Y() {return y;}
+
+    public int iX() {
+        return (int)x;
     }
+    public int iY() {return (int)y;}
 
     //Setters
     public void setX(float x) {

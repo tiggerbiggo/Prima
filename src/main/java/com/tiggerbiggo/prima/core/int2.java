@@ -9,8 +9,9 @@ public class int2
         this.x = x;
         this.y = y;
     }
+    public int2(int xy) {this(xy, xy);}
     public int2(){
-        this(0, 0);
+        this(0);
     }
 
     //Getters

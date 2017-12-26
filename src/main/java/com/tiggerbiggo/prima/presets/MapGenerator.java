@@ -34,8 +34,6 @@ public class MapGenerator {
 
         for(int i=0; i<width; i++){
             for(int j=0; j<height; j++){
-                if(i == 300 || j == 300)
-                    System.out.println("Break here!");
                 map[i][j] = new ConstFragment(
                         new float2(
                                 x1+(i*dx),
