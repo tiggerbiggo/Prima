@@ -37,6 +37,6 @@ public class int2
     @Override
     public String toString()
     {
-        return String.format("X: %f, Y: %f", x, y);
+        return String.format("fX: %f, fY: %f", x, y);
     }
 }

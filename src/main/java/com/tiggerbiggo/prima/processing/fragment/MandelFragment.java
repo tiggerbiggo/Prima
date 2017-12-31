@@ -1,25 +1,25 @@
 package com.tiggerbiggo.prima.processing.fragment;
 
-import com.tiggerbiggo.prima.core.float2;
+import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.core.int2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 
-public class MandelFragment implements Fragment<float2>
+public class MandelFragment implements Fragment<Vector2>
 {
 
-    private Fragment<float2> frag;
+    private Fragment<Vector2> frag;
     private int iter;
 
-    public MandelFragment(Fragment<float2> c, int iter)
+    public MandelFragment(Fragment<Vector2> c, int iter)
     {
         this.frag = c;
         this.iter = iter;
     }
 
     @Override
-    public float2 get() {
-        float2 z = float2.ZERO;
-        float2 c = frag.get();
+    public Vector2 get() {
+        Vector2 z = Vector2.ZERO;
+        Vector2 c = frag.get();
 
         if(c == null) return null;
 
@@ -27,25 +27,25 @@ public class MandelFragment implements Fragment<float2>
         {
             float a, b;
 
-            a=z.X();
-            b=z.Y();
+            a=z.fX();
+            b=z.fY();
 
-            z = new float2(
-                    (a*a)-(b*b)+c.Y(),
-                    (2*a*b) + c.X()
+            z = new Vector2(
+                    (a*a)-(b*b)+c.fY(),
+                    (2*a*b) + c.fX()
             );
 
             if(z.magnitude() >2)
             {
-                return new float2(i, i);
+                return new Vector2(i, i);
             }
         }
-        return float2.ZERO;
+        return Vector2.ZERO;
     }
 
     @Override
-    public Fragment<float2>[][] build(int2 dims) throws IllegalMapSizeException {
-        Fragment<float2>[][] map;
+    public Fragment<Vector2>[][] build(Vector2 dims) throws IllegalMapSizeException {
+        Fragment<Vector2>[][] map;
         try {
             map = frag.build(dims);
         }
@@ -56,7 +56,7 @@ public class MandelFragment implements Fragment<float2>
 
         if(Fragment.checkArrayDims(map, dims))
         {
-            Fragment<float2>[][] meFragment = new Fragment[dims.X()][dims.Y()];
+            Fragment<Vector2>[][] meFragment = new Fragment[dims.iX()][dims.iY()];
             for(int i=0; i<dims.X(); i++)
             {
                 for(int j=0; j<dims.Y(); j++)

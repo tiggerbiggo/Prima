@@ -1,6 +1,6 @@
 package com.tiggerbiggo.prima.processing.fragment;
 
-import com.tiggerbiggo.prima.core.float2;
+import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.core.int2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 import com.tiggerbiggo.prima.graphics.Gradient;
@@ -9,11 +9,11 @@ import java.awt.*;
 
 public class RenderFragment implements Fragment<Color[]>
 {
-    Fragment<float2> in;
+    Fragment<Vector2> in;
     int num;
     Gradient g;
 
-    public RenderFragment(Fragment<float2> in, int num, Gradient g)
+    public RenderFragment(Fragment<Vector2> in, int num, Gradient g)
     {
         if(num <=0) throw new IllegalArgumentException("Number of frames cannot be null");
 
@@ -22,7 +22,7 @@ public class RenderFragment implements Fragment<Color[]>
         this.g = g;
     }
 
-    public RenderFragment(Fragment<float2> in)
+    public RenderFragment(Fragment<Vector2> in)
     {
         this(in, 1, new Gradient());
     }
@@ -50,8 +50,8 @@ public class RenderFragment implements Fragment<Color[]>
     }
 
     @Override
-    public Fragment<Color[]>[][] build(int2 dims) throws IllegalMapSizeException {
-        Fragment<float2>[][] map;
+    public Fragment<Color[]>[][] build(Vector2 dims) throws IllegalMapSizeException {
+        Fragment<Vector2>[][] map;
         try {
             map = in.build(dims);
         }
@@ -62,10 +62,10 @@ public class RenderFragment implements Fragment<Color[]>
 
         if(Fragment.checkArrayDims(map, dims))
         {
-            RenderFragment[][] thisArray = new RenderFragment[dims.X()][dims.Y()];
-            for(int i=0; i<dims.X(); i++)
+            RenderFragment[][] thisArray = new RenderFragment[dims.iX()][dims.iY()];
+            for(int i=0; i<dims.iX(); i++)
             {
-                for(int j=0; j<dims.Y(); j++)
+                for(int j=0; j<dims.iY(); j++)
                 {
                     thisArray[i][j] = new RenderFragment(map[i][j], num, g);
                 }

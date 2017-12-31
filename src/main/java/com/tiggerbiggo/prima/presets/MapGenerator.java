@@ -1,14 +1,14 @@
 package com.tiggerbiggo.prima.presets;
 
-import com.tiggerbiggo.prima.core.float2;
+import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.processing.fragment.ConstFragment;
 
 public class MapGenerator {
     public static ConstFragment[][] getFragMap(
             int width,
             int height,
-            float2 topLeft,
-            float2 bottomRight)
+            Vector2 topLeft,
+            Vector2 bottomRight)
             throws IllegalArgumentException
     {
         width = Math.max(1, width);
@@ -20,11 +20,11 @@ public class MapGenerator {
 
         float x1, x2, y1, y2, dx, dy;
 
-        x1=topLeft.X();
-        x2=bottomRight.X();
+        x1=topLeft.fX();
+        x2=bottomRight.fX();
 
-        y1=topLeft.Y();
-        y2=bottomRight.Y();
+        y1=topLeft.fY();
+        y2=bottomRight.fY();
 
         dx = x2-x1;
         dy = y2-y1;
@@ -35,7 +35,7 @@ public class MapGenerator {
         for(int i=0; i<width; i++){
             for(int j=0; j<height; j++){
                 map[i][j] = new ConstFragment(
-                        new float2(
+                        new Vector2(
                                 x1+(i*dx),
                                 y1+(j*dy)
                         )

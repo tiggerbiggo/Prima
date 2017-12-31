@@ -1,6 +1,6 @@
 package com.tiggerbiggo.prima.processing.fragment;
 
-import com.tiggerbiggo.prima.core.float2;
+import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.core.int2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 import com.tiggerbiggo.prima.processing.ColorProperty;
@@ -8,20 +8,20 @@ import com.tiggerbiggo.prima.processing.ColorProperty;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class ImageConvertFragment implements Fragment<float2>{
+public class ImageConvertFragment implements Fragment<Vector2>{
 
     private BufferedImage img;
-    private Fragment<float2> pos;
+    private Fragment<Vector2> pos;
     private ColorProperty convX, convY;
 
-    public ImageConvertFragment(BufferedImage img, Fragment<float2> pos, ColorProperty convX, ColorProperty convY) {
+    public ImageConvertFragment(BufferedImage img, Fragment<Vector2> pos, ColorProperty convX, ColorProperty convY) {
         this.img = img;
         this.pos = pos;
         this.convX = convX;
         this.convY = convY;
     }
 
-    public ImageConvertFragment(BufferedImage img, Fragment<float2> pos, ColorProperty conv)
+    public ImageConvertFragment(BufferedImage img, Fragment<Vector2> pos, ColorProperty conv)
     {
         this(img, pos, conv, conv);
     }
@@ -37,14 +37,14 @@ public class ImageConvertFragment implements Fragment<float2>{
     */
 
     @Override
-    public float2 get() {
-        float2 point = pos.get();
+    public Vector2 get() {
+        Vector2 point = pos.get();
 
         point = point.mod(1);
-        point = float2.abs(point);
-        point = float2.multiply(
+        point = Vector2.abs(point);
+        point = Vector2.multiply(
                 point,
-                new float2(
+                new Vector2(
                         img.getWidth(),
                         img.getHeight()
                 ));
@@ -67,8 +67,8 @@ public class ImageConvertFragment implements Fragment<float2>{
     }
 
     @Override
-    public Fragment<float2>[][] build(int2 dims) throws IllegalMapSizeException {
-        Fragment<float2>[][] map;
+    public Fragment<Vector2>[][] build(Vector2 dims) throws IllegalMapSizeException {
+        Fragment<Vector2>[][] map;
         try
         {
             map = pos.build(dims);
@@ -80,7 +80,7 @@ public class ImageConvertFragment implements Fragment<float2>{
 
         if(Fragment.checkArrayDims(map, dims))
         {
-            ImageConvertFragment[][] thisArray = new ImageConvertFragment[dims.X()][dims.Y()];
+            ImageConvertFragment[][] thisArray = new ImageConvertFragment[dims.iX()][dims.iY()];
             for(int i=0; i<dims.X(); i++)
             {
                 for(int j=0; j<dims.Y(); j++)
