@@ -23,7 +23,7 @@ public class Gradient
         this(Color.black, Color.white, false);
     }
 
-    public Color evaluate(float a){
+    public Color evaluate(double a){
         if(a<0) a=Math.abs(a);
         if(a > 1) a = Calculation.modLoop(a, 1);
 

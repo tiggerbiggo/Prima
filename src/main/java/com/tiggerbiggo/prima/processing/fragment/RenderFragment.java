@@ -1,7 +1,6 @@
 package com.tiggerbiggo.prima.processing.fragment;
 
 import com.tiggerbiggo.prima.core.Vector2;
-import com.tiggerbiggo.prima.core.int2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 import com.tiggerbiggo.prima.graphics.Gradient;
 
@@ -36,7 +35,7 @@ public class RenderFragment implements Fragment<Color[]>
 
     @Override
     public Color[] get() {
-        float base = in.get().toFloat();
+        double base = in.get().magnitude();
         Color[] cA = new Color[num];
 
         float increment = 1.0f/num;

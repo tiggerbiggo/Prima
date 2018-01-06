@@ -6,16 +6,16 @@ import java.util.function.BiFunction;
 
 public enum Transform {
     SINSIN((x, y) -> {
-        y = (float) Math.sin(y) / (float) Math.PI;
-        x = (float) Math.sin(x) / (float) Math.PI;
+        y = Math.sin(y) / Math.PI;
+        x = Math.sin(x) / Math.PI;
         return new Vector2(x, y);
     }),
     MAGNETISM((x, y) -> {
-        y = (float) Math.sin(Math.cosh(x) * y);
+        y = Math.sin(Math.cosh(x) * y);
         return new Vector2(x, y);
     }),
     TANNY((x, y) -> {
-        y = (float) Math.sin(Math.tanh(x) * Math.tan(y));
+        y = Math.sin(Math.tanh(x) * Math.tan(y));
         return new Vector2(x, y);
     }),
     CHOPPY((x, y) -> {
@@ -32,15 +32,28 @@ public enum Transform {
             return null;
         }
         return new Vector2(x, y);
+    }),
+    HARMONIC((x, y) -> {
+        for(int i=0; i<100; i++)
+        {
+            x = Math.sin(x);
+            y = Math.sin(y);
+        }
+        return new Vector2(x, y);
+    }), NEGATE((x, y) -> {
+        x *= -1;
+        y *= -1;
+
+        return new Vector2(x, y);
     });
 
-    private BiFunction<Float, Float, Vector2> function;
+    private BiFunction<Double, Double, Vector2> function;
 
-    Transform(BiFunction<Float, Float, Vector2> function) {
+    Transform(BiFunction<Double, Double, Vector2> function) {
         this.function = function;
     }
 
     public Vector2 doFormula(Vector2 in) {
-        return function.apply(in.fX(), in.fY());
+        return function.apply(in.X(), in.Y());
     }
 }

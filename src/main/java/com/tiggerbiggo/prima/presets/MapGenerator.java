@@ -7,24 +7,34 @@ public class MapGenerator {
     public static ConstFragment[][] getFragMap(
             int width,
             int height,
-            Vector2 topLeft,
-            Vector2 bottomRight)
+            Vector2 A,
+            Vector2 B)
             throws IllegalArgumentException
     {
         width = Math.max(1, width);
         height = Math.max(1, height);
-        if (topLeft == null || bottomRight == null)
+        if (A == null || B == null)
             throw new IllegalArgumentException("Either Offset or Scale are null.");
 
         ConstFragment[][] map = new ConstFragment[width][height];
 
-        float x1, x2, y1, y2, dx, dy;
+        double x1, x2, y1, y2, dx, dy;
 
-        x1=topLeft.fX();
-        x2=bottomRight.fX();
+        //      +-----------------------+
+        //      |                (x2,y2)|
+        //      |                     B |
+        //      |                       |
+        //      |                       |
+        //      |                       |
+        //      | A                     |
+        //      |(x1,y1)                |
+        //      +-----------------------+
 
-        y1=topLeft.fY();
-        y2=bottomRight.fY();
+        x1=A.X();
+        x2=B.X();
+
+        y1=A.Y();
+        y2=B.Y();
 
         dx = x2-x1;
         dy = y2-y1;

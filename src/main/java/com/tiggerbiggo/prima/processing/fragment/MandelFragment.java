@@ -1,7 +1,6 @@
 package com.tiggerbiggo.prima.processing.fragment;
 
 import com.tiggerbiggo.prima.core.Vector2;
-import com.tiggerbiggo.prima.core.int2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 
 public class MandelFragment implements Fragment<Vector2>
@@ -37,7 +36,7 @@ public class MandelFragment implements Fragment<Vector2>
 
             if(z.magnitude() >2)
             {
-                return new Vector2(i, i);
+                return new Vector2(i);
             }
         }
         return Vector2.ZERO;

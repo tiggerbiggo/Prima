@@ -1,7 +1,6 @@
 package com.tiggerbiggo.prima.processing.fragment;
 
 import com.tiggerbiggo.prima.core.Vector2;
-import com.tiggerbiggo.prima.core.int2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 import com.tiggerbiggo.prima.presets.Transform;
 
@@ -26,7 +25,7 @@ public class TransformFragment implements Fragment<Vector2>
     }
 
     @Override
-    public Fragment<Vector2>[][] build(int2 dims) throws IllegalMapSizeException {
+    public Fragment<Vector2>[][] build(Vector2 dims) throws IllegalMapSizeException {
         Fragment<Vector2>[][] map;
         try
         {
@@ -39,7 +38,7 @@ public class TransformFragment implements Fragment<Vector2>
 
         if(Fragment.checkArrayDims(map, dims))
         {
-            TransformFragment[][] thisArray = new TransformFragment[dims.X()][dims.Y()];
+            TransformFragment[][] thisArray = new TransformFragment[dims.iX()][dims.iY()];
             for(int i=0; i<dims.X(); i++)
             {
                 for(int j=0; j<dims.Y(); j++)

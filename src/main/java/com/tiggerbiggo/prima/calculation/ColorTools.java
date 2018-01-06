@@ -10,7 +10,7 @@ public class ColorTools
      * @param a Interpolation coefficient
      * @return new Color value generated from c1 and c2
      */
-    public static Color colorLerp(Color c1, Color c2, float a)
+    public static Color colorLerp(Color c1, Color c2, double a)
     {
         return new Color(
                 (int)Calculation.clampedLerp(c1.getRed(), c2.getRed(), a, 0, 255),

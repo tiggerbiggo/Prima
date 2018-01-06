@@ -16,6 +16,11 @@ public class Vector2 {
         this(0);
     }
 
+    public Vector2 clone()
+    {
+        return new Vector2(x, y);
+    }
+
     //Getters
     public double X() {
         return x;
@@ -33,13 +38,13 @@ public class Vector2 {
     public int iY() {return (int)y;}
 
     //Setters
-    public void setX(float x) {
+    public void setX(double x) {
         this.x = x;
     }
-    public void setY(float y) {
+    public void setY(double y) {
         this.y = y;
     }
-    public void set(float x, float y){
+    public void set(double x, double y){
         this.x = x;
         this.y = y;
     }
@@ -59,35 +64,42 @@ public class Vector2 {
     @Override
     public String toString()
     {
-        return String.format("fX: %f, fY: %f", x, y);
+        return String.format("[@%s] -- X: %f, Y: %f", hashCode(), x, y);
     }
 
     public static Vector2 add(Vector2 a, Vector2 b)
     {
         return new Vector2(
-                a.fX() + b.fX(),
-                a.fY() + b.fY());
+                a.X() + b.X(),
+                a.Y() + b.Y());
     }
 
     public static Vector2 multiply(Vector2 a, Vector2 b)
     {
         return new Vector2(
-                a.fX() * b.fX(),
-                a.fY() * b.fY());
+                a.X() * b.X(),
+                a.Y() * b.Y());
+    }
+
+    public static Vector2 divide(Vector2 a, Vector2 b)
+    {
+        return new Vector2(
+                a.X() / b.X(),
+                a.Y() / b.Y());
     }
 
     public static Vector2 subtract(Vector2 a, Vector2 b)
     {
         return new Vector2(
-                a.fX() - b.fX(),
-                a.fY() - b.fY());
+                a.X() - b.X(),
+                a.Y() - b.Y());
     }
 
     public static Vector2 abs(Vector2 in)
     {
         return new Vector2(
-                Math.abs(in.fX()),
-                Math.abs(in.fY()));
+                Math.abs(in.X()),
+                Math.abs(in.Y()));
     }
 
     public static final Vector2 ZERO = new Vector2(0,0);

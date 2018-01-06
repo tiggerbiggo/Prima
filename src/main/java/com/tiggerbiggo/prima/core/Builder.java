@@ -13,7 +13,7 @@ public class Builder implements Runnable
     private Thread[] threads;
     private boolean setup = false;
     private boolean isDone = false;
-    private Stack<int2> fragList;
+    private Stack<Vector2> fragList;
     private Fragment<Color[]>[][] fragMap;
     private BufferedImage[] imgs = null;
     private int w, h, n;
@@ -41,7 +41,7 @@ public class Builder implements Runnable
 
         for(int i=0; i<w; i++)
             for (int j=0; j<h; j++)
-                fragList.add(new int2(i, j));
+                fragList.add(new Vector2(i, j));
 
         max = fragList.size();
         current = 0;
@@ -76,14 +76,14 @@ public class Builder implements Runnable
     public void run() {
         if(setup)
         {
-            int2 pos = getNext();
+            Vector2 pos = getNext();
             while(pos != null) {
                 current++;
 
-                if(current % 5000 == 0)
-                    System.out.printf("%f percent.\n", ((float)current/max)*100);
+                if(current % 50000 == 0)
+                    System.out.print(".");
 
-                Color[] colors = fragMap[pos.X()][pos.Y()].get();
+                Color[] colors = fragMap[pos.iX()][pos.iY()].get();
                 if(colors.length != n)
                 {
                     break;
@@ -92,7 +92,7 @@ public class Builder implements Runnable
                 {
                     for(int i=0; i<n; i++)
                     {
-                        imgs[i].setRGB(pos.X(), pos.Y(), colors[i].getRGB());
+                        imgs[i].setRGB(pos.iX(), pos.iY(), colors[i].getRGB());
                     }
                 }
                 pos = getNext();
@@ -101,7 +101,7 @@ public class Builder implements Runnable
         }
     }
 
-    private synchronized int2 getNext()
+    private synchronized Vector2 getNext()
     {
         if(fragList.isEmpty())
             return null;
