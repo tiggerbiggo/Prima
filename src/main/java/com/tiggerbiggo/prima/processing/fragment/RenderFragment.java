@@ -38,7 +38,7 @@ public class RenderFragment implements Fragment<Color[]>
         double base = in.get().magnitude();
         Color[] cA = new Color[num];
 
-        float increment = 1.0f/num;
+        double increment = 1.0f/num;
 
         for(int i=0; i<num; i++)
         {

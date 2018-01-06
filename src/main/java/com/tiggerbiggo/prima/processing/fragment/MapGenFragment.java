@@ -5,14 +5,14 @@ import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 import com.tiggerbiggo.prima.presets.MapGenerator;
 
 public class MapGenFragment implements Fragment<Vector2> {
-    Vector2 TL, BR;
+    Vector2 A, B;
 
     //Top Left, Bottom Right
-    //TL        BR
-    public MapGenFragment(Vector2 TL, Vector2 BR)
+    //TL        B
+    public MapGenFragment(Vector2 A, Vector2 B)
     {
-        this.TL = TL;
-        this.BR = BR;
+        this.A = A;
+        this.B = B;
     }
 
     @Override
@@ -22,7 +22,7 @@ public class MapGenFragment implements Fragment<Vector2> {
 
     @Override
     public Fragment<Vector2>[][] build(Vector2 dims) throws IllegalMapSizeException {
-        Fragment<Vector2>[][] map = MapGenerator.getFragMap(dims.iX(), dims.iY(), TL, BR);
+        Fragment<Vector2>[][] map = MapGenerator.getFragMap(dims.iX(), dims.iY(), A, B);
         return map;
     }
 }
