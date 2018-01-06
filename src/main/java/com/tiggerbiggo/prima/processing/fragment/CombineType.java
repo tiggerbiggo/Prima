@@ -1,12 +1,12 @@
 package com.tiggerbiggo.prima.processing.fragment;
 
-import com.tiggerbiggo.prima.core.float2;
+import com.tiggerbiggo.prima.core.Vector2;
 
 public enum CombineType{
     ADD{
         @Override
-        public float2 combine(Fragment<float2> A, Fragment<float2> B) {
-            return float2.add(
+        public Vector2 combine(Fragment<Vector2> A, Fragment<Vector2> B) {
+            return Vector2.add(
                     A.get(),
                     B.get()
             );
@@ -14,8 +14,8 @@ public enum CombineType{
     },
     MULTIPLY{
         @Override
-        public float2 combine(Fragment<float2> A, Fragment<float2> B) {
-            return float2.multiply(
+        public Vector2 combine(Fragment<Vector2> A, Fragment<Vector2> B) {
+            return Vector2.multiply(
                     A.get(),
                     B.get()
             );
@@ -23,8 +23,8 @@ public enum CombineType{
     },
     DIFF{
         @Override
-        public float2 combine(Fragment<float2> A, Fragment<float2> B) {
-            return float2.subtract(
+        public Vector2 combine(Fragment<Vector2> A, Fragment<Vector2> B) {
+            return Vector2.subtract(
                     A.get(),
                     B.get()
             );
@@ -32,9 +32,9 @@ public enum CombineType{
     },
     ABSDIFF{
         @Override
-        public float2 combine(Fragment<float2> A, Fragment<float2> B) {
-            return float2.abs(
-                    float2.subtract(
+        public Vector2 combine(Fragment<Vector2> A, Fragment<Vector2> B) {
+            return Vector2.abs(
+                    Vector2.subtract(
                             A.get(),
                             B.get()
                     )
@@ -42,5 +42,5 @@ public enum CombineType{
         }
     };
 
-    public float2 combine(Fragment<float2> A, Fragment<float2> B){return A.get();}
+    public Vector2 combine(Fragment<Vector2> A, Fragment<Vector2> B){return A.get();}
 }

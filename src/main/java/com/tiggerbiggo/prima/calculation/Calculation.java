@@ -4,8 +4,8 @@ public class Calculation {
 
 
     /**
-     * Linearly interpolates between 2 float values using the formula f1+(a*(f2-f1)).
-     * Any valid float values are acceptable, but values outside
+     * Linearly interpolates between 2 double values using the formula f1+(a*(f2-f1)).
+     * Any valid double values are acceptable, but values outside
      * intended range may produce strange results.
      *
      * @param f1 Start number
@@ -13,7 +13,7 @@ public class Calculation {
      * @param a Interpolation coefficient, intended values between 0.0 and 1.0
      * @return Result of the interpolation calculation
      */
-    public static float lerp(float f1, float f2, float a)
+    public static double lerp(double f1, double f2, double a)
     {
         return f1+(a*(f2-f1));
     }
@@ -27,7 +27,7 @@ public class Calculation {
      * @param max Max value
      * @return Result of the calculation
      */
-    public static float clampedLerp(float f1, float f2, float a, float min, float max)
+    public static double clampedLerp(double f1, double f2, double a, double min, double max)
     {
         return clamp(min, max, lerp(f1, f2, a));
     }
@@ -41,7 +41,7 @@ public class Calculation {
      * @param n Number to clamp
      * @return The clamped value
      */
-    public static float clamp(float min, float max, float n)
+    public static double clamp(double min, double max, double n)
     {
         n = Math.max(min, n);
         n = Math.min(max, n);
@@ -55,7 +55,7 @@ public class Calculation {
      * @param mod Modulo to loop within
      * @return Result
      */
-    public static float modLoop(float in, float mod)
+    public static double modLoop(double in, double mod)
     {
         return in%mod;
     }
