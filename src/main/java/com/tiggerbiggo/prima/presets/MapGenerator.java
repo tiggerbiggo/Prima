@@ -3,7 +3,21 @@ package com.tiggerbiggo.prima.presets;
 import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.processing.fragment.ConstFragment;
 
+/**
+ * Generates maps for MapGenFragment to use
+ *
+ * @see com.tiggerbiggo.prima.processing.fragment.MapGenFragment
+ */
 public class MapGenerator {
+    /**Generates a 2D array of ConstFragments formatted as a section of an XY coordinate graph
+     *
+     * @param width Width of the array to generate ([width][])
+     * @param height Height of the array to generate ([][height])
+     * @param A The bottom left vector of the map
+     * @param B The top right vector of the map
+     * @return The generated array
+     * @throws IllegalArgumentException if A or B are null
+     */
     public static ConstFragment[][] getFragMap(
             int width,
             int height,

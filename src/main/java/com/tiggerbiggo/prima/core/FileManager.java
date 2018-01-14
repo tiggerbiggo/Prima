@@ -5,6 +5,9 @@ import javax.imageio.stream.ImageOutputStream;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+/**
+ * Provides methods for writing images.
+ */
 public class FileManager
 {
     public static void writeGif(BufferedImage[] imgSequence, String filename)

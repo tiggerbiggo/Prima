@@ -3,8 +3,12 @@ package com.tiggerbiggo.prima.processing.fragment;
 import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 
-public class SuperSampleFragment implements Fragment<Vector2>{
-
+/**
+ * WIP CLASS, DO NOT USE!!
+ */
+public class SuperSampleFragment //implements Fragment<Vector2>
+{
+/*
     private int factor;
 
     private boolean isPublic = false;
@@ -29,12 +33,12 @@ public class SuperSampleFragment implements Fragment<Vector2>{
     }
 
     @Override
-    public Fragment<Vector2>[][] build(Vector2 dims) throws IllegalMapSizeException {
+    public Fragment<Vector2>[][] build(int xDim, int yDim) throws IllegalMapSizeException {
         if(!isPublic) return null;
 
         Fragment<Vector2>[][] nextArray;
         try {
-            nextArray = nextFragment.build(Vector2.multiply(dims, new Vector2(factor)));
+            nextArray = nextFragment.build(, Vector2.multiply(dims, new Vector2(factor)), );
         }
         catch (IllegalMapSizeException e) {
             throw e;
@@ -61,5 +65,5 @@ public class SuperSampleFragment implements Fragment<Vector2>{
         }
 
         return new Fragment[0][];
-    }
+    }*/
 }

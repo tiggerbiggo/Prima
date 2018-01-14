@@ -2,40 +2,38 @@ package com.tiggerbiggo.prima.graphics;
 
 import com.tiggerbiggo.prima.calculation.Calculation;
 import com.tiggerbiggo.prima.calculation.ColorTools;
+import com.tiggerbiggo.prima.core.Vector2;
 
 import java.awt.*;
 
-/**
- * Stores colors and calculates gradients.
- * @author tiggerbiggo
+/**Stores colors and calculates gradients
  */
-public class Gradient
+public abstract class Gradient
 {
-    Color c1, c2;
-    boolean loop;
+    /**
+     * Abstract method for evaluating gradients
+     * @param a The vector to evaluate
+     * @return The evaluated color
+     */
+    public abstract Color evaluate(Vector2 a);
 
-    public Gradient(Color c1, Color c2, boolean loop) throws IllegalArgumentException{
-        this.c1 = c1;
-        this.c2 = c2;
-        this.loop = loop;
-    }
-    public Gradient(){
-        this(Color.black, Color.white, false);
-    }
+    /**
+     * Normalises a number to between 0 and 1, optionally looped
+     * @param in The number to bound
+     * @param loop Whether to loop the number so it goes from 0 to 1, then back to 0
+     * @return The normalised number
+     */
+    public double normalise(double in, boolean loop) {
+        in = Math.abs(in);
+        in = Calculation.mod(in, 1);
 
-    public Color evaluate(double a){
-        if(a<0) a=Math.abs(a);
-        if(a > 1) a = Calculation.modLoop(a, 1);
-
-        if(loop) {
-            if(a<0.5f){
-                a *= 2;
-            }
-            else{
-                a -= 0.5f;
-                a = 1-(a*2);
+        if (loop){
+            if (in < 0.5) in *= 2;
+            else {
+                in -= 0.5f;
+                in = 1 - (in * 2);
             }
         }
-        return ColorTools.colorLerp(c1, c2, a);
+        return in;
     }
 }

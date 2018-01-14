@@ -2,6 +2,10 @@ package com.tiggerbiggo.prima.processing.fragment;
 
 import com.tiggerbiggo.prima.core.Vector2;
 
+/**
+ * Contains combination methods to be used with CombineFragment
+ * @see CombineFragment
+ */
 public enum CombineType{
     ADD{
         @Override
@@ -42,5 +46,5 @@ public enum CombineType{
         }
     };
 
-    public Vector2 combine(Fragment<Vector2> A, Fragment<Vector2> B){return A.get();}
+    public abstract Vector2 combine(Fragment<Vector2> A, Fragment<Vector2> B);
 }

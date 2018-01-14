@@ -25,23 +25,23 @@ public class TransformFragment implements Fragment<Vector2>
     }
 
     @Override
-    public Fragment<Vector2>[][] build(Vector2 dims) throws IllegalMapSizeException {
+    public Fragment<Vector2>[][] build(int xDim, int yDim) throws IllegalMapSizeException {
         Fragment<Vector2>[][] map;
         try
         {
-            map = in.build(dims);
+            map = in.build(xDim, yDim);
         }
         catch (IllegalMapSizeException ex)
         {
             throw ex;
         }
 
-        if(Fragment.checkArrayDims(map, dims))
+        if(Fragment.checkArrayDims(map, xDim, yDim))
         {
-            TransformFragment[][] thisArray = new TransformFragment[dims.iX()][dims.iY()];
-            for(int i=0; i<dims.X(); i++)
+            TransformFragment[][] thisArray = new TransformFragment[xDim][yDim];
+            for(int i=0; i<xDim; i++)
             {
-                for(int j=0; j<dims.Y(); j++)
+                for(int j=0; j<yDim; j++)
                 {
                     thisArray[i][j] = new TransformFragment(map[i][j], t);
                 }

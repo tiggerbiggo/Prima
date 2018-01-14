@@ -39,7 +39,7 @@ public class ImageConvertFragment implements Fragment<Vector2>{
     public Vector2 get() {
         Vector2 point = pos.get();
 
-        point = point.mod(1);
+        point = Vector2.mod(point,1);
         point = Vector2.abs(point);
         point = Vector2.multiply(
                 point,
@@ -66,30 +66,29 @@ public class ImageConvertFragment implements Fragment<Vector2>{
     }
 
     @Override
-    public Fragment<Vector2>[][] build(Vector2 dims) throws IllegalMapSizeException {
+    public Fragment<Vector2>[][] build(int xDim, int yDim) throws IllegalMapSizeException {
         Fragment<Vector2>[][] map;
         try
         {
-            map = pos.build(dims);
+            map = pos.build(xDim, yDim);
         }
         catch (IllegalMapSizeException ex)
         {
             throw ex;
         }
 
-        if(Fragment.checkArrayDims(map, dims))
+        if(Fragment.checkArrayDims(map, xDim, yDim))
         {
-            ImageConvertFragment[][] thisArray = new ImageConvertFragment[dims.iX()][dims.iY()];
-            for(int i=0; i<dims.X(); i++)
+            ImageConvertFragment[][] thisArray = new ImageConvertFragment[xDim][yDim];
+            for(int i=0; i<xDim; i++)
             {
-                for(int j=0; j<dims.Y(); j++)
+                for(int j=0; j<yDim; j++)
                 {
                     thisArray[i][j] = new ImageConvertFragment(img, map[i][j], convX, convY);
                 }
             }
             return thisArray;
         }
-
         throw new IllegalMapSizeException();
     }
 }

@@ -114,4 +114,10 @@ $RECYCLE.BIN/
 #gifs are big, we don't want them.
 *.gif
 
+#so are images
+*.png
+*.jpg
+*.tiff
+*.bmp
+
 # End of https://www.gitignore.io/api/java,windows,intellij

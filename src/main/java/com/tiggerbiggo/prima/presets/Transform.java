@@ -4,10 +4,22 @@ import com.tiggerbiggo.prima.core.Vector2;
 
 import java.util.function.BiFunction;
 
+/**
+ * Contains transform types to use with TransformFragment
+ * @see com.tiggerbiggo.prima.processing.fragment.TransformFragment
+ */
 public enum Transform {
     SINSIN((x, y) -> {
         y = Math.sin(y) / Math.PI;
         x = Math.sin(x) / Math.PI;
+        return new Vector2(x, y);
+    }),
+    SINX((x, y) -> {
+        x = Math.sin(x) / Math.PI;
+        return new Vector2(x, y);
+    }),
+    SINY((x, y) -> {
+        y = Math.sin(y) / Math.PI;
         return new Vector2(x, y);
     }),
     MAGNETISM((x, y) -> {
@@ -40,9 +52,14 @@ public enum Transform {
             y = Math.sin(y);
         }
         return new Vector2(x, y);
-    }), NEGATE((x, y) -> {
+    }),
+    NEGATE((x, y) -> {
         x *= -1;
         y *= -1;
+
+        return new Vector2(x, y);
+    }),
+    TESTSUM((x, y) -> {
 
         return new Vector2(x, y);
     });

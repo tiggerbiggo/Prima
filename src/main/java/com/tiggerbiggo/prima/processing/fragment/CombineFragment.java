@@ -3,6 +3,9 @@ package com.tiggerbiggo.prima.processing.fragment;
 import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 
+/**
+ * Combines 2 fragments to produce an output
+ */
 public class CombineFragment implements Fragment<Vector2> {
     Fragment<Vector2> A;
     Fragment<Vector2> B;
@@ -20,13 +23,13 @@ public class CombineFragment implements Fragment<Vector2> {
     }
 
     @Override
-    public Fragment<Vector2>[][] build(Vector2 dims) throws IllegalMapSizeException {
+    public Fragment<Vector2>[][] build(int xDim, int yDim) throws IllegalMapSizeException {
         Fragment<Vector2>[][] mapA;
         Fragment<Vector2>[][] mapB;
 
         try {
-            mapA = A.build(dims);
-            mapB = B.build(dims);
+            mapA = A.build(xDim, yDim);
+            mapB = B.build(xDim, yDim);
         }
         catch (IllegalMapSizeException e)
         {

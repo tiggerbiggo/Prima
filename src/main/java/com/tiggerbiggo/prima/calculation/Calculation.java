@@ -1,8 +1,9 @@
 package com.tiggerbiggo.prima.calculation;
 
+/**
+ * A class containing various math based utilities.
+ */
 public class Calculation {
-
-
     /**
      * Linearly interpolates between 2 double values using the formula f1+(a*(f2-f1)).
      * Any valid double values are acceptable, but values outside
@@ -49,13 +50,13 @@ public class Calculation {
         return n;
     }
 
-    /**
+    /**A simple modulo function
      *
      * @param in Number to loop
      * @param mod Modulo to loop within
      * @return Result
      */
-    public static double modLoop(double in, double mod)
+    public static double mod(double in, double mod)
     {
         return in%mod;
     }

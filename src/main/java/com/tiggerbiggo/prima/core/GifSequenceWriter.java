@@ -1,8 +1,8 @@
 package com.tiggerbiggo.prima.core;
 
-//  GifSequenceWriter.java
+// GifSequenceWriter.java
 //  
-//  Created by Elliot Kroo on 2009-04-25.
+// Created by Elliot Kroo on 2009-04-25.
 //
 // This work is licensed under the Creative Commons Attribution 3.0 Unported
 // License. To view a copy of this license, visit
@@ -103,7 +103,7 @@ public class GifSequenceWriter {
                 imageWriteParam);
     }
 
-    /**
+    /*
      * Close this GifSequenceWriter object. This does not close the underlying
      * stream, just finishes off the GIF.
      */
@@ -151,7 +151,7 @@ public class GifSequenceWriter {
         return(node);
     }
 
-    /**
+    /*
      public GifSequenceWriter(
      BufferedOutputStream outputStream,
      int imageType,
@@ -159,7 +159,7 @@ public class GifSequenceWriter {
      boolean loopContinuously) {
 
      */
-
+    /*
     public static void main(String[] args) throws Exception {
         if (args.length > 1) {
             // grab the output image type from the first image in the sequence
@@ -185,5 +185,5 @@ public class GifSequenceWriter {
             output.close();
         } else {
         }
-    }
+    }*/
 }

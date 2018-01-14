@@ -1,8 +1,12 @@
 package com.tiggerbiggo.prima.processing;
 
-import java.awt.*;
+import com.tiggerbiggo.prima.calculation.ColorTools;
+import java.awt.Color;
 import java.util.function.Function;
 
+/**
+ * Provides a means of converting colors to doubles using various properties of that color.
+ */
 public enum ColorProperty
 {
     H((color -> {
@@ -15,22 +19,22 @@ public enum ColorProperty
         return ColorTools.getBrightness(color);
     })),
     R((color -> {
-        return color.getRed()/255f;
+        return color.getRed()/255d;
     })),
     G((color -> {
-        return color.getGreen()/255f;
+        return color.getGreen()/255d;
     })),
     B((color -> {
-        return color.getBlue()/255f;
+        return color.getBlue()/255d;
     }));
 
-    Function<Color, Float> func;
+    Function<Color, Double> func;
 
-    ColorProperty(Function<Color, Float> func) {
+    ColorProperty(Function<Color, Double> func) {
         this.func = func;
     }
 
-    public float convert(Color c)
+    public double convert(Color c)
     {
         return func.apply(c);
     }

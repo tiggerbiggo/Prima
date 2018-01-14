@@ -6,6 +6,9 @@ import java.awt.image.BufferedImage;
 import java.util.Collections;
 import java.util.Stack;
 
+/**
+ * The core class for building and rendering Fragment based images.
+ */
 public class Builder implements Runnable
 {
     public static final int THREADNUM = 6;
@@ -19,8 +22,14 @@ public class Builder implements Runnable
     private int w, h, n;
     private int current, max;
 
-    public Builder(Fragment<Color[]>[][] fragMap)
+    /**Initialises the Builder object
+     *
+     * @param fragMap A 2D array of Color[] type fragments, to make up a 2D image with many frames
+     * @param shuffle Whether or not to shuffle the render order
+     */
+    public Builder(Fragment<Color[]>[][] fragMap, boolean shuffle)
     {
+        //Check for dangerous null values
         try {
             if (fragMap == null || fragMap.length <= 0 || fragMap[0].length <= 0) {
                 throw new IllegalArgumentException("Invalid FragMap");
@@ -31,14 +40,19 @@ public class Builder implements Runnable
             e.printStackTrace();
             throw new IllegalArgumentException("FragMap is either null or otherwise invalid");
         }
+
+        //Create a stack to store the fragment objects in for easy retrieval by the threads.
         fragList = new Stack<>();
 
         this.fragMap = fragMap;
 
+        //Store variables for width, height and length
         w = fragMap.length;
         h = fragMap[0].length;
         n = fragMap[0][0].get().length;
 
+        //Iterate over the ranges 0 > w and 0 > h to add an entry for every fragment in the map.
+        //This is needed so each thread knows which pixel to access when writing to the image.
         for(int i=0; i<w; i++)
             for (int j=0; j<h; j++)
                 fragList.add(new Vector2(i, j));
@@ -46,8 +60,11 @@ public class Builder implements Runnable
         max = fragList.size();
         current = 0;
 
-        Collections.shuffle(fragList); //optional
+        //If desired, shuffles the list to evenly distribute rendering across entire image.
+        //Useful for real time rendering so the user can see the image progressively render evenly.
+        if(shuffle) Collections.shuffle(fragList);
 
+        //Creates a new array of images and populates it.
         imgs = new BufferedImage[n];
         for(int i=0; i<n; i++)
         {
@@ -55,9 +72,16 @@ public class Builder implements Runnable
         }
     }
 
-    public void callback()
-    {}
+    /**
+     * Optional callback method, can be overridden to call back after each rendered pixel completed
+     * @param x the current x position in the array
+     * @param y the current y position in the array
+     */
+    public void callback(int x, int y){}
 
+    /**
+     * Creates an array of threads and starts them running, effectively starting the render process.
+     */
     public void startBuild()
     {
         threads = new Thread[THREADNUM];
@@ -72,35 +96,55 @@ public class Builder implements Runnable
         }
     }
 
+    /**
+     * The main run method. This should not be called from outside this class.
+     * Keeps rendering each pixel until completed.
+     */
     @Override
     public void run() {
+        //Check if setup has been done
         if(setup)
         {
+            //Get coordinate from the stack to populate variable before loop
             Vector2 pos = getNext();
+
+            //Repeat until no more elements are available
             while(pos != null) {
                 current++;
 
-                if(current % 50000 == 0)
-                    System.out.print(".");
+                int x, y;
+                x=pos.iX();
+                y=pos.iY();
 
-                Color[] colors = fragMap[pos.iX()][pos.iY()].get();
-                if(colors.length != n)
-                {
+                //Calculates the array of colours from the next fragment
+                Color[] colors = fragMap[x][y].get();
+
+                //if invalid number of colours returned, break
+                if(colors.length != n) {
                     break;
                 }
                 else
                 {
+                    //Else render the colours to the image array
+                    //iterates over each image and sets the colour of the pixel at (x,y)
                     for(int i=0; i<n; i++)
                     {
-                        imgs[i].setRGB(pos.iX(), pos.iY(), colors[i].getRGB());
+                        imgs[i].setRGB(x, y, colors[i].getRGB());
                     }
                 }
+                //get next position vector
                 pos = getNext();
-                callback();
+
+                //Optional callback
+                callback(x, y);
             }
         }
     }
 
+    /**
+     * Synchronized pop from the list of positions
+     * @return Next element if exists, if stack empty returns null
+     */
     private synchronized Vector2 getNext()
     {
         if(fragList.isEmpty())
@@ -108,6 +152,10 @@ public class Builder implements Runnable
         return fragList.pop();
     }
 
+    /**
+     *
+     * @return The current value of the internal counter.
+     */
     public int getCurrent()
     {
         return current;
@@ -130,6 +178,9 @@ public class Builder implements Runnable
         }
     }
 
+    /**
+     * @return Boolean value for whether or not the calculation has finished.
+     */
     public boolean isDone()
     {
         if (!isDone) {
@@ -150,6 +201,9 @@ public class Builder implements Runnable
         else return true;
     }
 
+    /**
+     * @return The image array. Can be used even if calculation unfinished, resulting in viewing the images as they are rendering.
+     */
     public BufferedImage[] getImgs() {
         return imgs;
     }

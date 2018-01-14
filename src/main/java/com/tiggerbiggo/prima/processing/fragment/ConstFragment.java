@@ -11,6 +11,10 @@ public class ConstFragment implements Fragment<Vector2>
     {
         this.val = val;
     }
+    public ConstFragment(double xy)
+    {
+        this.val = new Vector2(xy);
+    }
 
     @Override
     public Vector2 get() {
@@ -18,18 +22,18 @@ public class ConstFragment implements Fragment<Vector2>
     }
 
     @Override
-    public Fragment<Vector2>[][] build(Vector2 dims) throws IllegalMapSizeException
+    public Fragment<Vector2>[][] build(int xDim, int yDim) throws IllegalMapSizeException
     {
-        if(dims == null)
+        if(xDim <=0 || yDim <=0)
         {
             throw new IllegalMapSizeException();
         }
 
-        ConstFragment[][] thisFragment = new ConstFragment[dims.iX()][dims.iY()];
+        ConstFragment[][] thisFragment = new ConstFragment[xDim][yDim];
 
-        for(int i = 0; i<dims.X(); i++)
+        for(int i = 0; i<xDim; i++)
         {
-            for(int j = 0; j<dims.Y(); j++)
+            for(int j = 0; j<yDim; j++)
             {
                 thisFragment[i][j] = new ConstFragment(val);
             }
