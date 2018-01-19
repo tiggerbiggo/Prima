@@ -67,7 +67,7 @@ public class Main
             b.startBuild();
             b.joinAll();
 
-            FileManager.writeGif(b.getImgs(), "morethings9");
+            FileManager.writeGif(b.getImgs(), BufferedImage.TYPE_INT_ARGB, 0, true, "default");
         }
         catch(Exception e)
         {
