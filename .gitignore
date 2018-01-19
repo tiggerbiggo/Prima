@@ -121,3 +121,5 @@ $RECYCLE.BIN/
 *.bmp
 
 # End of https://www.gitignore.io/api/java,windows,intellij
+.idea/misc.xml
+.idea/workspace.xml
