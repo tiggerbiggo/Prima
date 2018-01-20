@@ -12,47 +12,26 @@ import java.io.File;
 /**
  * Provides methods for writing images.
  */
-public class FileManager
-{
-
-    public static void writeGif(BufferedImage[] imgSequence, String filename)
-    {
-        try
-        {
-            try (ImageOutputStream output = new FileImageOutputStream(new File(filename + ".gif")))
-            {
-                GifSequenceWriter writer = new GifSequenceWriter(output, BufferedImage.TYPE_INT_RGB, 0, true);
-                for(BufferedImage B : imgSequence)
-                {
-                    writer.writeToSequence(B);
-                }
-                writer.close();
-            }
-        }
-        catch(Exception e)
-        {
-        }
-    }
-    public static void writeGif(BufferedImage[] imgSequence, int BufferedImageType, int timeBetweenFramesMS, boolean loop, String filename)
-    {
-        try
-        {
-            try (ImageOutputStream output = new FileImageOutputStream(new File(filename + ".gif")))
-            {
+public class FileManager {
+    public static void writeGif(BufferedImage[] imgSequence, int BufferedImageType, int timeBetweenFramesMS, boolean loop, String filename) {
+        try {
+            try (ImageOutputStream output = new FileImageOutputStream(new File(filename + ".gif"))) {
                 GifSequenceWriter writer = new GifSequenceWriter(output, BufferedImageType, timeBetweenFramesMS, loop);
-                for(BufferedImage B : imgSequence)
-                {
+                for (BufferedImage B : imgSequence) {
                     writer.writeToSequence(B);
                 }
                 writer.close();
             }
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
         }
     }
 
-    public static byte[] writeByteArray(BufferedImage[] imgSequence, int BufferedImageType, int timeBetweenFramesMS, boolean loop) {
+    public static void writeGif(BufferedImage[] imgSequence, String filename) {
+        writeGif(imgSequence, BufferedImage.TYPE_INT_RGB, 0, true, filename);
+    }
+
+    public static byte[] writeByteArray(BufferedImage[] imgSequence, int BufferedImageType, int timeBetweenFramesMS,
+                                        boolean loop) {
 
         ByteArrayOutputStream outStream = new ByteArrayOutputStream();
         try {
@@ -71,23 +50,11 @@ public class FileManager
     }
 
     public static byte[] writeByteArray(BufferedImage[] imgSequence) {
-
-        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-        try {
-            try (ImageOutputStream output = new MemoryCacheImageOutputStream(outStream)) {
-                GifSequenceWriter writer = new GifSequenceWriter(output, BufferedImage.TYPE_INT_RGB, 0, true);
-                for (BufferedImage B : imgSequence) {
-                    writer.writeToSequence(B);
-                }
-                writer.close();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-        return outStream.toByteArray();
+        return writeByteArray(imgSequence, BufferedImage.TYPE_INT_RGB, 0, true);
     }
 }
+
+
 
 
 
