@@ -14,10 +14,8 @@ public class NoiseGenFragment implements Fragment<Vector2> {
         this.seed = seed;
         this.mul = mul;
     }
-    public NoiseGenFragment()
-    {
-        this(new Random().nextLong(), 1);
-    }
+    public NoiseGenFragment(double mul){this(new Random().nextLong(), mul);}
+    public NoiseGenFragment(){this(1);}
 
     @Override
     public Fragment<Vector2>[][] build(int xDim, int yDim) throws IllegalMapSizeException {
