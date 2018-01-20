@@ -62,6 +62,14 @@ public enum Transform {
     TESTSUM((x, y) -> {
 
         return new Vector2(x, y);
+    }),
+    SAMEX((x, y) -> {
+
+        return new Vector2(0, y);
+    }),
+    SAMEY((x, y) -> {
+
+        return new Vector2(x, 0);
     });
 
     private BiFunction<Double, Double, Vector2> function;
