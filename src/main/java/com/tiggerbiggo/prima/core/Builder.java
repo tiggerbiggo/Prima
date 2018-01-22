@@ -4,7 +4,6 @@ import com.tiggerbiggo.prima.processing.fragment.Fragment;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.Collections;
 import java.util.ArrayDeque;
 
 /**
