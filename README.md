@@ -27,7 +27,7 @@ I am a busy person with a lot of stuff to do, but put shortly this project has a
 <dependency>
     <groupId>com.github.tiggerbiggo</groupId>
     <artifactId>Prima</artifactId>
-    <version>b1.1</version>
+    <version>b1.2</version>
 </dependency>
 ```
 
@@ -41,6 +41,6 @@ repositories {
 
 ```javascript
 dependencies {
-  compile 'com.github.tiggerbiggo:Prima:b1.1'
+  compile 'com.github.tiggerbiggo:Prima:b1.2'
 }
 ```
