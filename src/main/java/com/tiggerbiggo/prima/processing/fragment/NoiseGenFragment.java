@@ -19,19 +19,20 @@ public class NoiseGenFragment implements Fragment<Vector2> {
 
     @Override
     public Fragment<Vector2>[][] build(int xDim, int yDim) throws IllegalMapSizeException {
-
         NoiseGenFragment[][] map = new NoiseGenFragment[xDim][yDim];
-
         Random r = new Random(seed);
-
         for(int i = 0; i < xDim; i++) {
             for(int j = 0; j < yDim; j++) {
                 map[i][j] = new NoiseGenFragment(r.nextLong(), mul);
             }
         }
-
         return map;
     }
+
+    @Override
+    public Fragment<Vector2>[][] getArray(int xDim, int yDim) throws IllegalMapSizeException{return null;}
+    @Override
+    public Fragment<Vector2> getNew(int i, int j) {return null;}
 
     @Override
     public Vector2 get() {

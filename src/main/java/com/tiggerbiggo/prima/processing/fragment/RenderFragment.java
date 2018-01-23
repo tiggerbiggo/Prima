@@ -10,6 +10,7 @@ import java.awt.*;
 public class RenderFragment implements Fragment<Color[]>
 {
     Fragment<Vector2> in;
+    Fragment<Vector2>[][] map;
     int num;
     Gradient g;
 
@@ -50,28 +51,13 @@ public class RenderFragment implements Fragment<Color[]>
     }
 
     @Override
-    public Fragment<Color[]>[][] build(int xDim, int yDim) throws IllegalMapSizeException {
-        Fragment<Vector2>[][] map;
-        try {
-            map = in.build(xDim, yDim);
-        }
-        catch(IllegalMapSizeException ex)
-        {
-            throw ex;
-        }
+    public Fragment<Color[]>[][] getArray(int xDim, int yDim) throws IllegalMapSizeException {
+        map = in.build(xDim, yDim);
+        return new RenderFragment[xDim][yDim];
+    }
 
-        if(Fragment.checkArrayDims(map, xDim, yDim))
-        {
-            RenderFragment[][] thisArray = new RenderFragment[xDim][yDim];
-            for(int i=0; i<xDim; i++)
-            {
-                for(int j=0; j<yDim; j++)
-                {
-                    thisArray[i][j] = new RenderFragment(map[i][j], num, g);
-                }
-            }
-            return thisArray;
-        }
-        else throw new IllegalMapSizeException();
+    @Override
+    public Fragment<Color[]> getNew(int i, int j) {
+        return new RenderFragment(map[i][j], num, g);
     }
 }

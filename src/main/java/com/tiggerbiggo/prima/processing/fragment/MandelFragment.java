@@ -7,6 +7,7 @@ public class MandelFragment implements Fragment<Vector2>
 {
 
     private Fragment<Vector2> frag;
+    Fragment<Vector2>[][] map;
     private int iter;
 
     public MandelFragment(Fragment<Vector2> c, int iter)
@@ -53,28 +54,13 @@ public class MandelFragment implements Fragment<Vector2>
     }
 
     @Override
-    public Fragment<Vector2>[][] build(int xDim, int yDim) throws IllegalMapSizeException {
-        Fragment<Vector2>[][] map;
-        try {
-            map = frag.build(xDim, yDim);
-        }
-        catch(IllegalMapSizeException ex)
-        {
-            throw ex;
-        }
+    public Fragment<Vector2>[][] getArray(int xDim, int yDim) throws IllegalMapSizeException {
+        map = frag.build(xDim, yDim);
+        return new MandelFragment[xDim][yDim];
+    }
 
-        if(Fragment.checkArrayDims(map, xDim, yDim))
-        {
-            Fragment<Vector2>[][] meFragment = new Fragment[xDim][yDim];
-            for(int i=0; i<xDim; i++)
-            {
-                for(int j=0; j<yDim; j++)
-                {
-                    meFragment[i][j] = new MandelFragment(map[i][j],iter);
-                }
-            }
-            return meFragment;
-        }
-        throw new IllegalMapSizeException();
+    @Override
+    public Fragment<Vector2> getNew(int i, int j) {
+        return new MandelFragment(map[i][j], iter);
     }
 }

@@ -22,22 +22,12 @@ public class ConstFragment implements Fragment<Vector2>
     }
 
     @Override
-    public Fragment<Vector2>[][] build(int xDim, int yDim) throws IllegalMapSizeException
-    {
-        if(xDim <=0 || yDim <=0)
-        {
-            throw new IllegalMapSizeException();
-        }
+    public Fragment<Vector2>[][] getArray(int xDim, int yDim) throws IllegalMapSizeException {
+        return new ConstFragment[xDim][yDim];
+    }
 
-        ConstFragment[][] thisFragment = new ConstFragment[xDim][yDim];
-
-        for(int i = 0; i<xDim; i++)
-        {
-            for(int j = 0; j<yDim; j++)
-            {
-                thisFragment[i][j] = new ConstFragment(val);
-            }
-        }
-        return thisFragment;
+    @Override
+    public Fragment<Vector2> getNew(int i, int j) {
+        return new ConstFragment(val);
     }
 }

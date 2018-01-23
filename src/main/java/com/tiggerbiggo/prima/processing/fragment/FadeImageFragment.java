@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 public class FadeImageFragment implements Fragment<Color[]>{
 
     BufferedImage[] imgs;
+    Fragment<Vector2>[][] inArr;
     Fragment<Vector2> in;
     int num, x, y;
     boolean loop;
@@ -43,7 +44,7 @@ public class FadeImageFragment implements Fragment<Color[]>{
             current = Gradient.normalise(current, len, loop);
             Color A, B;
 
-            if(current == len) current =- 0.1;
+            if(current == len) current =- 0.1; //protect from array out of bounds.
 
             A = new Color(imgs[(int)current].getRGB(x, y));
             B = new Color(imgs[(int)current+1].getRGB(x, y));
@@ -54,22 +55,13 @@ public class FadeImageFragment implements Fragment<Color[]>{
     }
 
     @Override
-    public Fragment<Color[]>[][] build(int xDim, int yDim) throws IllegalMapSizeException {
-        Fragment<Vector2>[][] inArr;
-        try {
-            inArr = in.build(xDim, yDim);
-        }
-        catch (IllegalMapSizeException e){
-            throw e;
-        }
-        FadeImageFragment[][] toReturn = new FadeImageFragment[inArr.length][inArr[0].length];
-        for(int i=0; i<inArr.length; i++)
-        {
-            for(int j=0; j<inArr[0].length; j++)
-            {
-                toReturn[i][j] = new FadeImageFragment(num, i, j, loop, inArr[i][j], imgs);
-            }
-        }
-        return toReturn;
+    public Fragment<Color[]>[][] getArray(int xDim, int yDim) throws IllegalMapSizeException {
+        inArr = in.build(xDim, yDim);
+        return new FadeImageFragment[xDim][yDim];
+    }
+
+    @Override
+    public Fragment<Color[]> getNew(int i, int j) {
+        return new FadeImageFragment(num, i, j, loop, inArr[i][j], imgs);
     }
 }

@@ -11,6 +11,7 @@ public class ImageConvertFragment implements Fragment<Vector2>{
 
     private BufferedImage img;
     private Fragment<Vector2> pos;
+    Fragment<Vector2>[][] map;
     private ColorProperty convX, convY;
 
     public ImageConvertFragment(BufferedImage img, Fragment<Vector2> pos, ColorProperty convX, ColorProperty convY) {
@@ -53,42 +54,22 @@ public class ImageConvertFragment implements Fragment<Vector2>{
                     convX.convert(c),
                     convY.convert(c)
             );
-
             return point;
         }
-        catch(Exception e)
-        {
+        catch(Exception e) {
             System.out.println("ayy");
         }
-
         return null;
-
     }
 
     @Override
-    public Fragment<Vector2>[][] build(int xDim, int yDim) throws IllegalMapSizeException {
-        Fragment<Vector2>[][] map;
-        try
-        {
-            map = pos.build(xDim, yDim);
-        }
-        catch (IllegalMapSizeException ex)
-        {
-            throw ex;
-        }
+    public Fragment<Vector2>[][] getArray(int xDim, int yDim) throws IllegalMapSizeException {
+        map = pos.build(xDim, yDim);
+        return new ImageConvertFragment[xDim][yDim];
+    }
 
-        if(Fragment.checkArrayDims(map, xDim, yDim))
-        {
-            ImageConvertFragment[][] thisArray = new ImageConvertFragment[xDim][yDim];
-            for(int i=0; i<xDim; i++)
-            {
-                for(int j=0; j<yDim; j++)
-                {
-                    thisArray[i][j] = new ImageConvertFragment(img, map[i][j], convX, convY);
-                }
-            }
-            return thisArray;
-        }
-        throw new IllegalMapSizeException();
+    @Override
+    public Fragment<Vector2> getNew(int i, int j) {
+        return new ImageConvertFragment(img, map[i][j], convX, convY);
     }
 }

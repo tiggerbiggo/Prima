@@ -17,33 +17,7 @@ import java.util.Random;
 
 public class Main
 {
-    public static void main(String[] args)
-    {
-        String outName = "pretty/";
-        String extension = ".png";
-
-        int start, end, diff;
-        start=1;
-        end=72;
-        diff=end-start;
-
-        BufferedImage[] images = new BufferedImage[diff];
-        BufferedImage imgA, imgB;
-        imgA = imgB = null;
-
-        for(int i=0; i<diff; i++){
-            try {
-                images[i] = ImageIO.read(new File(outName + (i+start) + extension)); //image00XX.jpg
-                //imgA = ImageIO.read(new File("space.jpg")); //image00XX.jpg
-                //imgB = ImageIO.read(new File("space2.jpg"));
-            } catch (IOException e) {
-                System.out.println("oh no an error");
-                System.exit(1);
-            }
-        }
-
-        Vector2 imageSize = new Vector2(images[0].getWidth(), images[0].getHeight());
-        //imageSize = Vector2.divide(imageSize, new Vector2(100));
+    public static void main(String[] args) {
 
         ArrayList<Vector2> points = new ArrayList<>();
 
@@ -55,18 +29,34 @@ public class Main
 //            points.add(new Vector2(x, y));
 //        }
 
-        points.add(new Vector2());
+        points.add(new Vector2(0));
 
-        Fragment<Vector2> f, d;
+        int n = 15;
+        for (double mul = 0; mul <= 1; mul += 0.05)
+        {
+            for (int i = 0; i < n; i++) {
+                double angle = ((double) i / n) * 2 * Math.PI;
+                angle += mul;
+                double x, y;
+                x = Math.sin(angle) * mul;
+                y = Math.cos(angle) * mul;
+                points.add(new Vector2(x, y));
+            }
+            n+=1;
+        }
+
+        Fragment<Vector2> f;
 
         //f = new MapGenFragment(imageSize.minus(), imageSize);
-        f = new MapGenFragment(Vector2.MINUSTWO, new Vector2(2));
+        f = new MapGenFragment(new Vector2(-3), new Vector2(3));
         //f = new CombineFragment(f, new ConstFragment(2.8), CombineType.MULTIPLY);
-        f = new TransformFragment(f, Transform.MAGNETISM);
+        //f = new TransformFragment(f, Transform.MAGNETISM);
         f = new NearestPointFragment(f, points);
         f = new TransformFragment(f, Transform.SINSIN);
+        f = new NearestPointFragment(f, points);
         //f = new CombineFragment(f, new NoiseGenFragment(5, 0.2), CombineType.ADD);
-        //f = new CombineFragment(f, new ConstFragment(new Vector2(1)), CombineType.MULTIPLY);
+        f = new CombineFragment(f, new ConstFragment(new Vector2(10)), CombineType.MULTIPLY);
+
         //f = new MandelFragment(f, 500);
         //f = new CombineFragment(f, new ConstFragment(0.1), CombineType.MULTIPLY);
         //f = new ImageConvertFragment(imgA, f, ColorProperty.V);
@@ -75,8 +65,8 @@ public class Main
         Fragment<Color[]> r;
 
         Gradient g;
-        g= new DoubleGradient(Color.BLACK,  Color.blue, Color.red, true);
-        //g = new SimpleGradient(Color.red, Color.MAGENTA, true);
+        //g= new DoubleGradient(Color.BLACK,  Color.blue, Color.red, true);
+        g = new SimpleGradient(Color.red, Color.BLACK, true);
 
         r = new RenderFragment(f, 60, g);
         //r = new ImageCycleFragment(images, f, 0, 0);
@@ -91,8 +81,7 @@ public class Main
             b.startBuild();
             b.joinAll();
 
-            FileManager.writeGif(b.getImgs(), BufferedImage.TYPE_INT_ARGB, 0, true, "default");
-            FileManager.writeGif(b.getImgs(), "morethings17");
+            FileManager.writeGif(b.getImgs(), "morethings19");
         }
         catch(Exception e)
         {

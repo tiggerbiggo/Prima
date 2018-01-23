@@ -25,7 +25,7 @@ public enum CombineType{
             );
         }
     },
-    DIFF{
+    SUBTRACT{
         @Override
         public Vector2 combine(Fragment<Vector2> A, Fragment<Vector2> B) {
             return Vector2.subtract(

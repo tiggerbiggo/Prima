@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class NearestPointFragment implements Fragment<Vector2>
 {
     ArrayList<Vector2> points;
+    Fragment<Vector2>[][] map;
     Fragment<Vector2> in;
 
     public NearestPointFragment(Fragment<Vector2> in, ArrayList<Vector2> points) {
@@ -29,25 +30,13 @@ public class NearestPointFragment implements Fragment<Vector2>
     }
 
     @Override
-    public Fragment<Vector2>[][] build(int xDim, int yDim) throws IllegalMapSizeException {
-        Fragment<Vector2>[][] map;
-        try {
-            map = in.build(xDim, yDim);
-        }
-        catch (IllegalMapSizeException ex) {
-            throw ex;
-        }
+    public Fragment<Vector2>[][] getArray(int xDim, int yDim) throws IllegalMapSizeException {
+        map = in.build(xDim, yDim);
+        return new NearestPointFragment[xDim][yDim];
+    }
 
-        if(Fragment.checkArrayDims(map, xDim, yDim)) {
-            NearestPointFragment[][] thisArray = new NearestPointFragment[xDim][yDim];
-            for(int i=0; i<xDim; i++) {
-                for(int j=0; j<yDim; j++) {
-                    thisArray[i][j] = new NearestPointFragment(map[i][j], points);
-                }
-            }
-            return thisArray;
-        }
-
-        throw new IllegalMapSizeException();
+    @Override
+    public Fragment<Vector2> getNew(int i, int j) {
+        return new NearestPointFragment(map[i][j], points);
     }
 }

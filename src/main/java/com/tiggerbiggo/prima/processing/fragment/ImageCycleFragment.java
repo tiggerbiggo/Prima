@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 public class ImageCycleFragment implements Fragment<Color[]>{
 
     BufferedImage[] images;
+    Fragment<Vector2>[][] map;
     Fragment<Vector2> in;
     int x, y;
 
@@ -25,7 +26,6 @@ public class ImageCycleFragment implements Fragment<Color[]>{
         int num = images.length;
 
         Vector2 inVector = in.get();
-
         int startFrame = (int)Math.abs(inVector.magnitude());
 
         int modX, modY;
@@ -34,33 +34,21 @@ public class ImageCycleFragment implements Fragment<Color[]>{
 
         Color[] toReturn = new Color[num];
 
-        for(int i=0; i<num; i++)
-        {
+        for(int i=0; i<num; i++) {
             int rgb = images[(i+startFrame)%num].getRGB(modX, modY);
             toReturn[i] = new Color(rgb);
         }
-
         return toReturn;
     }
 
     @Override
-    public Fragment<Color[]>[][] build(int xDim, int yDim) throws IllegalMapSizeException
-    {
-        Fragment<Vector2>[][] inArr;
-        try {
-            inArr = in.build(xDim, yDim);
-        }
-        catch (IllegalMapSizeException e){
-            throw e;
-        }
-        ImageCycleFragment[][] toReturn = new ImageCycleFragment[inArr.length][inArr[0].length];
-        for(int i=0; i<inArr.length; i++)
-        {
-            for(int j=0; j<inArr[0].length; j++)
-            {
-                toReturn[i][j] = new ImageCycleFragment(images, inArr[i][j], i, j);
-            }
-        }
-        return toReturn;
+    public Fragment<Color[]>[][] getArray(int xDim, int yDim) throws IllegalMapSizeException {
+        map = in.build(xDim, yDim);
+        return new ImageCycleFragment[xDim][yDim];
+    }
+
+    @Override
+    public Fragment<Color[]> getNew(int i, int j) {
+        return new ImageCycleFragment(images, map[i][j], i, j);
     }
 }

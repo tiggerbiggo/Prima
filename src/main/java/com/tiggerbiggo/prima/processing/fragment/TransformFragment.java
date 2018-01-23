@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class TransformFragment implements Fragment<Vector2>
 {
     private Fragment<Vector2> in;
+    Fragment<Vector2>[][] map;
     private Transform t;
 
     private ArrayList<TransformFragment> myList;
@@ -52,8 +53,16 @@ public class TransformFragment implements Fragment<Vector2>
         throw new IllegalMapSizeException();
     }
 
-    private Vector2 transform(Vector2 in)
-    {
-        return t.doFormula(in);
+    @Override
+    public Fragment<Vector2>[][] getArray(int xDim, int yDim) throws IllegalMapSizeException {
+        map = in.build(xDim, yDim);
+        return new TransformFragment[xDim][yDim];
     }
+
+    @Override
+    public Fragment<Vector2> getNew(int i, int j) {
+        return new TransformFragment(map[i][j], t);
+    }
+
+    private Vector2 transform(Vector2 in){return t.doFormula(in);}
 }

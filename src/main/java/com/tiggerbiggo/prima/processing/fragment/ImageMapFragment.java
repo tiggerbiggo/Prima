@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 public class ImageMapFragment implements Fragment<Color[]>{
 
     Fragment<Vector2> in;
+    Fragment<Vector2>[][] map;
     BufferedImage img;
     int num;
     Vector2 multiplier;
@@ -58,24 +59,13 @@ public class ImageMapFragment implements Fragment<Color[]>{
     }
 
     @Override
-    public Fragment<Color[]>[][] build(int xDim, int yDim) throws IllegalMapSizeException {
-        Fragment<Vector2>[][] inArr;
-        try {
-            inArr = in.build(xDim, yDim);
-        }
-        catch (IllegalMapSizeException e)
-        {
-            throw e;
-        }
+    public Fragment<Color[]>[][] getArray(int xDim, int yDim) throws IllegalMapSizeException {
+        map = in.build(xDim, yDim);
+        return new ImageMapFragment[xDim][yDim];
+    }
 
-        ImageMapFragment[][] toReturn = new ImageMapFragment[inArr.length][inArr[0].length];
-        for(int i=0; i<inArr.length; i++)
-        {
-            for(int j=0; j<inArr[0].length; j++)
-            {
-                toReturn[i][j] = new ImageMapFragment(inArr[i][j], img, num, multiplier);
-            }
-        }
-        return toReturn;
+    @Override
+    public Fragment<Color[]> getNew(int i, int j) {
+        return new ImageMapFragment(map[i][j], img, num, multiplier);
     }
 }
