@@ -22,12 +22,21 @@ public class ColorTools
         );
     }
 
-    public static Color colorAvg(Color c1, Color c2) {
-        return new Color(
-                (c1.getRed()+c2.getRed())/2,
-                (c1.getGreen()+c2.getGreen())/2,
-                (c1.getBlue()+c2.getBlue())/2
-        );
+    public static Color colorAvg(Color ... colors) {
+        int r, g, b;
+        r = g = b = 0;
+
+        for(Color c : colors) {
+            r += c.getRed();
+            g += c.getGreen();
+            b += c.getBlue();
+        }
+
+        r /= colors.length;
+        g /= colors.length;
+        b /= colors.length;
+
+        return new Color(r, g, b);
     }
 
     /**Calculates the brightness value of a given color

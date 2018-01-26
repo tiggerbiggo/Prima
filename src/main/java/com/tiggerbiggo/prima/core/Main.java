@@ -19,7 +19,6 @@ public class Main
 {
     public static void main(String[] args) {
 
-        ArrayList<Vector2> points = new ArrayList<>();
 
 //        for(int i=0; i<50; i++) {
 //            Random r = new Random();
@@ -29,9 +28,10 @@ public class Main
 //            points.add(new Vector2(x, y));
 //        }
 
+        ArrayList<Vector2> points = new ArrayList<>();
         points.add(new Vector2(0));
 
-        int n = 15;
+        int n = 1;
         for (double mul = 0; mul <= 1; mul += 0.05)
         {
             for (int i = 0; i < n; i++) {
@@ -42,36 +42,44 @@ public class Main
                 y = Math.cos(angle) * mul;
                 points.add(new Vector2(x, y));
             }
-            n+=1;
+            n+=2;
+        }
+
+        BufferedImage img;
+        try {
+            img = ImageIO.read(new File("spectro.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
         }
 
         Fragment<Vector2> f;
 
         //f = new MapGenFragment(imageSize.minus(), imageSize);
-        f = new MapGenFragment(new Vector2(-3), new Vector2(3));
+        f = new MapGenFragment(new Vector2(-1), new Vector2(1));
         //f = new CombineFragment(f, new ConstFragment(2.8), CombineType.MULTIPLY);
         //f = new TransformFragment(f, Transform.MAGNETISM);
-        f = new NearestPointFragment(f, points);
-        f = new TransformFragment(f, Transform.SINSIN);
-        f = new NearestPointFragment(f, points);
-        //f = new CombineFragment(f, new NoiseGenFragment(5, 0.2), CombineType.ADD);
-        f = new CombineFragment(f, new ConstFragment(new Vector2(10)), CombineType.MULTIPLY);
-
+        //f = new NearestPointFragment(f, points);
+        f = new CombineFragment(f, new NoiseGenFragment(0.02), CombineType.ADD);
+        //f = new CombineFragment(f, new ConstFragment(new Vector2(10)), CombineType.MULTIPLY);
+        f = new KaliedoFragment(20, f, Vector2.ONE);
+        //f = new NearestPointFragment(f, points);
         //f = new MandelFragment(f, 500);
         //f = new CombineFragment(f, new ConstFragment(0.1), CombineType.MULTIPLY);
-        //f = new ImageConvertFragment(imgA, f, ColorProperty.V);
-        //f = new CombineFragment(f, new ConstFragment(5), CombineType.MULTIPLY);
+        //f = new ImageConvertFragment(img, f, ColorProperty.V);
+        f = new CombineFragment(f, new ConstFragment(0.6), CombineType.MULTIPLY);
 
         Fragment<Color[]> r;
 
         Gradient g;
         //g= new DoubleGradient(Color.BLACK,  Color.blue, Color.red, true);
-        g = new SimpleGradient(Color.red, Color.BLACK, true);
+        g = new SimpleGradient(Color.white, Color.BLUE, true);
 
         r = new RenderFragment(f, 60, g);
         //r = new ImageCycleFragment(images, f, 0, 0);
-        //r = new ImageMapFragment(f, images[5], 60, new Vector2(100));
+        //r = new ImageMapFragment(f, img, 60, new Vector2(300));
         //r = new FadeImageFragment(120, true, f, images);
+        r = new SuperSampleFragment(2, r);
         try
         {
             Builder b;
@@ -81,7 +89,15 @@ public class Main
             b.startBuild();
             b.joinAll();
 
-            FileManager.writeGif(b.getImgs(), "morethings19");
+            String filename;
+            int number = 1;
+            do{
+                filename = "morethings" + number;
+                System.out.println("File: " + filename);
+                number++;
+            }while(new File(filename + ".gif").exists());
+
+            FileManager.writeGif(b.getImgs(), filename);
         }
         catch(Exception e)
         {

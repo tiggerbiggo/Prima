@@ -106,6 +106,14 @@ public class Vector2 {
      */
     public static Vector2 mod(Vector2 in, float mod){return new Vector2(in.x%mod, in.y%mod);}
 
+    public static double dot(Vector2 a, Vector2 b) {
+        return (a.x*b.x) + (a.y*b.y);
+    }
+
+    public static double det(Vector2 a, Vector2 b) {
+        return (a.x*b.y) - (a.y*b.x);
+    }
+
     /**
      * @return New vector as negative of the input.
      */
@@ -170,6 +178,50 @@ public class Vector2 {
                 Math.abs(in.Y()));
     }
 
+    /**Rotates a given vector around a point and returns the result
+     *
+     * @param in The vector to rotate
+     * @param rotatePoint The point to rotate around
+     * @param angleRadians The angle to rotate in radians
+     * @return The rotated vector
+     */
+    public static Vector2 rotateAround(Vector2 in, Vector2 rotatePoint, double angleRadians) {
+        in = Vector2.subtract(in, rotatePoint);
+
+        double sin, cos;
+        sin = Math.sin(angleRadians);
+        cos = Math.cos(angleRadians);
+
+        in = new Vector2(
+                (in.x * cos) - (in.y * sin),
+                (in.x * sin) + (in.y * cos)
+        );
+        in = Vector2.add(in, rotatePoint);
+        return in;
+    }
+
+
+    /**Gets the angle between 2 vectors in radians
+     *
+     * @param vecA
+     * @param vecB
+     * @return The angle between the 2 vectors in radians
+     */
+    public static double getAngleBetween(Vector2 vecA, Vector2 vecB) {
+
+        double dot, det, toReturn;
+
+        dot = dot(vecA, vecB);
+        det = det(vecA, vecB);
+
+        toReturn = Math.atan2(det, dot);
+
+        if(toReturn < 0) toReturn = (2*Math.PI)+toReturn;
+
+        return toReturn;
+    }
+
+    public static final Vector2 UP = new Vector2(1, 0);
     public static final Vector2 ZERO = new Vector2(0);
     public static final Vector2 ONE = new Vector2(1);
     public static final Vector2 MINUSONE = new Vector2(-1);

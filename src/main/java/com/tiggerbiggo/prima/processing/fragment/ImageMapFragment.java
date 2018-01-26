@@ -44,7 +44,6 @@ public class ImageMapFragment implements Fragment<Color[]>{
             a=new Vector2(((double)i)/num);
             a = Vector2.multiply(a, multiplier);
 
-
             x+=x+a.X();
             y+=y+a.Y();
 

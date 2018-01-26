@@ -1,69 +1,95 @@
 package com.tiggerbiggo.prima.processing.fragment;
 
+import com.tiggerbiggo.prima.calculation.ColorTools;
 import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
+
+import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * WIP CLASS, DO NOT USE!!
  */
-public class SuperSampleFragment //implements Fragment<Vector2>
+public class SuperSampleFragment implements Fragment<Color[]>
 {
-/*
     private int factor;
+    Fragment<Color[]> in;
+    ArrayList<Fragment<Color[]>> toCombine;
 
-    private boolean isPublic = false;
+    private SuperSampleFragment(ArrayList<Fragment<Color[]>> toCombine) {
+        this.toCombine = toCombine;
+    }
 
-    private Fragment<Vector2>[] forSample;
-    private Fragment<Vector2> nextFragment;
-
-    public SuperSampleFragment(Fragment<Vector2> nextFragment, int factor) {
-        if(factor <= 0) throw new IllegalArgumentException("Super Sampling requires a >=1 integer.");
+    public SuperSampleFragment(int factor, Fragment<Color[]> in) {
         this.factor = factor;
-        this.nextFragment = nextFragment;
-        isPublic = true;
-    }
-
-    private SuperSampleFragment(Fragment<Vector2>[] forSample){
-        this.forSample = forSample;
+        this.in = in;
     }
 
     @Override
-    public Vector2 get() {
-        return null;
-    }
+    public Color[] get() {
+        if(toCombine == null) return null;
 
-    @Override
-    public Fragment<Vector2>[][] build(int xDim, int yDim) throws IllegalMapSizeException {
-        if(!isPublic) return null;
+        Color[][] colors =
+                new Color
+                        [toCombine.get(0).get().length]
+                        [toCombine.size()];
 
-        Fragment<Vector2>[][] nextArray;
-        try {
-            nextArray = nextFragment.build(, Vector2.multiply(dims, new Vector2(factor)), );
-        }
-        catch (IllegalMapSizeException e) {
-            throw e;
-        }
-
-        int width = nextArray.length;
-        int height = nextArray[0].length;
-
-        Fragment<Vector2>[][] thisArray = new Fragment[dims.iX()][dims.iY()];
-
-        for(int i=0; i<width; i+= factor)
         {
-            for(int j=0; j<height; j+= factor)
-            {
-                Fragment<Vector2>[] forSample = new Fragment[factor*factor];
-                for(int x=0; x < factor; x++)
-                {
-                    for(int y=0; y < factor; y++)
-                    {
-                        int index = ((x+1)*factor)+(y+1);
-                    }
+            int j=0;
+            for(Fragment<Color[]> cA : toCombine) {
+                int i=0;
+                for(Color c : cA.get()) {
+                    colors[i][j] = c;
+                    i++;
                 }
+                j++;
             }
         }
 
-        return new Fragment[0][];
-    }*/
+        Color[] averages = new Color[colors.length];
+
+        for(int i=0; i<colors.length; i++) {
+            averages[i] = ColorTools.colorAvg(colors[i]);
+        }
+
+        return averages;
+    }
+
+    @Override
+    public Fragment<Color[]>[][] build(int xDim, int yDim) throws IllegalMapSizeException {
+        Fragment<Color[]>[][] map;
+        map = in.build(xDim * factor, yDim * factor);
+
+        SuperSampleFragment[][] toReturn = new SuperSampleFragment[xDim][yDim];
+
+        for(int i=0; i<xDim; i++) {
+            for(int j=0; j<yDim; j++) {
+                ArrayList<Fragment<Color[]>> tmp = getSubset(i, j, map, factor);
+                toReturn[i][j] = new SuperSampleFragment(tmp);
+            }
+        }
+
+        return toReturn;
+    }
+
+    private ArrayList<Fragment<Color[]>> getSubset(int deltai, int deltaj, Fragment<Color[]>[][] map, int factor) {
+        ArrayList<Fragment<Color[]>> toReturn = new ArrayList<>();
+
+        deltai *= factor;
+        deltaj *= factor;
+
+        for(int i=0; i<factor; i++) {
+            for(int j=0; j<factor; j++){
+                toReturn.add(map[deltai+i][deltaj+j]);
+            }
+        }
+
+        return toReturn;
+    }
+
+    @Override
+    public Fragment<Color[]>[][] getArray(int xDim, int yDim) throws IllegalMapSizeException {return null;}
+
+    @Override
+    public Fragment<Color[]> getNew(int i, int j) {return null;}
 }
