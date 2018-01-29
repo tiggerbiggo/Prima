@@ -28,10 +28,14 @@ public class KaliedoFragment implements Fragment<Vector2>{
         baseAngle = Math.PI * 2;
         baseAngle /= rotationNum;
 
-        angle = Vector2.getAngleBetween(new Vector2(5, 0),point);
+        angle = Vector2.angleBetween(new Vector2(5, 0),point);
         multiplier = (int)(angle / baseAngle);
 
         angle = baseAngle * -multiplier;
+        if(multiplier % 2 == 0){
+            angle = baseAngle - angle;
+        }
+
 
         point = Vector2.rotateAround(point, rotationPoint, angle);
         point = Vector2.subtract(point, rotationPoint);

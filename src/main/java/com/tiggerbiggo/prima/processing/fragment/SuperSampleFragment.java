@@ -1,15 +1,11 @@
 package com.tiggerbiggo.prima.processing.fragment;
 
 import com.tiggerbiggo.prima.calculation.ColorTools;
-import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-/**
- * WIP CLASS, DO NOT USE!!
- */
 public class SuperSampleFragment implements Fragment<Color[]>
 {
     private int factor;

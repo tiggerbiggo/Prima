@@ -50,11 +50,7 @@ public class ImageConvertFragment implements Fragment<Vector2>{
                 ));
         try {
             Color c = new Color(img.getRGB(point.iX(), point.iY()));
-            point.set(
-                    convX.convert(c),
-                    convY.convert(c)
-            );
-            return point;
+            return new Vector2(convX.convert(c), convY.convert(c));
         }
         catch(Exception e) {
             System.out.println("ayy");

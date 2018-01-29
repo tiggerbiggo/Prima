@@ -20,13 +20,17 @@ public class NearestPointFragment implements Fragment<Vector2>
     public Vector2 get() {
         Vector2 inVector = in.get();
         Vector2 closest = null;
+        int closestI = 0;
 
-        for(Vector2 v : points) {
+        for (int i = 0; i < points.size(); i++) {
+            Vector2 v = points.get(i);
             Vector2 dist = Vector2.subtract(inVector, v);
-            if(closest == null || closest.magnitude() > dist.magnitude())
+            if (closest == null || closest.magnitude() > dist.magnitude()) {
                 closest = dist;
+                closestI = i;
+            }
         }
-        return closest;
+        return new Vector2(closest.magnitude());//points.get(closestI);
     }
 
     @Override

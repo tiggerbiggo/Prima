@@ -28,13 +28,6 @@ public class RenderFragment implements Fragment<Color[]>
         this(in, 1, new SimpleGradient());
     }
 
-
-    public void setGradient(Gradient g)
-    {
-        if(g != null)
-            this.g = g;
-    }
-
     @Override
     public Color[] get() {
         Vector2 base = in.get();

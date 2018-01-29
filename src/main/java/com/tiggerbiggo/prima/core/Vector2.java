@@ -1,14 +1,15 @@
 package com.tiggerbiggo.prima.core;
 
 
+import java.util.Random;
+
 /**
  * Represents a vector in 2D space. Also contains various methods for calculation.
  */
 public class Vector2 {
     private double x, y;
 
-    /**
-     * Constructs a new vector with X and Y components
+    /**Constructs a new vector with X and Y components
      * @param x The X component of the vector
      * @param y The Y component of the vector
      */
@@ -17,8 +18,7 @@ public class Vector2 {
         this.y = y;
     }
 
-    /**
-     * Shorthand constructor for when both components are the same
+    /**Shorthand constructor for when both components are the same
      * @param xy Parameter for both X and Y component
      */
     public Vector2(double xy)
@@ -26,9 +26,7 @@ public class Vector2 {
         this(xy, xy);
     }
 
-    /**
-     * Default constructor, defaults to (0,0)
-     */
+    /**Default constructor, defaults to (0,0)*/
     public Vector2(){
         this(0);
     }
@@ -78,18 +76,6 @@ public class Vector2 {
      */
     public int iY() {return (int)y;}
 
-
-    public void setX(double x) {
-        this.x = x;
-    }
-    public void setY(double y) {
-        this.y = y;
-    }
-    public void set(double x, double y){
-        this.x = x;
-        this.y = y;
-    }
-
     /**
      * @return The magnitude (length) of the vector as double
      */
@@ -106,30 +92,68 @@ public class Vector2 {
      */
     public static Vector2 mod(Vector2 in, float mod){return new Vector2(in.x%mod, in.y%mod);}
 
+    /**Calculates the dot product of 2 vectors
+     *
+     * @param a Vector A
+     * @param b Vector B
+     * @return The dot product: <b>ax*bx + ay*by</b>
+     */
     public static double dot(Vector2 a, Vector2 b) {
         return (a.x*b.x) + (a.y*b.y);
     }
 
+    /**Calculates the determinant of 2 vectors
+     *
+     * @param a Vector A
+     * @param b Vector B
+     * @return The determinant: <b>ax*by - ay*bx</b>
+     */
     public static double det(Vector2 a, Vector2 b) {
         return (a.x*b.y) - (a.y*b.x);
     }
 
-    /**
-     * @return New vector as negative of the input.
+    /**Gets the distance between 2 vectors
+     *
+     * @param a The first Vector
+     * @param b The second Vector
+     * @return The distance between the 2 vectors
      */
-    public Vector2 minus(){return new Vector2(-x, -y);}
+    public static double distanceBetween(Vector2 a, Vector2 b){return subtract(a, b).magnitude();}
 
-
-    /**
-     * Adds 2 vectors
-     * @param a First vector
-     * @param b Second vector
-     * @return a+b
+    /**Gets the angle between 2 vectors in radians
+     *
+     * @param vecA The first Vector
+     * @param vecB The second Vector
+     * @return The angle between the 2 vectors in radians
      */
-    public static Vector2 add(Vector2 a, Vector2 b) {
-        return new Vector2(
-                a.X() + b.X(),
-                a.Y() + b.Y());
+    public static double angleBetween(Vector2 vecA, Vector2 vecB) {
+
+        double dot, det, toReturn;
+
+        dot = dot(vecA, vecB);
+        det = det(vecA, vecB);
+
+        toReturn = Math.atan2(det, dot);
+
+        if(toReturn < 0) toReturn = (2*Math.PI)+toReturn;
+
+        return toReturn;
+    }
+
+    /**Generates a random vector which lies on a given circle.
+     *
+     * @param center The center point of the circle
+     * @param r The radius of the circle
+     * @return A random vector on the circle
+     */
+    public static Vector2 randomOnCircle(Vector2 center, double r){
+        //Generate random angle
+        double rand = new Random().nextDouble()*Math.PI*2;
+        //Make a new vector with length of the radius of the circle which we then rotate
+        Vector2 toReturn = Vector2.multiply(Vector2.UP, new Vector2(r));
+        toReturn = Vector2.rotateAround(toReturn, Vector2.ZERO, rand);
+        //Add the center point to offset it
+        return Vector2.add(toReturn, center);
     }
 
     /**
@@ -157,6 +181,18 @@ public class Vector2 {
     }
 
     /**
+     * Adds 2 vectors
+     * @param a First vector
+     * @param b Second vector
+     * @return a+b
+     */
+    public static Vector2 add(Vector2 a, Vector2 b) {
+        return new Vector2(
+                a.X() + b.X(),
+                a.Y() + b.Y());
+    }
+
+    /**
      * Subtracts 2 vectors
      * @param a First vector
      * @param b Second vector
@@ -170,12 +206,30 @@ public class Vector2 {
 
     /**
      * @param in Vector to calculate
-     * @return input vector where both components are positive
+     * @return Absolute value of the input vector where both components are positive
      */
     public static Vector2 abs(Vector2 in) {
         return new Vector2(
                 Math.abs(in.X()),
                 Math.abs(in.Y()));
+    }
+
+    /**<p>Returns a normalized (magnitude = 1) copy of a given Vector
+     *
+     * <p>Special Cases:
+     *  <ul>
+     *     <li>If the magnitude of the given vector is 0, the result will be Vector2.ZERO (0,0)</li>
+     *     <li>If the given vector is null, the result will also be null</li>
+     *  </ul>
+     *
+     * @param in The vector to normalize
+     * @return The normalized vector
+     */
+    public static Vector2 normalize(Vector2 in) {
+        if(in == null)return null;
+        double magnitude = in.magnitude();
+        if(magnitude == 0) return Vector2.ZERO;
+        return new Vector2(in.x/magnitude, in.y/magnitude);
     }
 
     /**Rotates a given vector around a point and returns the result
@@ -198,27 +252,6 @@ public class Vector2 {
         );
         in = Vector2.add(in, rotatePoint);
         return in;
-    }
-
-
-    /**Gets the angle between 2 vectors in radians
-     *
-     * @param vecA
-     * @param vecB
-     * @return The angle between the 2 vectors in radians
-     */
-    public static double getAngleBetween(Vector2 vecA, Vector2 vecB) {
-
-        double dot, det, toReturn;
-
-        dot = dot(vecA, vecB);
-        det = det(vecA, vecB);
-
-        toReturn = Math.atan2(det, dot);
-
-        if(toReturn < 0) toReturn = (2*Math.PI)+toReturn;
-
-        return toReturn;
     }
 
     public static final Vector2 UP = new Vector2(1, 0);
