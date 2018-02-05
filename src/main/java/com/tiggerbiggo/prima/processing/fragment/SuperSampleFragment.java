@@ -4,9 +4,10 @@ import com.tiggerbiggo.prima.calculation.ColorTools;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SuperSampleFragment implements Fragment<Color[]>
+public class SuperSampleFragment implements Fragment<Color[]>, Serializable
 {
     private int factor;
     Fragment<Color[]> in;

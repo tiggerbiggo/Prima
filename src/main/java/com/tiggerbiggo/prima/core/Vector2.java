@@ -1,12 +1,12 @@
 package com.tiggerbiggo.prima.core;
 
-
+import java.io.Serializable;
 import java.util.Random;
 
 /**
  * Represents a vector in 2D space. Also contains various methods for calculation.
  */
-public class Vector2 {
+public class Vector2 implements Serializable{
     private double x, y;
 
     /**Constructs a new vector with X and Y components

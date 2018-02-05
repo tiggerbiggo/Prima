@@ -4,9 +4,10 @@ import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 import com.tiggerbiggo.prima.presets.Transform;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TransformFragment implements Fragment<Vector2>
+public class TransformFragment implements Fragment<Vector2>, Serializable
 {
     private Fragment<Vector2> in;
     Fragment<Vector2>[][] map;

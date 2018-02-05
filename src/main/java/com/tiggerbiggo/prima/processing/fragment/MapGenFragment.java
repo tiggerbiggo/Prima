@@ -4,7 +4,9 @@ import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 import com.tiggerbiggo.prima.presets.MapGenerator;
 
-public class MapGenFragment implements Fragment<Vector2> {
+import java.io.Serializable;
+
+public class MapGenFragment implements Fragment<Vector2>, Serializable {
     Vector2 A, B;
 
     public MapGenFragment(Vector2 A, Vector2 B) {

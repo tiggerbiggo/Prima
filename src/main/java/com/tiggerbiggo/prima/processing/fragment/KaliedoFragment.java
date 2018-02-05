@@ -3,7 +3,9 @@ package com.tiggerbiggo.prima.processing.fragment;
 import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 
-public class KaliedoFragment implements Fragment<Vector2>{
+import java.io.Serializable;
+
+public class KaliedoFragment implements Fragment<Vector2>, Serializable{
 
     int rotationNum;
     Fragment<Vector2> in;

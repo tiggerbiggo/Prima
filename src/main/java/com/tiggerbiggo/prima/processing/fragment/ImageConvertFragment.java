@@ -2,26 +2,27 @@ package com.tiggerbiggo.prima.processing.fragment;
 
 import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
+import com.tiggerbiggo.prima.graphics.SafeImage;
 import com.tiggerbiggo.prima.processing.ColorProperty;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
-public class ImageConvertFragment implements Fragment<Vector2>{
+public class ImageConvertFragment implements Fragment<Vector2>, Serializable{
 
-    private BufferedImage img;
+    private SafeImage img;
     private Fragment<Vector2> pos;
     Fragment<Vector2>[][] map;
     private ColorProperty convX, convY;
 
-    public ImageConvertFragment(BufferedImage img, Fragment<Vector2> pos, ColorProperty convX, ColorProperty convY) {
+    public ImageConvertFragment(SafeImage img, Fragment<Vector2> pos, ColorProperty convX, ColorProperty convY) {
         this.img = img;
         this.pos = pos;
         this.convX = convX;
         this.convY = convY;
     }
 
-    public ImageConvertFragment(BufferedImage img, Fragment<Vector2> pos, ColorProperty conv)
+    public ImageConvertFragment(SafeImage img, Fragment<Vector2> pos, ColorProperty conv)
     {
         this(img, pos, conv, conv);
     }

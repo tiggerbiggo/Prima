@@ -5,11 +5,12 @@ import com.tiggerbiggo.prima.calculation.ColorTools;
 import com.tiggerbiggo.prima.core.Vector2;
 
 import java.awt.*;
+import java.io.Serializable;
 
 /**
  * Gradient that works with both X and Y components of a vector
  */
-public class DoubleGradient extends Gradient{
+public class DoubleGradient extends Gradient implements Serializable {
     Color o, cx, cy;
     boolean loop;
 

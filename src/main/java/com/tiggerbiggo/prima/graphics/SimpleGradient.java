@@ -5,11 +5,12 @@ import com.tiggerbiggo.prima.calculation.ColorTools;
 import com.tiggerbiggo.prima.core.Vector2;
 
 import java.awt.*;
+import java.io.Serializable;
 
 /**
  * Simple gradient for 2 colors
  */
-public class SimpleGradient extends Gradient
+public class SimpleGradient extends Gradient implements Serializable
 {
     Color c1, c2;
     boolean loop;

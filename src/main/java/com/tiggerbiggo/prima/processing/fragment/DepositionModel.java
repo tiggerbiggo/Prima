@@ -2,9 +2,10 @@ package com.tiggerbiggo.prima.processing.fragment;
 
 import com.tiggerbiggo.prima.core.Vector2;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class DepositionModel{
+public class DepositionModel implements Serializable {
     int xDim, yDim;
     private ArrayList<Particle> particles;
     Vector2 target;
@@ -61,7 +62,7 @@ public class DepositionModel{
     }
 }
 
-class Particle{
+class Particle implements Serializable{
     public Vector2 position, target;
 
     public Particle(Vector2 position, Vector2 target) {

@@ -3,7 +3,9 @@ package com.tiggerbiggo.prima.processing.fragment;
 import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 
-public class MandelFragment implements Fragment<Vector2>
+import java.io.Serializable;
+
+public class MandelFragment implements Fragment<Vector2>, Serializable
 {
 
     private Fragment<Vector2> frag;

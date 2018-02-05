@@ -4,19 +4,20 @@ import com.tiggerbiggo.prima.calculation.ColorTools;
 import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 import com.tiggerbiggo.prima.graphics.Gradient;
+import com.tiggerbiggo.prima.graphics.SafeImage;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
-public class FadeImageFragment implements Fragment<Color[]>{
+public class FadeImageFragment implements Fragment<Color[]>, Serializable{
 
-    BufferedImage[] imgs;
+    SafeImage[] imgs;
     Fragment<Vector2>[][] inArr;
     Fragment<Vector2> in;
     int num, x, y;
     boolean loop;
 
-    private FadeImageFragment(int num, int x, int y, boolean loop, Fragment<Vector2> in, BufferedImage ... imgs)
+    private FadeImageFragment(int num, int x, int y, boolean loop, Fragment<Vector2> in, SafeImage ... imgs)
     {
         if(imgs == null || in == null) throw new IllegalArgumentException("Image array or Fragment cannot be null");
         if(imgs.length <=1) throw new IllegalArgumentException("Must have >= 2 images");
@@ -28,7 +29,7 @@ public class FadeImageFragment implements Fragment<Color[]>{
         this.x = x;
         this.y = y;
     }
-    public FadeImageFragment(int num, boolean loop, Fragment<Vector2> in, BufferedImage ... imgs) {
+    public FadeImageFragment(int num, boolean loop, Fragment<Vector2> in, SafeImage... imgs) {
         this(num, 0, 0, loop, in, imgs);
     }
 
