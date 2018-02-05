@@ -2,18 +2,19 @@ package com.tiggerbiggo.prima.processing.fragment;
 
 import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
+import com.tiggerbiggo.prima.graphics.SafeImage;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
-public class ImageCycleFragment implements Fragment<Color[]>{
+public class ImageCycleFragment implements Fragment<Color[]>, Serializable{
 
-    BufferedImage[] images;
+    SafeImage[] images;
     Fragment<Vector2>[][] map;
     Fragment<Vector2> in;
     int x, y;
 
-    public ImageCycleFragment(BufferedImage[] images, Fragment<Vector2> in, int x, int y) {
+    public ImageCycleFragment(SafeImage[] images, Fragment<Vector2> in, int x, int y) {
         if(images == null) throw new IllegalArgumentException("Images cannot be null");
         this.images = images;
         this.in = in;

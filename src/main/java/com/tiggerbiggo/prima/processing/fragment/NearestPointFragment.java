@@ -3,9 +3,10 @@ package com.tiggerbiggo.prima.processing.fragment;
 import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class NearestPointFragment implements Fragment<Vector2>
+public class NearestPointFragment implements Fragment<Vector2>, Serializable
 {
     ArrayList<Vector2> points;
     Fragment<Vector2>[][] map;

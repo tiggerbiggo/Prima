@@ -3,7 +3,9 @@ package com.tiggerbiggo.prima.processing.fragment;
 import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 
-public class ConstFragment implements Fragment<Vector2>
+import java.io.Serializable;
+
+public class ConstFragment implements Fragment<Vector2>, Serializable
 {
     private Vector2 val;
 

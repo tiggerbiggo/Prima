@@ -3,6 +3,8 @@ package com.tiggerbiggo.prima.processing.fragment;
 import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 
+import java.io.Serializable;
+
 /**
  * The base interface for all fragments
  * @param <T> The type the fragment should return

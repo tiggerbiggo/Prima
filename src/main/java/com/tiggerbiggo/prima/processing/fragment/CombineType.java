@@ -2,11 +2,13 @@ package com.tiggerbiggo.prima.processing.fragment;
 
 import com.tiggerbiggo.prima.core.Vector2;
 
+import java.io.Serializable;
+
 /**
  * Contains combination methods to be used with CombineFragment
  * @see CombineFragment
  */
-public enum CombineType{
+public enum CombineType implements Serializable {
     ADD{
         @Override
         public Vector2 combine(Fragment<Vector2> A, Fragment<Vector2> B) {

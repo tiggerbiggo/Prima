@@ -2,19 +2,19 @@ package com.tiggerbiggo.prima.processing.fragment;
 
 import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
+import com.tiggerbiggo.prima.graphics.SafeImage;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class ImageMapFragment implements Fragment<Color[]>{
 
     Fragment<Vector2> in;
     Fragment<Vector2>[][] map;
-    BufferedImage img;
+    SafeImage img;
     int num;
     Vector2 multiplier;
 
-    public ImageMapFragment(Fragment<Vector2> in, BufferedImage img, int num, Vector2 multiplier) {
+    public ImageMapFragment(Fragment<Vector2> in, SafeImage img, int num, Vector2 multiplier) {
         if(num <=0) throw new IllegalArgumentException("Number of frames must be >=1");
         if(multiplier == null) multiplier = Vector2.ONE;
         this.in = in;

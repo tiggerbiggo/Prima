@@ -2,12 +2,13 @@ package com.tiggerbiggo.prima.processing;
 
 import com.tiggerbiggo.prima.calculation.ColorTools;
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.function.Function;
 
 /**
  * Provides a means of converting colors to doubles using various properties of that color.
  */
-public enum ColorProperty
+public enum ColorProperty implements Serializable
 {
     H((color -> {
         return ColorTools.getHue(color);

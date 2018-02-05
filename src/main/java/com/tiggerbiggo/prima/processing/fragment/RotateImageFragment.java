@@ -5,8 +5,9 @@ import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 import com.tiggerbiggo.prima.graphics.SafeImage;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class RotateImageFragment implements Fragment<Color[]> {
+public class RotateImageFragment implements Fragment<Color[]>, Serializable {
 
     Fragment<Vector2>[][] map;
 

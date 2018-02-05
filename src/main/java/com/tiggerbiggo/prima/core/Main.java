@@ -63,18 +63,18 @@ public class Main
         Fragment<Vector2> f, d;
 
         //f = new MapGenFragment(imageSize.minus(), imageSize);
-        f = new MapGenFragment(new Vector2(0), new Vector2(XDIM, YDIM));
+        f = new MapGenFragment(new Vector2(0), new Vector2(1));
         //f = new CombineFragment(f, new ConstFragment(2.8), CombineType.MULTIPLY);
         //f = new NearestPointFragment(f, points);
         //f = new CombineFragment(f, new NoiseGenFragment(0.1), CombineType.ADD);
         //f = new KaliedoFragment(4, f, new Vector2(0, 0));
-        f = new CombineFragment(new ConstFragment(.1), new NearestPointFragment(f, points), CombineType.MULTIPLY);
+        //f = new CombineFragment(new ConstFragment(.1), new NearestPointFragment(f, points), CombineType.MULTIPLY);
         //f = new CombineFragment(f, d, CombineType.ADD);
         //f = new TransformFragment(f, Transform.MAGNETISM);
         //f = new NearestPointFragment(f, points);
         //f = new MandelFragment(f, 500);
         //f = new CombineFragment(f, new ConstFragment(0.01), CombineType.MULTIPLY);
-        //f = new TransformFragment(f, Transform.SINSIN);
+        f = new TransformFragment(f, Transform.SINSIN);
         //f = new ImageConvertFragment(img, f, ColorProperty.V);
         //f = new CombineFragment(f, new ConstFragment(0.6), CombineType.MULTIPLY);
 
@@ -84,12 +84,13 @@ public class Main
         //g= new DoubleGradient(Color.BLACK,  Color.blue, Color.red, true);
         g = new SimpleGradient(Color.white, Color.BLUE, true);
 
-        r = new RenderFragment(f, 60, g);
+        //r = new RenderFragment(f, 60, g);
         //r = new ImageCycleFragment(images, f, 0, 0);
         //r = new ImageMapFragment(f, img, 60, new Vector2(300));
         //r = new FadeImageFragment(120, true, f, images);
         //r = new RotateImageFragment(new SafeImage(img),f, 120, new Vector2(1000), new Vector2(500, 1000));
         //r = new SuperSampleFragment(1, r);
+        r = new RawColorFragment(f, 60);
         try
         {
             Builder b;

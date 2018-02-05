@@ -3,10 +3,12 @@ package com.tiggerbiggo.prima.processing.fragment;
 import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 
+import java.io.Serializable;
+
 /**
  * Combines 2 fragments to produce an output
  */
-public class CombineFragment implements Fragment<Vector2> {
+public class CombineFragment implements Fragment<Vector2>, Serializable {
     Fragment<Vector2> A, B;
     Fragment<Vector2>[][] mapA, mapB;
     CombineType type;

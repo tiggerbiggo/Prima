@@ -6,8 +6,9 @@ import com.tiggerbiggo.prima.graphics.Gradient;
 import com.tiggerbiggo.prima.graphics.SimpleGradient;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class RenderFragment implements Fragment<Color[]>
+public class RenderFragment implements Fragment<Color[]>, Serializable
 {
     Fragment<Vector2> in;
     Fragment<Vector2>[][] map;
