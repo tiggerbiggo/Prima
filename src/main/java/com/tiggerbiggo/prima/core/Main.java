@@ -22,48 +22,11 @@ public class Main
     static final int YDIM = 300;
     public static void main(String[] args) {
 
-
-//        for(int i=0; i<50; i++) {
-//            Random r = new Random();
-//            double x, y;
-//            x = r.nextDouble()*2; x-=1;
-//            y = r.nextDouble()*2; y-=1;
-//            points.add(new Vector2(x, y));
-//        }
-
-        System.out.println("Making model");
-        DepositionModel model = new DepositionModel(XDIM, YDIM, 6, 3);
-        model.simulate(2000);
-        System.out.println("Done calculating");
-
-        ArrayList<Vector2> points = model.getPoints();
-
-//        int n = 1;
-//        for (double mul = 0; mul <= 1; mul += 0.05)
-//        {
-//            for (int i = 0; i < n; i++) {
-//                double angle = ((double) i / n) * 2 * Math.PI;
-//                angle += mul;
-//                double x, y;
-//                x = Math.sin(angle) * mul;
-//                y = Math.cos(angle) * mul;
-//                points.add(new Vector2(x, y));
-//            }
-//            n+=2;
-//        }
-
-        BufferedImage img;
-        try {
-            img = ImageIO.read(new File("trip1.jpg"));
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
-        }
-
         Fragment<Vector2> f, d;
 
         //f = new MapGenFragment(imageSize.minus(), imageSize);
-        f = new MapGenFragment(new Vector2(0), new Vector2(1));
+        f = new MapGenFragment(new Vector2(-2), new Vector2(2));
+        d = new MapGenFragment(new Vector2(-2), new Vector2(2));
         //f = new CombineFragment(f, new ConstFragment(2.8), CombineType.MULTIPLY);
         //f = new NearestPointFragment(f, points);
         //f = new CombineFragment(f, new NoiseGenFragment(0.1), CombineType.ADD);
@@ -72,9 +35,11 @@ public class Main
         //f = new CombineFragment(f, d, CombineType.ADD);
         //f = new TransformFragment(f, Transform.MAGNETISM);
         //f = new NearestPointFragment(f, points);
-        //f = new MandelFragment(f, 500);
+        f = new MandelFragment(f, 500);
         //f = new CombineFragment(f, new ConstFragment(0.01), CombineType.MULTIPLY);
-        f = new TransformFragment(f, Transform.SINSIN);
+        //f = new TransformFragment(f, Transform.SINSIN);
+        //d = new TransformFragment(d, Transform.MAGNETISM);
+
         //f = new ImageConvertFragment(img, f, ColorProperty.V);
         //f = new CombineFragment(f, new ConstFragment(0.6), CombineType.MULTIPLY);
 
@@ -90,7 +55,8 @@ public class Main
         //r = new FadeImageFragment(120, true, f, images);
         //r = new RotateImageFragment(new SafeImage(img),f, 120, new Vector2(1000), new Vector2(500, 1000));
         //r = new SuperSampleFragment(1, r);
-        r = new RawColorFragment(f, 60);
+        //r = new RawColorFragment(f, 60);
+        r = new OscillateFragment(f, d, 60, g);
         try
         {
             Builder b;

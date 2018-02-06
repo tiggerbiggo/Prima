@@ -1,5 +1,7 @@
 package com.tiggerbiggo.prima.core;
 
+import com.tiggerbiggo.prima.calculation.Calculation;
+
 import java.io.Serializable;
 import java.util.Random;
 
@@ -110,6 +112,13 @@ public class Vector2 implements Serializable{
      */
     public static double det(Vector2 a, Vector2 b) {
         return (a.x*b.y) - (a.y*b.x);
+    }
+
+    public static Vector2 lerpVector(Vector2 a, Vector2 b, double p){
+        return new Vector2(
+                Calculation.lerp(a.x, b.x, p),
+                Calculation.lerp(a.y, b.y, p)
+        );
     }
 
     /**Gets the distance between 2 vectors

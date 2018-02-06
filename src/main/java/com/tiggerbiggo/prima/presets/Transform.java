@@ -70,6 +70,9 @@ public enum Transform {
     SAMEY((x, y) -> {
 
         return new Vector2(x, 0);
+    }),
+    SQUAREXY((x, y) -> {
+        return new Vector2(x*x, y*y);
     });
 
     private BiFunction<Double, Double, Vector2> function;

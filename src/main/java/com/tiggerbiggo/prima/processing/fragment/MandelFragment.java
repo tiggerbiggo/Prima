@@ -48,7 +48,7 @@ public class MandelFragment implements Fragment<Vector2>, Serializable
             {
                 double x = z.X();
                 double y = z.Y();
-                return new Vector2(x, y);
+                return new Vector2(i/100.0);
             }
         }
         //edge case to return zero if never escapes
