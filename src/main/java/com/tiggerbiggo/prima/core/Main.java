@@ -1,20 +1,24 @@
 package com.tiggerbiggo.prima.core;
 
-import com.tiggerbiggo.prima.graphics.DoubleGradient;
 import com.tiggerbiggo.prima.graphics.Gradient;
-import com.tiggerbiggo.prima.graphics.SafeImage;
 import com.tiggerbiggo.prima.graphics.SimpleGradient;
+import com.tiggerbiggo.prima.gui.MainFrame;
+import com.tiggerbiggo.prima.gui.PrimaPane;
 import com.tiggerbiggo.prima.presets.Transform;
-import com.tiggerbiggo.prima.processing.ColorProperty;
 import com.tiggerbiggo.prima.processing.fragment.*;
+import com.tiggerbiggo.prima.processing.fragment.generate.ConstFragment;
+import com.tiggerbiggo.prima.processing.fragment.generate.MapGenFragment;
+import com.tiggerbiggo.prima.processing.fragment.render.OscillateFragment;
+import com.tiggerbiggo.prima.processing.fragment.render.RenderFragment;
+import com.tiggerbiggo.prima.processing.fragment.transform.CombineFragment;
+import com.tiggerbiggo.prima.processing.fragment.transform.CombineType;
+import com.tiggerbiggo.prima.processing.fragment.transform.KaliedoFragment;
+import com.tiggerbiggo.prima.processing.fragment.transform.TransformFragment;
 
-import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Random;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Main
 {
@@ -25,19 +29,20 @@ public class Main
         Fragment<Vector2> f, d;
 
         //f = new MapGenFragment(imageSize.minus(), imageSize);
-        f = new MapGenFragment(new Vector2(-2), new Vector2(2));
-        d = new MapGenFragment(new Vector2(-2), new Vector2(2));
+        MapGenFragment mg = new MapGenFragment(new Vector2(-3), new Vector2(3));
+        //d = new MapGenFragment(new Vector2(-3), new Vector2(3));
         //f = new CombineFragment(f, new ConstFragment(2.8), CombineType.MULTIPLY);
         //f = new NearestPointFragment(f, points);
         //f = new CombineFragment(f, new NoiseGenFragment(0.1), CombineType.ADD);
         //f = new KaliedoFragment(4, f, new Vector2(0, 0));
+        //d = new KaliedoFragment(4, d, new Vector2(0, 0));
         //f = new CombineFragment(new ConstFragment(.1), new NearestPointFragment(f, points), CombineType.MULTIPLY);
-        //f = new CombineFragment(f, d, CombineType.ADD);
-        //f = new TransformFragment(f, Transform.MAGNETISM);
-        //f = new NearestPointFragment(f, points);
-        f = new MandelFragment(f, 500);
-        //f = new CombineFragment(f, new ConstFragment(0.01), CombineType.MULTIPLY);
+        //f = new CombineFragment(f, new ConstFragment(1), CombineType.ADD);
         //f = new TransformFragment(f, Transform.SINSIN);
+        //f = new NearestPointFragment(f, points);
+        //f = new MandelFragment(f, 500);
+        //f = new CombineFragment(f, new ConstFragment(0.01), CombineType.MULTIPLY);
+        TransformFragment tr = new TransformFragment(mg, Transform.SINSIN);
         //d = new TransformFragment(d, Transform.MAGNETISM);
 
         //f = new ImageConvertFragment(img, f, ColorProperty.V);
@@ -47,34 +52,56 @@ public class Main
 
         Gradient g;
         //g= new DoubleGradient(Color.BLACK,  Color.blue, Color.red, true);
-        g = new SimpleGradient(Color.white, Color.BLUE, true);
+        g = new SimpleGradient(Color.RED, Color.YELLOW, true);
 
-        //r = new RenderFragment(f, 60, g);
+        r = new RenderFragment(tr, 120, g);
         //r = new ImageCycleFragment(images, f, 0, 0);
         //r = new ImageMapFragment(f, img, 60, new Vector2(300));
         //r = new FadeImageFragment(120, true, f, images);
         //r = new RotateImageFragment(new SafeImage(img),f, 120, new Vector2(1000), new Vector2(500, 1000));
         //r = new SuperSampleFragment(1, r);
         //r = new RawColorFragment(f, 60);
-        r = new OscillateFragment(f, d, 60, g);
-        try
-        {
-            Builder b;
+        //r = new OscillateFragment(f, d, 60, g);
+        try {
+            //Builder b;
             //b = new Builder(render.build(new Vector2(img.getWidth()/5, img.getHeight()/5)));
             //b = new Builder(r.build(imageSize.iX(), imageSize.iY()));
-            b = new Builder(r.build(XDIM,YDIM));
-            b.startBuild();
-            b.joinAll();
+            //b = new Builder(r.build(XDIM,YDIM));
+            //b.startBuild();
+            //b.joinAll();
 
-            String filename;
-            int number = 1;
-            do{
-                filename = "morethings" + number;
-                System.out.println("File: " + filename);
-                number++;
-            }while(new File(filename + ".gif").exists());
+            JFrame fr = new JFrame(){};
+            fr.setSize(XDIM, YDIM*2);
+            fr.setLayout(new GridLayout(2, 0));
+            fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-            FileManager.writeGif(b.getImgs(), filename);
+            PrimaPane pp = new PrimaPane(r);
+            pp.setSize(XDIM, YDIM);
+
+            JButton b = new JButton();
+            b.addActionListener(e -> pp.reBuild());
+
+            fr.add(pp.startTimer(1000/30));
+            fr.add(b);
+            fr.setVisible(true);
+            pp.reBuild();
+
+
+
+            MainFrame mf = new MainFrame(tr);
+            mf.setSize(100, 300);
+            mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            mf.setVisible(true);
+
+//            String filename;
+//            int number = 1;
+//            do{
+//                filename = "morethings" + number;
+//                System.out.println("File: " + filename);
+//                number++;
+//            }while(new File(filename + ".gif").exists());
+//
+//            FileManager.writeGif(pp.getImgs(), filename);
         }
         catch(Exception e)
         {

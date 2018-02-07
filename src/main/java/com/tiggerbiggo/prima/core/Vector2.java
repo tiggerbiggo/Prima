@@ -44,6 +44,8 @@ public class Vector2 implements Serializable{
         return String.format("[@%s] -- X: %f, Y: %f", hashCode(), x, y);
     }
 
+    public void set(double x, double y){this.x = x; this.y = y;}
+
     /**
      * @return The x component as double
      */

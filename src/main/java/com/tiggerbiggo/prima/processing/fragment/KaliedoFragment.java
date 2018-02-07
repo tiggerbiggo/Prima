@@ -35,7 +35,7 @@ public class KaliedoFragment implements Fragment<Vector2>, Serializable{
 
         angle = baseAngle * -multiplier;
         if(multiplier % 2 == 0){
-            angle = baseAngle - angle;
+            //angle = baseAngle - angle;
         }
 
 

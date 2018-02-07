@@ -1,12 +1,13 @@
 package com.tiggerbiggo.prima.presets;
 
 import com.tiggerbiggo.prima.core.Vector2;
-import com.tiggerbiggo.prima.processing.fragment.ConstFragment;
+import com.tiggerbiggo.prima.processing.fragment.generate.ConstFragment;
+import com.tiggerbiggo.prima.processing.fragment.generate.MapGenFragment;
 
 /**
  * Generates maps for MapGenFragment to use
  *
- * @see com.tiggerbiggo.prima.processing.fragment.MapGenFragment
+ * @see MapGenFragment
  */
 public class MapGenerator {
     /**Generates a 2D array of ConstFragments formatted as a section of an XY coordinate graph

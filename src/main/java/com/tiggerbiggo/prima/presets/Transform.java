@@ -1,12 +1,13 @@
 package com.tiggerbiggo.prima.presets;
 
 import com.tiggerbiggo.prima.core.Vector2;
+import com.tiggerbiggo.prima.processing.fragment.transform.TransformFragment;
 
 import java.util.function.BiFunction;
 
 /**
  * Contains transform types to use with TransformFragment
- * @see com.tiggerbiggo.prima.processing.fragment.TransformFragment
+ * @see TransformFragment
  */
 public enum Transform {
     SINSIN((x, y) -> {
