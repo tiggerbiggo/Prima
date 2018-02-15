@@ -43,7 +43,7 @@ public class SimpleGradient extends Gradient implements Serializable
     @Override
     public Color evaluate(Vector2 v){
         double a = v.X()+v.Y();
-        a = normalise(a, loop);
+        a = Calculation.modLoop(a, loop);
         return ColorTools.colorLerp(c1, c2, a);
     }
 }

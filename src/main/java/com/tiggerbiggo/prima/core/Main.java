@@ -6,19 +6,12 @@ import com.tiggerbiggo.prima.gui.MainFrame;
 import com.tiggerbiggo.prima.gui.PrimaPane;
 import com.tiggerbiggo.prima.presets.Transform;
 import com.tiggerbiggo.prima.processing.fragment.*;
-import com.tiggerbiggo.prima.processing.fragment.generate.ConstFragment;
 import com.tiggerbiggo.prima.processing.fragment.generate.MapGenFragment;
-import com.tiggerbiggo.prima.processing.fragment.render.OscillateFragment;
-import com.tiggerbiggo.prima.processing.fragment.render.RenderFragment;
-import com.tiggerbiggo.prima.processing.fragment.transform.CombineFragment;
-import com.tiggerbiggo.prima.processing.fragment.transform.CombineType;
-import com.tiggerbiggo.prima.processing.fragment.transform.KaliedoFragment;
+import com.tiggerbiggo.prima.processing.fragment.render.old.RenderFragment;
 import com.tiggerbiggo.prima.processing.fragment.transform.TransformFragment;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Main
 {

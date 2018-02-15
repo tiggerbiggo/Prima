@@ -1,4 +1,4 @@
-package com.tiggerbiggo.prima.processing.fragment.render;
+package com.tiggerbiggo.prima.processing.fragment.render.old;
 
 import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
@@ -11,33 +11,36 @@ import java.io.Serializable;
 
 public class RenderFragment implements Fragment<Color[]>, Serializable
 {
-    Fragment<Vector2[]> in;
-    Fragment<Vector2[]>[][] map;
+    Fragment<Vector2> in;
+    Fragment<Vector2>[][] map;
+    int num;
     Gradient g;
 
-    public RenderFragment(Fragment<Vector2[]> in, Gradient g)
+    public RenderFragment(Fragment<Vector2> in, int num, Gradient g)
     {
-        if(in == null || g == null) throw new IllegalArgumentException("Number of frames cannot be null");
+        if(num <=0) throw new IllegalArgumentException("Number of frames cannot be null");
 
         this.in = in;
+        this.num = num;
         this.g = g;
     }
 
-    public RenderFragment(Fragment<Vector2[]> in)
+    public RenderFragment(Fragment<Vector2> in)
     {
-        this(in, new SimpleGradient());
+        this(in, 1, new SimpleGradient());
     }
 
     @Override
     public Color[] get() {
-        Vector2[] base = in.get();
-        if(base == null) return null;
-        int num = base.length;
-
+        Vector2 base = in.get();
+        if(base == null) base = Vector2.ZERO;
         Color[] cA = new Color[num];
 
-        for(int i=0; i<num; i++) {
-            cA[i] = g.evaluate(base[i]);
+        double increment = 1.0f/num;
+
+        for(int i=0; i<num; i++)
+        {
+            cA[i] = g.evaluate(Vector2.add(base , new Vector2(i*increment)));
         }
 
         return cA;
@@ -51,6 +54,6 @@ public class RenderFragment implements Fragment<Color[]>, Serializable
 
     @Override
     public Fragment<Color[]> getNew(int i, int j) {
-        return new RenderFragment(map[i][j], g);
+        return new RenderFragment(map[i][j], num, g);
     }
 }

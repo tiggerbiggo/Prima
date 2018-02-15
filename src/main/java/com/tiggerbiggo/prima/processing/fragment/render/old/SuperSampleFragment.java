@@ -1,4 +1,4 @@
-package com.tiggerbiggo.prima.processing.fragment.render;
+package com.tiggerbiggo.prima.processing.fragment.render.old;
 
 import com.tiggerbiggo.prima.calculation.ColorTools;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;

@@ -1,9 +1,9 @@
-package com.tiggerbiggo.prima.processing.fragment.render;
+package com.tiggerbiggo.prima.processing.fragment.render.old;
 
+import com.tiggerbiggo.prima.calculation.Calculation;
 import com.tiggerbiggo.prima.calculation.ColorTools;
 import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
-import com.tiggerbiggo.prima.graphics.Gradient;
 import com.tiggerbiggo.prima.graphics.SafeImage;
 import com.tiggerbiggo.prima.processing.fragment.Fragment;
 
@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class FadeImageFragment implements Fragment<Color[]>, Serializable{
 
     SafeImage[] imgs;
-    Fragment<Vector2>[][] inArr;
+    Fragment<Vector2>[][] map;
     Fragment<Vector2> in;
     int num, x, y;
     boolean loop;
@@ -43,7 +43,7 @@ public class FadeImageFragment implements Fragment<Color[]>, Serializable{
 
         for(int i=0; i<num; i++) {
             double current = n + ((i*len)/num);
-            current = Gradient.normalise(current, len, loop);
+            current = Calculation.modLoop(current, len, true);
             Color A, B;
 
             if(current == len) current =- 0.1; //protect from array out of bounds.
@@ -58,12 +58,12 @@ public class FadeImageFragment implements Fragment<Color[]>, Serializable{
 
     @Override
     public Fragment<Color[]>[][] getArray(int xDim, int yDim) throws IllegalMapSizeException {
-        inArr = in.build(xDim, yDim);
+        map = in.build(xDim, yDim);
         return new FadeImageFragment[xDim][yDim];
     }
 
     @Override
     public Fragment<Color[]> getNew(int i, int j) {
-        return new FadeImageFragment(num, i, j, loop, inArr[i][j], imgs);
+        return new FadeImageFragment(num, i, j, loop, map[i][j], imgs);
     }
 }

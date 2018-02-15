@@ -28,8 +28,7 @@ public class Calculation {
      * @param max Max value
      * @return Result of the calculation
      */
-    public static double clampedLerp(double f1, double f2, double a, double min, double max)
-    {
+    public static double clampedLerp(double f1, double f2, double a, double min, double max) {
         return clamp(min, max, lerp(f1, f2, a));
     }
 
@@ -42,8 +41,7 @@ public class Calculation {
      * @param n Number to clamp
      * @return The clamped value
      */
-    public static double clamp(double min, double max, double n)
-    {
+    public static double clamp(double min, double max, double n) {
         n = Math.max(min, n);
         n = Math.min(max, n);
 
@@ -59,5 +57,30 @@ public class Calculation {
     public static double mod(double in, double mod)
     {
         return in%mod;
+    }
+
+    public static double modLoop(double in, double mod, boolean loop)
+    {
+        in = Math.abs(in);
+        in = mod(in, mod);
+
+        if(loop) {
+            if (in < (mod / 2)) in *= 2;
+            else {
+                in -= mod / 2;
+                in = mod - (in * 2);
+            }
+        }
+        return in;
+    }
+
+    /**
+     * Normalises a number to between 0 and 1, optionally looped
+     * @param in The number to bound
+     * @param loop Whether to loop the number so it goes from 0 to 1, then back to 0
+     * @return The normalised number
+     */
+    public static double modLoop(double in, boolean loop) {
+        return modLoop(in, 1, loop);
     }
 }
