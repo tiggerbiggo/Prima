@@ -2,6 +2,44 @@ package com.tiggerbiggo.prima.core;
 
 import com.tiggerbiggo.prima.graphics.Gradient;
 import com.tiggerbiggo.prima.graphics.SimpleGradient;
+import com.tiggerbiggo.prima.presets.Transform;
+import com.tiggerbiggo.prima.processing.fragment.Fragment;
+import com.tiggerbiggo.prima.processing.fragment.generate.MapGenFragment;
+import com.tiggerbiggo.prima.processing.fragment.render.AnimationFragment;
+import com.tiggerbiggo.prima.processing.fragment.render.RenderFragment;
+import com.tiggerbiggo.prima.processing.fragment.transform.TransformFragment;
+
+import java.awt.*;
+
+public class Main{
+    public static void main(String[] args) {
+        Gradient g = new SimpleGradient(Color.BLACK, Color.WHITE, true);
+
+        Fragment<Vector2> f;
+        Fragment<Vector2[]> anim;
+        Fragment<Color[]> r;
+
+        f = new MapGenFragment(new Vector2(0), new Vector2(5));
+        f = new TransformFragment(f, Transform.SINSIN);
+
+        anim = new AnimationFragment(f, AnimationFragment.AnimTypes.SIMPLE.getF());
+
+        r = new RenderFragment(anim, g);
+
+        Builder b = new Builder(r, 300, 300, 60);
+        b.startBuild();
+        b.joinAll();
+
+        FileManager.writeGif(b.getImgs(), "brandnew");
+    }
+}
+
+
+
+
+/*
+import com.tiggerbiggo.prima.graphics.Gradient;
+import com.tiggerbiggo.prima.graphics.SimpleGradient;
 import com.tiggerbiggo.prima.gui.MainFrame;
 import com.tiggerbiggo.prima.gui.PrimaPane;
 import com.tiggerbiggo.prima.presets.Transform;
@@ -12,6 +50,8 @@ import com.tiggerbiggo.prima.processing.fragment.transform.TransformFragment;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+
 
 public class Main
 {
@@ -56,45 +96,46 @@ public class Main
         //r = new RawColorFragment(f, 60);
         //r = new OscillateFragment(f, d, 60, g);
         try {
-            //Builder b;
+            Builder b;
             //b = new Builder(render.build(new Vector2(img.getWidth()/5, img.getHeight()/5)));
             //b = new Builder(r.build(imageSize.iX(), imageSize.iY()));
-            //b = new Builder(r.build(XDIM,YDIM));
-            //b.startBuild();
-            //b.joinAll();
-
-            JFrame fr = new JFrame(){};
-            fr.setSize(XDIM, YDIM*2);
-            fr.setLayout(new GridLayout(2, 0));
-            fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-            PrimaPane pp = new PrimaPane(r);
-            pp.setSize(XDIM, YDIM);
-
-            JButton b = new JButton();
-            b.addActionListener(e -> pp.reBuild());
-
-            fr.add(pp.startTimer(1000/30));
-            fr.add(b);
-            fr.setVisible(true);
-            pp.reBuild();
+            b = new Builder(r, XDIM, YDIM, 60);
+            b.startBuild();
+            b.joinAll();
 
 
-
-            MainFrame mf = new MainFrame(tr);
-            mf.setSize(100, 300);
-            mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            mf.setVisible(true);
-
-//            String filename;
-//            int number = 1;
-//            do{
-//                filename = "morethings" + number;
-//                System.out.println("File: " + filename);
-//                number++;
-//            }while(new File(filename + ".gif").exists());
+//            JFrame fr = new JFrame(){};
+//            fr.setSize(XDIM, YDIM*2);
+//            fr.setLayout(new GridLayout(2, 0));
+//            fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //
-//            FileManager.writeGif(pp.getImgs(), filename);
+//            PrimaPane pp = new PrimaPane(r);
+//            pp.setSize(XDIM, YDIM);
+//
+//            JButton b = new JButton();
+//            b.addActionListener(e -> pp.reBuild());
+//
+//            fr.add(pp.startTimer(1000/30));
+//            fr.add(b);
+//            fr.setVisible(true);
+//            pp.reBuild();
+//
+//
+//
+//            MainFrame mf = new MainFrame(tr);
+//            mf.setSize(100, 300);
+//            mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//            mf.setVisible(true);
+
+            String filename;
+            int number = 1;
+            do{
+                filename = "morethings" + number;
+                System.out.println("File: " + filename);
+                number++;
+            }while(new File(filename + ".gif").exists());
+
+            FileManager.writeGif(b.getImgs(), filename);
         }
         catch(Exception e)
         {
@@ -102,3 +143,4 @@ public class Main
         }
     }
 }
+*/

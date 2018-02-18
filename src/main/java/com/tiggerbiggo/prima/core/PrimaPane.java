@@ -56,8 +56,7 @@ public class PrimaPane extends JPanel{
 
     public synchronized PrimaPane reBuild(){
         try {
-            map = in.build(getWidth(), getHeight());
-            b = new Builder(map);
+            b = new Builder(in, getWidth(), getHeight(), 60);
             b.startBuild();
 
             building = true;

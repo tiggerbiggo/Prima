@@ -1,7 +1,6 @@
 package com.tiggerbiggo.prima.processing.fragment.transform;
 
 import com.tiggerbiggo.prima.core.Vector2;
-import com.tiggerbiggo.prima.exception.IllegalMapSizeException;
 import com.tiggerbiggo.prima.graphics.SafeImage;
 import com.tiggerbiggo.prima.processing.fragment.Fragment;
 
@@ -12,7 +11,6 @@ public class ImageConvertFragment implements Fragment<Vector2>, Serializable{
 
     private SafeImage img;
     private Fragment<Vector2> pos;
-    Fragment<Vector2>[][] map;
     private ColorProperty convX, convY;
 
     public ImageConvertFragment(SafeImage img, Fragment<Vector2> pos, ColorProperty convX, ColorProperty convY) {
@@ -27,46 +25,27 @@ public class ImageConvertFragment implements Fragment<Vector2>, Serializable{
         this(img, pos, conv, conv);
     }
 
-    /*
-    (0,0)   +---------------+   (1,0)
-            |               |
-            |               |
-            |     image     |
-            |               |
-            |               |
-    (0,1)   +---------------+   (1,1)
-    */
-
     @Override
-    public Vector2 get() {
-        Vector2 point = pos.get();
+    public Vector2 get(int x, int y, int w, int h, int num) {
+        Vector2 point = pos.get(x, y, w, h, num);
 
-        point = Vector2.mod(point,1);
-        point = Vector2.abs(point);
         point = Vector2.multiply(
                 point,
                 new Vector2(
                         img.getWidth(),
                         img.getHeight()
                 ));
-        try {
-            Color c = new Color(img.getRGB(point.iX(), point.iY()));
-            return new Vector2(convX.convert(c), convY.convert(c));
-        }
-        catch(Exception e) {
-            System.out.println("ayy");
-        }
-        return null;
+        Color c = new Color(img.getRGB(point.iX(), point.iY()));
+        return new Vector2(convX.convert(c), convY.convert(c));
     }
 
-    @Override
-    public Fragment<Vector2>[][] getArray(int xDim, int yDim) throws IllegalMapSizeException {
-        map = pos.build(xDim, yDim);
-        return new ImageConvertFragment[xDim][yDim];
-    }
-
-    @Override
-    public Fragment<Vector2> getNew(int i, int j) {
-        return new ImageConvertFragment(img, map[i][j], convX, convY);
-    }
+    /*
+    (0,1)   +---------------+   (1,1)
+            |               |
+            |               |
+            |     image     |
+            |               |
+            |               |
+    (0,0)   +---------------+   (1,0)
+    */
 }

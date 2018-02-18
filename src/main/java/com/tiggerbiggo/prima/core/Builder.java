@@ -16,35 +16,33 @@ public class Builder implements Runnable {
     private boolean setup = false;
     private boolean isDone = false;
     private ArrayDeque<Vector2> fragList;
-    private Fragment<Color[]>[][] fragMap;
+    private Fragment<Color[]> fragment;
     private BufferedImage[] imgs = null;
     private int w, h, n;
 
-    /**
-     * Initialises the Builder object
+    /**Creates a new Builder
      *
-     * @param fragMap A 2D array of Color[] type fragments, to make up a 2D image with many frames
+     * @param fragment The renderable fragment object
+     * @param w The width of the image
+     * @param h The height of the image
+     * @param n The number of frames in the image
      */
-    public Builder(Fragment<Color[]>[][] fragMap) {
+    public Builder(Fragment<Color[]> fragment, int w, int h, int n) {
         //Check for dangerous null values
-        try {
-            if (fragMap == null || fragMap.length <= 0 || fragMap[0].length <= 0) {
-                throw new IllegalArgumentException("Invalid FragMap");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new IllegalArgumentException("FragMap is either null or otherwise invalid");
+
+        if (fragment == null) {
+            throw new IllegalArgumentException("Fragment cannot be null");
         }
 
         //Create a stack to store the fragment objects in for easy retrieval by the threads.
         fragList = new ArrayDeque<>();
 
-        this.fragMap = fragMap;
+        this.fragment = fragment;
 
-        //Store variables for width, height and length
-        w = fragMap.length;
-        h = fragMap[0].length;
-        n = fragMap[0][0].get().length;
+        //Store variables for width, height and number of frames
+        this.w = w;
+        this.h = h;
+        this.n = n;
 
         //Iterate over the ranges 0 > w and 0 > h to add an entry for every fragment in the map.
         //This is needed so each thread knows which pixel to access when writing to the image.
@@ -62,8 +60,8 @@ public class Builder implements Runnable {
     /**
      * Optional callback method, can be overridden to call back after each rendered pixel completed
      *
-     * @param x the current x position in the array
-     * @param y the current y position in the array
+     * @param x the X coordinate of the pixel that was just rendered
+     * @param y the Y coordinate of the pixel that was just rendered
      */
     public void callback(int x, int y){}
 
@@ -89,7 +87,7 @@ public class Builder implements Runnable {
         for (int i = 0; i < THREADNUM; i++) {
             try {
                 threads[i].interrupt();
-            } catch (SecurityException ex) {ex.printStackTrace();}
+            } catch (SecurityException ex) {}
         }
         joinAll();
     }
@@ -112,10 +110,11 @@ public class Builder implements Runnable {
                 y = pos.iY();
 
                 //Calculates the array of colours from the next fragment
-                Color[] colors = fragMap[x][y].get();
+                Color[] colors = fragment.get(x, y, w, h, n);
 
                 //if invalid number of colours returned, break
                 if (colors.length != n) {
+                    System.out.println("Error in Builder Run method: Invalid color array length");
                     break;
                 } else {
                     //Else render the colours to the image array
@@ -127,9 +126,9 @@ public class Builder implements Runnable {
                 //get next position vector
                 pos = getNext();
 
-                //Optional callback
+                //Ended pixel render, call back
                 callback(x, y);
-                if(Thread.interrupted()) break; //Break if interrupted. Pretty self explanatory.
+                if(Thread.interrupted()) break; //Break if interrupted.
             }
         }
     }
@@ -154,8 +153,7 @@ public class Builder implements Runnable {
             for (Thread t : threads) {
                 try {
                     t.join();
-                } catch (InterruptedException e) {
-                }
+                } catch (InterruptedException | NullPointerException e) {}
             }
         }
     }
