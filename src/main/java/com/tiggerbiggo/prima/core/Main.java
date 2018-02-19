@@ -9,28 +9,72 @@ import com.tiggerbiggo.prima.processing.fragment.Fragment;
 import com.tiggerbiggo.prima.processing.fragment.generate.ConstFragment;
 import com.tiggerbiggo.prima.processing.fragment.generate.MapGenFragment;
 import com.tiggerbiggo.prima.processing.fragment.render.*;
-import com.tiggerbiggo.prima.processing.fragment.transform.ColorProperty;
-import com.tiggerbiggo.prima.processing.fragment.transform.ImageConvertFragment;
-import com.tiggerbiggo.prima.processing.fragment.transform.TransformFragment;
+import com.tiggerbiggo.prima.processing.fragment.transform.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Main{
     public static void main(String[] args) throws IOException {
-        SafeImage img = new SafeImage(ImageIO.read(new File("blep.jpg")));
+        SafeImage img = new SafeImage(ImageIO.read(new File("cat.png")));
+        SafeImage imgmask = new SafeImage(ImageIO.read(new File("maskCat.png")));
+
 
         Gradient g;
-//        g = new SimpleGradient(Color.BLACK, Color.WHITE, true);
+        //g = new SimpleGradient(Color.BLACK, Color.WHITE, true);
         g = new HueCycleGradient();
 
         Fragment<Vector2> f;
         Fragment<Vector2[]> anim;
         Fragment<Color[]> r1, r2;
 
-        f = new MapGenFragment(Vector2.ZERO, Vector2.ONE);
+        ArrayList<Vector2> points = new ArrayList<>();
+        points.add(new Vector2(0.5));
+
+        f = new MapGenFragment(0,5);
+        f = new TransformFragment(f, Transform.SINSIN);
+
+        anim = new AnimationFragment(f, Vector2::new);
+        r1 = new RenderFragment(anim, g);
+
+        f = new MapGenFragment(0, 1);
+        anim = new AnimationFragment(f, AnimationFragment.AnimTypes.STILL.getF());
+        //r2 = new RenderFragment(anim, g);
+        r2 = new ImageRenderFragment(anim, img);
+
+        f = new MapGenFragment(0, 1);
+        f = new ImageConvertFragment(f, imgmask, ColorProperty.V);
+        f = new CombineFragment(f, new ConstFragment(0.9), CombineType.MULTIPLY);
+
+        MaskFragment mask = new MaskFragment(f, Vector2::X);
+        r1 = new MaskedCombineFragment(r2, r1, mask);
+
+
+        Builder b = new Builder(r1, 300, 300, 60);
+        b.startBuild();
+        b.joinAll();
+
+        String filename;
+        int number = 1;
+        do{
+            filename = "newones" + number;
+            System.out.println("File: " + filename);
+            number++;
+        }while(new File(filename + ".gif").exists());
+
+        FileManager.writeGif(b.getImgs(), filename);
+    }
+}
+
+
+
+
+/*
+
+f = new MapGenFragment(Vector2.ZERO, Vector2.ONE);
         f = new ImageConvertFragment(img, f, ColorProperty.V, ColorProperty.V);
 
         anim = new AnimationFragment(f, AnimationFragment.AnimTypes.SIMPLE.getF());
@@ -47,18 +91,11 @@ public class Main{
 
         r1 = new MaskedCombineFragment(r1, r2, new MaskFragment(f, Vector2::X));
 
-        Builder b = new Builder(r1, 300, 300, 60);
-        b.startBuild();
-        b.joinAll();
-
-        FileManager.writeGif(b.getImgs(), "bleperooni");
-    }
-}
 
 
 
 
-/*
+
 import com.tiggerbiggo.prima.graphics.Gradient;
 import com.tiggerbiggo.prima.graphics.SimpleGradient;
 import com.tiggerbiggo.prima.gui.MainFrame;

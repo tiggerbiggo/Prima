@@ -13,16 +13,16 @@ public class ImageConvertFragment implements Fragment<Vector2>, Serializable{
     private Fragment<Vector2> pos;
     private ColorProperty convX, convY;
 
-    public ImageConvertFragment(SafeImage img, Fragment<Vector2> pos, ColorProperty convX, ColorProperty convY) {
+    public ImageConvertFragment(Fragment<Vector2> pos, SafeImage img, ColorProperty convX, ColorProperty convY) {
         this.img = img;
         this.pos = pos;
         this.convX = convX;
         this.convY = convY;
     }
 
-    public ImageConvertFragment(SafeImage img, Fragment<Vector2> pos, ColorProperty conv)
+    public ImageConvertFragment(Fragment<Vector2> pos, SafeImage img, ColorProperty conv)
     {
-        this(img, pos, conv, conv);
+        this(pos, img, conv, conv);
     }
 
     @Override

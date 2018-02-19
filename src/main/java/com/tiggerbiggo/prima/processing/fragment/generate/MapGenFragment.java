@@ -19,6 +19,14 @@ public class MapGenFragment implements Fragment<Vector2>, Serializable, Controll
         dy = B.Y() - aY;
     }
 
+    public MapGenFragment(double aX, double aY, double bX, double bY){
+        this(new Vector2(aX, aY), new Vector2(bX, bY));
+    }
+
+    public MapGenFragment(double A, double B){
+        this(A, A, B, B);
+    }
+
     @Override
     public Vector2 get(int x, int y, int w, int h, int num){
         Vector2 v = new Vector2(
