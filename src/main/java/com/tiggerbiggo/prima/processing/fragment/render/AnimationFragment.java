@@ -32,7 +32,7 @@ public class AnimationFragment implements Fragment<Vector2[]> {
     public enum AnimTypes{
         SIMPLE(Vector2::new),
         SINSIN((i) -> {
-            return new Vector2(Math.sin(i*Math.PI));
+            return new Vector2(Math.sin(i*Math.PI*2)*(1/Math.PI));
         }),
         REVERSE((i)->{
             return new Vector2(Calculation.modLoop(i, true));

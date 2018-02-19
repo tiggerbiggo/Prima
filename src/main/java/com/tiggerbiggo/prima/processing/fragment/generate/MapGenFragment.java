@@ -25,7 +25,6 @@ public class MapGenFragment implements Fragment<Vector2>, Serializable, Controll
                 aX+(x*(dx/w)),
                 aY+(y*(dy/h))
         );
-        System.out.printf("x: %d, y: %d, w: %d, h: %d, Vector: " + v + "\n", x, y, w, h);
         return v;
     }
 
