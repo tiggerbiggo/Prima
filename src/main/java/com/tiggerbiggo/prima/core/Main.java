@@ -1,36 +1,57 @@
 package com.tiggerbiggo.prima.core;
 
 import com.tiggerbiggo.prima.graphics.Gradient;
+import com.tiggerbiggo.prima.graphics.HueCycleGradient;
+import com.tiggerbiggo.prima.graphics.SafeImage;
 import com.tiggerbiggo.prima.graphics.SimpleGradient;
 import com.tiggerbiggo.prima.presets.Transform;
 import com.tiggerbiggo.prima.processing.fragment.Fragment;
+import com.tiggerbiggo.prima.processing.fragment.generate.ConstFragment;
 import com.tiggerbiggo.prima.processing.fragment.generate.MapGenFragment;
-import com.tiggerbiggo.prima.processing.fragment.render.AnimationFragment;
-import com.tiggerbiggo.prima.processing.fragment.render.RenderFragment;
+import com.tiggerbiggo.prima.processing.fragment.render.*;
+import com.tiggerbiggo.prima.processing.fragment.transform.ColorProperty;
+import com.tiggerbiggo.prima.processing.fragment.transform.ImageConvertFragment;
 import com.tiggerbiggo.prima.processing.fragment.transform.TransformFragment;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class Main{
-    public static void main(String[] args) {
-        Gradient g = new SimpleGradient(Color.BLACK, Color.WHITE, true);
+    public static void main(String[] args) throws IOException {
+        SafeImage img = new SafeImage(ImageIO.read(new File("blep.jpg")));
+
+        Gradient g;
+//        g = new SimpleGradient(Color.BLACK, Color.WHITE, true);
+        g = new HueCycleGradient();
 
         Fragment<Vector2> f;
         Fragment<Vector2[]> anim;
-        Fragment<Color[]> r;
+        Fragment<Color[]> r1, r2;
 
-        f = new MapGenFragment(new Vector2(0), new Vector2(5));
-        f = new TransformFragment(f, Transform.SINSIN);
+        f = new MapGenFragment(Vector2.ZERO, Vector2.ONE);
+        f = new ImageConvertFragment(img, f, ColorProperty.V, ColorProperty.V);
 
         anim = new AnimationFragment(f, AnimationFragment.AnimTypes.SIMPLE.getF());
 
-        r = new RenderFragment(anim, g);
+        r1 = new ImageRenderFragment(
+                new AnimationFragment(
+                        new MapGenFragment(
+                                Vector2.ZERO,
+                                Vector2.ONE),
+                        AnimationFragment.AnimTypes.STILL.getF()),
+                img);
 
-        Builder b = new Builder(r, 300, 300, 60);
+        r2 = new RenderFragment(anim, g);
+
+        r1 = new MaskedCombineFragment(r1, r2, new MaskFragment(f, Vector2::X));
+
+        Builder b = new Builder(r1, 300, 300, 60);
         b.startBuild();
         b.joinAll();
 
-        FileManager.writeGif(b.getImgs(), "brandnew");
+        FileManager.writeGif(b.getImgs(), "bleperooni");
     }
 }
 

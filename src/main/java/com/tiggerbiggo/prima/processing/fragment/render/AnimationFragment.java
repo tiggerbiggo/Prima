@@ -36,6 +36,9 @@ public class AnimationFragment implements Fragment<Vector2[]> {
         }),
         REVERSE((i)->{
             return new Vector2(Calculation.modLoop(i, true));
+        }),
+        STILL((i) ->{
+            return new Vector2(0);
         });
         Function<Double, Vector2> f;
         AnimTypes(Function<Double, Vector2> f){this.f = f;}
