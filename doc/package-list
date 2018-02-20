@@ -1,11 +1,1 @@
-com.tiggerbiggo.prima.calculation
 com.tiggerbiggo.prima.core
-com.tiggerbiggo.prima.graphics
-com.tiggerbiggo.prima.gui
-com.tiggerbiggo.prima.gui.components
-com.tiggerbiggo.prima.presets
-com.tiggerbiggo.prima.processing
-com.tiggerbiggo.prima.processing.fragment
-com.tiggerbiggo.prima.processing.fragment.generate
-com.tiggerbiggo.prima.processing.fragment.render
-com.tiggerbiggo.prima.processing.fragment.transform

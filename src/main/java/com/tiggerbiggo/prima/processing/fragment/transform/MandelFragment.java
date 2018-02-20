@@ -5,17 +5,35 @@ import com.tiggerbiggo.prima.processing.fragment.Fragment;
 
 import java.io.Serializable;
 
+/**
+ */
 public class MandelFragment implements Fragment<Vector2>, Serializable {
     private Fragment<Vector2> frag;
     private int iterations;
     private double multiplier;
 
+    /**
+     * @return
+     *
+     * @return
+     * @return
+     * @return
+     */
     public MandelFragment(Fragment<Vector2> c, int iterations, double multiplier) {
         this.frag = c;
         this.iterations = iterations;
         this.multiplier = multiplier;
     }
 
+    /** The main calculation method. All processing for a given pixel should be done in this method.
+     *
+     * @param x The X position of the pixel being rendered
+     * @param y The Y position of the pixel being rendered
+     * @param w The width of the image
+     * @param h The height of the image
+     * @param num The number of frames in the animation
+     * @return The output of the fragment
+     */
     @Override
     public Vector2 get(int x, int y, int w, int h, int num) {
         //get the point we are rendering

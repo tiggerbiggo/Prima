@@ -8,9 +8,17 @@ import com.tiggerbiggo.prima.processing.fragment.Fragment;
 
 import java.io.Serializable;
 
+/**
+ */
 public class MapGenFragment implements Fragment<Vector2>, Serializable, Controllable {
     double aX, aY, dx, dy;
 
+    /**
+     * @return
+     *
+     * @return
+     * @return
+     */
     public MapGenFragment(Vector2 A, Vector2 B) {
         aX = A.X();
         aY = A.Y();
@@ -19,14 +27,37 @@ public class MapGenFragment implements Fragment<Vector2>, Serializable, Controll
         dy = B.Y() - aY;
     }
 
+    /**
+     * @return
+     *
+     * @return
+     * @return
+     * @return
+     * @return
+     */
     public MapGenFragment(double aX, double aY, double bX, double bY){
         this(new Vector2(aX, aY), new Vector2(bX, bY));
     }
 
+    /**
+     * @return
+     *
+     * @return
+     * @return
+     */
     public MapGenFragment(double A, double B){
         this(A, A, B, B);
     }
 
+    /** The main calculation method. All processing for a given pixel should be done in this method.
+     *
+     * @param x The X position of the pixel being rendered
+     * @param y The Y position of the pixel being rendered
+     * @param w The width of the image
+     * @param h The height of the image
+     * @param num The number of frames in the animation
+     * @return The output of the fragment
+     */
     @Override
     public Vector2 get(int x, int y, int w, int h, int num){
         Vector2 v = new Vector2(
@@ -48,6 +79,11 @@ public class MapGenFragment implements Fragment<Vector2>, Serializable, Controll
 //    @Override
 //    public Fragment<Vector2> getNew(int i, int j) {return null;}
 
+    /**
+     * @param
+     *
+     * @return ControlPane
+     */
     @Override
     public ControlPane getControls(ControlPane p) {
         if(p == null) return p;

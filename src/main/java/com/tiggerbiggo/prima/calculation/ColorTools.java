@@ -22,6 +22,11 @@ public class ColorTools
         );
     }
 
+    /**
+     * @param
+     *
+     * @return Color
+     */
     public static Color colorAvg(Color ... colors) {
         int r, g, b;
         r = g = b = 0;

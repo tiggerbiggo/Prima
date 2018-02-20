@@ -17,7 +17,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ */
 public class Main{
+    /**
+     * @param
+     *
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         SafeImage img = new SafeImage(ImageIO.read(new File("cat.png")));
         SafeImage imgmask = new SafeImage(ImageIO.read(new File("maskCat.png")));

@@ -33,60 +33,66 @@ public class Vector2 implements Serializable{
         this(0);
     }
 
+    /**Clones this object
+     * @return A new vector with the same X and Y components as the one called upon
+     */
     @Override
     public Vector2 clone()
     {
         return new Vector2(x, y);
     }
+
+    /** Overridden toString with more descriptive info about this vector
+     * @return String in the format "[@<b>hash code</b>] -- X: <b>X</b>, Y: <b>Y</b>".
+     */
     @Override
     public String toString()
     {
         return String.format("[@%s] -- X: %f, Y: %f", hashCode(), x, y);
     }
 
+    /**Sets the components of this vector
+     * @param x The new X component
+     * @param y The new Y component
+     */
     public void set(double x, double y){this.x = x; this.y = y;}
 
-    /**
+    /** Getter for the x component
      * @return The x component as double
      */
     public double X() {
         return x;
     }
 
-    /**
+    /**Getter for the y component
      * @return The y component as double
      */
     public double Y() {return y;}
 
-    /**
+    /**Getter for the x component cast to float
      * @return The x component as float
      */
-    public float fX() {
-        return (float)x;
-    }
-    /**
+    public float fX() {return (float)x;}
+
+    /**Getter for the y component cast to float
      * @return The y component as float
      */
     public float fY() {return (float)y;}
 
-    /**
+    /**Getter for the x component cast to integer
      * @return The x component as integer
      */
-    public int iX() {
-        return (int)x;
-    }
-    /**
+    public int iX() {return (int)x;}
+
+    /**Getter for the y component cast to integer
      * @return The y component as integer
      */
     public int iY() {return (int)y;}
 
-    /**
+    /**Gets the magnitude of the vector using Pythagorean Theorem
      * @return The magnitude (length) of the vector as double
      */
-    public double magnitude()
-    {
-        return Math.sqrt((x*x)+(y*y));
-    }
+    public double magnitude() {return Math.sqrt((x*x)+(y*y));}
 
     /**Applies a modulo operation on both components of the imput vector given a value
      *
@@ -102,9 +108,7 @@ public class Vector2 implements Serializable{
      * @param b Vector B
      * @return The dot product: <b>ax*bx + ay*by</b>
      */
-    public static double dot(Vector2 a, Vector2 b) {
-        return (a.x*b.x) + (a.y*b.y);
-    }
+    public static double dot(Vector2 a, Vector2 b) {return (a.x*b.x) + (a.y*b.y);}
 
     /**Calculates the determinant of 2 vectors
      *
@@ -112,10 +116,15 @@ public class Vector2 implements Serializable{
      * @param b Vector B
      * @return The determinant: <b>ax*by - ay*bx</b>
      */
-    public static double det(Vector2 a, Vector2 b) {
-        return (a.x*b.y) - (a.y*b.x);
-    }
+    public static double det(Vector2 a, Vector2 b) {return (a.x*b.y) - (a.y*b.x);}
 
+    /**Linearly interpolates between 2 vectors given a percentage
+     *
+     * @param a The first vector
+     * @param b The second vector
+     * @param p A double representing the percentage. <p>0 = 0%, 1 = 100%</p>
+     * @return The calculated vector
+     */
     public static Vector2 lerpVector(Vector2 a, Vector2 b, double p){
         return new Vector2(
                 Calculation.lerp(a.x, b.x, p),
@@ -167,8 +176,7 @@ public class Vector2 implements Serializable{
         return Vector2.add(toReturn, center);
     }
 
-    /**
-     * Multiplies 2 vectors
+    /**Multiplies 2 vectors
      * @param a First vector
      * @param b Second vector
      * @return a*b
@@ -179,8 +187,7 @@ public class Vector2 implements Serializable{
                 a.Y() * b.Y());
     }
 
-    /**
-     * Divides 2 vectors
+    /**Divides 2 vectors
      * @param a First vector
      * @param b Second vector
      * @return a/b
@@ -191,8 +198,7 @@ public class Vector2 implements Serializable{
                 a.Y() / b.Y());
     }
 
-    /**
-     * Adds 2 vectors
+    /**Adds 2 vectors
      * @param a First vector
      * @param b Second vector
      * @return a+b
@@ -203,8 +209,7 @@ public class Vector2 implements Serializable{
                 a.Y() + b.Y());
     }
 
-    /**
-     * Subtracts 2 vectors
+    /**Subtracts 2 vectors
      * @param a First vector
      * @param b Second vector
      * @return a-b
@@ -215,8 +220,7 @@ public class Vector2 implements Serializable{
                 a.Y() - b.Y());
     }
 
-    /**
-     * @param in Vector to calculate
+    /**@param in Vector to calculate
      * @return Absolute value of the input vector where both components are positive
      */
     public static Vector2 abs(Vector2 in) {

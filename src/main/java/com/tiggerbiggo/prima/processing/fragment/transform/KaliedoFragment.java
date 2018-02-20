@@ -5,18 +5,36 @@ import com.tiggerbiggo.prima.processing.fragment.Fragment;
 
 import java.io.Serializable;
 
+/**
+ */
 public class KaliedoFragment implements Fragment<Vector2>, Serializable{
 
     int rotationNum;
     Fragment<Vector2> in;
     Vector2 rotationPoint;
 
+    /**
+     * @return
+     *
+     * @return
+     * @return
+     * @return
+     */
     public KaliedoFragment(int rotationNum, Fragment<Vector2> in, Vector2 rotationPoint) {
         this.rotationNum = rotationNum;
         this.in = in;
         this.rotationPoint = rotationPoint;
     }
 
+    /** The main calculation method. All processing for a given pixel should be done in this method.
+     *
+     * @param x The X position of the pixel being rendered
+     * @param y The Y position of the pixel being rendered
+     * @param w The width of the image
+     * @param h The height of the image
+     * @param num The number of frames in the animation
+     * @return The output of the fragment
+     */
     @Override
     public Vector2 get(int x, int y, int w, int h, int num) {
         Vector2 point;

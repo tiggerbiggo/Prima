@@ -6,16 +6,33 @@ import com.tiggerbiggo.prima.processing.fragment.Fragment;
 
 import java.util.function.Function;
 
+/**
+ */
 public class AnimationFragment implements Fragment<Vector2[]> {
 
     Fragment<Vector2> in;
     Function<Double, Vector2> func;
 
+    /**
+     * @return
+     *
+     * @return
+     * @return
+     */
     public AnimationFragment(Fragment<Vector2> in, Function<Double, Vector2> func) {
         this.in = in;
         this.func = func;
     }
 
+    /** The main calculation method. All processing for a given pixel should be done in this method.
+     *
+     * @param x The X position of the pixel being rendered
+     * @param y The Y position of the pixel being rendered
+     * @param w The width of the image
+     * @param h The height of the image
+     * @param num The number of frames in the animation
+     * @return The output of the fragment
+     */
     @Override
     public Vector2[] get(int x, int y, int w, int h, int num) {
         Vector2 start = in.get(x, y, w, h, num);
@@ -40,9 +57,25 @@ public class AnimationFragment implements Fragment<Vector2[]> {
         STILL((i) ->{
             return new Vector2(0);
         });
+        /**
+         * Enum AnimTypes ...
+         *
+         * @author A678364
+         * Created on 20/02/2018
+         */
         Function<Double, Vector2> f;
+        /**
+         * @return
+         *
+         * @return
+         */
         AnimTypes(Function<Double, Vector2> f){this.f = f;}
 
+        /**
+         * @author A678364
+         * Created on 20/02/2018
+         * @return Function<Double ,   Vector2>
+         */
         public Function<Double, Vector2> getF() {
             return f;
         }

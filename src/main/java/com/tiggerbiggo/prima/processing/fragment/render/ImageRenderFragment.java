@@ -6,15 +6,32 @@ import com.tiggerbiggo.prima.processing.fragment.Fragment;
 
 import java.awt.Color;
 
+/**
+ */
 public class ImageRenderFragment implements Fragment<Color[]> {
     Fragment<Vector2[]> in;
     SafeImage img;
 
+    /**
+     * @return
+     *
+     * @return
+     * @return
+     */
     public ImageRenderFragment(Fragment<Vector2[]> in, SafeImage img) {
         this.in = in;
         this.img = img;
     }
 
+    /** The main calculation method. All processing for a given pixel should be done in this method.
+     *
+     * @param x The X position of the pixel being rendered
+     * @param y The Y position of the pixel being rendered
+     * @param w The width of the image
+     * @param h The height of the image
+     * @param num The number of frames in the animation
+     * @return The output of the fragment
+     */
     @Override
     public Color[] get(int x, int y, int w, int h, int num) {
         Vector2[] points = in.get(x, y, w, h, num);

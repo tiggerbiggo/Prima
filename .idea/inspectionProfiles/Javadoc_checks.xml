@@ -623,6 +623,7 @@
     </inspection_tool>
     <inspection_tool class="IncompatibleMask" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="IncompleteProperty" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="InconsistentJavaDoc" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="InconsistentResourceBundle" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="IndexOfReplaceableByContains" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="IndexZeroUsage" enabled="false" level="WARNING" enabled_by_default="false" />
@@ -725,8 +726,19 @@
       </option>
     </inspection_tool>
     <inspection_tool class="MismatchedStringBuilderQueryUpdate" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="MissingClassJavaDoc" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="methodDetectionLevel" value="private" />
+      <option name="checkAnonymousClasses" value="true" />
+      <option name="useSingleLineReferences" value="true" />
+    </inspection_tool>
     <inspection_tool class="MissingDeprecatedAnnotation" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="MissingFieldJavaDoc" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="MissingFinalNewline" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="MissingMethodJavaDoc" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="methodDetectionLevel" value="private" />
+      <option name="checkAnonymousClasses" value="true" />
+      <option name="useSingleLineReferences" value="true" />
+    </inspection_tool>
     <inspection_tool class="MissingMnemonic" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="MissingOverrideAnnotation" enabled="false" level="INFORMATION" enabled_by_default="false">
       <option name="ignoreObjectMethods" value="true" />

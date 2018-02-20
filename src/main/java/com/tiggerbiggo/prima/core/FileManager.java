@@ -14,6 +14,10 @@ import java.io.IOException;
  * Provides methods for reading and writing images.
  */
 public class FileManager {
+    /**
+     * @param
+     *
+     */
     public static void writeGif(BufferedImage[] imgSequence, int BufferedImageType, int timeBetweenFramesMS, boolean loop, String filename) {
         try {
             try (ImageOutputStream output = new FileImageOutputStream(new File(filename + ".gif"))) {
@@ -27,10 +31,19 @@ public class FileManager {
         }
     }
 
+    /**
+     * @param
+     *
+     */
     public static void writeGif(BufferedImage[] imgSequence, String filename) {
         writeGif(imgSequence, BufferedImage.TYPE_INT_RGB, 0, true, filename);
     }
 
+    /**
+     * @param
+     *
+     * @return byte[]
+     */
     public static byte[] writeByteArray(BufferedImage[] imgSequence, int BufferedImageType, int timeBetweenFramesMS, boolean loop) {
 
         ByteArrayOutputStream outStream = new ByteArrayOutputStream();
@@ -49,6 +62,11 @@ public class FileManager {
         return outStream.toByteArray();
     }
 
+    /**
+     * @param
+     *
+     * @return byte[]
+     */
     public static byte[] writeByteArray(BufferedImage[] imgSequence) {
         return writeByteArray(imgSequence, BufferedImage.TYPE_INT_RGB, 0, true);
     }
@@ -67,6 +85,11 @@ public class FileManager {
 
             FilenameFilter filter = new FilenameFilter() {
                 String[] filenames = {".png",".jpg",".tiff"};
+                /**
+                 * @param
+                 *
+                 * @return boolean
+                 */
                 @Override
                 public boolean accept(File dir, String name) {
                     for(String s : filenames) {

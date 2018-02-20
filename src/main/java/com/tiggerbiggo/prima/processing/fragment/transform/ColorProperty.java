@@ -31,10 +31,20 @@ public enum ColorProperty implements Serializable
 
     Function<Color, Double> func;
 
+    /**
+     * @return
+     *
+     * @return
+     */
     ColorProperty(Function<Color, Double> func) {
         this.func = func;
     }
 
+    /**
+     * @param
+     *
+     * @return double
+     */
     public double convert(Color c)
     {
         return func.apply(c);

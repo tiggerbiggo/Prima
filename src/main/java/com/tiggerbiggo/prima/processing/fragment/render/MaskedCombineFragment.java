@@ -7,17 +7,35 @@ import jdk.management.resource.internal.TotalResourceContext;
 
 import java.awt.*;
 
+/**
+ */
 public class MaskedCombineFragment implements Fragment<Color[]> {
 
     Fragment<Color[]> A, B;
     Fragment<Double> maskFragment;
 
+    /**
+     * @return
+     *
+     * @return
+     * @return
+     * @return
+     */
     public MaskedCombineFragment(Fragment<Color[]> a, Fragment<Color[]> b, Fragment<Double> maskFragment) {
         A = a;
         B = b;
         this.maskFragment = maskFragment;
     }
 
+    /** The main calculation method. All processing for a given pixel should be done in this method.
+     *
+     * @param x The X position of the pixel being rendered
+     * @param y The Y position of the pixel being rendered
+     * @param w The width of the image
+     * @param h The height of the image
+     * @param num The number of frames in the animation
+     * @return The output of the fragment
+     */
     @Override
     public Color[] get(int x, int y, int w, int h, int num) {
         Color[] cA, cB;
