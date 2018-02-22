@@ -6,18 +6,10 @@ import com.tiggerbiggo.prima.processing.fragment.Fragment;
 
 import java.awt.Color;
 
-/**
- */
 public class ImageRenderFragment implements Fragment<Color[]> {
     Fragment<Vector2[]> in;
     SafeImage img;
 
-    /**
-     * @return
-     *
-     * @return
-     * @return
-     */
     public ImageRenderFragment(Fragment<Vector2[]> in, SafeImage img) {
         this.in = in;
         this.img = img;

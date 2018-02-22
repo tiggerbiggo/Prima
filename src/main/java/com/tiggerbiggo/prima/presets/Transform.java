@@ -78,20 +78,10 @@ public enum Transform {
 
     private BiFunction<Double, Double, Vector2> function;
 
-    /**
-     * @return
-     *
-     * @return
-     */
     Transform(BiFunction<Double, Double, Vector2> function) {
         this.function = function;
     }
 
-    /**
-     * @param
-     *
-     * @return Vector2
-     */
     public Vector2 doFormula(Vector2 in) {
         return function.apply(in.X(), in.Y());
     }

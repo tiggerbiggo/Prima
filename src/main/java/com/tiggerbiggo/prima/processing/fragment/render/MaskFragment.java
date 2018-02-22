@@ -6,19 +6,11 @@ import com.tiggerbiggo.prima.processing.fragment.Fragment;
 
 import java.util.function.Function;
 
-/**
- */
 public class MaskFragment implements Fragment<Double> {
 
     private Function<Vector2, Double> func;
     private Fragment<Vector2> in;
 
-    /**
-     * @return
-     *
-     * @return
-     * @return
-     */
     public MaskFragment(Fragment<Vector2> in, Function<Vector2, Double> func) {
         this.func = func;
         this.in = in;
@@ -46,26 +38,10 @@ public class MaskFragment implements Fragment<Double> {
         XPLUSY((v) -> v.X() + v.Y()),
         MAGNITUDE(Vector2::magnitude);
 
-        /**
-         * Enum MaskConversionType ...
-         *
-         * @author A678364
-         * Created on 20/02/2018
-         */
         Function<Vector2, Double> func;
 
-        /**
-         * @return
-         *
-         * @return
-         */
         MaskConversionType(Function<Vector2, Double> func) {this.func = func;}
 
-        /**
-         * @author A678364
-         * Created on 20/02/2018
-         * @return Function<Vector2 ,   Double>
-         */
         public Function<Vector2, Double> getFunction() {
             return func;
         }

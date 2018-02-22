@@ -9,17 +9,16 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-/**
+/**A wrapper for a BufferedImage object, which allows safe calls to get and set color methods.
  */
 public class SafeImage implements Serializable{
     private transient BufferedImage img;
     private int width, height;
 
-    /**
-     * @return
+    /**Constructs a new SafeImage with an existing BufferedImage object
      *
-     * @return
-     * @throws IllegalArgumentException
+     * @param img The image to import
+     * @throws IllegalArgumentException if the <b>img</b> parameter is null
      */
     public SafeImage(BufferedImage img)throws IllegalArgumentException{
         if(img == null) throw new IllegalArgumentException();
@@ -29,12 +28,11 @@ public class SafeImage implements Serializable{
         this.height = img.getHeight();
     }
 
-    /**
-     * @return
+    /**Constructs a new blank SafeImage with the width and height provided
      *
-     * @return
-     * @return
-     * @throws IllegalArgumentException
+     * @param width The width of the image
+     * @param height The height of the image
+     * @throws IllegalArgumentException if width or height &lt;= 0
      */
     public SafeImage(int width, int height)throws IllegalArgumentException {
         if(width <=0 || height <=0) throw new IllegalArgumentException();
@@ -44,37 +42,39 @@ public class SafeImage implements Serializable{
         this.height = height;
     }
 
-    /**
-     * @param
+    /**Gets the color of the pixel at the position given by the passed Vector
      *
-     * @return Color
+     * @param in the vector representing the position to sample Color from the image
+     * @return The Color sampled from (in.X, in.Y)
      */
     public Color getColor(Vector2 in) {
         return getColor(in.iX(), in.iY());
     }
 
-    /**
-     * @param
+    /**Gets the color of the pixel at the position given by the X and Y coordinates specified
      *
-     * @return Color
+     * @param x The X position to sample
+     * @param y The Y position to sample
+     * @return The Color sampled from (X, Y)
      */
     public Color getColor(int x, int y) {
         return new Color(getRGB(x, y));
     }
 
-    /**
-     * @param
+    /**Gets the RGB Value of the pixel at the position given by the passed Vector
      *
-     * @return int
+     * @param in the vector representing the position to sample RGB from the image
+     * @return The RGB Value sampled from (in.X, in.Y)
      */
     public int getRGB(Vector2 in){
         return getRGB(in.iX(), in.iY());
     }
 
-    /**
-     * @param
+    /**Gets the RGB Value of the pixel at the position given by the X and Y coordinates specified
      *
-     * @return int
+     * @param x The X position to sample
+     * @param y The Y position to sample
+     * @return The RGB Value sampled from (X, Y)
      */
     public int getRGB(int x, int y) {
         x = x%width;
@@ -86,25 +86,10 @@ public class SafeImage implements Serializable{
         return img.getRGB(x, y);
     }
 
-    /**
-     * @author A678364
-     * Created on 20/02/2018
-     * @return int
-     */
     public int getWidth(){ return img.getWidth(); }
 
-    /**
-     * @author A678364
-     * Created on 20/02/2018
-     * @return int
-     */
     public int getHeight(){ return img.getHeight(); }
 
-    /**
-     * @param
-     *
-     * @throws IOException
-     */
     private void writeObject(ObjectOutputStream out) throws IOException{
         out.defaultWriteObject();
         int[] outArray = new int[width*height];
@@ -116,12 +101,6 @@ public class SafeImage implements Serializable{
         out.writeObject(outArray);
     }
 
-    /**
-     * @param
-     *
-     * @throws IOException
-     * @throws ClassNotFoundException
-     */
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException{
         in.defaultReadObject();
         img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);

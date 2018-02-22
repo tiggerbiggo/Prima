@@ -5,21 +5,12 @@ import com.tiggerbiggo.prima.processing.fragment.Fragment;
 
 import java.io.Serializable;
 
-/**
- */
 public class KaliedoFragment implements Fragment<Vector2>, Serializable{
 
     int rotationNum;
     Fragment<Vector2> in;
     Vector2 rotationPoint;
 
-    /**
-     * @return
-     *
-     * @return
-     * @return
-     * @return
-     */
     public KaliedoFragment(int rotationNum, Fragment<Vector2> in, Vector2 rotationPoint) {
         this.rotationNum = rotationNum;
         this.in = in;

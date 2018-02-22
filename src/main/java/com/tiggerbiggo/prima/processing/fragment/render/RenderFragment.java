@@ -8,19 +8,11 @@ import com.tiggerbiggo.prima.processing.fragment.Fragment;
 import java.awt.*;
 import java.io.Serializable;
 
-/**
- */
 public class RenderFragment implements Fragment<Color[]>, Serializable
 {
     Fragment<Vector2[]> in;
     Gradient g;
 
-    /**
-     * @return
-     *
-     * @return
-     * @return
-     */
     public RenderFragment(Fragment<Vector2[]> in, Gradient g) {
         if(in == null || g == null) throw new IllegalArgumentException("Number of frames cannot be <= 0");
 
@@ -28,11 +20,6 @@ public class RenderFragment implements Fragment<Color[]>, Serializable
         this.g = g;
     }
 
-    /**
-     * @return
-     *
-     * @return
-     */
     public RenderFragment(Fragment<Vector2[]> in)
     {
         this(in, new SimpleGradient());

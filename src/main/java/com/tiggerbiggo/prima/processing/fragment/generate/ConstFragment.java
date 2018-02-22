@@ -33,6 +33,9 @@ public class ConstFragment implements Fragment<Vector2>, Serializable, Controlla
 
     /** The main calculation method. All processing for a given pixel should be done in this method.
      *
+     * <p>This fragment will return the Vector2 value
+     * passed to it in the constructor regardless of these arguments.</p>
+     *
      * @param x The X position of the pixel being rendered
      * @param y The Y position of the pixel being rendered
      * @param w The width of the image

@@ -17,18 +17,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- */
-public class Main{
-    /**
-     * @param
-     *
-     * @throws IOException
-     */
-    public static void main(String[] args) throws IOException {
+public class Main{ void main(String[] args) throws IOException {
         SafeImage img = new SafeImage(ImageIO.read(new File("cat.png")));
         SafeImage imgmask = new SafeImage(ImageIO.read(new File("maskCat.png")));
-
 
         Gradient g;
         //g = new SimpleGradient(Color.BLACK, Color.WHITE, true);
@@ -48,12 +39,12 @@ public class Main{
         r1 = new RenderFragment(anim, g);
 
         f = new MapGenFragment(0, 1);
-        anim = new AnimationFragment(f, AnimationFragment.AnimTypes.STILL.getF());
+        anim = new AnimationFragment(f, AnimationFragment.STILL);
         //r2 = new RenderFragment(anim, g);
         r2 = new ImageRenderFragment(anim, img);
 
         f = new MapGenFragment(0, 1);
-        f = new ImageConvertFragment(f, imgmask, ColorProperty.V);
+        f = new ImageConvertFragment(f, imgmask, ImageConvertFragment.V);
         f = new CombineFragment(f, new ConstFragment(0.9), CombineType.MULTIPLY);
 
         MaskFragment mask = new MaskFragment(f, Vector2::X);

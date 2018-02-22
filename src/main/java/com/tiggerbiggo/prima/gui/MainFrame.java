@@ -1,21 +1,12 @@
 package com.tiggerbiggo.prima.gui;
 
-import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.processing.fragment.Controllable;
-import com.tiggerbiggo.prima.processing.fragment.Fragment;
 
 import javax.swing.*;
-import java.util.ArrayList;
 
-/**
- */
 public class MainFrame extends JFrame {
     ControlPane pane;
-    /**
-     * @return
-     *
-     * @return
-     */
+
     public MainFrame(Controllable c){
         setPane(c);
         pane = c.getControls(pane);
@@ -26,10 +17,6 @@ public class MainFrame extends JFrame {
         if(c == null)return;
         if(pane != null)remove(pane);
         pane = new ControlPane(){
-            /**
-             * @param
-             *
-             */
             @Override
             public void giveControllable(Controllable c) {
                 setPane(c);

@@ -6,18 +6,17 @@ import com.tiggerbiggo.prima.processing.fragment.Fragment;
 
 import java.util.function.Function;
 
-/**
+/**Takes a static Vector and animates it
  */
 public class AnimationFragment implements Fragment<Vector2[]> {
 
-    Fragment<Vector2> in;
-    Function<Double, Vector2> func;
+    private Fragment<Vector2> in;
+    private Function<Double, Vector2> func;
 
-    /**
-     * @return
+    /**Constructs a new AnimationFragment
      *
-     * @return
-     * @return
+     * @param in The vector fragment to animate
+     * @param func The Function used to animate the fragment
      */
     public AnimationFragment(Fragment<Vector2> in, Function<Double, Vector2> func) {
         this.in = in;
@@ -25,6 +24,13 @@ public class AnimationFragment implements Fragment<Vector2[]> {
     }
 
     /** The main calculation method. All processing for a given pixel should be done in this method.
+     *
+     * For each frame (given by the num parameter), this method does the following:
+     * <ol>
+     *     <li>Calculates the percentage of the current iteration (current/total)</li>
+     *     <li>Passes this value (which is between 0.0 and 1.0) to the Function given at construction</li>
+     *     <li>Stores the resulting Vector in an array at index corresponding to the current frame</li>
+     * </ol>
      *
      * @param x The X position of the pixel being rendered
      * @param y The Y position of the pixel being rendered
@@ -46,38 +52,8 @@ public class AnimationFragment implements Fragment<Vector2[]> {
         return toReturn;
     }
 
-    public enum AnimTypes{
-        SIMPLE(Vector2::new),
-        SINSIN((i) -> {
-            return new Vector2(Math.sin(i*Math.PI*2)*(1/Math.PI));
-        }),
-        REVERSE((i)->{
-            return new Vector2(Calculation.modLoop(i, true));
-        }),
-        STILL((i) ->{
-            return new Vector2(0);
-        });
-        /**
-         * Enum AnimTypes ...
-         *
-         * @author A678364
-         * Created on 20/02/2018
-         */
-        Function<Double, Vector2> f;
-        /**
-         * @return
-         *
-         * @return
-         */
-        AnimTypes(Function<Double, Vector2> f){this.f = f;}
-
-        /**
-         * @author A678364
-         * Created on 20/02/2018
-         * @return Function<Double ,   Vector2>
-         */
-        public Function<Double, Vector2> getF() {
-            return f;
-        }
-    }
+    public static final Function<Double, Vector2> SIMPLE  = Vector2::new;
+    public static final Function<Double, Vector2> SINSIN  = (i) -> new Vector2(Math.sin(i*Math.PI*2)*(1/Math.PI));
+    public static final Function<Double, Vector2> REVERSE = (i) -> new Vector2(Calculation.modLoop(i, true));
+    public static final Function<Double, Vector2> STILL   = (i) -> new Vector2(0);
 }

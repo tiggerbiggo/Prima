@@ -11,11 +11,7 @@ import java.io.Serializable;
  */
 public enum CombineType implements Serializable {
     ADD{
-        /**
-         * @param
-         *
-         * @return Vector2
-         */
+
         @Override
         public Vector2 combine(Fragment<Vector2> A, Fragment<Vector2> B, int x, int y, int w, int h, int num) {
             return Vector2.add(
@@ -25,11 +21,6 @@ public enum CombineType implements Serializable {
         }
     },
     MULTIPLY{
-        /**
-         * @param
-         *
-         * @return Vector2
-         */
         @Override
         public Vector2 combine(Fragment<Vector2> A, Fragment<Vector2> B, int x, int y, int w, int h, int num) {
             return Vector2.multiply(
@@ -39,11 +30,6 @@ public enum CombineType implements Serializable {
         }
     },
     SUBTRACT{
-        /**
-         * @param
-         *
-         * @return Vector2
-         */
         @Override
         public Vector2 combine(Fragment<Vector2> A, Fragment<Vector2> B, int x, int y, int w, int h, int num) {
             return Vector2.subtract(
@@ -53,11 +39,6 @@ public enum CombineType implements Serializable {
         }
     },
     ABSDIFF{
-        /**
-         * @param
-         *
-         * @return Vector2
-         */
         @Override
         public Vector2 combine(Fragment<Vector2> A, Fragment<Vector2> B, int x, int y, int w, int h, int num) {
             return Vector2.abs(
@@ -68,11 +49,5 @@ public enum CombineType implements Serializable {
             );
         }
     };
-
-    /**
-     * @param
-     *
-     * @return Vector2
-     */
     public abstract Vector2 combine(Fragment<Vector2> A, Fragment<Vector2> B, int x, int y, int w, int h, int num);
 }

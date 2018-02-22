@@ -5,20 +5,11 @@ import com.tiggerbiggo.prima.processing.fragment.Fragment;
 
 import java.io.Serializable;
 
-/**
- */
 public class MandelFragment implements Fragment<Vector2>, Serializable {
     private Fragment<Vector2> frag;
     private int iterations;
     private double multiplier;
 
-    /**
-     * @return
-     *
-     * @return
-     * @return
-     * @return
-     */
     public MandelFragment(Fragment<Vector2> c, int iterations, double multiplier) {
         this.frag = c;
         this.iterations = iterations;

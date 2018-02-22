@@ -13,8 +13,8 @@ import java.util.Random;
  */
 public class NoiseGenFragment implements Fragment<Vector2>, Serializable, Controllable {
 
-    long seed;
-    double mul;
+    private long seed;
+    private double mul;
 
     /**Full constructor with set seed and multiplier
      * @param seed The seed to use for the noise

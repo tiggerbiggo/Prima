@@ -9,19 +9,11 @@ import com.tiggerbiggo.prima.processing.fragment.Fragment;
 import javax.swing.*;
 import java.io.Serializable;
 
-/**
- */
 public class TransformFragment implements Fragment<Vector2>, Serializable, Controllable
 {
     private final Fragment<Vector2> in;
     private Transform t;
 
-    /**
-     * @return
-     *
-     * @return
-     * @return
-     */
     public TransformFragment(Fragment<Vector2> in, Transform t) {
         this.in = in;
         this.t = t;
@@ -41,11 +33,6 @@ public class TransformFragment implements Fragment<Vector2>, Serializable, Contr
         return t.doFormula(in.get(x, y, w, h, num));
     }
 
-    /**
-     * @param
-     *
-     * @return ControlPane
-     */
     @Override
     public ControlPane getControls(ControlPane p) {
         if(p == null) return null;

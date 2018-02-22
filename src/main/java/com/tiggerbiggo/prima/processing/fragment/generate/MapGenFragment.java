@@ -8,16 +8,15 @@ import com.tiggerbiggo.prima.processing.fragment.Fragment;
 
 import java.io.Serializable;
 
-/**
+/**Generates coordinate maps.
  */
 public class MapGenFragment implements Fragment<Vector2>, Serializable, Controllable {
-    double aX, aY, dx, dy;
+    private double aX, aY, dx, dy;
 
-    /**
-     * @return
+    /**Constructs a new MapGenFragment with the given Vectors
      *
-     * @return
-     * @return
+     * @param A The coordinate representing the bottom left of the map
+     * @param B The coordinate representing the top right of the map
      */
     public MapGenFragment(Vector2 A, Vector2 B) {
         aX = A.X();
@@ -27,29 +26,43 @@ public class MapGenFragment implements Fragment<Vector2>, Serializable, Controll
         dy = B.Y() - aY;
     }
 
-    /**
-     * @return
+    /**Constructs a new MapGenFragment with the given coordinates
      *
-     * @return
-     * @return
-     * @return
-     * @return
+     * @param aX Bottom left X coordinate
+     * @param aY Bottom left Y coordinate
+     * @param bX Top right X coordinate
+     * @param bY Top right Y coordinate
      */
     public MapGenFragment(double aX, double aY, double bX, double bY){
         this(new Vector2(aX, aY), new Vector2(bX, bY));
     }
 
-    /**
-     * @return
+    /**Shorthand constructor for when the X and Y coordinates of both A and B are the same,
+     * e.g (0,0) and (1,1)
      *
-     * @return
-     * @return
+     * @param A The XY components for vector A
+     * @param B The XY components for vector B
      */
-    public MapGenFragment(double A, double B){
-        this(A, A, B, B);
-    }
+    public MapGenFragment(double A, double B){this(A, A, B, B);}
 
     /** The main calculation method. All processing for a given pixel should be done in this method.
+     *
+     *<p>
+     *When generating a map, the returned vector is determined by taking the image size and pixel position
+     *and calculating the percentage distance the pixel being rendered lies across the image. For example:
+     *<p>
+     *
+     *<b>Consider an image with width 100, height 100:</b>
+     *<ul>
+     *    <li>Point (0,0) would be at 0% width 0% height</li>
+     *    <li>Point (50,50) would be at 50% width, 50% height</li>
+     *    <li>Point (100,100) would be at 100% width, 100% height</li>
+     *</ul>
+     *Next, the point the given pixel would lie is calculated
+     *by multiplying the difference in the X and Y coordinates of the bottom left and top right points
+     *by the above percentages and adding it to the bottom left coordinate. This results in each rendered
+     *pixel being mapped to a coordinate on the number plane. This can then be used by other fragments to
+     *generate transformed maps, or to map to coordinates on an image using ImageConvertFragment.
      *
      * @param x The X position of the pixel being rendered
      * @param y The Y position of the pixel being rendered
@@ -79,11 +92,6 @@ public class MapGenFragment implements Fragment<Vector2>, Serializable, Controll
 //    @Override
 //    public Fragment<Vector2> getNew(int i, int j) {return null;}
 
-    /**
-     * @param
-     *
-     * @return ControlPane
-     */
     @Override
     public ControlPane getControls(ControlPane p) {
         if(p == null) return p;

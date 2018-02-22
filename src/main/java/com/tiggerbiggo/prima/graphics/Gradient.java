@@ -1,7 +1,5 @@
 package com.tiggerbiggo.prima.graphics;
 
-import com.tiggerbiggo.prima.calculation.Calculation;
-import com.tiggerbiggo.prima.calculation.ColorTools;
 import com.tiggerbiggo.prima.core.Vector2;
 
 import java.awt.*;

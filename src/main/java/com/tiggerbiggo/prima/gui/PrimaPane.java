@@ -9,8 +9,6 @@ import java.awt.image.BufferedImage;
 import java.util.Timer;
 import java.util.TimerTask;
 
-/**
- */
 public class PrimaPane extends JPanel{
     private Fragment<Color[]> in;
     private Fragment<Color[]>[][] map;
@@ -22,21 +20,11 @@ public class PrimaPane extends JPanel{
     private Timer t;
     Builder b = null;
 
-    /**
-     * @return
-     *
-     * @return
-     */
     public PrimaPane(Fragment<Color[]> in) {
         super();
         this.in = in;
     }
 
-    /**
-     * @param
-     *
-     * @return PrimaPane
-     */
     public PrimaPane startTimer(long ms){
         t = new Timer();
         TimerTask tt = new TimerTask() {
@@ -53,18 +41,11 @@ public class PrimaPane extends JPanel{
         return this;
     }
 
-    /**
-     * @param
-     */
     public void stopTimer(){
         t.cancel();
         t = null;
     }
 
-    /**
-     * @param
-     *
-     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -76,10 +57,6 @@ public class PrimaPane extends JPanel{
 
     }
 
-    /**
-     * @param
-     * @return PrimaPane
-     */
     public synchronized PrimaPane reBuild(){
         try {
             b = new Builder(in, getWidth(), getHeight(), 60);
@@ -97,11 +74,6 @@ public class PrimaPane extends JPanel{
         return this;
     }
 
-    /**
-     * @author A678364
-     * Created on 20/02/2018
-     * @return BufferedImage[]
-     */
     public BufferedImage[] getImgs() {
         return imgs;
     }

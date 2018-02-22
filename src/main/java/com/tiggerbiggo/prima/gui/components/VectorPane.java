@@ -13,14 +13,7 @@ public class VectorPane extends JPanel {
     JSpinner xS, yS;
     Vector2 v;
 
-    /**
-     * @return
-     *
-     * @return
-     * @return
-     * @return
-     * @return
-     */
+
     public VectorPane(Vector2 init, double min, double max, double step){
         v = init;
         xLabel = new JLabel("X:");
@@ -45,10 +38,5 @@ public class VectorPane extends JPanel {
         add(yS);
     }
 
-    /**
-     * @author A678364
-     * Created on 20/02/2018
-     * @return Vector2
-     */
     public Vector2 getVec(){return v;}
 }

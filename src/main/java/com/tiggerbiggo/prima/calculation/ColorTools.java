@@ -22,11 +22,6 @@ public class ColorTools
         );
     }
 
-    /**
-     * @param
-     *
-     * @return Color
-     */
     public static Color colorAvg(Color ... colors) {
         int r, g, b;
         r = g = b = 0;
@@ -104,24 +99,24 @@ public class ColorTools
         return hue;
     }
 
-    /**Given a colour, separates the RGB components and returns the largest value.
+    /**Given a color, separates the RGB components and returns the largest value.
      * <p>
      * e.g getMax(new Color(50, 60, 70)) would return 70.
      * </p>
      *
-     * @param in The colour to calculate
+     * @param in The color to calculate
      * @return The maximum RGB component
      */
     public static int getMax(Color in){
         return Math.max(in.getRed(), Math.max(in.getGreen(), in.getBlue()));
     }
 
-    /**Given a colour, separates the RGB components and returns the smallest value.
+    /**Given a color, separates the RGB components and returns the smallest value.
      * <p>
      * e.g getMax(new Color(50, 60, 70)) would return 50.
      * </p>
      *
-     * @param in The colour to calculate
+     * @param in The color to calculate
      * @return The minimum RGB component
      */
     public static int getMin(Color in){

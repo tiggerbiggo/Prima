@@ -7,20 +7,11 @@ import jdk.management.resource.internal.TotalResourceContext;
 
 import java.awt.*;
 
-/**
- */
 public class MaskedCombineFragment implements Fragment<Color[]> {
 
     Fragment<Color[]> A, B;
     Fragment<Double> maskFragment;
 
-    /**
-     * @return
-     *
-     * @return
-     * @return
-     * @return
-     */
     public MaskedCombineFragment(Fragment<Color[]> a, Fragment<Color[]> b, Fragment<Double> maskFragment) {
         A = a;
         B = b;

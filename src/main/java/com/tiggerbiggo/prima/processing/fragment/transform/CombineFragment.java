@@ -12,13 +12,6 @@ public class CombineFragment implements Fragment<Vector2>, Serializable {
     Fragment<Vector2> A, B;
     CombineType type;
 
-    /**
-     * @return
-     *
-     * @return
-     * @return
-     * @return
-     */
     public CombineFragment(Fragment<Vector2> A, Fragment<Vector2> B, CombineType type) {
         this.A = A;
         this.B = B;

@@ -6,19 +6,11 @@ import com.tiggerbiggo.prima.processing.fragment.Fragment;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- */
 public class NearestPointFragment implements Fragment<Vector2>, Serializable
 {
     ArrayList<Vector2> points;
     Fragment<Vector2> in;
 
-    /**
-     * @return
-     *
-     * @return
-     * @return
-     */
     public NearestPointFragment(Fragment<Vector2> in, ArrayList<Vector2> points) {
         this.points = points;
         this.in = in;

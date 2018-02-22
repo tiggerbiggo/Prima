@@ -7,8 +7,6 @@ import com.tiggerbiggo.prima.processing.fragment.Fragment;
 
 import java.awt.*;
 
-/**
- */
 public class ImageFadeFragment implements Fragment<Color[]> {
     private SafeImage[] imgs;
     private Fragment<Vector2[]> position, fade;

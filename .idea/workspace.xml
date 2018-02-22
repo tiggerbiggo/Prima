@@ -10,15 +10,79 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef23bb54-a5f7-45e9-940e-1c0ac002a0b7" name="Default" comment="Changes. Lots of changes.">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Javadoc_checks.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Javadoc_checks.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/doc/allclasses-frame.html" afterPath="$PROJECT_DIR$/doc/allclasses-frame.html" />
       <change beforePath="$PROJECT_DIR$/doc/allclasses-noframe.html" afterPath="$PROJECT_DIR$/doc/allclasses-noframe.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/calculation/Calculation.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/calculation/Calculation.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/calculation/ColorTools.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/calculation/ColorTools.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/calculation/package-frame.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/calculation/package-frame.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/calculation/package-summary.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/calculation/package-summary.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/calculation/package-tree.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/calculation/package-tree.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/core/Builder.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/core/Builder.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/core/FileManager.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/core/FileManager.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/core/GifSequenceWriter.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/core/GifSequenceWriter.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/core/Main.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/core/Main.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/core/PrimaPane.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/core/PrimaPane.html" />
       <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/core/Vector2.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/core/Vector2.html" />
       <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/core/package-frame.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/core/package-frame.html" />
       <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/core/package-summary.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/core/package-summary.html" />
       <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/core/package-tree.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/core/package-tree.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/graphics/DoubleGradient.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/graphics/DoubleGradient.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/graphics/Gradient.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/graphics/Gradient.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/graphics/HueCycleGradient.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/graphics/HueCycleGradient.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/graphics/SafeImage.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/graphics/SafeImage.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/graphics/SimpleGradient.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/graphics/SimpleGradient.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/graphics/package-frame.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/graphics/package-frame.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/graphics/package-summary.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/graphics/package-summary.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/graphics/package-tree.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/graphics/package-tree.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/gui/ControlPane.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/gui/ControlPane.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/gui/MainFrame.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/gui/MainFrame.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/gui/PrimaPane.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/gui/PrimaPane.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/gui/components/VectorPane.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/gui/components/VectorPane.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/gui/components/package-frame.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/gui/components/package-frame.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/gui/components/package-summary.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/gui/components/package-summary.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/gui/components/package-tree.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/gui/components/package-tree.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/gui/package-frame.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/gui/package-frame.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/gui/package-summary.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/gui/package-summary.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/gui/package-tree.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/gui/package-tree.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/presets/MapGenerator.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/presets/MapGenerator.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/presets/Transform.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/presets/Transform.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/presets/package-frame.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/presets/package-frame.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/presets/package-summary.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/presets/package-summary.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/presets/package-tree.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/presets/package-tree.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/Controllable.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/Controllable.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/Fragment.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/Fragment.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/generate/ConstFragment.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/generate/ConstFragment.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/generate/MapGenFragment.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/generate/MapGenFragment.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/generate/NoiseGenFragment.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/generate/NoiseGenFragment.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/generate/package-frame.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/generate/package-frame.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/generate/package-summary.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/generate/package-summary.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/generate/package-tree.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/generate/package-tree.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/package-frame.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/package-frame.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/package-summary.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/package-summary.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/package-tree.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/package-tree.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/render/AnimationFragment.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/render/AnimationFragment.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/render/ImageFadeFragment.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/render/ImageFadeFragment.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/render/ImageRenderFragment.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/render/ImageRenderFragment.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/render/MaskFragment.MaskConversionType.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/render/MaskFragment.MaskConversionType.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/render/MaskFragment.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/render/MaskFragment.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/render/MaskedCombineFragment.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/render/MaskedCombineFragment.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/render/RenderFragment.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/render/RenderFragment.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/render/package-frame.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/render/package-frame.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/render/package-summary.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/render/package-summary.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/render/package-tree.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/render/package-tree.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/ColorProperty.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/ColorProperty.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/CombineFragment.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/CombineFragment.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/CombineType.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/CombineType.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/DepositionModel.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/DepositionModel.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/ImageConvertFragment.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/ImageConvertFragment.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/KaliedoFragment.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/KaliedoFragment.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/MandelFragment.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/MandelFragment.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/NearestPointFragment.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/NearestPointFragment.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/TransformFragment.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/TransformFragment.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/package-frame.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/package-frame.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/package-summary.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/package-summary.html" />
+      <change beforePath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/package-tree.html" afterPath="$PROJECT_DIR$/doc/com/tiggerbiggo/prima/processing/fragment/transform/package-tree.html" />
       <change beforePath="$PROJECT_DIR$/doc/constant-values.html" afterPath="$PROJECT_DIR$/doc/constant-values.html" />
       <change beforePath="$PROJECT_DIR$/doc/deprecated-list.html" afterPath="$PROJECT_DIR$/doc/deprecated-list.html" />
       <change beforePath="$PROJECT_DIR$/doc/help-doc.html" afterPath="$PROJECT_DIR$/doc/help-doc.html" />
@@ -31,7 +95,15 @@
       <change beforePath="$PROJECT_DIR$/doc/index-files/index-15.html" afterPath="$PROJECT_DIR$/doc/index-files/index-15.html" />
       <change beforePath="$PROJECT_DIR$/doc/index-files/index-16.html" afterPath="$PROJECT_DIR$/doc/index-files/index-16.html" />
       <change beforePath="$PROJECT_DIR$/doc/index-files/index-17.html" afterPath="$PROJECT_DIR$/doc/index-files/index-17.html" />
+      <change beforePath="$PROJECT_DIR$/doc/index-files/index-18.html" afterPath="$PROJECT_DIR$/doc/index-files/index-18.html" />
+      <change beforePath="$PROJECT_DIR$/doc/index-files/index-19.html" afterPath="$PROJECT_DIR$/doc/index-files/index-19.html" />
       <change beforePath="$PROJECT_DIR$/doc/index-files/index-2.html" afterPath="$PROJECT_DIR$/doc/index-files/index-2.html" />
+      <change beforePath="$PROJECT_DIR$/doc/index-files/index-20.html" afterPath="$PROJECT_DIR$/doc/index-files/index-20.html" />
+      <change beforePath="$PROJECT_DIR$/doc/index-files/index-21.html" afterPath="$PROJECT_DIR$/doc/index-files/index-21.html" />
+      <change beforePath="$PROJECT_DIR$/doc/index-files/index-22.html" afterPath="$PROJECT_DIR$/doc/index-files/index-22.html" />
+      <change beforePath="$PROJECT_DIR$/doc/index-files/index-23.html" afterPath="$PROJECT_DIR$/doc/index-files/index-23.html" />
+      <change beforePath="$PROJECT_DIR$/doc/index-files/index-24.html" afterPath="$PROJECT_DIR$/doc/index-files/index-24.html" />
+      <change beforePath="$PROJECT_DIR$/doc/index-files/index-25.html" afterPath="$PROJECT_DIR$/doc/index-files/index-25.html" />
       <change beforePath="$PROJECT_DIR$/doc/index-files/index-3.html" afterPath="$PROJECT_DIR$/doc/index-files/index-3.html" />
       <change beforePath="$PROJECT_DIR$/doc/index-files/index-4.html" afterPath="$PROJECT_DIR$/doc/index-files/index-4.html" />
       <change beforePath="$PROJECT_DIR$/doc/index-files/index-5.html" afterPath="$PROJECT_DIR$/doc/index-files/index-5.html" />
@@ -40,6 +112,8 @@
       <change beforePath="$PROJECT_DIR$/doc/index-files/index-8.html" afterPath="$PROJECT_DIR$/doc/index-files/index-8.html" />
       <change beforePath="$PROJECT_DIR$/doc/index-files/index-9.html" afterPath="$PROJECT_DIR$/doc/index-files/index-9.html" />
       <change beforePath="$PROJECT_DIR$/doc/index.html" afterPath="$PROJECT_DIR$/doc/index.html" />
+      <change beforePath="$PROJECT_DIR$/doc/overview-frame.html" afterPath="$PROJECT_DIR$/doc/overview-frame.html" />
+      <change beforePath="$PROJECT_DIR$/doc/overview-summary.html" afterPath="$PROJECT_DIR$/doc/overview-summary.html" />
       <change beforePath="$PROJECT_DIR$/doc/overview-tree.html" afterPath="$PROJECT_DIR$/doc/overview-tree.html" />
       <change beforePath="$PROJECT_DIR$/doc/package-list" afterPath="$PROJECT_DIR$/doc/package-list" />
       <change beforePath="$PROJECT_DIR$/doc/serialized-form.html" afterPath="$PROJECT_DIR$/doc/serialized-form.html" />
@@ -48,15 +122,14 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/FileManager.java" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/FileManager.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Main.java" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Main.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/PrimaPane.java" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/PrimaPane.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Vector2.java" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Vector2.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/graphics/HueCycleGradient.java" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/graphics/HueCycleGradient.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/graphics/Gradient.java" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/graphics/Gradient.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/graphics/SafeImage.java" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/graphics/SafeImage.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/gui/ControlPane.java" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/gui/ControlPane.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/gui/MainFrame.java" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/gui/MainFrame.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/gui/PrimaPane.java" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/gui/PrimaPane.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/gui/components/VectorPane.java" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/gui/components/VectorPane.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/Transform.java" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/Transform.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/ColorProperty.java" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/ColorProperty.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/ColorProperty.java" afterPath="" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/Controllable.java" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/Controllable.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/generate/ConstFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/generate/ConstFragment.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/generate/MapGenFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/generate/MapGenFragment.java" />
@@ -67,7 +140,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/render/MaskFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/render/MaskFragment.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/render/MaskedCombineFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/render/MaskedCombineFragment.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/render/RenderFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/render/RenderFragment.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/ColorProperty.java" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/ColorProperty.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/ColorProperty.java" afterPath="" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/CombineFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/CombineFragment.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/CombineType.java" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/CombineType.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/DepositionModel.java" afterPath="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/DepositionModel.java" />
@@ -95,16 +168,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="Vector2.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Vector2.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4662">
-              <caret line="238" column="6" lean-forward="false" selection-start-line="238" selection-start-column="6" selection-end-line="238" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Fragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/Fragment.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -115,31 +178,93 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConstFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/generate/ConstFragment.java">
+      <file leaf-file-name="MapGenFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/generate/MapGenFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="693">
-              <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+            <state relative-caret-position="210">
+              <caret line="52" column="9" lean-forward="false" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NoiseGenFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/generate/NoiseGenFragment.java">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="924">
-              <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+            <state relative-caret-position="147">
+              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding>
+                <marker date="1519316726070" expanded="true" signature="5928:6016" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SafeImage.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/graphics/SafeImage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="196">
+              <caret line="34" column="66" lean-forward="false" selection-start-line="34" selection-start-column="66" selection-end-line="34" selection-end-column="66" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GifSequenceWriter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/GifSequenceWriter.java">
+      <file leaf-file-name="DepositionModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/DepositionModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state relative-caret-position="440">
+              <caret line="89" column="5" lean-forward="false" selection-start-line="89" selection-start-column="5" selection-end-line="89" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KaliedoFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/KaliedoFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-505">
+              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MandelFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/MandelFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="63">
+              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NearestPointFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/NearestPointFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-127">
+              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TransformFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/TransformFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-22">
+              <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Controllable.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/Controllable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="63">
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -181,29 +306,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Processing/Processor.java" />
-        <option value="$PROJECT_DIR$/src/Graphics/PreRenderTask.java" />
-        <option value="$PROJECT_DIR$/src/Graphics/RenderSequenceTask.java" />
-        <option value="$PROJECT_DIR$/src/Graphics/RenderTask.java" />
-        <option value="$PROJECT_DIR$/src/Processing/Task.java" />
-        <option value="$PROJECT_DIR$/src/Presets/TransformTypes.java" />
-        <option value="$PROJECT_DIR$/src/Processing/MapTransformTask.java" />
-        <option value="$PROJECT_DIR$/src/Presets/MapTransformPresets.java" />
-        <option value="$PROJECT_DIR$/src/Processing/RenderTask.java" />
-        <option value="$PROJECT_DIR$/src/Processing/MapTasks/MapTransformTask.java" />
-        <option value="$PROJECT_DIR$/src/Processing/RenderTasks/RenderTask.java" />
-        <option value="$PROJECT_DIR$/src/Processing/Tasks/RenderTasks/RenderTask.java" />
-        <option value="$PROJECT_DIR$/src/Processing/Tasks/Task.java" />
-        <option value="$PROJECT_DIR$/src/Presets/MapTypes.java" />
-        <option value="$PROJECT_DIR$/src/Presets/MapGenerator.java" />
-        <option value="$PROJECT_DIR$/src/Core/Builder.java" />
-        <option value="$PROJECT_DIR$/src/Core/float2.java" />
-        <option value="$PROJECT_DIR$/src/Core/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Graphics/Gradient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Presets/TransformTypes.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Presets/MapTransformPresets.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Core/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Core/FileManager.java" />
         <option value="$PROJECT_DIR$/src/gui/java/main/Main.java" />
         <option value="$PROJECT_DIR$/src/gui/java/main/GUIMain.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/Presets/MapTransformPresets.java" />
@@ -214,24 +316,47 @@
         <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/ImageFragment.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/float2.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/ImageConvertFragment.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/ColorProperty.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/ColorTools.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/TransformFragment.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/Transform.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/MandelFragment.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/RenderFragment.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/graphics/Gradient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/calculation/Calculation.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/calculation/ColorTools.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/MapGenerator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/CombineFragment.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Builder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/Fragment.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/generate/ConstFragment.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/generate/NoiseGenFragment.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/GifSequenceWriter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Vector2.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/ColorProperty.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/ImageConvertFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/generate/ConstFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/generate/NoiseGenFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/render/AnimationFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/calculation/Calculation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/calculation/ColorTools.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/FileManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/PrimaPane.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/graphics/Gradient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/gui/components/VectorPane.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/gui/ControlPane.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/gui/MainFrame.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/gui/PrimaPane.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/Transform.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/render/ImageFadeFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/render/ImageRenderFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/render/MaskedCombineFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/render/MaskFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/render/RenderFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/CombineFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/CombineType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/DepositionModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/KaliedoFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/MandelFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/NearestPointFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/TransformFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/Controllable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/generate/MapGenFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/graphics/SafeImage.java" />
       </list>
     </option>
   </component>
@@ -247,7 +372,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="67" />
+    <option name="x" value="48" />
     <option name="y" value="-15" />
     <option name="width" value="1920" />
     <option name="height" value="1032" />
@@ -289,6 +414,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -329,6 +455,15 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="prima" type="462c0819:PsiDirectoryNode" />
+              <item name="calculation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Prima" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Prima" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="prima" type="462c0819:PsiDirectoryNode" />
               <item name="core" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -339,6 +474,25 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="prima" type="462c0819:PsiDirectoryNode" />
               <item name="graphics" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Prima" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Prima" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="prima" type="462c0819:PsiDirectoryNode" />
+              <item name="gui" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Prima" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Prima" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="prima" type="462c0819:PsiDirectoryNode" />
+              <item name="gui" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Prima" type="b2602c69:ProjectViewProjectNode" />
@@ -358,14 +512,68 @@
               <item name="prima" type="462c0819:PsiDirectoryNode" />
               <item name="processing" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Prima" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Prima" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="prima" type="462c0819:PsiDirectoryNode" />
+              <item name="processing" type="462c0819:PsiDirectoryNode" />
+              <item name="fragment" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Prima" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Prima" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="prima" type="462c0819:PsiDirectoryNode" />
+              <item name="processing" type="462c0819:PsiDirectoryNode" />
+              <item name="fragment" type="462c0819:PsiDirectoryNode" />
+              <item name="generate" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Prima" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Prima" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="prima" type="462c0819:PsiDirectoryNode" />
+              <item name="processing" type="462c0819:PsiDirectoryNode" />
+              <item name="fragment" type="462c0819:PsiDirectoryNode" />
+              <item name="render" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Prima" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Prima" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="prima" type="462c0819:PsiDirectoryNode" />
+              <item name="processing" type="462c0819:PsiDirectoryNode" />
+              <item name="fragment" type="462c0819:PsiDirectoryNode" />
+              <item name="transform" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Prima" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Prima" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="prima" type="462c0819:PsiDirectoryNode" />
+              <item name="processing" type="462c0819:PsiDirectoryNode" />
+              <item name="fragment" type="462c0819:PsiDirectoryNode" />
+              <item name="transform" type="462c0819:PsiDirectoryNode" />
+              <item name="DepositionModel.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
       <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -687,37 +895,38 @@
     <option name="totallyTimeSpent" value="12673000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1098" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3265306" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32539684" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921347" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32497388" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Floobits" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28020832" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection Results" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28272828" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28213167" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39909297" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39909297" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3265306" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" x="92" y="92" width="1496" height="826" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -733,14 +942,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Vector2.java</url>
-          <line>228</line>
-          <properties />
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
@@ -753,92 +954,9 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/FileManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1519123256958" expanded="true" signature="6029:6117" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/MapGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="30" column="17" lean-forward="false" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/render/RenderSequenceTask.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/map/MapTransformTask.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/render/RenderTask.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/render/PreRenderTask.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/map/MapTask.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/GifSequenceWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="41" lean-forward="false" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/FileManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/int2.java" />
-    <entry file="file://E:/Tryptamine/src/tryptamine/GifSequenceWriter.java" />
-    <entry file="file://E:/Tryptamine/src/tryptamine/fileManager.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/Processor.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/ProcessManager.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/map/MapTask.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/map/ExampleTask.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/map/MapTransformTask.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/render/PreRenderTask.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/render/RenderSequenceTask.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/render/RenderTask.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/MapTypes.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/FileManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="13" column="99" lean-forward="false" selection-start-line="13" selection-start-column="99" selection-end-line="13" selection-end-column="99" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/java/main/GUIMain.java" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/tasks/Task.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/MapTransformPresets.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/TransformTypes.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/CombineType.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/float2.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/ColorProperty.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/awt/Color.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18543">
@@ -849,70 +967,309 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/ColorTools.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/ImageConvertFragment.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/TransformFragment.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/Transform.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="924">
-          <caret line="46" column="33" lean-forward="false" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/RenderFragment.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/calculation/ColorTools.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/MapGenFragment.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/CombineFragment.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/MandelFragment.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/ColorProperty.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="63" lean-forward="false" selection-start-line="12" selection-start-column="63" selection-end-line="12" selection-end-column="63" />
+        <state relative-caret-position="168">
+          <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="16" selection-end-column="76" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/MapGenFragment.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/ImageConvertFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-42">
-          <caret line="19" column="18" lean-forward="false" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
-          <folding>
-            <marker date="1519123256958" expanded="true" signature="6029:6117" ph="..." />
-          </folding>
+        <state relative-caret-position="1344">
+          <caret line="71" column="78" lean-forward="false" selection-start-line="71" selection-start-column="78" selection-end-line="71" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/generate/ConstFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="36" column="73" lean-forward="false" selection-start-line="36" selection-start-column="73" selection-end-line="36" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/generate/NoiseGenFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="20" column="53" lean-forward="false" selection-start-line="20" selection-start-column="53" selection-end-line="20" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/render/AnimationFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1008">
+          <caret line="52" column="5" lean-forward="false" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/calculation/Calculation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="15" column="61" lean-forward="false" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
+        <state relative-caret-position="-1">
+          <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/graphics/Gradient.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/calculation/ColorTools.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="38" column="32" lean-forward="false" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
+        <state relative-caret-position="398">
+          <caret line="118" column="39" lean-forward="true" selection-start-line="118" selection-start-column="39" selection-end-line="118" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Builder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="94" column="79" lean-forward="true" selection-start-line="94" selection-start-column="79" selection-end-line="94" selection-end-column="79" />
+        <state relative-caret-position="-1429">
+          <caret line="94" column="7" lean-forward="true" selection-start-line="94" selection-start-column="7" selection-end-line="94" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/CombineFragment.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/MapGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/FileManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="38" column="19" lean-forward="true" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
+        <state relative-caret-position="-567">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/GifSequenceWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2962">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/PrimaPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#684#806#0" expanded="false" />
+            <element signature="e#805#806#0" expanded="false" />
+            <element signature="e#1604#1605#0" expanded="false" />
+            <element signature="e#1631#1632#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/MandelFragment.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Vector2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4389">
+          <caret line="225" column="43" lean-forward="false" selection-start-line="225" selection-start-column="43" selection-end-line="225" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/graphics/DoubleGradient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-420">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/graphics/Gradient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/graphics/HueCycleGradient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/graphics/SimpleGradient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-232">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/gui/components/VectorPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/gui/ControlPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/gui/MainFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#430#581#0" expanded="false" />
+            <element signature="e#580#581#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/gui/PrimaPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="75" column="0" lean-forward="true" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/MapGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="38" column="19" lean-forward="true" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/presets/Transform.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/render/ImageFadeFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-126">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/render/ImageRenderFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-64">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/render/MaskedCombineFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-337">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/render/MaskFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/ColorProperty.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="10" column="12" lean-forward="false" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/render/RenderFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-43">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/CombineFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/CombineType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="987">
+          <caret line="50" column="6" lean-forward="false" selection-start-line="50" selection-start-column="6" selection-end-line="50" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/DepositionModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="89" column="5" lean-forward="false" selection-start-line="89" selection-start-column="5" selection-end-line="89" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/KaliedoFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-505">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/MandelFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/NearestPointFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-127">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/transform/TransformFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-22">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/Controllable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/Fragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -921,34 +1278,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/generate/ConstFragment.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/generate/MapGenFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="693">
-          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+        <state relative-caret-position="210">
+          <caret line="52" column="9" lean-forward="false" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/processing/fragment/generate/NoiseGenFragment.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="924">
-          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="147">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <marker date="1519316726070" expanded="true" signature="5928:6016" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/GifSequenceWriter.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/graphics/SafeImage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tiggerbiggo/prima/core/Vector2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4662">
-          <caret line="238" column="6" lean-forward="false" selection-start-line="238" selection-start-column="6" selection-end-line="238" selection-end-column="6" />
+        <state relative-caret-position="196">
+          <caret line="34" column="66" lean-forward="false" selection-start-line="34" selection-start-column="66" selection-end-line="34" selection-end-column="66" />
           <folding />
         </state>
       </provider>
