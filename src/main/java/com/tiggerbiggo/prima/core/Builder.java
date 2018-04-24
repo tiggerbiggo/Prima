@@ -4,6 +4,7 @@ import com.tiggerbiggo.prima.processing.fragment.Fragment;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * The core class for building and rendering Fragment based images.
@@ -15,7 +16,7 @@ public class Builder implements Runnable {
   private Thread[] threads;
   private boolean setup = false;
   private boolean isDone = false;
-  private ArrayList<Vector2> fragList;
+  private ConcurrentLinkedQueue<Vector2> fragList;
   private Fragment<Color[]> fragment;
   private BufferedImage[] imgs = null;
   private int w, h, n;
@@ -36,7 +37,7 @@ public class Builder implements Runnable {
     }
 
     //Create a stack to store the fragment objects in for easy retrieval by the threads.
-    fragList = new ArrayList<>();
+    fragList = new ConcurrentLinkedQueue<>();
 
     this.fragment = fragment;
 
@@ -145,13 +146,8 @@ public class Builder implements Runnable {
    *
    * @return Next element if exists, if stack empty returns null
    */
-  private synchronized Vector2 getNext() {
-    if (fragList.isEmpty()) {
-      return null;
-    }
-    Vector2 toReturn = fragList.get(0);
-    fragList.remove(0);
-    return toReturn;
+  private Vector2 getNext() {
+    return fragList.poll();
   }
 
   /**
