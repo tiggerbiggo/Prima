@@ -3,68 +3,74 @@ package com.tiggerbiggo.prima.core;
 import com.tiggerbiggo.prima.graphics.Gradient;
 import com.tiggerbiggo.prima.graphics.HueCycleGradient;
 import com.tiggerbiggo.prima.graphics.SafeImage;
-import com.tiggerbiggo.prima.graphics.SimpleGradient;
 import com.tiggerbiggo.prima.presets.Transform;
 import com.tiggerbiggo.prima.processing.fragment.Fragment;
 import com.tiggerbiggo.prima.processing.fragment.generate.ConstFragment;
 import com.tiggerbiggo.prima.processing.fragment.generate.MapGenFragment;
-import com.tiggerbiggo.prima.processing.fragment.render.*;
-import com.tiggerbiggo.prima.processing.fragment.transform.*;
-
-import javax.imageio.ImageIO;
-import java.awt.*;
+import com.tiggerbiggo.prima.processing.fragment.render.AnimationFragment;
+import com.tiggerbiggo.prima.processing.fragment.render.ImageRenderFragment;
+import com.tiggerbiggo.prima.processing.fragment.render.MaskFragment;
+import com.tiggerbiggo.prima.processing.fragment.render.MaskedCombineFragment;
+import com.tiggerbiggo.prima.processing.fragment.render.RenderFragment;
+import com.tiggerbiggo.prima.processing.fragment.transform.CombineFragment;
+import com.tiggerbiggo.prima.processing.fragment.transform.CombineType;
+import com.tiggerbiggo.prima.processing.fragment.transform.ImageConvertFragment;
+import com.tiggerbiggo.prima.processing.fragment.transform.TransformFragment;
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 
-public class Main{ void main(String[] args) throws IOException {
-        SafeImage img = new SafeImage(ImageIO.read(new File("cat.png")));
-        SafeImage imgmask = new SafeImage(ImageIO.read(new File("maskCat.png")));
+public class Main {
 
-        Gradient g;
-        //g = new SimpleGradient(Color.BLACK, Color.WHITE, true);
-        g = new HueCycleGradient();
+  void main(String[] args) throws IOException {
+    SafeImage img = new SafeImage(ImageIO.read(new File("cat.png")));
+    SafeImage imgmask = new SafeImage(ImageIO.read(new File("maskCat.png")));
 
-        Fragment<Vector2> f;
-        Fragment<Vector2[]> anim;
-        Fragment<Color[]> r1, r2;
+    Gradient g;
+    //g = new SimpleGradient(Color.BLACK, Color.WHITE, true);
+    g = new HueCycleGradient();
 
-        ArrayList<Vector2> points = new ArrayList<>();
-        points.add(new Vector2(0.5));
+    Fragment<Vector2> f;
+    Fragment<Vector2[]> anim;
+    Fragment<Color[]> r1, r2;
 
-        f = new MapGenFragment(0,5);
-        f = new TransformFragment(f, Transform.SINSIN);
+    ArrayList<Vector2> points = new ArrayList<>();
+    points.add(new Vector2(0.5));
 
-        anim = new AnimationFragment(f, Vector2::new);
-        r1 = new RenderFragment(anim, g);
+    f = new MapGenFragment(0, 5);
+    f = new TransformFragment(f, Transform.SINSIN);
 
-        f = new MapGenFragment(0, 1);
-        anim = new AnimationFragment(f, AnimationFragment.STILL);
-        //r2 = new RenderFragment(anim, g);
-        r2 = new ImageRenderFragment(anim, img);
+    anim = new AnimationFragment(f, Vector2::new);
+    r1 = new RenderFragment(anim, g);
 
-        f = new MapGenFragment(0, 1);
-        f = new ImageConvertFragment(f, imgmask, ImageConvertFragment.V);
-        f = new CombineFragment(f, new ConstFragment(0.9), CombineType.MULTIPLY);
+    f = new MapGenFragment(0, 1);
+    anim = new AnimationFragment(f, AnimationFragment.STILL);
+    //r2 = new RenderFragment(anim, g);
+    r2 = new ImageRenderFragment(anim, img);
 
-        MaskFragment mask = new MaskFragment(f, Vector2::X);
-        r1 = new MaskedCombineFragment(r2, r1, mask);
+    f = new MapGenFragment(0, 1);
+    f = new ImageConvertFragment(f, imgmask, ImageConvertFragment.V);
+    f = new CombineFragment(f, new ConstFragment(0.9), CombineType.MULTIPLY);
 
+    MaskFragment mask = new MaskFragment(f, Vector2::X);
+    r1 = new MaskedCombineFragment(r2, r1, mask);
 
-        Builder b = new Builder(r1, 300, 300, 60);
-        b.startBuild();
-        b.joinAll();
+    Builder b = new Builder(r1, 300, 300, 60);
+    b.startBuild();
+    b.joinAll();
 
-        String filename;
-        int number = 1;
-        do{
-            filename = "newones" + number;
-            System.out.println("File: " + filename);
-            number++;
-        }while(new File(filename + ".gif").exists());
+    String filename;
+    int number = 1;
+    do {
+      filename = "newones" + number;
+      System.out.println("File: " + filename);
+      number++;
+    } while (new File(filename + ".gif").exists());
 
-        FileManager.writeGif(b.getImgs(), filename);
-    }
+    FileManager.writeGif(b.getImgs(), filename);
+  }
 }
 
 

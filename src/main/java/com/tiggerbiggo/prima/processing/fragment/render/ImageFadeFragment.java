@@ -4,56 +4,72 @@ import com.tiggerbiggo.prima.calculation.ColorTools;
 import com.tiggerbiggo.prima.core.Vector2;
 import com.tiggerbiggo.prima.graphics.SafeImage;
 import com.tiggerbiggo.prima.processing.fragment.Fragment;
+import java.awt.Color;
 
-import java.awt.*;
-
+/**
+ * Allows smooth fading between multiple images
+ */
 public class ImageFadeFragment implements Fragment<Color[]> {
-    private SafeImage[] imgs;
-    private Fragment<Vector2[]> position, fade;
 
+  private SafeImage[] imgs;
+  private Fragment<Vector2[]> position;
+  private Fragment<Double> fade;
 
-    /** The main calculation method. All processing for a given pixel should be done in this method.
-     *
-     * @param x The X position of the pixel being rendered
-     * @param y The Y position of the pixel being rendered
-     * @param w The width of the image
-     * @param h The height of the image
-     * @param num The number of frames in the animation
-     * @return The output of the fragment
-     */
-    @Override
-    public Color[] get(int x, int y, int w, int h, int num) {
-        Vector2[] positions, fadeAmounts;
+  /**
+   * Constructs a new FadeImageFragment
+   *
+   * @param position For each frame, the position to sample colors from the images
+   * @param fade For each frame, the
+   */
+  public ImageFadeFragment(Fragment<Vector2[]> position, Fragment<Double> fade, SafeImage[] imgs) {
+    this.imgs = imgs;
+    this.position = position;
+    this.fade = fade;
+  }
 
-        //read in arrays from animators
-        positions = position.get(x, y, w, h, num);
-        fadeAmounts = fade.get(x, y, w, h, num);
+  /**
+   * The main calculation method. All processing for a given pixel should be done in this method.
+   *
+   * @param x The X position of the pixel being rendered
+   * @param y The Y position of the pixel being rendered
+   * @param w The width of the image
+   * @param h The height of the image
+   * @param num The number of frames in the animation
+   * @return The output of the fragment
+   */
+  @Override
+  public Color[] get(int x, int y, int w, int h, int num) {
+    Vector2[] positions;
+    Double fadeAmount;
 
-        //length of image array
-        double imageArrayMaxIndex = imgs.length-1;
+    //read in arrays from animators
+    positions = position.get(x, y, w, h, num);
+    fadeAmount = fade.get(x, y, w, h, num);
 
-        //init color array
-        Color[] toReturn = new Color[num];
+    //length of image array
+    double imageArrayMaxIndex = imgs.length - 1;
 
-        //for every frame
-        for(int i=0; i<num; i++) {
-            double percent = (double)i/num;
-            int imageIndex = (int)(percent*imageArrayMaxIndex);
+    //init color array
+    Color[] toReturn = new Color[num];
 
-            Color a, b;
+    for (int i = 0; i < num; i++) {
+      double percent = (double) i / num;
+      int imageIndex = (int) (percent * imageArrayMaxIndex);
 
-            a = imgs[imageIndex].getColor(positions[i]);
+      Color a, b;
 
-            //if the first sampled color is from the last image in the array,
-            //we sample the second color from the first image.
-            if(imageIndex == imageArrayMaxIndex) {
-                b = imgs[0].getColor(positions[0]);
-            } else{
-                b = imgs[imageIndex+1].getColor(positions[i+1]);
-            }
+      a = imgs[imageIndex].getColor(positions[i]);
 
-            toReturn[i] = ColorTools.colorLerp(a, b, fadeAmounts[imageIndex].magnitude());
-        }
-        return toReturn;
+      //if the first sampled color is from the last image in the array,
+      //we sample the second color from the first image.
+      if (imageIndex == imageArrayMaxIndex) {
+        b = imgs[0].getColor(positions[0]);
+      } else {
+        b = imgs[imageIndex + 1].getColor(positions[i + 1]);
+      }
+
+      toReturn[i] = ColorTools.colorLerp(a, b, fadeAmount + percent);
     }
+    return toReturn;
+  }
 }

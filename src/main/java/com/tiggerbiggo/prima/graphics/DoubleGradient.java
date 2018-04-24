@@ -3,57 +3,59 @@ package com.tiggerbiggo.prima.graphics;
 import com.tiggerbiggo.prima.calculation.Calculation;
 import com.tiggerbiggo.prima.calculation.ColorTools;
 import com.tiggerbiggo.prima.core.Vector2;
-
-import java.awt.*;
+import java.awt.Color;
 import java.io.Serializable;
 
 /**
  * Gradient that works with both X and Y components of a vector
  */
 public class DoubleGradient extends Gradient implements Serializable {
-    Color o, cx, cy;
-    boolean loop;
 
-    /**
-     * @param o The color for the origin
-     * @param cx The color for (1,0)
-     * @param cy The color for (0,1)
-     * @param loop Whether or not to loop colours
-     * @throws IllegalArgumentException If any of the color arguments are null
-     */
-    public DoubleGradient(Color o, Color cx, Color cy, boolean loop) throws IllegalArgumentException{
-        if(o == null || cx == null || cy == null) throw new IllegalArgumentException("Colors cannot be null");
+  Color o, cx, cy;
+  boolean loop;
 
-        this.o = o;
-        this.cx = cx;
-        this.cy = cy;
-        this.loop = loop;
+  /**
+   * @param o The color for the origin
+   * @param cx The color for (1,0)
+   * @param cy The color for (0,1)
+   * @param loop Whether or not to loop colours
+   * @throws IllegalArgumentException If any of the color arguments are null
+   */
+  public DoubleGradient(Color o, Color cx, Color cy, boolean loop) throws IllegalArgumentException {
+    if (o == null || cx == null || cy == null) {
+      throw new IllegalArgumentException("Colors cannot be null");
     }
 
-    /**
-     * Default constructor, defaults to black white and blue.
-     */
-    public DoubleGradient(){
-        this(Color.black, Color.white, Color.blue, false);
-    }
+    this.o = o;
+    this.cx = cx;
+    this.cy = cy;
+    this.loop = loop;
+  }
 
-    /**
-     * @param a The vector to evaluate
-     * @return The evaluated color
-     * @see Gradient
-     */
-    @Override
-    public Color evaluate(Vector2 a){
-        double x, y;
-        x=a.X();
-        y=a.Y();
+  /**
+   * Default constructor, defaults to black white and blue.
+   */
+  public DoubleGradient() {
+    this(Color.black, Color.white, Color.blue, false);
+  }
 
-        x = Calculation.modLoop(x, loop);
-        y = Calculation.modLoop(y, loop);
+  /**
+   * @param a The vector to evaluate
+   * @return The evaluated color
+   * @see Gradient
+   */
+  @Override
+  public Color evaluate(Vector2 a) {
+    double x, y;
+    x = a.X();
+    y = a.Y();
 
-        Color lx, ly;
-        lx = ColorTools.colorLerp(o, cx, x);
-        ly = ColorTools.colorLerp(o, cy, y);
-        return ColorTools.colorLerp(lx, ly, Calculation.modLoop(x+y, loop));
-    }
+    x = Calculation.modLoop(x, loop);
+    y = Calculation.modLoop(y, loop);
+
+    Color lx, ly;
+    lx = ColorTools.colorLerp(o, cx, x);
+    ly = ColorTools.colorLerp(o, cy, y);
+    return ColorTools.colorLerp(lx, ly, Calculation.modLoop(x + y, loop));
+  }
 }
