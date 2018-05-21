@@ -1,13 +1,14 @@
-package com.tiggerbiggo.primaplay.node.link;
+package com.tiggerbiggo.primaplay.node.old.link;
 
-import com.tiggerbiggo.primaplay.exception.NotLinkedException;
 import com.tiggerbiggo.primaplay.core.RenderParams;
+import com.tiggerbiggo.primaplay.exception.NotLinkedException;
 import java.util.Objects;
 
 public class InputLink<T>{
   private OutputLink<T> currentLink;
+  private Class<T> myClass;
 
-  public void link(OutputLink<T> toLink)throws NullPointerException{
+  public void link(OutputLink<T> toLink) throws NullPointerException, IllegalArgumentException {
     Objects.requireNonNull(toLink);
     //add new link
     currentLink = toLink;

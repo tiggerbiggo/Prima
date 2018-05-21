@@ -41,7 +41,7 @@ public class Vector2 implements Serializable{
     }
 
     /** Overridden toString with more descriptive info about this vector
-     * @return String in the format "[@<b>hash code</b>] -- X: <b>X</b>, Y: <b>Y</b>".
+     * @return String in the format "[@<b>hash code</b>] -- X: <b>X</b>, Y: <3b>Y</b>".
      */
     @Override
     public String toString()

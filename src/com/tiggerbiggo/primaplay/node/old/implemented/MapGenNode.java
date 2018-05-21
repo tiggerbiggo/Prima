@@ -1,11 +1,9 @@
-package com.tiggerbiggo.primaplay.node.implemented;
+package com.tiggerbiggo.primaplay.node.old.implemented;
 
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
-import com.tiggerbiggo.primaplay.node.core.NodeHasInput;
-import com.tiggerbiggo.primaplay.node.core.NodeHasOutput;
-import com.tiggerbiggo.primaplay.node.link.InputLink;
-import com.tiggerbiggo.primaplay.node.link.OutputLink;
+import com.tiggerbiggo.primaplay.node.old.core.NodeHasOutput;
+import com.tiggerbiggo.primaplay.node.old.link.OutputLink;
 
 public class MapGenNode implements NodeHasOutput {
   private double aX, aY, dx, dy;
@@ -42,7 +40,7 @@ public class MapGenNode implements NodeHasOutput {
   /**
    * Main output from this node, returns a coordinate corresponding to the
    * X, Y, Width and Height of the image, effectively returning the
-   * appropriate point to make a coordinate map in the resulting image
+   * appropriate point to make a coordinate map inputLink the resulting image
    */
   private OutputLink<Vector2> vecOut = new OutputLink<Vector2>() {
     @Override
