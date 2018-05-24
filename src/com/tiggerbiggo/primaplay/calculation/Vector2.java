@@ -90,7 +90,13 @@ public class Vector2 implements Serializable{
     /**Gets the magnitude of the vector using Pythagorean Theorem
      * @return The magnitude (length) of the vector as double
      */
-    public double magnitude() {return Math.sqrt((x*x)+(y*y));}
+    public double magnitude() {
+        return Math.sqrt(sqMagnitude());
+    }
+
+    public double sqMagnitude() {
+        return (x * x) + (y * y);
+    }
 
     /**Applies a modulo operation on both components of the imput vector given a value
      *

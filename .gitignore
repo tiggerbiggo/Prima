@@ -1,0 +1,5 @@
+*.gif
+out
+*.iml
+.idea
+*.class

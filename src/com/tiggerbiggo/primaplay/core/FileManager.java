@@ -34,6 +34,17 @@ public class FileManager {
     writeGif(imgSequence, BufferedImage.TYPE_INT_RGB, 0, true, filename);
   }
 
+  public static byte[] writeByteArray(BufferedImage img) {
+    ByteArrayOutputStream out = new ByteArrayOutputStream();
+    try {
+      ImageIO.write(img, "png", out);
+      out.flush();
+      return out.toByteArray();
+    } catch (Exception e) {
+      return null;
+    }
+  }
+
   public static byte[] writeByteArray(BufferedImage[] imgSequence, int BufferedImageType,
       int timeBetweenFramesMS, boolean loop) {
 

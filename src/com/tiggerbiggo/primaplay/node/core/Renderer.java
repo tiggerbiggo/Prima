@@ -62,11 +62,15 @@ public class Renderer implements Runnable {
     }
   }
 
-  public static BufferedImage[] render(InputLink<Color[]> link, RenderParams p) {
-    Renderer r = new Renderer(link, p.width(), p.height(), p.n());
+  public static BufferedImage[] render(InputLink<Color[]> link, int width, int height, int n) {
+    Renderer r = new Renderer(link, width, height, n);
     r.startBuild();
     r.joinAll();
     return r.getImgs();
+  }
+
+  public static BufferedImage renderSingle(InputLink<Color[]> link, int width, int height) {
+    return render(link, width, height, 1)[0];
   }
 
   /**
