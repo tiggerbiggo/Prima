@@ -1,5 +1,6 @@
-*.gif
-out
-*.iml
 .idea
 *.class
+.idea/
+out/
+*.gif
+*.iml

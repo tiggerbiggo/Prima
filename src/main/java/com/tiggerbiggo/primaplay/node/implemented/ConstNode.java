@@ -13,6 +13,16 @@ public class ConstNode implements NodeHasOutput {
     this.value = value;
   }
 
+  public ConstNode(double x, double y){
+    this(new Vector2(x, y));
+  }
+
+  public ConstNode(double value){
+    this(value, value);
+  }
+
+
+
   public void set(Vector2 toSet){
     if(toSet != null) value = toSet;
   }
