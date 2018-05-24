@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  */
 public class Renderer implements Runnable {
 
-  public static final int THREADNUM = 6;
+  public static final int THREADNUM = 1;
 
   private Thread[] threads;
   private boolean setup = false;
