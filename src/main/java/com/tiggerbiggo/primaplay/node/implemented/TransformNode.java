@@ -18,6 +18,10 @@ public class TransformNode implements NodeHasInput, NodeHasOutput {
     this.function = function;
   }
 
+  public TransformNode(){
+    this(SINSIN);
+  }
+
   private VectorInputLink input = new VectorInputLink();
   private VectorOutputLink output = new VectorOutputLink() {
     @Override
