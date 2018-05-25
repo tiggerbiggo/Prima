@@ -1,16 +1,17 @@
-package com.tiggerbiggo.primaplay.node.implemented;
+package com.tiggerbiggo.primaplay.node.implemented.io;
 
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
-import com.tiggerbiggo.primaplay.node.core.NodeHasInput;
-import com.tiggerbiggo.primaplay.node.core.NodeHasOutput;
+import com.tiggerbiggo.primaplay.node.core.INodeHasInput;
+import com.tiggerbiggo.primaplay.node.core.INodeHasOutput;
+import com.tiggerbiggo.primaplay.node.core.NodeInOut;
 import com.tiggerbiggo.primaplay.node.link.InputLink;
 import com.tiggerbiggo.primaplay.node.link.OutputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorArrayOutputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorInputLink;
 import java.util.function.Function;
 
-public class DualAnimateNode implements NodeHasOutput, NodeHasInput{
+public class DualAnimateNode extends NodeInOut {
   VectorInputLink inA, inB;
   VectorArrayOutputLink out;
   Function<Double, Double> func;
@@ -20,6 +21,8 @@ public class DualAnimateNode implements NodeHasOutput, NodeHasInput{
 
     inA = new VectorInputLink();
     inB = new VectorInputLink();
+
+    addInput(inA, inB);
 
     out = new VectorArrayOutputLink() {
       @Override
@@ -34,29 +37,10 @@ public class DualAnimateNode implements NodeHasOutput, NodeHasInput{
         return toReturn;
       }
     };
+    addOutput(out);
   }
 
   public DualAnimateNode(){
     this(d -> (Math.sin(d * Math.PI * 2)+1)/2);
-  }
-
-  @Override
-  public InputLink<?>[] getInputs() {
-    return new InputLink[]{inA, inB};
-  }
-
-  @Override
-  public InputLink<?> getInput(int n) {
-    return getInputs()[n];
-  }
-
-  @Override
-  public OutputLink<?>[] getOutputs() {
-    return new OutputLink[]{out};
-  }
-
-  @Override
-  public OutputLink<?> getOutput(int n) {
-    return out;
   }
 }

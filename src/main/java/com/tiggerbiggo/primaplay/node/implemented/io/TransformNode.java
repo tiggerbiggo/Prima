@@ -1,56 +1,40 @@
-package com.tiggerbiggo.primaplay.node.implemented;
+package com.tiggerbiggo.primaplay.node.implemented.io;
 
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
-import com.tiggerbiggo.primaplay.node.core.NodeHasInput;
-import com.tiggerbiggo.primaplay.node.core.NodeHasOutput;
+import com.tiggerbiggo.primaplay.node.core.INodeHasInput;
+import com.tiggerbiggo.primaplay.node.core.INodeHasOutput;
+import com.tiggerbiggo.primaplay.node.core.NodeInOut;
 import com.tiggerbiggo.primaplay.node.link.InputLink;
 import com.tiggerbiggo.primaplay.node.link.OutputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorInputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorOutputLink;
 import java.util.function.BiFunction;
 
-public class TransformNode implements NodeHasInput, NodeHasOutput {
+public class TransformNode extends NodeInOut {
   private BiFunction<Double, Double, Vector2> function;
+  private VectorInputLink input;
+  private VectorOutputLink output;
 
-  public TransformNode(
-      BiFunction<Double, Double, Vector2> function) {
+  public TransformNode(BiFunction<Double, Double, Vector2> function) {
     this.function = function;
+    input = new VectorInputLink();
+    addInput(input);
+
+    output = new VectorOutputLink() {
+      @Override
+      public Vector2 get(RenderParams p) {
+        Vector2 tmp = input.get(p);
+        return function.apply(tmp.X(), tmp.Y());
+      }
+    };
+    addOutput(output);
   }
 
   public TransformNode(){
     this(SINSIN);
   }
 
-  private VectorInputLink input = new VectorInputLink();
-  private VectorOutputLink output = new VectorOutputLink() {
-    @Override
-    public Vector2 get(RenderParams p) {
-      Vector2 tmp = input.get(p);
-      return function.apply(tmp.X(), tmp.Y());
-    }
-  };
-
-
-  @Override
-  public InputLink<?>[] getInputs() {
-    return new InputLink[]{input};
-  }
-
-  @Override
-  public InputLink<?> getInput(int n) {
-    return input;
-  }
-
-  @Override
-  public OutputLink<?>[] getOutputs() {
-    return new OutputLink[]{output};
-  }
-
-  @Override
-  public OutputLink<?> getOutput(int n) {
-    return output;
-  }
 
   public static final BiFunction<Double, Double, Vector2> SINSIN = (x, y) -> new Vector2(Math.sin(x), Math.sin(y));
   public static final BiFunction<Double, Double, Vector2> SINX = (x, y) -> new Vector2(Math.sin(x), y);

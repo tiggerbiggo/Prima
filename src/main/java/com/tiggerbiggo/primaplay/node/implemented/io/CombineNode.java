@@ -1,28 +1,40 @@
-package com.tiggerbiggo.primaplay.node.implemented;
+package com.tiggerbiggo.primaplay.node.implemented.io;
 
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
-import com.tiggerbiggo.primaplay.node.core.NodeHasInput;
-import com.tiggerbiggo.primaplay.node.core.NodeHasOutput;
+import com.tiggerbiggo.primaplay.node.core.INodeHasInput;
+import com.tiggerbiggo.primaplay.node.core.INodeHasOutput;
+import com.tiggerbiggo.primaplay.node.core.NodeInOut;
 import com.tiggerbiggo.primaplay.node.link.InputLink;
 import com.tiggerbiggo.primaplay.node.link.OutputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorInputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorOutputLink;
 import java.util.function.BiFunction;
 
-public class CombineNode implements NodeHasOutput, NodeHasInput{
+public class CombineNode extends NodeInOut {
 
   private BiFunction<Vector2, Vector2, Vector2> func;
   private VectorInputLink A, B;
+  private VectorOutputLink out;
 
 
   public CombineNode(BiFunction<Vector2, Vector2, Vector2> func) {
     this.func = func;
+
     A = new VectorInputLink();
     B = new VectorInputLink();
+    addInput(A, B);
+
+    out = new VectorOutputLink() {
+      @Override
+      public Vector2 get(RenderParams p) {
+        return func.apply(A.get(p), B.get(p));
+      }
+    };
+    addOutput(out);
   }
 
-  public CombineNode(BiFunction<Vector2, Vector2, Vector2> func, NodeHasOutput A, NodeHasOutput B){
+  public CombineNode(BiFunction<Vector2, Vector2, Vector2> func, INodeHasOutput A, INodeHasOutput B){
     this(func);
     link(A);
     link(B, 1, 0);
@@ -32,33 +44,6 @@ public class CombineNode implements NodeHasOutput, NodeHasInput{
     this(ADD);
   }
 
-  private VectorOutputLink out = new VectorOutputLink() {
-    @Override
-    public Vector2 get(RenderParams p) {
-      return func.apply(A.get(p), B.get(p));
-    }
-  };
-
-  @Override
-  public InputLink<?>[] getInputs() {
-    return new InputLink[]{A, B};
-  }
-
-  @Override
-  public InputLink<?> getInput(int n) {
-    if(n<0 || n>=2) return null;
-    return getInputs()[n];
-  }
-
-  @Override
-  public OutputLink<?>[] getOutputs() {
-    return new OutputLink[]{out};
-  }
-
-  @Override
-  public OutputLink<?> getOutput(int n) {
-    return out;
-  }
 
   public static BiFunction<Vector2, Vector2, Vector2> ADD = Vector2::add;
   public static BiFunction<Vector2, Vector2, Vector2> SUB = Vector2::subtract;

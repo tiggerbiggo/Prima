@@ -1,19 +1,13 @@
-package com.tiggerbiggo.primaplay.node.implemented;
+package com.tiggerbiggo.primaplay.node.implemented.io;
 
-import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
-import com.tiggerbiggo.primaplay.node.core.NodeHasInput;
-import com.tiggerbiggo.primaplay.node.core.NodeHasOutput;
-import com.tiggerbiggo.primaplay.node.link.InputLink;
-import com.tiggerbiggo.primaplay.node.link.OutputLink;
+import com.tiggerbiggo.primaplay.node.core.NodeInOut;
 import com.tiggerbiggo.primaplay.node.link.type.ColorArrayInputLink;
 import com.tiggerbiggo.primaplay.node.link.type.ColorArrayOutputLink;
-import com.tiggerbiggo.primaplay.node.link.type.VectorInputLink;
-import com.tiggerbiggo.primaplay.node.link.type.VectorOutputLink;
 
 import java.awt.*;
 
-public class SuperSampleNode implements NodeHasInput, NodeHasOutput {
+public class SuperSampleNode extends NodeInOut {
     ColorArrayInputLink input;
     ColorArrayOutputLink output;
     private int factor;
@@ -22,6 +16,8 @@ public class SuperSampleNode implements NodeHasInput, NodeHasOutput {
         this.factor = factor;
 
         input = new ColorArrayInputLink();
+        addInput(input);
+
         output = new ColorArrayOutputLink() {
             @Override
             public Color[] get(RenderParams p) {
@@ -65,29 +61,12 @@ public class SuperSampleNode implements NodeHasInput, NodeHasOutput {
                 return toReturn;
             }
         };
+        addOutput(output);
     }
 
     public SuperSampleNode() {
         this(2);
     }
 
-    @Override
-    public InputLink<?>[] getInputs() {
-        return new InputLink[]{input};
-    }
 
-    @Override
-    public InputLink<?> getInput(int n) {
-        return input;
-    }
-
-    @Override
-    public OutputLink<?>[] getOutputs() {
-        return new OutputLink[]{output};
-    }
-
-    @Override
-    public OutputLink<?> getOutput(int n) {
-        return output;
-    }
 }

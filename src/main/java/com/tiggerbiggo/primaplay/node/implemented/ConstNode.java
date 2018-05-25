@@ -2,11 +2,11 @@ package com.tiggerbiggo.primaplay.node.implemented;
 
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
-import com.tiggerbiggo.primaplay.node.core.NodeHasOutput;
+import com.tiggerbiggo.primaplay.node.core.INodeHasOutput;
 import com.tiggerbiggo.primaplay.node.link.OutputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorOutputLink;
 
-public class ConstNode implements NodeHasOutput {
+public class ConstNode implements INodeHasOutput {
   private Vector2 value;
 
   public ConstNode(Vector2 value) {

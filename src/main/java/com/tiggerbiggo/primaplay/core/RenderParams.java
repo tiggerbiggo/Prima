@@ -51,4 +51,9 @@ public class RenderParams {
   public void setN(int n) {
     this.n = n;
   }
+
+  @Override
+  public RenderParams clone(){
+    return new RenderParams(width, height, x, y, n);
+  }
 }

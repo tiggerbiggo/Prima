@@ -1,11 +1,12 @@
 package com.tiggerbiggo.primaplay.node.core;
 
 import com.tiggerbiggo.primaplay.node.link.InputLink;
+import com.tiggerbiggo.primaplay.node.link.OutputLink;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class NodeHasInput implements INodeHasInput {
+public class NodeInOut implements INodeHasInput, INodeHasOutput {
   List<InputLink<?>> inputs = new ArrayList<>();
 
   protected void addInput(InputLink<?> ... in){
@@ -21,6 +22,27 @@ public class NodeHasInput implements INodeHasInput {
   public InputLink<?> getInput(int n) {
     try{
       return getInputs()[n];
+    }
+    catch (ArrayIndexOutOfBoundsException ex){
+      return null;
+    }
+  }
+
+  List<OutputLink<?>> outputs = new ArrayList<>();
+
+  protected void addOutput(OutputLink<?> ... in){
+    outputs.addAll(Arrays.asList(in));
+  }
+
+  @Override
+  public OutputLink<?>[] getOutputs() {
+    return outputs.toArray(new OutputLink<?>[0]);
+  }
+
+  @Override
+  public OutputLink<?> getOutput(int n) {
+    try{
+      return getOutputs()[n];
     }
     catch (ArrayIndexOutOfBoundsException ex){
       return null;
