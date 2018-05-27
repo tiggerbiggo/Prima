@@ -2,16 +2,13 @@ package com.tiggerbiggo.primaplay.node.implemented.io;
 
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
-import com.tiggerbiggo.primaplay.node.core.INodeHasInput;
-import com.tiggerbiggo.primaplay.node.core.INodeHasOutput;
 import com.tiggerbiggo.primaplay.node.core.NodeInOut;
-import com.tiggerbiggo.primaplay.node.link.InputLink;
-import com.tiggerbiggo.primaplay.node.link.OutputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorInputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorOutputLink;
 import java.util.function.BiFunction;
 
 public class TransformNode extends NodeInOut {
+
   private BiFunction<Double, Double, Vector2> function;
   private VectorInputLink input;
   private VectorOutputLink output;
@@ -31,14 +28,17 @@ public class TransformNode extends NodeInOut {
     addOutput(output);
   }
 
-  public TransformNode(){
+  public TransformNode() {
     this(SINSIN);
   }
 
 
-  public static final BiFunction<Double, Double, Vector2> SINSIN = (x, y) -> new Vector2(Math.sin(x), Math.sin(y));
-  public static final BiFunction<Double, Double, Vector2> SINX = (x, y) -> new Vector2(Math.sin(x), y);
-  public static final BiFunction<Double, Double, Vector2> SINY = (x, y) -> new Vector2(x, Math.sin(y));
+  public static final BiFunction<Double, Double, Vector2> SINSIN = (x, y) -> new Vector2(
+      Math.sin(x), Math.sin(y));
+  public static final BiFunction<Double, Double, Vector2> SINX = (x, y) -> new Vector2(Math.sin(x),
+      y);
+  public static final BiFunction<Double, Double, Vector2> SINY = (x, y) -> new Vector2(x,
+      Math.sin(y));
   public static final BiFunction<Double, Double, Vector2> MAGNETISM = (x, y) -> {
     y = Math.sin(Math.cosh(x) * y);
     return new Vector2(x, y);

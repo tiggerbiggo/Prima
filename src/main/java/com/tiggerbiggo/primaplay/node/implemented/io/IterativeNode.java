@@ -1,19 +1,19 @@
 package com.tiggerbiggo.primaplay.node.implemented.io;
 
+import com.tiggerbiggo.primaplay.calculation.ComplexNumber;
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
 import com.tiggerbiggo.primaplay.node.core.NodeInOut;
 import com.tiggerbiggo.primaplay.node.link.type.VectorInputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorOutputLink;
 
-public class MovementNode extends NodeInOut {
+public class IterativeNode extends NodeInOut {
 
   VectorInputLink in;
   VectorOutputLink out;
+  int iter;
 
-  private final int iter;
-
-  public MovementNode(int iter) {
+  public IterativeNode(int iter) {
     this.iter = iter;
 
     in = new VectorInputLink();
@@ -22,20 +22,25 @@ public class MovementNode extends NodeInOut {
     out = new VectorOutputLink() {
       @Override
       public Vector2 get(RenderParams p) {
-        Vector2 initial = in.get(p);
-        RenderParams dP = p.clone();
-
-        Vector2 current = initial.clone();
+        Vector2 current = in.get(p);
         for (int i = 0; i < iter; i++) {
-          dP.setX(dP.x() + current.iX());
-          dP.setY(dP.y() + current.iY());
-
-          current = Vector2.add(current, in.get(dP));
+          current = transform(current);
+          if (hasEscaped(current)) {
+            break;
+          }
         }
-
-        return Vector2.subtract(initial, Vector2.divide(current, new Vector2(iter)));
+        return current;
       }
     };
-    addOutput(out);
+  }
+
+  public Vector2 transform(Vector2 in) {
+    ComplexNumber n = in.asComplex();
+
+    return ComplexNumber.multiply(n, n).asVector();
+  }
+
+  public boolean hasEscaped(Vector2 in) {
+    return false;
   }
 }

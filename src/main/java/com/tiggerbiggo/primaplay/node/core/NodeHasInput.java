@@ -6,9 +6,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class NodeHasInput implements INodeHasInput {
+
   List<InputLink<?>> inputs = new ArrayList<>();
 
-  protected void addInput(InputLink<?> ... in){
+  protected void addInput(InputLink<?>... in) {
     inputs.addAll(Arrays.asList(in));
   }
 
@@ -19,10 +20,9 @@ public class NodeHasInput implements INodeHasInput {
 
   @Override
   public InputLink<?> getInput(int n) {
-    try{
+    try {
       return getInputs()[n];
-    }
-    catch (ArrayIndexOutOfBoundsException ex){
+    } catch (ArrayIndexOutOfBoundsException ex) {
       return null;
     }
   }

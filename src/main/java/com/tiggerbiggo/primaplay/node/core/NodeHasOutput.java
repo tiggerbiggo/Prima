@@ -6,9 +6,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class NodeHasOutput implements INodeHasOutput {
+
   List<OutputLink<?>> outputs = new ArrayList<>();
 
-  protected void addOutput(OutputLink<?> ... in){
+  protected void addOutput(OutputLink<?>... in) {
     outputs.addAll(Arrays.asList(in));
   }
 
@@ -19,10 +20,9 @@ public class NodeHasOutput implements INodeHasOutput {
 
   @Override
   public OutputLink<?> getOutput(int n) {
-    try{
+    try {
       return getOutputs()[n];
-    }
-    catch (ArrayIndexOutOfBoundsException ex){
+    } catch (ArrayIndexOutOfBoundsException ex) {
       return null;
     }
   }

@@ -3,16 +3,13 @@ package com.tiggerbiggo.primaplay.node.implemented.io;
 import com.tiggerbiggo.primaplay.calculation.Calculation;
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
-import com.tiggerbiggo.primaplay.node.core.INodeHasInput;
-import com.tiggerbiggo.primaplay.node.core.INodeHasOutput;
 import com.tiggerbiggo.primaplay.node.core.NodeInOut;
-import com.tiggerbiggo.primaplay.node.link.InputLink;
-import com.tiggerbiggo.primaplay.node.link.OutputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorArrayOutputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorInputLink;
 import java.util.function.Function;
 
 public class AnimationNode extends NodeInOut {
+
   private Function<Double, Vector2> func;
 
   private VectorInputLink toAnimate;
@@ -42,7 +39,7 @@ public class AnimationNode extends NodeInOut {
     addOutput(animated);
   }
 
-  public AnimationNode(){
+  public AnimationNode() {
     this(SIMPLE);
   }
 

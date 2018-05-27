@@ -2,11 +2,7 @@ package com.tiggerbiggo.primaplay.node.implemented.io;
 
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
-import com.tiggerbiggo.primaplay.node.core.INodeHasInput;
-import com.tiggerbiggo.primaplay.node.core.INodeHasOutput;
 import com.tiggerbiggo.primaplay.node.core.NodeInOut;
-import com.tiggerbiggo.primaplay.node.link.InputLink;
-import com.tiggerbiggo.primaplay.node.link.OutputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorInputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorOutputLink;
 

@@ -53,7 +53,7 @@ public class RenderParams {
   }
 
   @Override
-  public RenderParams clone(){
+  public RenderParams clone() {
     return new RenderParams(width, height, x, y, n);
   }
 }

@@ -7,24 +7,26 @@ import com.tiggerbiggo.primaplay.node.link.OutputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorOutputLink;
 
 public class ConstNode implements INodeHasOutput {
+
   private Vector2 value;
 
   public ConstNode(Vector2 value) {
     this.value = value;
   }
 
-  public ConstNode(double x, double y){
+  public ConstNode(double x, double y) {
     this(new Vector2(x, y));
   }
 
-  public ConstNode(double value){
+  public ConstNode(double value) {
     this(value, value);
   }
 
 
-
-  public void set(Vector2 toSet){
-    if(toSet != null) value = toSet;
+  public void set(Vector2 toSet) {
+    if (toSet != null) {
+      value = toSet;
+    }
   }
 
   private VectorOutputLink out = new VectorOutputLink() {

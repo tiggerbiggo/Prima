@@ -7,9 +7,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class NodeInOut implements INodeHasInput, INodeHasOutput {
+
   List<InputLink<?>> inputs = new ArrayList<>();
 
-  protected void addInput(InputLink<?> ... in){
+  protected void addInput(InputLink<?>... in) {
     inputs.addAll(Arrays.asList(in));
   }
 
@@ -20,17 +21,16 @@ public class NodeInOut implements INodeHasInput, INodeHasOutput {
 
   @Override
   public InputLink<?> getInput(int n) {
-    try{
+    try {
       return getInputs()[n];
-    }
-    catch (ArrayIndexOutOfBoundsException ex){
+    } catch (ArrayIndexOutOfBoundsException ex) {
       return null;
     }
   }
 
   List<OutputLink<?>> outputs = new ArrayList<>();
 
-  protected void addOutput(OutputLink<?> ... in){
+  protected void addOutput(OutputLink<?>... in) {
     outputs.addAll(Arrays.asList(in));
   }
 
@@ -41,10 +41,9 @@ public class NodeInOut implements INodeHasInput, INodeHasOutput {
 
   @Override
   public OutputLink<?> getOutput(int n) {
-    try{
+    try {
       return getOutputs()[n];
-    }
-    catch (ArrayIndexOutOfBoundsException ex){
+    } catch (ArrayIndexOutOfBoundsException ex) {
       return null;
     }
   }

@@ -4,12 +4,10 @@ import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.graphics.HueCycleGradient;
 import com.tiggerbiggo.primaplay.node.core.INodeHasInput;
 import com.tiggerbiggo.primaplay.node.core.INodeHasOutput;
-import com.tiggerbiggo.primaplay.node.implemented.*;
+import com.tiggerbiggo.primaplay.node.implemented.BasicRenderNode;
+import com.tiggerbiggo.primaplay.node.implemented.MapGenNode;
 import com.tiggerbiggo.primaplay.node.implemented.io.AnimationNode;
-import com.tiggerbiggo.primaplay.node.implemented.io.DualAnimateNode;
 import com.tiggerbiggo.primaplay.node.implemented.io.GradientNode;
-import com.tiggerbiggo.primaplay.node.implemented.io.MandelNode;
-import com.tiggerbiggo.primaplay.node.implemented.io.MovementNode;
 import com.tiggerbiggo.primaplay.node.implemented.io.TransformNode;
 
 public class Main {
@@ -50,21 +48,21 @@ public class Main {
     FileManager.writeGif(render.render(400, 400, 60), "anim");
   }
 
-  public static INodeHasOutput chain(INodeHasOutput o, int oI, INodeHasInput i, int iI){
+  public static INodeHasOutput chain(INodeHasOutput o, int oI, INodeHasInput i, int iI) {
     i.link(o, iI, oI);
     return (INodeHasOutput) i;
   }
 
-  public static INodeHasOutput chain(INodeHasOutput o, INodeHasInput i){
+  public static INodeHasOutput chain(INodeHasOutput o, INodeHasInput i) {
     return chain(o, 0, i, 0);
   }
 
-  public static INodeHasInput iChain(INodeHasOutput o, int oI, INodeHasInput i, int iI){
+  public static INodeHasInput iChain(INodeHasOutput o, int oI, INodeHasInput i, int iI) {
     i.link(o, iI, oI);
     return i;
   }
 
-  public static INodeHasInput iChain(INodeHasOutput o, INodeHasInput i){
+  public static INodeHasInput iChain(INodeHasOutput o, INodeHasInput i) {
     return iChain(o, 0, i, 0);
   }
 }

@@ -71,11 +71,11 @@ public class ColorTools {
     min = getMin(in);
     max = getMax(in);
 
-      if (max != 0) {
-          return (max - min) / max;
-      } else {
-          return 0;
-      }
+    if (max != 0) {
+      return (max - min) / max;
+    } else {
+      return 0;
+    }
   }
 
   /**
@@ -85,9 +85,9 @@ public class ColorTools {
    * @return The hue of the colour, between 0 and 1
    */
   public static double getHue(Color in) {
-      if (getSaturation(in) == 0) {
-          return 0;
-      }
+    if (getSaturation(in) == 0) {
+      return 0;
+    }
 
     double min, max, diff;
     min = getMin(in);
@@ -100,17 +100,17 @@ public class ColorTools {
 
     double hue;
 
-      if (in.getRed() == max) {
-          hue = bluec - greenc;
-      } else if (in.getGreen() == max) {
-          hue = 2.0f + redc - bluec;
-      } else {
-          hue = 4.0f + greenc - redc;
-      }
+    if (in.getRed() == max) {
+      hue = bluec - greenc;
+    } else if (in.getGreen() == max) {
+      hue = 2.0f + redc - bluec;
+    } else {
+      hue = 4.0f + greenc - redc;
+    }
     hue = hue / 6.0f;
-      if (hue < 0) {
-          hue = hue + 1.0f;
-      }
+    if (hue < 0) {
+      hue = hue + 1.0f;
+    }
     return hue;
   }
 
