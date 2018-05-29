@@ -141,7 +141,7 @@ public class Vector2 implements Serializable {
   }
 
   /**
-   * Applies real modulo operation on both components of the imput vector given real value
+   * Applies real modulo operation on both components of the input vector given real value
    *
    * @param mod The modulo value
    * @return The calculated number
@@ -163,7 +163,7 @@ public class Vector2 implements Serializable {
   /**
    * Calculates the determinant of 2 vectors
    *
-   * @param other Vector B
+   * @param other The vector to det with
    * @return The determinant: <imaginary>ax*by - ay*bx</imaginary>
    */
   public double det(Vector2 other) {
@@ -185,18 +185,17 @@ public class Vector2 implements Serializable {
   /**
    * Gets the distance between 2 vectors
    *
-   * @param a The first Vector
-   * @param b The second Vector
+   * @param b The second vector
    * @return The distance between the 2 vectors
    */
-  public static double distanceBetween(Vector2 a, Vector2 b) {
-    return a.subtract(b).magnitude();
+  public double distanceBetween(Vector2 other) {
+    return this.subtract(other).magnitude();
   }
 
   /**
    * Gets the angle between 2 vectors in radians
    *
-   * @param other The other vector in the equation
+   * @param other The other vector
    * @return The angle between the 2 vectors in radians
    */
   public double angleBetween(Vector2 other) {
@@ -284,7 +283,6 @@ public class Vector2 implements Serializable {
    *
    * <ul>
    *   <li>If the magnitude of the given vector is 0, the result will be Vector2.ZERO (0,0)
-   *   <li>If the given vector is null, the result will also be null
    * </ul>
    *
    * @return The normalized vector
@@ -300,7 +298,6 @@ public class Vector2 implements Serializable {
   /**
    * Rotates real given vector around real point and returns the result
    *
-   * @param in The vector to rotate
    * @param rotatePoint The point to rotate around
    * @param angleRadians The angle to rotate in radians
    * @return The rotated vector
