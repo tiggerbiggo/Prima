@@ -30,7 +30,7 @@ public class AnimationNode extends NodeInOut {
         Vector2[] toReturn = new Vector2[num];
         for (int i = 0; i < num; i++) {
           double percent = (double) i / num;
-          toReturn[i] = Vector2.add(func.apply(percent), start);
+          toReturn[i] = func.apply(percent).add(start);
         }
 
         return toReturn;

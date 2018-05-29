@@ -28,13 +28,12 @@ public class KaliedoNode extends NodeInOut {
         double baseAngle, angle;
         int multiplier;
 
-        point = map.get(p);
-        point = Vector2.add(point, rotationPoint);
+        point = map.get(p).add(rotationPoint);
 
         baseAngle = Math.PI * 2;
         baseAngle /= rotationNum;
 
-        angle = Vector2.angleBetween(new Vector2(5, 0), point);
+        angle = new Vector2(5, 0).angleBetween(point);
         multiplier = (int) (angle / baseAngle);
 
         angle = baseAngle * -multiplier;
@@ -42,8 +41,8 @@ public class KaliedoNode extends NodeInOut {
           //angle = baseAngle - angle;
         }
 
-        point = Vector2.rotateAround(point, rotationPoint, angle);
-        point = Vector2.subtract(point, rotationPoint);
+        point = point.rotateAround(rotationPoint, angle);
+        point = point.subtract(rotationPoint);
 
         return point;
       }
