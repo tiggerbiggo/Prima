@@ -55,7 +55,6 @@ public class MandelNode extends NodeInOut {
         return Vector2.ZERO;
       }
     };
-
     addOutput(out);
   }
 

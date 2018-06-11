@@ -1,14 +1,12 @@
 package com.tiggerbiggo.primaplay.core;
 
-import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.graphics.HueCycleGradient;
 import com.tiggerbiggo.primaplay.node.core.INodeHasInput;
 import com.tiggerbiggo.primaplay.node.core.INodeHasOutput;
 import com.tiggerbiggo.primaplay.node.implemented.BasicRenderNode;
-import com.tiggerbiggo.primaplay.node.implemented.MapGenNode;
 import com.tiggerbiggo.primaplay.node.implemented.io.AnimationNode;
 import com.tiggerbiggo.primaplay.node.implemented.io.GradientNode;
-import com.tiggerbiggo.primaplay.node.implemented.io.TransformNode;
+import com.tiggerbiggo.primaplay.node.implemented.out.PixelMapNode;
 
 public class Main {
 
@@ -17,10 +15,10 @@ public class Main {
     INodeHasInput i;
 
     //o = new MapGenNode(Vector2.MINUSTWO, Vector2.TWO);
-    o = new MapGenNode(new Vector2(-8), new Vector2(8));
+    //o = new MapGenNode(new Vector2(-8), new Vector2(8));
     //o = chain(o, new KaliedoNode(5));
     //o = chain(o, new MandelNode(300, 0.1));
-    o = chain(o, new TransformNode(TransformNode.MAGNETISM));
+    //o = chain(o, new TransformNode(TransformNode.MAGNETISM));
     //o = chain(o, new MovementNode(3));
 
     //o = new CombineNode(CombineNode.MUL, o, new MapGenNode(new Vector2(0), new Vector2(20)));
@@ -37,6 +35,7 @@ public class Main {
         ), 1
     );*/
 
+    o = PixelMapNode.square(400, 400);
     o = chain(o, new AnimationNode());
     o = chain(o, new GradientNode(new HueCycleGradient()));
     //o = chain(o, new GradientNode(new SimpleGradient(Color.RED, Color.YELLOW, false)));
