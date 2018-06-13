@@ -8,7 +8,7 @@ import com.tiggerbiggo.primaplay.node.implemented.BasicRenderNode;
 import com.tiggerbiggo.primaplay.node.implemented.MapGenNode;
 import com.tiggerbiggo.primaplay.node.implemented.io.AnimationNode;
 import com.tiggerbiggo.primaplay.node.implemented.io.GradientNode;
-import com.tiggerbiggo.primaplay.node.implemented.io.TransformNode;
+import com.tiggerbiggo.primaplay.node.implemented.io.iterative.ComplexNode;
 
 public class Main {
 
@@ -16,12 +16,16 @@ public class Main {
     INodeHasOutput o;
     INodeHasInput i;
 
-    //o = new MapGenNode(Vector2.MINUSTWO, Vector2.TWO);
-    o = new MapGenNode(new Vector2(-8), new Vector2(8));
+    o = new MapGenNode(Vector2.MINUSTWO, Vector2.TWO);
+    //o = new MapGenNode(new Vector2(-8), new Vector2(8));
     //o = chain(o, new KaliedoNode(5));
-    //o = chain(o, new MandelNode(300, 0.1));
-    o = chain(o, new TransformNode(TransformNode.MAGNETISM));
+    //o = chain(o, new OldMandelNode(300, 0.1));
+    //o = chain(o, new TransformNode(TransformNode.MAGNETISM));
     //o = chain(o, new MovementNode(3));
+
+    //o = chain(o, new MandelNode(300, 0.1));
+
+    o = chain(o, new ComplexNode(300));//300, ComplexNode.TEST, 0.1, n));
 
     //o = new CombineNode(CombineNode.MUL, o, new MapGenNode(new Vector2(0), new Vector2(20)));
 
@@ -31,7 +35,7 @@ public class Main {
         ), 0,
         iChain(
             chain(
-                o, new MandelNode()//new TransformNode(TransformNode.SINSIN)
+                o, new OldMandelNode()//new TransformNode(TransformNode.SINSIN)
             ),
             new DualAnimateNode()
         ), 1
