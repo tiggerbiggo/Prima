@@ -28,7 +28,7 @@ public class RenderParams {
     return y;
   }
 
-  public int n() {
+  public int frameNum() {
     return n;
   }
 

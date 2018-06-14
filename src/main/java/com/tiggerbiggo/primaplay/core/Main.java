@@ -1,50 +1,49 @@
 package com.tiggerbiggo.primaplay.core;
 
+import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.graphics.HueCycleGradient;
+import com.tiggerbiggo.primaplay.graphics.ImageTools;
+import com.tiggerbiggo.primaplay.graphics.SafeImage;
 import com.tiggerbiggo.primaplay.node.core.INodeHasInput;
 import com.tiggerbiggo.primaplay.node.core.INodeHasOutput;
 import com.tiggerbiggo.primaplay.node.implemented.BasicRenderNode;
+import com.tiggerbiggo.primaplay.node.implemented.ConstNode;
+import com.tiggerbiggo.primaplay.node.implemented.MapGenNode;
 import com.tiggerbiggo.primaplay.node.implemented.io.AnimationNode;
+import com.tiggerbiggo.primaplay.node.implemented.io.CombineNode;
 import com.tiggerbiggo.primaplay.node.implemented.io.GradientNode;
+import com.tiggerbiggo.primaplay.node.implemented.io.ImageListNode;
+import com.tiggerbiggo.primaplay.node.implemented.io.MandelNode;
+import com.tiggerbiggo.primaplay.node.implemented.io.SuperSampleNode;
+import com.tiggerbiggo.primaplay.node.implemented.io.TransformNode;
 import com.tiggerbiggo.primaplay.node.implemented.out.PixelMapNode;
+import java.io.File;
 
 public class Main {
 
   public static void main(String[] args) {
+    SafeImage[] imgs = ImageTools.toSafeImage(FileManager.getImgsFromFolder("imgs/cookie/", true));
+
     INodeHasOutput o;
     INodeHasInput i;
 
-    //o = new MapGenNode(Vector2.MINUSTWO, Vector2.TWO);
-    //o = new MapGenNode(new Vector2(-8), new Vector2(8));
-    //o = chain(o, new KaliedoNode(5));
-    //o = chain(o, new MandelNode(300, 0.1));
-    //o = chain(o, new TransformNode(TransformNode.MAGNETISM));
-    //o = chain(o, new MovementNode(3));
+    //o = new MapGenNode(new Vector2(0.015625, -1.757813),new Vector2(0.019531, -1.753906));
 
-    //o = new CombineNode(CombineNode.MUL, o, new MapGenNode(new Vector2(0), new Vector2(20)));
+    o = new MapGenNode(Vector2.MINUSTWO, Vector2.TWO);
 
-    /*o = chain(
-        chain(
-            new MapGenNode(new Vector2(-3), new Vector2(3)), new TransformNode(Vector2::new)
-        ), 0,
-        iChain(
-            chain(
-                o, new MandelNode()//new TransformNode(TransformNode.SINSIN)
-            ),
-            new DualAnimateNode()
-        ), 1
-    );*/
+    //o = chain(o, new MandelNode(300, 0.008));
 
-    o = PixelMapNode.square(400, 400);
+    o = chain(o, new TransformNode(TransformNode.SINSIN));
+    o = new CombineNode(CombineNode.MUL, o, new ConstNode(0.2));
     o = chain(o, new AnimationNode());
-    o = chain(o, new GradientNode(new HueCycleGradient()));
-    //o = chain(o, new GradientNode(new SimpleGradient(Color.RED, Color.YELLOW, false)));
-    //o = chain(o, new SuperSampleNode(3));
+    o = chain(o,0, new ImageListNode(imgs),1);
+    o = chain(o, new SuperSampleNode(2));
+
 
     BasicRenderNode render = new BasicRenderNode();
     render.link(o);
 
-    FileManager.writeGif(render.render(400, 400, 60), "anim");
+    FileManager.writeGif(render.render(300, 169, 60), "animm");
   }
 
   public static INodeHasOutput chain(INodeHasOutput o, int oI, INodeHasInput i, int iI) {

@@ -1,10 +1,14 @@
 package com.tiggerbiggo.primaplay.core;
 
+import com.tiggerbiggo.primaplay.graphics.SafeImage;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.imageio.stream.FileImageOutputStream;
 import javax.imageio.stream.ImageOutputStream;
@@ -76,7 +80,7 @@ public class FileManager {
    * @return An array of images, or null if none are found
    * @throws IllegalArgumentException if dirName is null
    */
-  public static BufferedImage[] getImgsFromFolder(String dirName) throws IllegalArgumentException {
+  public static BufferedImage[] getImgsFromFolder(String dirName, boolean sort) throws IllegalArgumentException {
     try {
       File dir = new File(dirName);
       if (!dir.isDirectory()) {
@@ -102,19 +106,35 @@ public class FileManager {
         }
       };
 
-      File[] imageFiles = dir.listFiles(filter);
-      if (imageFiles.length == 0) {
+      List<File> imageFiles = Arrays.asList(dir.listFiles(filter));
+      if (imageFiles.size() == 0) {
         return null;
       }
 
-      BufferedImage[] toReturn = new BufferedImage[imageFiles.length];
+      if(sort)
+        imageFiles.sort(new Comparator<File>() {
+          @Override
+          public int compare(File o1, File o2) {
+            String sA, sB;
+            sA = o1.getName();
+            sB = o2.getName();
 
-      for (int i = 0; i < imageFiles.length; i++) {
+            sA = sA.substring(sA.lastIndexOf(' ') + 1, sA.indexOf('.'));
+            sB = sB.substring(sB.lastIndexOf(' ') + 1, sB.indexOf('.'));
+
+            return Integer.compare(Integer.parseInt(sA), Integer.parseInt(sB));
+          }
+        });
+
+      BufferedImage[] toReturn = new BufferedImage[imageFiles.size()];
+
+      for (int i = 0; i < imageFiles.size(); i++) {
         try {
-          toReturn[i] = ImageIO.read(imageFiles[i]);
+          toReturn[i] = ImageIO.read(imageFiles.get(i));
+          System.out.println(imageFiles.get(i).getName());
         } catch (IOException | IllegalArgumentException e) {
           System.err
-              .printf("Exception when reading image from file '%s', %s", imageFiles[i].toString(),
+              .printf("Exception when reading image from file '%s', %s", imageFiles.get(i).toString(),
                   e.toString());
           return null;
         }
@@ -128,6 +148,10 @@ public class FileManager {
               + "\"");
     }
     return null;
+  }
+
+  public static BufferedImage[] getImgsFromFolder(String dirName) throws IllegalArgumentException{
+    return getImgsFromFolder(dirName, false);
   }
 }
 

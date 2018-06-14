@@ -31,8 +31,7 @@ public class CombineNode extends NodeInOut {
     addOutput(out);
   }
 
-  public CombineNode(BiFunction<Vector2, Vector2, Vector2> func, INodeHasOutput A,
-      INodeHasOutput B) {
+  public CombineNode(BiFunction<Vector2, Vector2, Vector2> func, INodeHasOutput A, INodeHasOutput B) {
     this(func);
     link(A);
     link(B, 1, 0);
