@@ -28,7 +28,32 @@ public class RenderParams {
     return y;
   }
 
-  public int n() {
+  public int frameNum() {
     return n;
+  }
+
+  public void setWidth(int width) {
+    this.width = width;
+  }
+
+  public void setHeight(int height) {
+    this.height = height;
+  }
+
+  public void setX(int x) {
+    this.x = x;
+  }
+
+  public void setY(int y) {
+    this.y = y;
+  }
+
+  public void setN(int n) {
+    this.n = n;
+  }
+
+  @Override
+  public RenderParams clone() {
+    return new RenderParams(width, height, x, y, n);
   }
 }

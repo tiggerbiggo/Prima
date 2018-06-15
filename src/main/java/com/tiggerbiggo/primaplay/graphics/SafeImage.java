@@ -49,6 +49,12 @@ public class SafeImage implements Serializable {
     this.height = height;
   }
 
+  public Vector2 sizeAsVector(){return new Vector2(width, height);}
+
+  public Vector2 denormVector(Vector2 in){
+    return in.multiply(sizeAsVector());
+  }
+
   /**
    * Gets the color of the pixel at the position given by the passed Vector
    *
@@ -104,6 +110,8 @@ public class SafeImage implements Serializable {
   public int getHeight() {
     return img.getHeight();
   }
+
+  public Vector2 getDimensions(){return new Vector2(getWidth(), getHeight());}
 
   private void writeObject(ObjectOutputStream out) throws IOException {
     out.defaultWriteObject();

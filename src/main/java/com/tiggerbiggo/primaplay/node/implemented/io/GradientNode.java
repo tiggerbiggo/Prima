@@ -1,24 +1,25 @@
-package com.tiggerbiggo.primaplay.node.implemented;
+package com.tiggerbiggo.primaplay.node.implemented.io;
 
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
 import com.tiggerbiggo.primaplay.graphics.Gradient;
-import com.tiggerbiggo.primaplay.node.core.NodeHasInput;
-import com.tiggerbiggo.primaplay.node.core.NodeHasOutput;
-import com.tiggerbiggo.primaplay.node.link.InputLink;
-import com.tiggerbiggo.primaplay.node.link.OutputLink;
+import com.tiggerbiggo.primaplay.node.core.NodeInOut;
 import com.tiggerbiggo.primaplay.node.link.type.ColorArrayOutputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorArrayInputLink;
 import java.awt.Color;
 
-public class GradientNode implements NodeHasInput, NodeHasOutput {
+public class GradientNode extends NodeInOut {
 
-  VectorArrayInputLink inputLink = new VectorArrayInputLink();
+  VectorArrayInputLink inputLink;
   ColorArrayOutputLink out;
   Gradient g;
 
   public GradientNode(Gradient in) {
     g = in;
+
+    inputLink = new VectorArrayInputLink();
+    addInput(inputLink);
+
     out = new ColorArrayOutputLink() {
       @Override
       public Color[] get(RenderParams p) {
@@ -30,25 +31,6 @@ public class GradientNode implements NodeHasInput, NodeHasOutput {
         return toReturn;
       }
     };
-  }
-
-  @Override
-  public InputLink<?>[] getInputs() {
-    return new InputLink[]{inputLink};
-  }
-
-  @Override
-  public InputLink<?> getInput(int n) {
-    return inputLink;
-  }
-
-  @Override
-  public OutputLink<?>[] getOutputs() {
-    return new OutputLink[]{out};
-  }
-
-  @Override
-  public OutputLink<?> getOutput(int n) {
-    return out;
+    addOutput(out);
   }
 }
