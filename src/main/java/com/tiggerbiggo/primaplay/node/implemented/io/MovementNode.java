@@ -30,10 +30,10 @@ public class MovementNode extends NodeInOut {
           dP.setX(dP.x() + current.iX());
           dP.setY(dP.y() + current.iY());
 
-          current = Vector2.add(current, in.get(dP));
+          current = current.add(in.get(dP));
         }
 
-        return Vector2.subtract(initial, Vector2.divide(current, new Vector2(iter)));
+        return initial.subtract(current.divide(new Vector2(iter)));
       }
     };
     addOutput(out);

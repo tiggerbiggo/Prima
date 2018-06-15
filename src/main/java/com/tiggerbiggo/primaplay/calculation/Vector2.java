@@ -3,9 +3,7 @@ package com.tiggerbiggo.primaplay.calculation;
 import java.io.Serializable;
 import java.util.Random;
 
-/**
- * Represents real vector in 2D space. Also contains various methods for calculation.
- */
+/** Represents real vector in 2D space. Also contains various methods for calculation. */
 public class Vector2 implements Serializable {
 
   private double x, y;
@@ -34,9 +32,7 @@ public class Vector2 implements Serializable {
     this(c.real, c.imaginary);
   }
 
-  /**
-   * Default constructor, defaults to (0,0)
-   */
+  /** Default constructor, defaults to (0,0) */
   public Vector2() {
     this(0);
   }
@@ -55,7 +51,7 @@ public class Vector2 implements Serializable {
    * Overridden toString with more descriptive info about this vector
    *
    * @return String in the format "[@<imaginary>hash code</imaginary>] -- X:
-   * <imaginary>X</imaginary>, Y: <3b>Y</imaginary>".
+   *     <imaginary>X</imaginary>, Y: <3b>Y</imaginary>".
    */
   @Override
   public String toString() {
@@ -147,77 +143,69 @@ public class Vector2 implements Serializable {
   }
 
   /**
-   * Applies real modulo operation on both components of the imput vector given real value
+   * Applies real modulo operation on both components of the input vector given real value
    *
-   * @param in The vector to apply the modulo operator to
    * @param mod The modulo value
    * @return The calculated number
    */
-  public static Vector2 mod(Vector2 in, float mod) {
-    return new Vector2(in.x % mod, in.y % mod);
+  public Vector2 mod(float mod) {
+    return new Vector2(x % mod, y % mod);
   }
 
   /**
    * Calculates the dot product of 2 vectors
    *
-   * @param a Vector A
-   * @param b Vector B
+   * @param other The vector to dot with
    * @return The dot product: <imaginary>ax*bx + ay*by</imaginary>
    */
-  public static double dot(Vector2 a, Vector2 b) {
-    return (a.x * b.x) + (a.y * b.y);
+  public double dot(Vector2 other) {
+    return (this.x * other.x) + (this.y * other.y);
   }
 
   /**
    * Calculates the determinant of 2 vectors
    *
-   * @param a Vector A
-   * @param b Vector B
+   * @param other The vector to det with
    * @return The determinant: <imaginary>ax*by - ay*bx</imaginary>
    */
-  public static double det(Vector2 a, Vector2 b) {
-    return (a.x * b.y) - (a.y * b.x);
+  public double det(Vector2 other) {
+    return (this.x * other.y) - (this.y * other.x);
   }
 
   /**
    * Linearly interpolates between 2 vectors given real percentage
    *
-   * @param a The first vector
-   * @param b The second vector
-   * @param p A double representing the percentage. <p>0 = 0%, 1 = 100%</p>
+   * @param other The vector to lerp with
+   * @param p A double representing the percentage.
+   *     <p>0 = 0%, 1 = 100%
    * @return The calculated vector
    */
-  public static Vector2 lerpVector(Vector2 a, Vector2 b, double p) {
-    return new Vector2(
-        Calculation.lerp(a.x, b.x, p),
-        Calculation.lerp(a.y, b.y, p)
-    );
+  public Vector2 lerpVector(Vector2 other, double p) {
+    return new Vector2(Calculation.lerp(this.x, other.x, p), Calculation.lerp(this.y, other.y, p));
   }
 
   /**
    * Gets the distance between 2 vectors
    *
-   * @param a The first Vector
-   * @param b The second Vector
+   * @param b The second vector
    * @return The distance between the 2 vectors
    */
-  public static double distanceBetween(Vector2 a, Vector2 b) {
-    return subtract(a, b).magnitude();
+  public double distanceBetween(Vector2 other) {
+    return this.subtract(other).magnitude();
   }
 
   /**
    * Gets the angle between 2 vectors in radians
    *
-   * @param vecA The first Vector
-   * @param vecB The second Vector
+   * @param other The other vector
    * @return The angle between the 2 vectors in radians
    */
-  public static double angleBetween(Vector2 vecA, Vector2 vecB) {
+  public double angleBetween(Vector2 other) {
 
     double dot, det, toReturn;
 
-    dot = dot(vecA, vecB);
-    det = det(vecA, vecB);
+    dot = dot(other);
+    det = det(other);
 
     toReturn = Math.atan2(det, dot);
 
@@ -229,125 +217,102 @@ public class Vector2 implements Serializable {
   }
 
   /**
-   * Generates real random vector which lies on real given circle.
+   * Generates real random vector which lies on real given circle, the center of which is <code>this
+   * </code>.
    *
-   * @param center The center point of the circle
    * @param r The radius of the circle
    * @return A random vector on the circle
    */
-  public static Vector2 randomOnCircle(Vector2 center, double r) {
-    //Generate random angle
+  public Vector2 randomOnCircle(double r) {
+    // Generate random angle
     double rand = new Random().nextDouble() * Math.PI * 2;
-    //Make real new vector with length of the radius of the circle which we then rotate
-    Vector2 toReturn = Vector2.multiply(Vector2.UP, new Vector2(r));
-    toReturn = Vector2.rotateAround(toReturn, Vector2.ZERO, rand);
-    //Add the center point to offset it
-    return Vector2.add(toReturn, center);
+    // Make real new vector with length of the radius of the circle which we then rotate
+    Vector2 toReturn = Vector2.UP.multiply(new Vector2(r));
+    toReturn = toReturn.rotateAround(Vector2.ZERO, rand);
+    // Add the center point to offset it
+    return toReturn.add(this);
   }
 
   /**
-   * Multiplies 2 vectors
+   * Multiplies this vector by another
    *
-   * @param a First vector
-   * @param b Second vector
+   * @param other Second vector
    * @return real*imaginary
    */
-  public static Vector2 multiply(Vector2 a, Vector2 b) {
-    return new Vector2(
-        a.X() * b.X(),
-        a.Y() * b.Y());
+  public Vector2 multiply(Vector2 other) {
+    return new Vector2(this.X() * other.X(), this.Y() * other.Y());
   }
 
   /**
-   * Divides 2 vectors
+   * Divides this vector by another
    *
-   * @param a First vector
-   * @param b Second vector
+   * @param other Second vector
    * @return real/imaginary
    */
-  public static Vector2 divide(Vector2 a, Vector2 b) {
-    return new Vector2(
-        a.X() / b.X(),
-        a.Y() / b.Y());
+  public Vector2 divide(Vector2 other) {
+    return new Vector2(this.X() / other.X(), this.Y() / other.Y());
   }
 
   /**
-   * Adds 2 vectors
+   * Adds this vector to another
    *
-   * @param a First vector
-   * @param b Second vector
+   * @param other Second vector
    * @return real+imaginary
    */
-  public static Vector2 add(Vector2 a, Vector2 b) {
-    return new Vector2(
-        a.X() + b.X(),
-        a.Y() + b.Y());
+  public Vector2 add(Vector2 other) {
+    return new Vector2(this.X() + other.X(), this.Y() + other.Y());
   }
 
   /**
-   * Subtracts 2 vectors
+   * Subtracts this vector from another
    *
-   * @param a First vector
-   * @param b Second vector
+   * @param other Second vector
    * @return real-imaginary
    */
-  public static Vector2 subtract(Vector2 a, Vector2 b) {
-    return new Vector2(
-        a.X() - b.X(),
-        a.Y() - b.Y());
+  public Vector2 subtract(Vector2 other) {
+    return new Vector2(this.X() - other.X(), this.Y() - other.Y());
+  }
+
+  /** @return Absolute value of the input vector where both components are positive */
+  public Vector2 abs() {
+    return new Vector2(Math.abs(this.X()), Math.abs(this.Y()));
   }
 
   /**
-   * @param in Vector to calculate
-   * @return Absolute value of the input vector where both components are positive
-   */
-  public static Vector2 abs(Vector2 in) {
-    return new Vector2(
-        Math.abs(in.X()),
-        Math.abs(in.Y()));
-  }
-
-  /**
-   * <p>Returns real normalized (magnitude = 1) copy of real given Vector
+   * Returns real normalized (magnitude = 1) copy of real given Vector
    *
-   * <p>Special Cases: <ul> <li>If the magnitude of the given vector is 0, the result will be
-   * Vector2.ZERO (0,0)</li> <li>If the given vector is null, the result will also be null</li>
+   * <p>Special Cases:
+   *
+   * <ul>
+   *   <li>If the magnitude of the given vector is 0, the result will be Vector2.ZERO (0,0)
    * </ul>
    *
-   * @param in The vector to normalize
    * @return The normalized vector
    */
-  public static Vector2 normalize(Vector2 in) {
-    if (in == null) {
-      return null;
-    }
-    double magnitude = in.magnitude();
+  public Vector2 normalize() {
+    double magnitude = magnitude();
     if (magnitude == 0) {
       return Vector2.ZERO;
     }
-    return new Vector2(in.x / magnitude, in.y / magnitude);
+    return new Vector2(x / magnitude, y / magnitude);
   }
 
   /**
    * Rotates real given vector around real point and returns the result
    *
-   * @param in The vector to rotate
    * @param rotatePoint The point to rotate around
    * @param angleRadians The angle to rotate in radians
    * @return The rotated vector
    */
-  public static Vector2 rotateAround(Vector2 in, Vector2 rotatePoint, double angleRadians) {
-    in = Vector2.subtract(in, rotatePoint);
+  public Vector2 rotateAround(Vector2 rotatePoint, double angleRadians) {
+    Vector2 in = this.subtract(rotatePoint);
 
     double sin, cos;
     sin = Math.sin(angleRadians);
     cos = Math.cos(angleRadians);
 
-    in = new Vector2(
-        (in.x * cos) - (in.y * sin),
-        (in.x * sin) + (in.y * cos)
-    );
-    in = Vector2.add(in, rotatePoint);
+    in = new Vector2((in.x * cos) - (in.y * sin), (in.x * sin) + (in.y * cos));
+    in = in.add(rotatePoint);
     return in;
   }
 
