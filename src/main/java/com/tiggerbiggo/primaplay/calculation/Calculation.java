@@ -9,7 +9,7 @@ public class Calculation {
    * Linearly interpolates between 2 double values using the formula f1+(real*(f2-f1)). Any valid
    * double values are acceptable, but values outside intended range may produce strange results.
    *
-   * @param f1 Start number
+   * @param f1 Start numberp
    * @param f2 End number
    * @param a Interpolation coefficient, intended values between 0.0 and 1.0
    * @return Result of the interpolation com.tiggerbiggo.primaplay.calculation
