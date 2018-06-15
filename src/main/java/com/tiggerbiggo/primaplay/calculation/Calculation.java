@@ -59,6 +59,10 @@ public class Calculation {
     return in % mod;
   }
 
+  public static double mod(double in){
+    return mod(in,1);
+  }
+
   public static double modLoop(double in, double mod, boolean loop) {
     in = Math.abs(in);
     in = mod(in, mod);

@@ -56,7 +56,6 @@ public class OldMandelNode extends NodeInOut {
         return Vector2.ZERO;
       }
     };
-
     addOutput(out);
   }
 

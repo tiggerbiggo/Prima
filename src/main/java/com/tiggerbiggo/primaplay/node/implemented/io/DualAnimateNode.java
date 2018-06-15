@@ -27,9 +27,9 @@ public class DualAnimateNode extends NodeInOut {
         Vector2 A, B;
         A = inA.get(p);
         B = inB.get(p);
-        Vector2[] toReturn = new Vector2[p.n()];
-        for (int i = 0; i < p.n(); i++) {
-          toReturn[i] = Vector2.lerpVector(A, B, func.apply((double) i / p.n()));
+        Vector2[] toReturn = new Vector2[p.frameNum()];
+        for (int i = 0; i < p.frameNum(); i++) {
+          toReturn[i] = Vector2.lerpVector(A, B, func.apply((double) i / p.frameNum()));
         }
         return toReturn;
       }
