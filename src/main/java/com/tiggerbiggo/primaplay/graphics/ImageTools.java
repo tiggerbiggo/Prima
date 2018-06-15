@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 public class ImageTools {
   public static Color colorFromPosition(SafeImage img, Vector2 pos){
     //denormalise the input vector
-    pos = Vector2.multiply(pos, img.getDimensions());
+    pos = pos.multiply(img.getDimensions());
 
     //get x and y
     int x, y;

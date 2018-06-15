@@ -3,13 +3,13 @@ package com.tiggerbiggo.primaplay.calculation;
 import java.io.Serializable;
 import java.util.Random;
 
-/** Represents real vector in 2D space. Also contains various methods for calculation. */
+/** Represents a vector in 2D space. Also contains various methods for calculation. */
 public class Vector2 implements Serializable {
 
   private double x, y;
 
   /**
-   * Constructs real new vector with X and Y components
+   * Constructs a new vector with X and Y components
    *
    * @param x The X component of the vector
    * @param y The Y component of the vector
@@ -50,8 +50,8 @@ public class Vector2 implements Serializable {
   /**
    * Overridden toString with more descriptive info about this vector
    *
-   * @return String in the format "[@<imaginary>hash code</imaginary>] -- X:
-   *     <imaginary>X</imaginary>, Y: <3b>Y</imaginary>".
+   * @return String in the format "[@<b>hash code</b>] -- X:
+   *     <b>X</b>, Y: <3b>Y</b>".
    */
   @Override
   public String toString() {
@@ -143,7 +143,7 @@ public class Vector2 implements Serializable {
   }
 
   /**
-   * Applies real modulo operation on both components of the input vector given real value
+   * Applies a modulo operation on both components of the input vector given a value
    *
    * @param mod The modulo value
    * @return The calculated number
@@ -156,7 +156,7 @@ public class Vector2 implements Serializable {
    * Calculates the dot product of 2 vectors
    *
    * @param other The vector to dot with
-   * @return The dot product: <imaginary>ax*bx + ay*by</imaginary>
+   * @return The dot product: <b>ax*bx + ay*by</b>
    */
   public double dot(Vector2 other) {
     return (this.x * other.x) + (this.y * other.y);
@@ -166,14 +166,14 @@ public class Vector2 implements Serializable {
    * Calculates the determinant of 2 vectors
    *
    * @param other The vector to det with
-   * @return The determinant: <imaginary>ax*by - ay*bx</imaginary>
+   * @return The determinant: <b>ax*by - ay*bx</b>
    */
   public double det(Vector2 other) {
     return (this.x * other.y) - (this.y * other.x);
   }
 
   /**
-   * Linearly interpolates between 2 vectors given real percentage
+   * Linearly interpolates between 2 vectors given a percentage
    *
    * @param other The vector to lerp with
    * @param p A double representing the percentage.
@@ -187,7 +187,7 @@ public class Vector2 implements Serializable {
   /**
    * Gets the distance between 2 vectors
    *
-   * @param b The second vector
+   * @param other The second vector
    * @return The distance between the 2 vectors
    */
   public double distanceBetween(Vector2 other) {
@@ -217,7 +217,7 @@ public class Vector2 implements Serializable {
   }
 
   /**
-   * Generates real random vector which lies on real given circle, the center of which is <code>this
+   * Generates a random vector which lies on a given circle, the center of which is <code>this
    * </code>.
    *
    * @param r The radius of the circle
@@ -226,7 +226,7 @@ public class Vector2 implements Serializable {
   public Vector2 randomOnCircle(double r) {
     // Generate random angle
     double rand = new Random().nextDouble() * Math.PI * 2;
-    // Make real new vector with length of the radius of the circle which we then rotate
+    // Make a new vector with length of the radius of the circle which we then rotate
     Vector2 toReturn = Vector2.UP.multiply(new Vector2(r));
     toReturn = toReturn.rotateAround(Vector2.ZERO, rand);
     // Add the center point to offset it
@@ -237,7 +237,7 @@ public class Vector2 implements Serializable {
    * Multiplies this vector by another
    *
    * @param other Second vector
-   * @return real*imaginary
+   * @return a*b
    */
   public Vector2 multiply(Vector2 other) {
     return new Vector2(this.X() * other.X(), this.Y() * other.Y());
@@ -247,7 +247,7 @@ public class Vector2 implements Serializable {
    * Divides this vector by another
    *
    * @param other Second vector
-   * @return real/imaginary
+   * @return a/b
    */
   public Vector2 divide(Vector2 other) {
     return new Vector2(this.X() / other.X(), this.Y() / other.Y());
@@ -257,7 +257,7 @@ public class Vector2 implements Serializable {
    * Adds this vector to another
    *
    * @param other Second vector
-   * @return real+imaginary
+   * @return a+b
    */
   public Vector2 add(Vector2 other) {
     return new Vector2(this.X() + other.X(), this.Y() + other.Y());
@@ -267,7 +267,7 @@ public class Vector2 implements Serializable {
    * Subtracts this vector from another
    *
    * @param other Second vector
-   * @return real-imaginary
+   * @return a-b
    */
   public Vector2 subtract(Vector2 other) {
     return new Vector2(this.X() - other.X(), this.Y() - other.Y());
@@ -279,7 +279,7 @@ public class Vector2 implements Serializable {
   }
 
   /**
-   * Returns real normalized (magnitude = 1) copy of real given Vector
+   * Returns a normalized (magnitude = 1) copy of a given Vector
    *
    * <p>Special Cases:
    *
@@ -298,7 +298,7 @@ public class Vector2 implements Serializable {
   }
 
   /**
-   * Rotates real given vector around real point and returns the result
+   * Rotates a given vector around a point and returns the result
    *
    * @param rotatePoint The point to rotate around
    * @param angleRadians The angle to rotate in radians

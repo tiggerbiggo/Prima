@@ -52,7 +52,7 @@ public class SafeImage implements Serializable {
   public Vector2 sizeAsVector(){return new Vector2(width, height);}
 
   public Vector2 denormVector(Vector2 in){
-    return Vector2.multiply(in, sizeAsVector());
+    return in.multiply(sizeAsVector());
   }
 
   /**
