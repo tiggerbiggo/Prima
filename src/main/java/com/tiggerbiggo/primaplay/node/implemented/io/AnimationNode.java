@@ -25,7 +25,7 @@ public class AnimationNode extends NodeInOut {
       @Override
       public Vector2[] get(RenderParams p) {
         Vector2 start = toAnimate.get(p);
-        int num = p.n();
+        int num = p.frameNum();
 
         Vector2[] toReturn = new Vector2[num];
         for (int i = 0; i < num; i++) {

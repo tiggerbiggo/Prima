@@ -21,12 +21,12 @@ public class SuperSampleNode extends NodeInOut {
     output = new ColorArrayOutputLink() {
       @Override
       public Color[] get(RenderParams p) {
-        RenderParams p2 = new RenderParams(p.width() * factor, p.height() * factor, 0, 0, p.n());
+        RenderParams p2 = new RenderParams(p.width() * factor, p.height() * factor, 0, 0, p.frameNum());
 
         double[] r, g, b;
-        r = new double[p.n()];
-        g = new double[p.n()];
-        b = new double[p.n()];
+        r = new double[p.frameNum()];
+        g = new double[p.frameNum()];
+        b = new double[p.frameNum()];
         for (int i = 0; i < factor; i++) {
           for (int j = 0; j < factor; j++) {
             p2.setX((p.x() * factor) + i);
@@ -49,7 +49,7 @@ public class SuperSampleNode extends NodeInOut {
 
         int fac2 = factor * factor;
 
-        Color[] toReturn = new Color[p.n()];
+        Color[] toReturn = new Color[p.frameNum()];
         for (int i = 0; i < toReturn.length; i++) {
           toReturn[i] = new Color(
               (int) (r[i] / fac2),

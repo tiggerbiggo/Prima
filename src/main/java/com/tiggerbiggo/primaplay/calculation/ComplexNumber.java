@@ -22,15 +22,15 @@ public class ComplexNumber {
     return new Vector2(this);
   }
 
-  public static ComplexNumber add(ComplexNumber A, ComplexNumber B) {
-    return new ComplexNumber(A.real + B.real, A.imaginary + B.imaginary);
+  public ComplexNumber add(ComplexNumber B) {
+    return new ComplexNumber(real + B.real, imaginary + B.imaginary);
   }
 
-  public static ComplexNumber multiply(ComplexNumber A, ComplexNumber B) {
+  public ComplexNumber multiply(ComplexNumber B) {
     double a, b, c, d, r, i;
 
-    a = A.real;
-    b = A.imaginary;
+    a = real;
+    b = imaginary;
 
     c = B.real;
     d = B.imaginary;
@@ -40,6 +40,15 @@ public class ComplexNumber {
 
     return new ComplexNumber(r, i);
   }
+
+  public ComplexNumber power(int powerOf) {
+    ComplexNumber c = this.clone();
+    ComplexNumber c2 = this.clone();
+    for (int i = 0; i < powerOf; i++) {
+      c2 = c.multiply(c2);
+    }
+    return this;
+  }
   /*
   (real+bi)(c+di)
   ac + adi + bci + bdi^2
@@ -48,4 +57,8 @@ public class ComplexNumber {
   complex = ad + bc
   *
   * */
+
+  public ComplexNumber clone() {
+    return new ComplexNumber(real, imaginary);
+  }
 }

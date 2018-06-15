@@ -123,6 +123,8 @@ public class Vector2 implements Serializable {
     return (int) y;
   }
 
+  public double xy(){return x + y;}
+
   public ComplexNumber asComplex() {
     return new ComplexNumber(this);
   }

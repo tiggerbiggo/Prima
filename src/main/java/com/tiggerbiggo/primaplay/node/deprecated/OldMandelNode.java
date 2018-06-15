@@ -1,4 +1,4 @@
-package com.tiggerbiggo.primaplay.node.implemented.io;
+package com.tiggerbiggo.primaplay.node.deprecated;
 
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
@@ -6,12 +6,13 @@ import com.tiggerbiggo.primaplay.node.core.NodeInOut;
 import com.tiggerbiggo.primaplay.node.link.type.VectorInputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorOutputLink;
 
-public class MandelNode extends NodeInOut {
+@Deprecated
+public class OldMandelNode extends NodeInOut {
 
   int iterations;
   double multiplier;
 
-  public MandelNode(int iterations, double multiplier) {
+  public OldMandelNode(int iterations, double multiplier) {
     this.iterations = iterations;
     this.multiplier = multiplier;
 
@@ -55,11 +56,10 @@ public class MandelNode extends NodeInOut {
         return Vector2.ZERO;
       }
     };
-
     addOutput(out);
   }
 
-  public MandelNode() {
+  public OldMandelNode() {
     this(300, 0.1);
   }
 
