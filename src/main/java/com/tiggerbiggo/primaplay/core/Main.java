@@ -13,11 +13,12 @@ import com.tiggerbiggo.primaplay.node.implemented.io.CombineNode;
 import com.tiggerbiggo.primaplay.node.implemented.io.ImageListNode;
 import com.tiggerbiggo.primaplay.node.implemented.io.SuperSampleNode;
 import com.tiggerbiggo.primaplay.node.implemented.io.TransformNode;
+import com.tiggerbiggo.primaplay.node.implemented.io.iterative.MandelNode;
 
 public class Main {
 
   public static void main(String[] args) {
-    SafeImage[] imgs = ImageTools.toSafeImage(FileManager.getImgsFromFolder("imgs/cookie/", true));
+    SafeImage[] imgs = ImageTools.toSafeImage(FileManager.getImgsFromFolder("imgs/cookie2/", true));
 
     INodeHasOutput o;
     INodeHasInput i;
@@ -25,11 +26,12 @@ public class Main {
     //o = new MapGenNode(new Vector2(0.015625, -1.757813),new Vector2(0.019531, -1.753906));
 
     o = new MapGenNode(Vector2.MINUSTWO, Vector2.TWO);
+    o = new CombineNode(CombineNode.MUL, o, new ConstNode(2));
 
-    //o = chain(o, new MandelNode(300, 0.008));
+    //o = chain(o, new MandelNode(300, 0.5));
 
     o = chain(o, new TransformNode(TransformNode.SINSIN));
-    o = new CombineNode(CombineNode.MUL, o, new ConstNode(0.2));
+    o = new CombineNode(CombineNode.MUL, o, new ConstNode(2));
     o = chain(o, new AnimationNode());
     o = chain(o,0, new ImageListNode(imgs),1);
     o = chain(o, new SuperSampleNode(2));
@@ -38,7 +40,7 @@ public class Main {
     BasicRenderNode render = new BasicRenderNode();
     render.link(o);
 
-    FileManager.writeGif(render.render(300, 169, 60), "animm");
+    FileManager.writeGif(render.render(imgs[0].getWidth(), imgs[0].getHeight(), 60), "cookie3");
   }
 
   public static INodeHasOutput chain(INodeHasOutput o, int oI, INodeHasInput i, int iI) {
