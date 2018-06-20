@@ -24,7 +24,7 @@ public class GNode extends Rectangle {
   private List<GInputLink> inputs;
   private List<GOutputLink> outputs;
 
-  public GNode(int width, int height, INode node, Pane toAdd){
+  public GNode(int width, int height, int x, int y, INode node, Pane toAdd){
     super();
 
     //setHeight(50);
@@ -34,6 +34,9 @@ public class GNode extends Rectangle {
 
     setWidth(width);
     setHeight(height);
+
+    setX(x);
+    setY(y);
 
     Vector2 scene = new Vector2();
     Vector2 translate = new Vector2();
@@ -48,11 +51,13 @@ public class GNode extends Rectangle {
 
       for(GInputLink i : inputs){
         i.updatePosition(posAsVector());
+        i.updateLinePos();
         i.toFront();
       }
 
       for(GOutputLink o : outputs){
         o.updatePosition(posAsVector());
+        o.updateLinePos();
         o.toFront();
       }
     });
@@ -63,7 +68,7 @@ public class GNode extends Rectangle {
         InputLink<?>[] inputs = ((INodeHasInput) node).getInputs();
         for (int i = 0; i < inputs.length; i++) {
           InputLink<?> link = inputs[i];
-          GInputLink tmp = new GInputLink(link, new Vector2(0, LINK_Y+(i*LINK_Y)));
+          GInputLink tmp = new GInputLink(link, new Vector2(0, LINK_Y+(i*LINK_Y)), toAdd);
           tmp.updatePosition(posAsVector());
           this.inputs.add(tmp);
           toAdd.getChildren().add(tmp);
@@ -75,7 +80,7 @@ public class GNode extends Rectangle {
         OutputLink<?>[] outputs = ((INodeHasOutput) node).getOutputs();
         for (int i = 0; i < outputs.length; i++) {
           OutputLink<?> link = outputs[i];
-          GOutputLink tmp = new GOutputLink(link, new Vector2(getWidth(), LINK_Y + (i * LINK_Y)));
+          GOutputLink tmp = new GOutputLink(link, new Vector2(getWidth(), LINK_Y + (i * LINK_Y)), toAdd);
           tmp.updatePosition(posAsVector());
           this.outputs.add(tmp);
           toAdd.getChildren().add(tmp);

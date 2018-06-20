@@ -7,19 +7,24 @@ import com.tiggerbiggo.primaplay.node.link.type.ColorArrayInputLink;
 import com.tiggerbiggo.primaplay.node.link.type.NumberArrayInputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorArrayInputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorInputLink;
+import java.util.Objects;
 import javafx.event.EventHandler;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 
 public class GInputLink extends GLink {
   InputLink<?> link;
-
+  private GLinkLine line;
   Vector2 position;
+  private final Pane parent;
 
-  public GInputLink(InputLink<?> in, Vector2 position){
+  public GInputLink(InputLink<?> in, Vector2 position, Pane parent){
     link = in;
+    this.parent = Objects.requireNonNull(parent);
 
     if(link instanceof ColorArrayInputLink){
       setFill(Color.YELLOW);
@@ -39,23 +44,56 @@ public class GInputLink extends GLink {
 
     setPosition(position);
 
-    setOnDragDropped(new EventHandler<DragEvent>() {
-      @Override
-      public void handle(DragEvent event) {
-        event.acceptTransferModes(TransferMode.LINK);
-
-        System.out.println("DROPPED");
-
-        event.consume();
+    setOnDragDropped(event -> {
+      GOutputLink source;
+      if(event.getGestureSource() instanceof GOutputLink){
+        source = (GOutputLink)event.getGestureSource();
+        if(link(source)){
+          if(line != null){
+            line.delete();
+          }
+          this.parent.getChildren().add(new GLinkLine(this, source, this.parent));
+        }
       }
+      updatePosition();
+      updateLinePos();
     });
   }
 
-  public boolean link(OutputLink<?> out){
-    return link.link(out);
+  @Override
+  public void updatePosition(Vector2 offset) {
+    super.updatePosition(offset);
+  }
+
+  public void updateLinePos(){
+    if (line != null)
+      line.updatePositions();
+  }
+
+  public boolean link(GOutputLink out){
+    if(link.link(out.getLink())){
+      if(line != null){
+        line.delete();
+      }
+      parent.getChildren().add(new GLinkLine(this, out, parent));
+      return true;
+    }
+    return false;
   }
 
   public InputLink<?> getLink() {
     return link;
+  }
+
+  public GLinkLine getLine(){
+    return line;
+  }
+
+  public void forgetLine(){
+    line = null;
+  }
+
+  public void setLine(GLinkLine line){
+    this.line = Objects.requireNonNull(line);
   }
 }

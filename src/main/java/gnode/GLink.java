@@ -6,6 +6,7 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 
 public abstract class GLink extends Circle{
   private Vector2 position, last;
@@ -31,20 +32,7 @@ public abstract class GLink extends Circle{
     setOnDragExited(event -> setEffect(null));
 
     setOnDragOver(event -> {
-      System.out.println("before: " + event.getAcceptedTransferMode());
       event.acceptTransferModes(TransferMode.MOVE);
-      System.out.println("after" + event.getAcceptedTransferMode());
-    });
-
-    setOnDragDropped(event -> {
-      System.out.println("TRIGGERED: " + event.getGestureSource());
-      GLink source;
-      if(event.getGestureSource() instanceof GLink){
-        System.out.println("yes");
-        source = (GLink)event.getGestureSource();
-        source.updatePosition();
-      }
-      updatePosition();
     });
   }
 
@@ -66,5 +54,9 @@ public abstract class GLink extends Circle{
   public void updatePosition(){
     if(last == null) last = Vector2.ZERO;
     updatePosition(last);
+  }
+
+  public Vector2 getWorldPosition(){
+    return new Vector2(getCenterX(), getCenterY());
   }
 }
