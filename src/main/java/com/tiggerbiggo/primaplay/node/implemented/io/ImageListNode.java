@@ -1,17 +1,16 @@
 package com.tiggerbiggo.primaplay.node.implemented.io;
 
-import com.tiggerbiggo.primaplay.calculation.Calculation;
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
 import com.tiggerbiggo.primaplay.graphics.ColorTools;
+import com.tiggerbiggo.primaplay.graphics.ImageTools;
 import com.tiggerbiggo.primaplay.graphics.SafeImage;
 import com.tiggerbiggo.primaplay.node.core.NodeInOut;
-import com.tiggerbiggo.primaplay.node.implemented.MapGenNode;
 import com.tiggerbiggo.primaplay.node.implemented.NodeFactory;
 import com.tiggerbiggo.primaplay.node.link.type.ColorArrayOutputLink;
-import com.tiggerbiggo.primaplay.node.link.type.NumberArrayOutputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorArrayInputLink;
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.List;
 
@@ -72,6 +71,10 @@ public class ImageListNode extends NodeInOut{
 
   public ImageListNode(SafeImage ... imgs){
     this(Arrays.asList(imgs));
+  }
+
+  public ImageListNode(BufferedImage... imgs) {
+    this(ImageTools.toSafeImage(imgs));
   }
 
   @Override
