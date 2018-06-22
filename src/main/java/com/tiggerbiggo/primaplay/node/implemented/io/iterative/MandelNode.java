@@ -2,14 +2,25 @@ package com.tiggerbiggo.primaplay.node.implemented.io.iterative;
 
 import com.tiggerbiggo.primaplay.calculation.ComplexNumber;
 import com.tiggerbiggo.primaplay.calculation.Vector2;
+import com.tiggerbiggo.primaplay.core.RenderParams;
 
 public class MandelNode extends IterativeNode {
 
   double multiplier;
 
   public MandelNode(int iter, double multiplier) {
-    super(iter, Vector2.ZERO);
+    super(iter, Vector2.ONE);
     this.multiplier = multiplier;
+  }
+
+  @Override
+  public Vector2 initZ(RenderParams p) {
+    return Vector2.ZERO;
+  }
+
+  @Override
+  public Vector2 initC(RenderParams p) {
+    return in.get(p);
   }
 
   @Override
@@ -28,6 +39,7 @@ public class MandelNode extends IterativeNode {
 
   @Override
   public Vector2 onEscape(Vector2 in, int currentIteration) {
+    System.out.println("Escape");
     double smooth = (currentIteration + 1.0) - Math.log(Math.log(in.magnitude())) / Math.log(2);
 
     return new Vector2(smooth * multiplier);
@@ -35,6 +47,7 @@ public class MandelNode extends IterativeNode {
 
   @Override
   public Vector2 onBound(Vector2 in, int currentIteration) {
+    //System.out.println("Bound");
     return in;
   }
 

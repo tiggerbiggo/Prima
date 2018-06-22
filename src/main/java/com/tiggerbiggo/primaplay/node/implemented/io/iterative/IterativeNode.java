@@ -21,8 +21,8 @@ public abstract class IterativeNode extends NodeInOut {
     out = new VectorOutputLink() {
       @Override
       public Vector2 get(RenderParams p) {
-        Vector2 z = Vector2.ZERO;
-        Vector2 c = _c;
+        Vector2 z = initZ(p);
+        Vector2 c = initC(p);
         for (int i = 0; i < iter; i++) {
           z = transform(z, c);
           if (escapeCheck(z)) {
@@ -35,6 +35,9 @@ public abstract class IterativeNode extends NodeInOut {
     addOutput(out);
   }
 
+  public abstract Vector2 initZ(RenderParams p);
+
+  public abstract Vector2 initC(RenderParams p);
 
   public abstract Vector2 transform(Vector2 z, Vector2 c);
 

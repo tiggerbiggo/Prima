@@ -2,6 +2,7 @@ package com.tiggerbiggo.primaplay.node.implemented.io.iterative;
 
 import com.tiggerbiggo.primaplay.calculation.ComplexNumber;
 import com.tiggerbiggo.primaplay.calculation.Vector2;
+import com.tiggerbiggo.primaplay.core.RenderParams;
 
 public class ComplexNode extends IterativeNode {
 
@@ -20,6 +21,16 @@ public class ComplexNode extends IterativeNode {
 
   public ComplexNode(int iter) {
     this(iter, ZSQUARED, 0.1, new ComplexNumber(0.00003, -0.00000044));
+  }
+
+  @Override
+  public Vector2 initZ(RenderParams p) {
+    return Vector2.ZERO;
+  }
+
+  @Override
+  public Vector2 initC(RenderParams p) {
+    return in.get(p);
   }
 
   @Override

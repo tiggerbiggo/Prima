@@ -28,14 +28,14 @@ public class Main {
 
     //o = new MapGenNode(new Vector2(0.015625, -1.757813),new Vector2(0.019531, -1.753906));
 
-    o = new MapGenNode(Vector2.ZERO, Vector2.ONE);
+    o = new MapGenNode(Vector2.MINUSTWO, Vector2.TWO);
     //o = new CombineNode(CombineNode.MUL, o, new ConstNode(2));
 
-    //o = chain(o, new MandelNode(300, 0.5));
+    o = chain(o, new MandelNode(300, 0.1));
 
     //o = chain(o, new TransformNode(TransformNode.SINSIN));
     //o = new CombineNode(CombineNode.MUL, o, new ConstNode(2));
-    o = chain(o, new AnimationNode(AnimationNode.STILL));
+    o = chain(o, new AnimationNode());
     //o = chain(o,0, new ImageListNode(imgs),1);
     //o = chain(o, new SuperSampleNode(2));
 
