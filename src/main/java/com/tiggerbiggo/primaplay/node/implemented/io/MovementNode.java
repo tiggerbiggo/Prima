@@ -38,4 +38,14 @@ public class MovementNode extends NodeInOut {
     };
     addOutput(out);
   }
+
+  @Override
+  public String getName() {
+    return "Movement Node";
+  }
+
+  @Override
+  public String getDescription() {
+    return "Iteratively moves the input vector across the vector field.";
+  }
 }

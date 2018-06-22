@@ -50,4 +50,14 @@ public class AnimationNode extends NodeInOut {
   public static final Function<Double, Vector2> REVERSE = (i) -> new Vector2(
       Calculation.modLoop(i, true));
   public static final Function<Double, Vector2> STILL = (i) -> new Vector2(0);
+
+  @Override
+  public String getName() {
+    return "Animation Node";
+  }
+
+  @Override
+  public String getDescription() {
+    return "Animates given input vector to produce animated array of vectors.";
+  }
 }

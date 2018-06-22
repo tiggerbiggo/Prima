@@ -62,5 +62,15 @@ public class ComplexNode extends IterativeNode {
       return c.multiply(z.add(c.multiply(z.add(c))));
     }
   };
+
+  @Override
+  public String getName() {
+    return "Complex Node";
+  }
+
+  @Override
+  public String getDescription() {
+    return "Processes complex iterative functions";
+  }
 }
 

@@ -31,4 +31,14 @@ public class PixelMapNode extends NodeHasOutput {
     }
     return new PixelMapNode(map);
   }
+
+  @Override
+  public String getName() {
+    return "Pixel Map Node";
+  }
+
+  @Override
+  public String getDescription() {
+    return "Uses a Pixel Map to sample from, effectively a pre-set image.";
+  }
 }

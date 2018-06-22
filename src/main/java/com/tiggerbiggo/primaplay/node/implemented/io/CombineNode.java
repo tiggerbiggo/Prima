@@ -46,4 +46,14 @@ public class CombineNode extends NodeInOut {
   public static BiFunction<Vector2, Vector2, Vector2> SUB = Vector2::subtract;
   public static BiFunction<Vector2, Vector2, Vector2> MUL = Vector2::multiply;
   public static BiFunction<Vector2, Vector2, Vector2> DIV = Vector2::divide;
+
+  @Override
+  public String getName() {
+    return "Combine Node";
+  }
+
+  @Override
+  public String getDescription() {
+    return "Combines 2 vectors using some function to produce another vector.";
+  }
 }
