@@ -111,6 +111,10 @@ public class SafeImage implements Serializable {
     return img.getHeight();
   }
 
+  public BufferedImage getImg() {
+    return img;
+  }
+
   public Vector2 getDimensions(){return new Vector2(getWidth(), getHeight());}
 
   private void writeObject(ObjectOutputStream out) throws IOException {

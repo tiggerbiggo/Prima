@@ -3,6 +3,8 @@ package com.tiggerbiggo.primaplay.graphics;
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
 
 public class ImageTools {
   public static Color colorFromPosition(SafeImage img, Vector2 pos){
@@ -41,5 +43,36 @@ public class ImageTools {
       toReturn[i] = new SafeImage(imgs[i]);
     }
     return toReturn;
+  }
+
+  public static BufferedImage[] toBufferedImage(SafeImage[] imgs){
+    BufferedImage[] toReturn = new BufferedImage[imgs.length];
+    for(int i=0; i<imgs.length; i++){
+      toReturn[i] = imgs[i].getImg();
+    }
+    return toReturn;
+  }
+
+  public static BufferedImage toBufferedImage(SafeImage img){
+    return img.getImg();
+  }
+
+  public static Image[] toFXImage(SafeImage[] img){
+    return toFXImage(toBufferedImage(img));
+  }
+
+  public static Image[] toFXImage(BufferedImage[] img){
+    Image[] toReturn = new Image[img.length];
+    for(int i=0; i<img.length; i++){
+      toReturn[i] = toFXImage(img[i]);
+    }
+    return toReturn;
+  }
+
+  public static Image toFXImage(BufferedImage img){
+    return SwingFXUtils.toFXImage(img, null);
+  }
+  public static Image toFXImage(SafeImage img){
+    return toFXImage(toBufferedImage(img));
   }
 }
