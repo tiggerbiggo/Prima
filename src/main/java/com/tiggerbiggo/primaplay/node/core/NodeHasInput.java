@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class NodeHasInput implements INodeHasInput {
+public abstract class NodeHasInput implements INodeHasInput {
 
   List<InputLink<?>> inputs = new ArrayList<>();
 

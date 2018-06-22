@@ -64,4 +64,14 @@ public class MapGenNode implements INodeHasOutput {
   public OutputLink<?> getOutput(int n) {
     return vecOut;
   }
+
+  @Override
+  public String getName() {
+    return "Map Gen Node";
+  }
+
+  @Override
+  public String getDescription() {
+    return "Generates coordinate maps";
+  }
 }

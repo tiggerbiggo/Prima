@@ -33,4 +33,14 @@ public class GradientNode extends NodeInOut {
     };
     addOutput(out);
   }
+
+  @Override
+  public String getName() {
+    return "Gradient Node";
+  }
+
+  @Override
+  public String getDescription() {
+    return "Takes an array of Vectors and turns them into an array of Colors.";
+  }
 }

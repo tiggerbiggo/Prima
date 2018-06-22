@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class NodeHasOutput implements INodeHasOutput {
+public abstract class NodeHasOutput implements INodeHasOutput {
 
   List<OutputLink<?>> outputs = new ArrayList<>();
 

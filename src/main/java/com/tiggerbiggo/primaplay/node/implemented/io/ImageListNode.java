@@ -73,4 +73,14 @@ public class ImageListNode extends NodeInOut{
   public ImageListNode(SafeImage ... imgs){
     this(Arrays.asList(imgs));
   }
+
+  @Override
+  public String getName() {
+    return "Image List Node";
+  }
+
+  @Override
+  public String getDescription() {
+    return "Using a list of images, generates Color output based on position and time vectors.";
+  }
 }

@@ -29,4 +29,14 @@ public class BasicRenderNode extends RenderNode {
   public BufferedImage renderSingle(int width, int height) {
     return Renderer.renderSingle(inputLink, width, height);
   }
+
+  @Override
+  public String getName() {
+    return "Basic Render Node";
+  }
+
+  @Override
+  public String getDescription() {
+    return "Simple renderer. Input color array, no link outputs, only render output.";
+  }
 }

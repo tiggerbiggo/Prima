@@ -45,4 +45,14 @@ public class ConstNode implements INodeHasOutput {
   public OutputLink<?> getOutput(int n) {
     return out;
   }
+
+  @Override
+  public String getName() {
+    return "Constant Node";
+  }
+
+  @Override
+  public String getDescription() {
+    return "Will always return a constant Vector value.";
+  }
 }

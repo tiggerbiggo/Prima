@@ -44,4 +44,13 @@ public class MandelNode extends IterativeNode {
   }
 
 
+  @Override
+  public String getName() {
+    return "Mandel Node";
+  }
+
+  @Override
+  public String getDescription() {
+    return "Performs Mandelbrot iterations on given input.";
+  }
 }

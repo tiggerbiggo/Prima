@@ -69,4 +69,13 @@ public class SuperSampleNode extends NodeInOut {
   }
 
 
+  @Override
+  public String getName() {
+    return "Super Sample Node";
+  }
+
+  @Override
+  public String getDescription() {
+    return "applies supersampling to the image, internally rendering at a larger resolution then downscaling the image for better quality.";
+  }
 }

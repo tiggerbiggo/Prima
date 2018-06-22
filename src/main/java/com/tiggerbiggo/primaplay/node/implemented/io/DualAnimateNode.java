@@ -40,4 +40,14 @@ public class DualAnimateNode extends NodeInOut {
   public DualAnimateNode() {
     this(d -> (Math.sin(d * Math.PI * 2) + 1) / 2);
   }
+
+  @Override
+  public String getName() {
+    return "Dual Animate Node";
+  }
+
+  @Override
+  public String getDescription() {
+    return "Interpolates between 2 input vectors to create an animated output.";
+  }
 }

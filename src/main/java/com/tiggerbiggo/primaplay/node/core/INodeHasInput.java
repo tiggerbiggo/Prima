@@ -2,7 +2,7 @@ package com.tiggerbiggo.primaplay.node.core;
 
 import com.tiggerbiggo.primaplay.node.link.InputLink;
 
-public interface INodeHasInput {
+public interface INodeHasInput extends INode{
 
   InputLink<?>[] getInputs();
 

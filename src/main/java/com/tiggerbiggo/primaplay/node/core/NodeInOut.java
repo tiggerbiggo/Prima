@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class NodeInOut implements INodeHasInput, INodeHasOutput {
+public abstract class NodeInOut implements INodeHasInput, INodeHasOutput {
 
   List<InputLink<?>> inputs = new ArrayList<>();
 

@@ -53,4 +53,14 @@ public class KaliedoNode extends NodeInOut {
   public KaliedoNode(int rotationNum) {
     this(Vector2.ZERO, rotationNum);
   }
+
+  @Override
+  public String getName() {
+    return "Kaliedo Node";
+  }
+
+  @Override
+  public String getDescription() {
+    return "Effectively performs a modulo operation on the rotation value of a given coordinate, creating a kaliedoscope effect.";
+  }
 }

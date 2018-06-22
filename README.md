@@ -1,3 +1,5 @@
+![tomatocado made this](https://cdn.discordapp.com/attachments/272761734820003841/450972471076716545/primaplay.png)
+
 # Prima Play
 A re-written version of my image generation library [Prima](https://github.com/tiggerbiggo/Prima), with extra focus on modularity and ease of use.
 

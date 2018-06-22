@@ -88,4 +88,14 @@ public class TransformNode extends NodeInOut {
   public static final BiFunction<Double, Double, Vector2> SQUAREXY = (x, y) -> {
     return new Vector2(x * x, y * y);
   };
+
+  @Override
+  public String getName() {
+    return "Transform Node";
+  }
+
+  @Override
+  public String getDescription() {
+    return "Transforms a given Vector using a given Function object.";
+  }
 }
