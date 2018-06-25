@@ -2,19 +2,13 @@ package gnode;
 
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.node.link.InputLink;
-import com.tiggerbiggo.primaplay.node.link.OutputLink;
 import com.tiggerbiggo.primaplay.node.link.type.ColorArrayInputLink;
 import com.tiggerbiggo.primaplay.node.link.type.NumberArrayInputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorArrayInputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorInputLink;
 import java.util.Objects;
-import javafx.event.EventHandler;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
 
 public class GInputLink extends GLink {
   InputLink<?> link;
@@ -42,7 +36,7 @@ public class GInputLink extends GLink {
       System.out.println("ERR: " + link);
     }
 
-    setPosition(position);
+    setRelativeOffset(position);
 
     setOnDragDropped(event -> {
       GOutputLink source;

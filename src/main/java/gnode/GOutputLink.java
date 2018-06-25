@@ -9,10 +9,8 @@ import com.tiggerbiggo.primaplay.node.link.type.VectorOutputLink;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 
 public class GOutputLink extends GLink {
   OutputLink<?> link;
@@ -25,7 +23,7 @@ public class GOutputLink extends GLink {
 
   public GOutputLink(OutputLink<?> in, Vector2 position, Pane parent){
     link = in;
-    setPosition(position);
+    setRelativeOffset(position);
     lineList = new ArrayList<>();
 
     this.parent = parent;

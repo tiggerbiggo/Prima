@@ -6,10 +6,9 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
 
 public abstract class GLink extends Circle{
-  private Vector2 position, last;
+  private Vector2 offset, last;
 
   public GLink() { //extends Circle
     super(10);
@@ -36,19 +35,19 @@ public abstract class GLink extends Circle{
     });
   }
 
-  public Vector2 getPosition() {
-    return position;
+  public Vector2 getOffset() {
+    return offset;
   }
 
-  public void setPosition(Vector2 position) {
-    this.position = position;
+  public void setRelativeOffset(Vector2 offset) {
+    this.offset = offset;
   }
 
-  public void updatePosition(Vector2 offset){
-    Vector2 added = offset.add(position);
+  public void updatePosition(Vector2 parentPosition){
+    Vector2 added = parentPosition.add(this.offset);
     setCenterX(added.X());
     setCenterY(added.Y());
-    last = offset.clone();
+    last = parentPosition.clone();
   }
 
   public void updatePosition(){

@@ -34,7 +34,7 @@
     <dependency>
       <groupId>com.github.tiggerbiggo</groupId>
       <artifactId>Primaplay</artifactId>
-      <version>a04d2eea83</version>
+      <version>1042740</version>
     </dependency>
   </dependencies>
 </project>
