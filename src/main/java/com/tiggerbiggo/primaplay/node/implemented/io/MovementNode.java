@@ -15,8 +15,8 @@ public class MovementNode extends NodeInOut {
   @TransferGrid
   private int iter;
 
-  public MovementNode(int iter) {
-    this.iter = iter;
+  public MovementNode(int _iter) {
+    this.iter = _iter;
 
     in = new VectorInputLink();
     addInput(in);

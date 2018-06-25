@@ -22,8 +22,8 @@ public class ImageListNode extends NodeInOut{
 
   ColorArrayOutputLink colOut;
 
-  public ImageListNode(List<SafeImage> imgs){
-    this.imgs = imgs;
+  public ImageListNode(List<SafeImage> _imgs){
+    this.imgs = _imgs;
 
     uvLink = new VectorArrayInputLink();
     uvLink.link(NodeFactory.stillAnim());

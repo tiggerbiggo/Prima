@@ -10,8 +10,8 @@ public class PixelMapNode extends NodeHasOutput {
   VectorOutputLink out;
   PixelMap map;
 
-  public PixelMapNode(PixelMap map) {
-    this.map = map;
+  public PixelMapNode(PixelMap _map) {
+    this.map = _map;
     out = new VectorOutputLink() {
       @Override
       public Vector2 get(RenderParams p) {

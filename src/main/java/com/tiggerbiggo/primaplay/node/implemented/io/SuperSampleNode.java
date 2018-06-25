@@ -15,8 +15,8 @@ public class SuperSampleNode extends NodeInOut {
   @TransferGrid
   private int factor;
 
-  public SuperSampleNode(int factor) {
-    this.factor = factor;
+  public SuperSampleNode(int _factor) {
+    this.factor = _factor;
 
     input = new ColorArrayInputLink();
     addInput(input);

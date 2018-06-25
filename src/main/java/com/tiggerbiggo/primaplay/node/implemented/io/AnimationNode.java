@@ -15,8 +15,8 @@ public class AnimationNode extends NodeInOut {
   private VectorInputLink toAnimate;
   private VectorArrayOutputLink animated;
 
-  public AnimationNode(Function<Double, Vector2> func) {
-    this.func = func;
+  public AnimationNode(Function<Double, Vector2> _func) {
+    this.func = _func;
 
     toAnimate = new VectorInputLink();
     addInput(toAnimate);

@@ -35,7 +35,6 @@ public class MapGenNode implements INodeHasOutput {
 
     dx = bX - aX;
     dy = bY - aY;
-
   }
 
   public void set(Vector2 A, Vector2 B) {

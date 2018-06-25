@@ -18,9 +18,9 @@ public class KaliedoNode extends NodeInOut {
   VectorInputLink map;
   VectorOutputLink out;
 
-  public KaliedoNode(Vector2 rotationPoint, int rotationNum) {
-    this.rotationPoint = rotationPoint;
-    this.rotationNum = rotationNum;
+  public KaliedoNode(Vector2 _rotationPoint, int _rotationNum) {
+    rotationPoint = _rotationPoint;
+    rotationNum = _rotationNum;
 
     map = new VectorInputLink();
     addInput(map);

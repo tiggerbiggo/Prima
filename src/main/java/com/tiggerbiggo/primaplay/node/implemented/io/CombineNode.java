@@ -16,8 +16,8 @@ public class CombineNode extends NodeInOut {
   private VectorOutputLink out;
 
 
-  public CombineNode(CombineFunction func) {
-    this.func = func;
+  public CombineNode(CombineFunction _func) {
+    func = _func;
 
     A = new VectorInputLink();
     B = new VectorInputLink();

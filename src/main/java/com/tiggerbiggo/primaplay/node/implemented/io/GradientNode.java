@@ -16,8 +16,8 @@ public class GradientNode extends NodeInOut {
 
   Gradient g;
 
-  public GradientNode(Gradient in) {
-    g = in;
+  public GradientNode(Gradient _g) {
+    g = _g;
 
     inputLink = new VectorArrayInputLink();
     addInput(inputLink);

@@ -16,8 +16,8 @@ public class TransformNode extends NodeInOut {
   private VectorInputLink input;
   private VectorOutputLink output;
 
-  public TransformNode(TransformFunctions function) {
-    this.function = function;
+  public TransformNode(TransformFunctions _function) {
+    this.function = _function;
     input = new VectorInputLink();
     addInput(input);
 
