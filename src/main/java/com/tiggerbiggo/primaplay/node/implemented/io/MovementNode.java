@@ -1,5 +1,6 @@
 package com.tiggerbiggo.primaplay.node.implemented.io;
 
+import ch.rs.reflectorgrid.TransferGrid;
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
 import com.tiggerbiggo.primaplay.node.core.NodeInOut;
@@ -11,7 +12,8 @@ public class MovementNode extends NodeInOut {
   VectorInputLink in;
   VectorOutputLink out;
 
-  private final int iter;
+  @TransferGrid
+  private int iter;
 
   public MovementNode(int iter) {
     this.iter = iter;

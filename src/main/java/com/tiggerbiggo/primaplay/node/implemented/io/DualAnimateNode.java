@@ -11,6 +11,7 @@ public class DualAnimateNode extends NodeInOut {
 
   VectorInputLink inA, inB;
   VectorArrayOutputLink out;
+
   Function<Double, Double> func;
 
   public DualAnimateNode(Function<Double, Double> func) {

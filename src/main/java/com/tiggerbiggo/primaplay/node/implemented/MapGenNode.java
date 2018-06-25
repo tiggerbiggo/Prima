@@ -1,5 +1,6 @@
 package com.tiggerbiggo.primaplay.node.implemented;
 
+import ch.rs.reflectorgrid.TransferGrid;
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
 import com.tiggerbiggo.primaplay.node.core.INodeHasOutput;
@@ -8,6 +9,7 @@ import com.tiggerbiggo.primaplay.node.link.type.VectorOutputLink;
 
 public class MapGenNode implements INodeHasOutput {
 
+  @TransferGrid
   private double aX, aY, dx, dy;
 
   /**

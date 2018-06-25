@@ -1,5 +1,6 @@
 package com.tiggerbiggo.primaplay.node.implemented.io;
 
+import ch.rs.reflectorgrid.TransferGrid;
 import com.tiggerbiggo.primaplay.core.RenderParams;
 import com.tiggerbiggo.primaplay.node.core.NodeInOut;
 import com.tiggerbiggo.primaplay.node.link.type.ColorArrayInputLink;
@@ -10,6 +11,8 @@ public class SuperSampleNode extends NodeInOut {
 
   ColorArrayInputLink input;
   ColorArrayOutputLink output;
+
+  @TransferGrid
   private int factor;
 
   public SuperSampleNode(int factor) {

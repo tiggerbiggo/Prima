@@ -1,11 +1,13 @@
 package com.tiggerbiggo.primaplay.calculation;
 
+import ch.rs.reflectorgrid.TransferGrid;
 import java.io.Serializable;
 import java.util.Random;
 
 /** Represents a vector in 2D space. Also contains various methods for calculation. */
 public class Vector2 implements Serializable {
 
+  @TransferGrid
   private double x, y;
 
   /**

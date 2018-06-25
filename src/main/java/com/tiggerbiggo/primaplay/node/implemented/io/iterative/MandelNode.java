@@ -1,11 +1,13 @@
 package com.tiggerbiggo.primaplay.node.implemented.io.iterative;
 
+import ch.rs.reflectorgrid.TransferGrid;
 import com.tiggerbiggo.primaplay.calculation.ComplexNumber;
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
 
 public class MandelNode extends IterativeNode {
 
+  @TransferGrid
   double multiplier;
 
   public MandelNode(int iter, double multiplier) {

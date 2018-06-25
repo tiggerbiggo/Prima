@@ -1,5 +1,6 @@
 package com.tiggerbiggo.primaplay.node.implemented.io;
 
+import ch.rs.reflectorgrid.TransferGrid;
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
 import com.tiggerbiggo.primaplay.node.core.NodeInOut;
@@ -8,7 +9,10 @@ import com.tiggerbiggo.primaplay.node.link.type.VectorOutputLink;
 
 public class KaliedoNode extends NodeInOut {
 
+  @TransferGrid
   Vector2 rotationPoint;
+
+  @TransferGrid
   int rotationNum;
 
   VectorInputLink map;
