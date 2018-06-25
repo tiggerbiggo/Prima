@@ -10,12 +10,13 @@ import java.util.function.BiFunction;
 
 public class CombineNode extends NodeInOut {
 
-  private BiFunction<Vector2, Vector2, Vector2> func;
+  private CombineFunction func;
+
   private VectorInputLink A, B;
   private VectorOutputLink out;
 
 
-  public CombineNode(BiFunction<Vector2, Vector2, Vector2> func) {
+  public CombineNode(CombineFunction func) {
     this.func = func;
 
     A = new VectorInputLink();
@@ -31,14 +32,14 @@ public class CombineNode extends NodeInOut {
     addOutput(out);
   }
 
-  public CombineNode(BiFunction<Vector2, Vector2, Vector2> func, INodeHasOutput A, INodeHasOutput B) {
+  public CombineNode(CombineFunction func, INodeHasOutput A, INodeHasOutput B) {
     this(func);
     link(A);
     link(B, 1, 0);
   }
 
   public CombineNode() {
-    this(ADD);
+    this(CombineFunction.ADD);
   }
 
 
@@ -55,5 +56,22 @@ public class CombineNode extends NodeInOut {
   @Override
   public String getDescription() {
     return "Combines 2 vectors using some function to produce another vector.";
+  }
+}
+
+enum CombineFunction {
+  ADD(Vector2::add),
+  SUB(Vector2::subtract),
+  MUL(Vector2::multiply),
+  DIV(Vector2::divide);
+
+  private BiFunction<Vector2, Vector2, Vector2> func;
+
+  CombineFunction(BiFunction<Vector2, Vector2, Vector2> func) {
+    this.func = func;
+  }
+
+  public Vector2 apply(Vector2 A, Vector2 B) {
+    return func.apply(A, B);
   }
 }
