@@ -26,7 +26,7 @@ public class ImageListNode extends NodeInOut{
     this.imgs = _imgs;
 
     uvLink = new VectorArrayInputLink();
-    uvLink.link(NodeFactory.stillAnim());
+    uvLink.link(NodeFactory.stillAnim().getOutput(0));
 
     timeIn = new VectorArrayInputLink();
     addInput(uvLink, timeIn);
