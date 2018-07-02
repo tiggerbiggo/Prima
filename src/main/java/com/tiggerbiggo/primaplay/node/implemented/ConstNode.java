@@ -24,6 +24,7 @@ public class ConstNode implements INodeHasOutput {
     this(value, value);
   }
 
+  public ConstNode(){ this(1); }
 
   public void set(Vector2 toSet) {
     if (toSet != null) {

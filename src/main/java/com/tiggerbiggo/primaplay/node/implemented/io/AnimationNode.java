@@ -3,6 +3,7 @@ package com.tiggerbiggo.primaplay.node.implemented.io;
 import com.tiggerbiggo.primaplay.calculation.Calculation;
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
+import com.tiggerbiggo.primaplay.node.core.INode;
 import com.tiggerbiggo.primaplay.node.core.NodeInOut;
 import com.tiggerbiggo.primaplay.node.link.type.VectorArrayOutputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorInputLink;

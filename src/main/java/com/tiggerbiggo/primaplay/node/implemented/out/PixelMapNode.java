@@ -21,7 +21,11 @@ public class PixelMapNode extends NodeHasOutput {
     addOutput(out);
   }
 
-  public static PixelMapNode square(int x, int y) {
+  public PixelMapNode(){
+    this(square(100,100));
+  }
+
+  public static PixelMap square(int x, int y) {
     PixelMap map = new PixelMap(x, y);
     for (int i = 0; i < x; i++) {
       for (int j = 0; j < y; j++) {
@@ -29,7 +33,7 @@ public class PixelMapNode extends NodeHasOutput {
         map.set(i, j, new Vector2(b, b));
       }
     }
-    return new PixelMapNode(map);
+    return map;
   }
 
   @Override

@@ -3,16 +3,15 @@ package com.tiggerbiggo.primaplay.node.implemented.io;
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
 import com.tiggerbiggo.primaplay.graphics.Gradient;
+import com.tiggerbiggo.primaplay.graphics.HueCycleGradient;
 import com.tiggerbiggo.primaplay.node.core.NodeInOut;
 import com.tiggerbiggo.primaplay.node.link.type.ColorArrayOutputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorArrayInputLink;
 import java.awt.Color;
 
 public class GradientNode extends NodeInOut {
-
   VectorArrayInputLink inputLink;
   ColorArrayOutputLink out;
-
 
   Gradient g;
 
@@ -34,6 +33,10 @@ public class GradientNode extends NodeInOut {
       }
     };
     addOutput(out);
+  }
+
+  public GradientNode(){
+    this(new HueCycleGradient());
   }
 
   @Override

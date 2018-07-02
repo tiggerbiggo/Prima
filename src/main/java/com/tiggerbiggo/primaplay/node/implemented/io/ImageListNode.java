@@ -77,6 +77,10 @@ public class ImageListNode extends NodeInOut{
     this(ImageTools.toSafeImage(imgs));
   }
 
+  public ImageListNode(){
+    this(new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB));
+  }
+
   @Override
   public String getName() {
     return "Image List Node";

@@ -58,6 +58,8 @@ public class KaliedoNode extends NodeInOut {
     this(Vector2.ZERO, rotationNum);
   }
 
+  public KaliedoNode(){this(6); }
+
   @Override
   public String getName() {
     return "Kaliedo Node";
