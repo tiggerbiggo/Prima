@@ -1,44 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
-   <children>
-      <SplitPane dividerPositions="0.5515320334261838" prefHeight="546.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <Pane fx:id="nodeCanvas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="338.0" prefWidth="377.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
+<TitledPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
+  <content>
+    <AnchorPane>
+      <children>
+        <SplitPane dividerPositions="0.298050139275766" prefHeight="546.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+              <children>
+                <Pane fx:id="nodeCanvas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="338.0" prefWidth="377.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+              </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="510.0" prefWidth="187.0">
-               <children>
-                  <GridPane layoutX="7.0" layoutY="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <AnchorPane GridPane.hgrow="ALWAYS">
-                           <children>
-                              <ImageView fx:id="imgView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </GridPane>
-               </children>
+            <AnchorPane maxWidth="500.0" minWidth="100.0">
+              <children>
+                <GridPane layoutX="7.0" layoutY="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                  <children>
+                    <AnchorPane fx:id="anchImageHolder" GridPane.hgrow="ALWAYS">
+                      <children>
+                        <ImageView fx:id="imgView" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                      </children>
+                    </AnchorPane>
+                    <GridPane GridPane.rowIndex="1">
+                      <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      </columnConstraints>
+                      <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      </rowConstraints>
+                      <children>
+                        <Button fx:id="btnSave" mnemonicParsing="false" onAction="#onBtnSave" prefHeight="31.0" prefWidth="357.0" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtFileName" prefHeight="31.0" prefWidth="151.0" promptText="Filename" text="Filename" GridPane.rowIndex="2" />
+                                    <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label prefHeight="21.0" prefWidth="729.0" text="Image Width:" />
+                              <Spinner fx:id="spnWidth" editable="true" prefHeight="9999.0" prefWidth="9999.0" />
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label prefHeight="21.0" prefWidth="749.0" text="Image Height:" />
+                              <Spinner fx:id="spnHeight" editable="true" prefHeight="47.0" prefWidth="592.0" />
+                                       </children>
+                                    </VBox>
+                                    <ComboBox fx:id="comboNodeList" prefHeight="68.0" prefWidth="668.0" GridPane.rowIndex="3" />
+                      <Button mnemonicParsing="false" onAction="#onBtnAddNode" prefHeight="9999.0" prefWidth="526.0" text="Add Node" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                      <Button fx:id="btnPreview" mnemonicParsing="false" onAction="#onBtnPreview" prefHeight="9999.0" prefWidth="404.0" text="Preview" />
+                      </children>
+                    </GridPane>
+                  </children>
+                </GridPane>
+              </children>
             </AnchorPane>
-        </items>
-      </SplitPane>
-   </children>
-</AnchorPane>
+          </items>
+        </SplitPane>
+      </children>
+    </AnchorPane>
+  </content>
+</TitledPane>

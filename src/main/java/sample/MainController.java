@@ -1,9 +1,11 @@
 package sample;
 
+import com.sun.javafx.collections.ObservableListWrapper;
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.FileManager;
 import com.tiggerbiggo.primaplay.graphics.HueCycleGradient;
 import com.tiggerbiggo.primaplay.graphics.ImageTools;
+import com.tiggerbiggo.primaplay.node.core.INode;
 import com.tiggerbiggo.primaplay.node.core.RenderNode;
 import com.tiggerbiggo.primaplay.node.implemented.BasicRenderNode;
 import com.tiggerbiggo.primaplay.node.implemented.MapGenNode;
@@ -21,50 +23,51 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 public class MainController implements Initializable {
-
   @FXML
   private Pane nodeCanvas;
-
   @FXML
   private ImageView imgView;
+  @FXML
+  private Button btnPreview;
+  @FXML
+  private TextField txtFileName;
+  @FXML
+  private AnchorPane anchImageHolder;
+  @FXML
+  private Spinner<Integer> spnWidth, spnHeight;
+  @FXML
+  private ComboBox<Class<? extends INode>> comboNodeList;
+
 
   Image[] imgArray = null;
   int currentImage;
   Timeline timer;
 
+  RenderNode render;
+
   @Override
   public void initialize(URL url, ResourceBundle rb) {
-    nodeCanvas.getChildren().add(new GNode(new TransformNode(), nodeCanvas));
-    nodeCanvas.getChildren().add(new GNode(new MapGenNode(Vector2.MINUSTWO, Vector2.TWO), nodeCanvas));
+    nodeCanvas.getChildren().add(new GNode(new MapGenNode(), nodeCanvas));
     nodeCanvas.getChildren().add(new GNode(new AnimationNode(), nodeCanvas));
     nodeCanvas.getChildren().add(new GNode(new GradientNode(new HueCycleGradient()), nodeCanvas));
-    nodeCanvas.getChildren().add(new GNode(new MandelNode(300, 0.1), nodeCanvas));
-    nodeCanvas.getChildren().add(new GNode(new KaliedoNode(6), nodeCanvas));
-    nodeCanvas.getChildren().add(new GNode(new ImageListNode(FileManager.getImgsFromFolder("imgs")), nodeCanvas));
-
-    RenderNode render = new BasicRenderNode();
-
+    render = new BasicRenderNode();
     nodeCanvas.getChildren().add(new GNode(50, 50, 300, 100, render, nodeCanvas));
-
-    Button b = new Button();
-    b.setOnAction(new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-        imgArray = ImageTools.toFXImage(render.render(100, 100, 60));
-        timer.play();
-      }
-    });
 
     timer = new Timeline(new KeyFrame(Duration.seconds(1.0 / 60),
         e -> {
@@ -79,12 +82,7 @@ public class MainController implements Initializable {
         }
     ));
     timer.setCycleCount(Animation.INDEFINITE);
-
-    b.setMinWidth(50);
-    b.setMinHeight(50);
-    b.setText("Render");
-
-    nodeCanvas.getChildren().add(b);
+    timer.setOnFinished(event -> imgView.setImage(null));
 
     nodeCanvas.setOnDragOver(event -> event.acceptTransferModes(TransferMode.ANY));
     nodeCanvas.setOnDragDropped(event -> {
@@ -95,5 +93,43 @@ public class MainController implements Initializable {
       if (gestureSource instanceof GLink) {
       }
     });
+
+    spnWidth.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(50, 5000, 100, 50));
+    spnHeight
+        .setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(50, 5000, 100, 50));
+
+    comboNodeList.setItems(new ObservableListWrapper<>(NodeList.getAllImplementedNodes()));
+    //imgView.fitWidthProperty().bind(anchImageHolder.widthProperty());
+    //imgView.fitHeightProperty().bind(anchImageHolder.heightProperty());
+  }
+
+  @FXML
+  private void onBtnPreview(ActionEvent e) {
+    if(btnPreview.getText().equals("Preview")) {
+      imgArray = ImageTools.toFXImage(render.render(100, 100, 60));
+      timer.play();
+      btnPreview.setText("Stop");
+    }
+    else
+    {
+      timer.stop();
+      btnPreview.setText("Preview");
+    }
+  }
+
+  @FXML
+  private void onBtnSave(ActionEvent e) {
+    FileManager.writeGif(render.render(spnWidth.getValue(), spnHeight.getValue(), 60),
+        txtFileName.getText());
+  }
+
+  @FXML
+  private void onBtnAddNode(ActionEvent e){
+    try {
+      INode nodeInstance = comboNodeList.getValue().newInstance();
+      nodeCanvas.getChildren().add(new GNode(nodeInstance, nodeCanvas));
+    } catch (InstantiationException | IllegalAccessException ex) {
+      ex.printStackTrace();
+    }
   }
 }

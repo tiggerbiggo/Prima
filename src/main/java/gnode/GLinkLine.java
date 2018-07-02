@@ -5,16 +5,16 @@ import java.util.Objects;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.CubicCurve;
-import javafx.scene.shape.Line;
 
 public class GLinkLine extends CubicCurve {
+
   GInputLink input;
   GOutputLink output;
   Pane parent;
 
   private final double AMNT = 50;
 
-  public GLinkLine(GInputLink input, GOutputLink output, Pane parent){
+  public GLinkLine(GInputLink input, GOutputLink output, Pane parent) {
     this.input = Objects.requireNonNull(input);
     this.output = Objects.requireNonNull(output);
     this.parent = Objects.requireNonNull(parent);
@@ -29,20 +29,20 @@ public class GLinkLine extends CubicCurve {
     updatePositions();
   }
 
-  public void updatePositions(){
+  public void updatePositions() {
     System.out.println("Started.");
     setStartVec(input.getWorldPosition());
     setEndVec(output.getWorldPosition());
   }
 
-  public void setStartVec(Vector2 vec){
+  public void setStartVec(Vector2 vec) {
     setControlX1(vec.X() - AMNT);
     setControlY1(vec.Y());
     setStartX(vec.X());
     setStartY(vec.Y());
   }
 
-  public void setEndVec(Vector2 vec){
+  public void setEndVec(Vector2 vec) {
     setControlX2(AMNT + vec.X());
     setControlY2(vec.Y());
     setEndX(vec.X());
@@ -50,10 +50,9 @@ public class GLinkLine extends CubicCurve {
   }
 
 
-
   //commit sudoku
-  public void delete(){
-    input.forgetLine();
+  public void delete() {
+    input.unlink();
     output.forgetLine(this);
     parent.getChildren().remove(this);
   }

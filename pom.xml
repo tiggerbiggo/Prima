@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>Prima</groupId>
-  <artifactId>Prima View</artifactId>
+  <artifactId>PrimaView</artifactId>
   <version>a0.1</version>
 
   <build>
@@ -28,13 +28,28 @@
       <id>jitpack.io</id>
       <url>https://jitpack.io</url>
     </repository>
+    <repository>
+      <id>central</id>
+      <name>Maven Repository Switchboard</name>
+      <layout>default</layout>
+      <url>http://repo1.maven.org/maven2</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
   </repositories>
 
   <dependencies>
     <dependency>
       <groupId>com.github.tiggerbiggo</groupId>
       <artifactId>Primaplay</artifactId>
-      <version>1042740</version>
+      <version>3314974</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.reflections</groupId>
+      <artifactId>reflections</artifactId>
+      <version>0.9.11</version>
     </dependency>
   </dependencies>
 </project>
