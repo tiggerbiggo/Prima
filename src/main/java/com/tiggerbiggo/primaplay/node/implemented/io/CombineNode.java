@@ -3,13 +3,13 @@ package com.tiggerbiggo.primaplay.node.implemented.io;
 import ch.rs.reflectorgrid.TransferGrid;
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
+import com.tiggerbiggo.primaplay.node.core.INodeHasInput;
 import com.tiggerbiggo.primaplay.node.core.INodeHasOutput;
-import com.tiggerbiggo.primaplay.node.core.NodeInOut;
 import com.tiggerbiggo.primaplay.node.link.type.VectorInputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorOutputLink;
 import java.util.function.BiFunction;
 
-public class CombineNode extends NodeInOut {
+public class CombineNode implements INodeHasInput, INodeHasOutput {
 
   @TransferGrid
   private CombineFunction func;

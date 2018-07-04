@@ -20,7 +20,7 @@ import java.awt.Color;
 
 public class Main {
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Throwable {
     //SafeImage[] imgs = ImageTools.toSafeImage(FileManager.getImgsFromFolder("imgs/cookie2/", true));
 
     INodeHasOutput o;

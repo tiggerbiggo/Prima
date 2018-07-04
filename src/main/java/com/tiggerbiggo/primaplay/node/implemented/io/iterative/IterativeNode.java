@@ -2,11 +2,12 @@ package com.tiggerbiggo.primaplay.node.implemented.io.iterative;
 
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
-import com.tiggerbiggo.primaplay.node.core.NodeInOut;
+import com.tiggerbiggo.primaplay.node.core.INodeHasInput;
+import com.tiggerbiggo.primaplay.node.core.INodeHasOutput;
 import com.tiggerbiggo.primaplay.node.link.type.VectorInputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorOutputLink;
 
-public abstract class IterativeNode extends NodeInOut {
+public abstract class IterativeNode implements INodeHasInput, INodeHasOutput {
 
   VectorInputLink in;
   VectorOutputLink out;

@@ -175,15 +175,27 @@ public class Vector2 implements Serializable {
   }
 
   /**
+   * Linearly interpolates between the 2 vector components
+   * using the x and y components as separate percentage values.
+   *
+   * @param other The vector to lerp between
+   * @param p A vector representing the percentage
+   * @return The calculated vector
+   */
+  public Vector2 lerpVector(Vector2 other, Vector2 p) {
+    return new Vector2(Calculation.lerp(this.x, other.x, p.x), Calculation.lerp(this.y, other.y, p.y));
+  }
+
+  /**
    * Linearly interpolates between 2 vectors given a percentage
    *
-   * @param other The vector to lerp with
+   * @param other The vector to lerp between
    * @param p A double representing the percentage.
    *     <p>0 = 0%, 1 = 100%
    * @return The calculated vector
    */
   public Vector2 lerpVector(Vector2 other, double p) {
-    return new Vector2(Calculation.lerp(this.x, other.x, p), Calculation.lerp(this.y, other.y, p));
+    return lerpVector(other, new Vector2(p));
   }
 
   /**

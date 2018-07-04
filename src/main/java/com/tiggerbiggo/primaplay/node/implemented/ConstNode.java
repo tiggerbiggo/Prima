@@ -12,8 +12,17 @@ public class ConstNode implements INodeHasOutput {
   @TransferGrid
   private Vector2 value;
 
-  public ConstNode(Vector2 value) {
-    this.value = value;
+  private VectorOutputLink out;
+
+  public ConstNode(Vector2 _value) {
+    value = _value;
+    out = new VectorOutputLink() {
+      @Override
+      public Vector2 get(RenderParams p) {
+        return value;
+      }
+    };
+    addOutput(out);
   }
 
   public ConstNode(double x, double y) {
@@ -32,22 +41,7 @@ public class ConstNode implements INodeHasOutput {
     }
   }
 
-  private VectorOutputLink out = new VectorOutputLink() {
-    @Override
-    public Vector2 get(RenderParams p) {
-      return value;
-    }
-  };
 
-  @Override
-  public OutputLink<?>[] getOutputs() {
-    return new OutputLink[]{out};
-  }
-
-  @Override
-  public OutputLink<?> getOutput(int n) {
-    return out;
-  }
 
   @Override
   public String getName() {

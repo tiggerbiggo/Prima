@@ -5,7 +5,8 @@ import com.tiggerbiggo.primaplay.core.RenderParams;
 import com.tiggerbiggo.primaplay.graphics.ColorTools;
 import com.tiggerbiggo.primaplay.graphics.ImageTools;
 import com.tiggerbiggo.primaplay.graphics.SafeImage;
-import com.tiggerbiggo.primaplay.node.core.NodeInOut;
+import com.tiggerbiggo.primaplay.node.core.INodeHasInput;
+import com.tiggerbiggo.primaplay.node.core.INodeHasOutput;
 import com.tiggerbiggo.primaplay.node.implemented.NodeFactory;
 import com.tiggerbiggo.primaplay.node.link.type.ColorArrayOutputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorArrayInputLink;
@@ -14,7 +15,7 @@ import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.List;
 
-public class ImageListNode extends NodeInOut{
+public class ImageListNode implements INodeHasInput, INodeHasOutput {
   List<SafeImage> imgs;
 
   VectorArrayInputLink uvLink;

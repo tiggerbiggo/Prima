@@ -2,12 +2,13 @@ package com.tiggerbiggo.primaplay.node.implemented.io;
 
 import ch.rs.reflectorgrid.TransferGrid;
 import com.tiggerbiggo.primaplay.core.RenderParams;
-import com.tiggerbiggo.primaplay.node.core.NodeInOut;
+import com.tiggerbiggo.primaplay.node.core.INodeHasInput;
+import com.tiggerbiggo.primaplay.node.core.INodeHasOutput;
 import com.tiggerbiggo.primaplay.node.link.type.ColorArrayInputLink;
 import com.tiggerbiggo.primaplay.node.link.type.ColorArrayOutputLink;
 import java.awt.Color;
 
-public class SuperSampleNode extends NodeInOut {
+public class SuperSampleNode implements INodeHasInput, INodeHasOutput {
 
   ColorArrayInputLink input;
   ColorArrayOutputLink output;

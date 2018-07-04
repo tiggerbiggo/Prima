@@ -4,12 +4,13 @@ import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
 import com.tiggerbiggo.primaplay.graphics.Gradient;
 import com.tiggerbiggo.primaplay.graphics.HueCycleGradient;
-import com.tiggerbiggo.primaplay.node.core.NodeInOut;
+import com.tiggerbiggo.primaplay.node.core.INodeHasInput;
+import com.tiggerbiggo.primaplay.node.core.INodeHasOutput;
 import com.tiggerbiggo.primaplay.node.link.type.ColorArrayOutputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorArrayInputLink;
 import java.awt.Color;
 
-public class GradientNode extends NodeInOut {
+public class GradientNode implements INodeHasInput, INodeHasOutput {
   VectorArrayInputLink inputLink;
   ColorArrayOutputLink out;
 

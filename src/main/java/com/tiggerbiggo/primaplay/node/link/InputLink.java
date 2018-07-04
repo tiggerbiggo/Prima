@@ -2,9 +2,6 @@ package com.tiggerbiggo.primaplay.node.link;
 
 import com.tiggerbiggo.primaplay.core.RenderParams;
 import com.tiggerbiggo.primaplay.exception.NotLinkedException;
-import com.tiggerbiggo.primaplay.node.core.INodeHasOutput;
-import com.tiggerbiggo.primaplay.node.core.NodeHasInput;
-import com.tiggerbiggo.primaplay.node.core.NodeHasOutput;
 
 public abstract class InputLink<T> extends Link{
   protected OutputLink<T> currentLink;
