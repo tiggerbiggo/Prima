@@ -13,7 +13,7 @@ public class MandelNode extends IterativeNode {
   double multiplier;
 
   public MandelNode(int iter, double multiplier) {
-    super(iter, Vector2.ONE);
+    super(iter);
     this.multiplier = multiplier;
   }
 
@@ -32,7 +32,7 @@ public class MandelNode extends IterativeNode {
   }
 
   @Override
-  public Vector2 transform(Vector2 _z, Vector2 _c) {
+  public Vector2 transform(Vector2 _z, Vector2 _c, int currentIteration) {
     ComplexNumber z, c;
     z = _z.asComplex();
     c = _c.asComplex();
@@ -60,7 +60,7 @@ public class MandelNode extends IterativeNode {
   }
 
   @Override
-  public boolean escapeCheck(Vector2 z) {
+  public boolean escapeCheck(Vector2 z, int currentIteration) {
     return z.sqMagnitude() > (1 << 16);
   }
 
@@ -73,9 +73,5 @@ public class MandelNode extends IterativeNode {
   @Override
   public String getDescription() {
     return "Performs Mandelbrot iterations on given input.";
-  }
-
-  public void blah(){
-
   }
 }

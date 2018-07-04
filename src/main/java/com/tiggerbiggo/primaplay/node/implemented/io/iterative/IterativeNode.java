@@ -1,5 +1,6 @@
 package com.tiggerbiggo.primaplay.node.implemented.io.iterative;
 
+import ch.rs.reflectorgrid.TransferGrid;
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
 import com.tiggerbiggo.primaplay.node.core.INodeHasInput;
@@ -11,10 +12,12 @@ public abstract class IterativeNode implements INodeHasInput, INodeHasOutput {
 
   VectorInputLink in;
   VectorOutputLink out;
-  int iter;
 
-  public IterativeNode(int iter, Vector2 _c) {
-    this.iter = iter;
+  @TransferGrid
+  private int iter;
+
+  IterativeNode(int _iter) {
+    this.iter = _iter;
 
     in = new VectorInputLink();
     addInput(in);
@@ -25,8 +28,8 @@ public abstract class IterativeNode implements INodeHasInput, INodeHasOutput {
         Vector2 z = initZ(p);
         Vector2 c = initC(p);
         for (int i = 0; i < iter; i++) {
-          z = transform(z, c);
-          if (escapeCheck(z)) {
+          z = transform(z, c, i);
+          if (escapeCheck(z, i)) {
             return onEscape(z, i);
           }
         }
@@ -40,11 +43,11 @@ public abstract class IterativeNode implements INodeHasInput, INodeHasOutput {
 
   public abstract Vector2 initC(RenderParams p);
 
-  public abstract Vector2 transform(Vector2 z, Vector2 c);
+  public abstract Vector2 transform(Vector2 z, Vector2 c, int currentIteration);
 
   public abstract Vector2 onEscape(Vector2 in, int currentIteration);
 
   public abstract Vector2 onBound(Vector2 in, int currentIteration);
 
-  public abstract boolean escapeCheck(Vector2 in);
+  public abstract boolean escapeCheck(Vector2 in, int currentIteration);
 }

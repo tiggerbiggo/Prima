@@ -15,6 +15,7 @@ import com.tiggerbiggo.primaplay.node.implemented.io.GradientNode;
 import com.tiggerbiggo.primaplay.node.implemented.io.ImageListNode;
 import com.tiggerbiggo.primaplay.node.implemented.io.SuperSampleNode;
 import com.tiggerbiggo.primaplay.node.implemented.io.TransformNode;
+import com.tiggerbiggo.primaplay.node.implemented.io.iterative.FourierSeriesNode;
 import com.tiggerbiggo.primaplay.node.implemented.io.iterative.MandelNode;
 import java.awt.Color;
 
@@ -31,7 +32,9 @@ public class Main {
     o = new MapGenNode(Vector2.MINUSTWO, Vector2.TWO);
     //o = new CombineNode(CombineNode.MUL, o, new ConstNode(2));
 
-    o = chain(o, new MandelNode(300, 0.1));
+    o = chain(o, new FourierSeriesNode(5));
+
+    //o = chain(o, new MandelNode(300, 0.1));
 
     //o = chain(o, new TransformNode(TransformNode.SINSIN));
     //o = new CombineNode(CombineNode.MUL, o, new ConstNode(2));
