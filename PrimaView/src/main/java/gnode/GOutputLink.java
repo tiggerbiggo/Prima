@@ -84,8 +84,8 @@ public class GOutputLink extends GLink {
     lineList.remove(toForget);
   }
 
-  public void deleteAllLines(){
-    while(lineList.size() > 0){
+  public void deleteAllLines() {
+    while (lineList.size() > 0) {
       GLinkLine line = lineList.get(0);
       line.delete();
     }

@@ -104,11 +104,11 @@ public class GNode extends AnchorPane {
       delete.setOnAction(new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
-          for(GInputLink i : inputs){
+          for (GInputLink i : inputs) {
             i.deleteLine();
             parent.getChildren().remove(i);
           }
-          for(GOutputLink o : outputs){
+          for (GOutputLink o : outputs) {
             o.deleteAllLines();
             parent.getChildren().remove(o);
           }
@@ -116,10 +116,12 @@ public class GNode extends AnchorPane {
         }
       });
 
-      if(!(node instanceof RenderNode))
-        layoutGrid.addColumn(0, new Text(node.getName()), reflectorGrid.transfromIntoGrid(node), delete);
-      else
+      if (!(node instanceof RenderNode)) {
+        layoutGrid
+            .addColumn(0, new Text(node.getName()), reflectorGrid.transfromIntoGrid(node), delete);
+      } else {
         layoutGrid.addColumn(0, new Text(node.getName()), reflectorGrid.transfromIntoGrid(node));
+      }
 
       toBack();
     } else {

@@ -1,7 +1,6 @@
 package sample;
 
 import com.sun.javafx.collections.ObservableListWrapper;
-import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.FileManager;
 import com.tiggerbiggo.primaplay.graphics.HueCycleGradient;
 import com.tiggerbiggo.primaplay.graphics.ImageTools;
@@ -11,10 +10,6 @@ import com.tiggerbiggo.primaplay.node.implemented.BasicRenderNode;
 import com.tiggerbiggo.primaplay.node.implemented.MapGenNode;
 import com.tiggerbiggo.primaplay.node.implemented.io.AnimationNode;
 import com.tiggerbiggo.primaplay.node.implemented.io.GradientNode;
-import com.tiggerbiggo.primaplay.node.implemented.io.ImageListNode;
-import com.tiggerbiggo.primaplay.node.implemented.io.KaliedoNode;
-import com.tiggerbiggo.primaplay.node.implemented.io.TransformNode;
-import com.tiggerbiggo.primaplay.node.implemented.io.iterative.MandelNode;
 import gnode.GLink;
 import gnode.GNode;
 import java.net.URL;
@@ -25,7 +20,6 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
@@ -39,6 +33,7 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 public class MainController implements Initializable {
+
   @FXML
   private Pane nodeCanvas;
   @FXML
@@ -105,13 +100,11 @@ public class MainController implements Initializable {
 
   @FXML
   private void onBtnPreview(ActionEvent e) {
-    if(btnPreview.getText().equals("Preview")) {
+    if (btnPreview.getText().equals("Preview")) {
       imgArray = ImageTools.toFXImage(render.render(100, 100, 60));
       timer.play();
       btnPreview.setText("Stop");
-    }
-    else
-    {
+    } else {
       timer.stop();
       btnPreview.setText("Preview");
     }
@@ -124,7 +117,7 @@ public class MainController implements Initializable {
   }
 
   @FXML
-  private void onBtnAddNode(ActionEvent e){
+  private void onBtnAddNode(ActionEvent e) {
     try {
       INode nodeInstance = comboNodeList.getValue().newInstance();
       nodeCanvas.getChildren().add(new GNode(nodeInstance, nodeCanvas));

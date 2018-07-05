@@ -21,7 +21,8 @@ public class NodeList {
 
   private static void setNodeList() {
     allImplementedNodes = new ArrayList<>();
-    Set<Class<? extends INode>> classes = new Reflections("com.tiggerbiggo.primaplay.node.implemented").getSubTypesOf(INode.class);
+    Set<Class<? extends INode>> classes = new Reflections(
+        "com.tiggerbiggo.primaplay.node.implemented").getSubTypesOf(INode.class);
     classes.iterator().forEachRemaining(aClass -> {
       if (!Modifier.isAbstract(aClass.getModifiers())) {
         allImplementedNodes.add(aClass);

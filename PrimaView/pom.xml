@@ -4,9 +4,14 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>Prima</groupId>
+  <parent>
+    <groupId>com.tiggerbiggo</groupId>
+    <artifactId>Prima</artifactId>
+    <version>1.0</version>
+  </parent>
+
   <artifactId>PrimaView</artifactId>
-  <version>a0.1</version>
+  <version>1.0</version>
 
   <build>
     <plugins>
@@ -41,9 +46,9 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.github.tiggerbiggo</groupId>
-      <artifactId>Primaplay</artifactId>
-      <version>3314974</version>
+      <groupId>com.tiggerbiggo</groupId>
+      <artifactId>PrimaPlay</artifactId>
+      <version>1.0</version>
     </dependency>
 
     <dependency>
