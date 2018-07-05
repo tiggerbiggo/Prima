@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="Prima:jar">
-    <output-path>$PROJECT_DIR$/../PrimaUI/lib</output-path>
-    <root id="archive" name="Prima.jar">
-      <element id="module-output" name="Prima" />
-    </root>
-  </artifact>
-</component>
