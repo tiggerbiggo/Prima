@@ -5,6 +5,7 @@ import com.tiggerbiggo.primaplay.node.link.Link;
 import com.tiggerbiggo.primaplay.node.link.OutputLink;
 
 public class NumberArrayInputLink extends InputLink<Double[]> {
+
   @Override
   public boolean link(OutputLink toLink) {
     if (canLink(toLink)) {
@@ -16,7 +17,9 @@ public class NumberArrayInputLink extends InputLink<Double[]> {
 
   @Override
   public boolean canLink(Link other) {
-    if(other == null) return false;
+    if (other == null) {
+      return false;
+    }
     return other instanceof NumberArrayOutputLink;
   }
 }

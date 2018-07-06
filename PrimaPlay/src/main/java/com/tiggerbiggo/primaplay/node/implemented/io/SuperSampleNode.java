@@ -25,7 +25,8 @@ public class SuperSampleNode implements INodeHasInput, INodeHasOutput {
     output = new ColorArrayOutputLink() {
       @Override
       public Color[] get(RenderParams p) {
-        RenderParams p2 = new RenderParams(p.width() * factor, p.height() * factor, 0, 0, p.frameNum());
+        RenderParams p2 = new RenderParams(p.width() * factor, p.height() * factor, 0, 0,
+            p.frameNum());
 
         double[] r, g, b;
         r = new double[p.frameNum()];

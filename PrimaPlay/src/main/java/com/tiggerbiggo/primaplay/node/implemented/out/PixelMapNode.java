@@ -21,8 +21,8 @@ public class PixelMapNode implements INodeHasOutput {
     addOutput(out);
   }
 
-  public PixelMapNode(){
-    this(square(100,100));
+  public PixelMapNode() {
+    this(square(100, 100));
   }
 
   public static PixelMap square(int x, int y) {

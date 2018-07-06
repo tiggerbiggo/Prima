@@ -1,21 +1,19 @@
 package com.tiggerbiggo.primaplay.node.implemented;
 
 import ch.rs.reflectorgrid.TransferGrid;
-import com.tiggerbiggo.primaplay.calculation.Calculation;
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
 import com.tiggerbiggo.primaplay.node.core.INodeHasOutput;
-import com.tiggerbiggo.primaplay.node.link.Link;
-import com.tiggerbiggo.primaplay.node.link.OutputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorOutputLink;
 
 public class MapGenNode implements INodeHasOutput {
+
   @TransferGrid
   private Vector2 A, B;
 
   VectorOutputLink mapOut;
 
-  public MapGenNode(Vector2 _A, Vector2 _B){
+  public MapGenNode(Vector2 _A, Vector2 _B) {
     A = _A;
     B = _B;
 
@@ -28,8 +26,8 @@ public class MapGenNode implements INodeHasOutput {
         double height = p.height();
 
         Vector2 percent = new Vector2(
-            x/width,
-            y/height
+            x / width,
+            y / height
         );
         return A.lerpVector(B, percent);
       }
@@ -37,7 +35,7 @@ public class MapGenNode implements INodeHasOutput {
     addOutput(mapOut);
   }
 
-  public MapGenNode(){
+  public MapGenNode() {
     this(Vector2.ZERO, Vector2.ONE);
   }
 

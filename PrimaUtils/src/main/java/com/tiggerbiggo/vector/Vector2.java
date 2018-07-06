@@ -1,6 +1,5 @@
-package com.tiggerbiggo.primaplay.calculation;
+package com.tiggerbiggo.vector;
 
-import ch.rs.reflectorgrid.TransferGrid;
 import java.io.Serializable;
 import java.util.Random;
 
@@ -280,10 +279,6 @@ public class Vector2 implements Serializable {
    */
   public Vector2 add(Vector2 other) {
     return new Vector2(this.X() + other.X(), this.Y() + other.Y());
-  }
-
-  public Vector2 add(double xy) {
-    return add(new Vector2(xy));
   }
 
   /**

@@ -1,6 +1,5 @@
 package com.tiggerbiggo.primaplay.core;
 
-import com.tiggerbiggo.primaplay.graphics.SafeImage;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -9,7 +8,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import javafx.scene.image.Image;
 import javax.imageio.ImageIO;
 import javax.imageio.stream.FileImageOutputStream;
 import javax.imageio.stream.ImageOutputStream;
@@ -81,7 +79,8 @@ public class FileManager {
    * @return An array of images, or null if none are found
    * @throws IllegalArgumentException if dirName is null
    */
-  public static BufferedImage[] getImgsFromFolder(String dirName, boolean sort) throws IllegalArgumentException {
+  public static BufferedImage[] getImgsFromFolder(String dirName, boolean sort)
+      throws IllegalArgumentException {
     try {
       File dir = new File(dirName);
       if (!dir.isDirectory()) {
@@ -112,7 +111,7 @@ public class FileManager {
         return null;
       }
 
-      if(sort)
+      if (sort) {
         imageFiles.sort(new Comparator<File>() {
           @Override
           public int compare(File o1, File o2) {
@@ -126,6 +125,7 @@ public class FileManager {
             return Integer.compare(Integer.parseInt(sA), Integer.parseInt(sB));
           }
         });
+      }
 
       BufferedImage[] toReturn = new BufferedImage[imageFiles.size()];
 
@@ -135,7 +135,8 @@ public class FileManager {
           System.out.println(imageFiles.get(i).getName());
         } catch (IOException | IllegalArgumentException e) {
           System.err
-              .printf("Exception when reading image from file '%s', %s", imageFiles.get(i).toString(),
+              .printf("Exception when reading image from file '%s', %s",
+                  imageFiles.get(i).toString(),
                   e.toString());
           return null;
         }
@@ -151,7 +152,7 @@ public class FileManager {
     return null;
   }
 
-  public static BufferedImage[] getImgsFromFolder(String dirName) throws IllegalArgumentException{
+  public static BufferedImage[] getImgsFromFolder(String dirName) throws IllegalArgumentException {
     return getImgsFromFolder(dirName, false);
   }
 }

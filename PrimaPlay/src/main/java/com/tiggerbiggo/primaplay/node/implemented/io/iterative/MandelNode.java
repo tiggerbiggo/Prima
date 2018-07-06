@@ -4,8 +4,6 @@ import ch.rs.reflectorgrid.TransferGrid;
 import com.tiggerbiggo.primaplay.calculation.ComplexNumber;
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
-import com.tiggerbiggo.primaplay.node.core.INode;
-import sun.reflect.Reflection;
 
 public class MandelNode extends IterativeNode {
 
@@ -17,7 +15,7 @@ public class MandelNode extends IterativeNode {
     this.multiplier = multiplier;
   }
 
-  public MandelNode(){
+  public MandelNode() {
     this(300, 0.1);
   }
 

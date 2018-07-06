@@ -49,9 +49,11 @@ public class SafeImage implements Serializable {
     this.height = height;
   }
 
-  public Vector2 sizeAsVector(){return new Vector2(width, height);}
+  public Vector2 sizeAsVector() {
+    return new Vector2(width, height);
+  }
 
-  public Vector2 denormVector(Vector2 in){
+  public Vector2 denormVector(Vector2 in) {
     return in.multiply(sizeAsVector());
   }
 
@@ -115,7 +117,9 @@ public class SafeImage implements Serializable {
     return img;
   }
 
-  public Vector2 getDimensions(){return new Vector2(getWidth(), getHeight());}
+  public Vector2 getDimensions() {
+    return new Vector2(getWidth(), getHeight());
+  }
 
   private void writeObject(ObjectOutputStream out) throws IOException {
     out.defaultWriteObject();

@@ -5,16 +5,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public interface INodeHasInput extends INode{
+public interface INodeHasInput extends INode {
+
   List<InputLink<?>> inputs = new ArrayList<>();
 
   default void addInput(InputLink<?>... in) {
     inputs.addAll(Arrays.asList(in));
   }
 
-  default InputLink<?>[] getInputs(){return inputs.toArray(new InputLink[]{});}
+  default InputLink<?>[] getInputs() {
+    return inputs.toArray(new InputLink[]{});
+  }
 
-  default InputLink<?> getInput(int n){return inputs.get(n);}
+  default InputLink<?> getInput(int n) {
+    return inputs.get(n);
+  }
 
   default InputLink<?> getInput() {
     return getInput(0);

@@ -4,7 +4,6 @@ import ch.rs.reflectorgrid.TransferGrid;
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
 import com.tiggerbiggo.primaplay.node.core.INodeHasOutput;
-import com.tiggerbiggo.primaplay.node.link.OutputLink;
 import com.tiggerbiggo.primaplay.node.link.type.VectorOutputLink;
 
 public class ConstNode implements INodeHasOutput {
@@ -33,14 +32,15 @@ public class ConstNode implements INodeHasOutput {
     this(value, value);
   }
 
-  public ConstNode(){ this(1); }
+  public ConstNode() {
+    this(1);
+  }
 
   public void set(Vector2 toSet) {
     if (toSet != null) {
       value = toSet;
     }
   }
-
 
 
   @Override

@@ -3,7 +3,8 @@ package com.tiggerbiggo.primaplay.node.implemented.io.iterative;
 import com.tiggerbiggo.primaplay.calculation.Vector2;
 import com.tiggerbiggo.primaplay.core.RenderParams;
 
-public class FourierSeriesNode extends IterativeNode{
+public class FourierSeriesNode extends IterativeNode {
+
   public FourierSeriesNode(int iter) {
     super(iter);
   }
@@ -20,7 +21,7 @@ public class FourierSeriesNode extends IterativeNode{
 
   @Override
   public Vector2 transform(Vector2 z, Vector2 c, int currentIteration) {
-    return z.add(Math.sin(c.magnitude()*currentIteration));
+    return z.add(Math.sin(c.magnitude() * currentIteration));
   }
 
   @Override

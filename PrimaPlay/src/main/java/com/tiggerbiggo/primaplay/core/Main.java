@@ -1,22 +1,14 @@
 package com.tiggerbiggo.primaplay.core;
 
 import com.tiggerbiggo.primaplay.calculation.Vector2;
-import com.tiggerbiggo.primaplay.graphics.ImageTools;
-import com.tiggerbiggo.primaplay.graphics.SafeImage;
 import com.tiggerbiggo.primaplay.graphics.SimpleGradient;
 import com.tiggerbiggo.primaplay.node.core.INodeHasInput;
 import com.tiggerbiggo.primaplay.node.core.INodeHasOutput;
 import com.tiggerbiggo.primaplay.node.implemented.BasicRenderNode;
-import com.tiggerbiggo.primaplay.node.implemented.ConstNode;
 import com.tiggerbiggo.primaplay.node.implemented.MapGenNode;
 import com.tiggerbiggo.primaplay.node.implemented.io.AnimationNode;
-import com.tiggerbiggo.primaplay.node.implemented.io.CombineNode;
 import com.tiggerbiggo.primaplay.node.implemented.io.GradientNode;
-import com.tiggerbiggo.primaplay.node.implemented.io.ImageListNode;
-import com.tiggerbiggo.primaplay.node.implemented.io.SuperSampleNode;
-import com.tiggerbiggo.primaplay.node.implemented.io.TransformNode;
 import com.tiggerbiggo.primaplay.node.implemented.io.iterative.FourierSeriesNode;
-import com.tiggerbiggo.primaplay.node.implemented.io.iterative.MandelNode;
 import java.awt.Color;
 
 public class Main {

@@ -7,7 +7,8 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 
 public class ImageTools {
-  public static Color colorFromPosition(SafeImage img, Vector2 pos){
+
+  public static Color colorFromPosition(SafeImage img, Vector2 pos) {
     //denormalise the input vector
     pos = pos.multiply(img.getDimensions());
 
@@ -25,9 +26,9 @@ public class ImageTools {
     Color A, B, C, D;
 
     A = img.getColor(x, y);
-    B = img.getColor(x+1, y);
-    C = img.getColor(x, y+1);
-    D = img.getColor(x+1, y+1);
+    B = img.getColor(x + 1, y);
+    C = img.getColor(x, y + 1);
+    D = img.getColor(x + 1, y + 1);
 
     Color L, R;
 
@@ -37,42 +38,43 @@ public class ImageTools {
     return ColorTools.colorAvg(L, R);
   }
 
-  public static SafeImage[] toSafeImage(BufferedImage[] imgs){
+  public static SafeImage[] toSafeImage(BufferedImage[] imgs) {
     SafeImage[] toReturn = new SafeImage[imgs.length];
-    for(int i=0; i<imgs.length; i++){
+    for (int i = 0; i < imgs.length; i++) {
       toReturn[i] = new SafeImage(imgs[i]);
     }
     return toReturn;
   }
 
-  public static BufferedImage[] toBufferedImage(SafeImage[] imgs){
+  public static BufferedImage[] toBufferedImage(SafeImage[] imgs) {
     BufferedImage[] toReturn = new BufferedImage[imgs.length];
-    for(int i=0; i<imgs.length; i++){
+    for (int i = 0; i < imgs.length; i++) {
       toReturn[i] = imgs[i].getImg();
     }
     return toReturn;
   }
 
-  public static BufferedImage toBufferedImage(SafeImage img){
+  public static BufferedImage toBufferedImage(SafeImage img) {
     return img.getImg();
   }
 
-  public static Image[] toFXImage(SafeImage[] img){
+  public static Image[] toFXImage(SafeImage[] img) {
     return toFXImage(toBufferedImage(img));
   }
 
-  public static Image[] toFXImage(BufferedImage[] img){
+  public static Image[] toFXImage(BufferedImage[] img) {
     Image[] toReturn = new Image[img.length];
-    for(int i=0; i<img.length; i++){
+    for (int i = 0; i < img.length; i++) {
       toReturn[i] = toFXImage(img[i]);
     }
     return toReturn;
   }
 
-  public static Image toFXImage(BufferedImage img){
+  public static Image toFXImage(BufferedImage img) {
     return SwingFXUtils.toFXImage(img, null);
   }
-  public static Image toFXImage(SafeImage img){
+
+  public static Image toFXImage(SafeImage img) {
     return toFXImage(toBufferedImage(img));
   }
 }

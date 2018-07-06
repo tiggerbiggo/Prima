@@ -11,6 +11,7 @@ import com.tiggerbiggo.primaplay.node.link.type.VectorArrayInputLink;
 import java.awt.Color;
 
 public class GradientNode implements INodeHasInput, INodeHasOutput {
+
   VectorArrayInputLink inputLink;
   ColorArrayOutputLink out;
 
@@ -36,7 +37,7 @@ public class GradientNode implements INodeHasInput, INodeHasOutput {
     addOutput(out);
   }
 
-  public GradientNode(){
+  public GradientNode() {
     this(new HueCycleGradient());
   }
 

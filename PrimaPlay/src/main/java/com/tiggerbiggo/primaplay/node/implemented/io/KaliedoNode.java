@@ -59,7 +59,9 @@ public class KaliedoNode implements INodeHasInput, INodeHasOutput {
     this(Vector2.ZERO, rotationNum);
   }
 
-  public KaliedoNode(){this(6); }
+  public KaliedoNode() {
+    this(6);
+  }
 
   @Override
   public String getName() {

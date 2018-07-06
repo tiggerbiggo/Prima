@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public interface INodeHasOutput extends INode {
+
   List<OutputLink<?>> outputs = new ArrayList<>();
 
   default void addOutput(OutputLink<?>... in) {
@@ -16,5 +17,7 @@ public interface INodeHasOutput extends INode {
     return outputs.toArray(new OutputLink<?>[0]);
   }
 
-  default OutputLink<?> getOutput(int n) { return getOutputs()[n]; }
+  default OutputLink<?> getOutput(int n) {
+    return getOutputs()[n];
+  }
 }
