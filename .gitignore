@@ -1,7 +1,7 @@
 .idea
 *.class
 .idea/
-/out/
+out/
 *.gif
-/target/
+target/
 imgs/

@@ -1,6 +1,6 @@
 package gnode;
 
-import com.tiggerbiggo.primaplay.calculation.Vector2;
+import com.tiggerbiggo.utils.calculation.Vector2;
 import java.util.Objects;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;

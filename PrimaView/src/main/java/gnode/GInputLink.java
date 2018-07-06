@@ -1,11 +1,11 @@
 package gnode;
 
-import com.tiggerbiggo.primaplay.calculation.Vector2;
-import com.tiggerbiggo.primaplay.node.link.InputLink;
-import com.tiggerbiggo.primaplay.node.link.type.ColorArrayInputLink;
-import com.tiggerbiggo.primaplay.node.link.type.NumberArrayInputLink;
-import com.tiggerbiggo.primaplay.node.link.type.VectorArrayInputLink;
-import com.tiggerbiggo.primaplay.node.link.type.VectorInputLink;
+import com.tiggerbiggo.utils.calculation.Vector2;
+import com.tiggerbiggo.prima.primaplay.node.link.InputLink;
+import com.tiggerbiggo.prima.primaplay.node.link.type.ColorArrayInputLink;
+import com.tiggerbiggo.prima.primaplay.node.link.type.NumberArrayInputLink;
+import com.tiggerbiggo.prima.primaplay.node.link.type.VectorArrayInputLink;
+import com.tiggerbiggo.prima.primaplay.node.link.type.VectorInputLink;
 import java.util.Objects;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;

@@ -1,15 +1,15 @@
 package sample;
 
 import com.sun.javafx.collections.ObservableListWrapper;
-import com.tiggerbiggo.primaplay.core.FileManager;
-import com.tiggerbiggo.primaplay.graphics.HueCycleGradient;
-import com.tiggerbiggo.primaplay.graphics.ImageTools;
-import com.tiggerbiggo.primaplay.node.core.INode;
-import com.tiggerbiggo.primaplay.node.core.RenderNode;
-import com.tiggerbiggo.primaplay.node.implemented.BasicRenderNode;
-import com.tiggerbiggo.primaplay.node.implemented.MapGenNode;
-import com.tiggerbiggo.primaplay.node.implemented.io.AnimationNode;
-import com.tiggerbiggo.primaplay.node.implemented.io.GradientNode;
+import com.tiggerbiggo.prima.primaplay.core.FileManager;
+import com.tiggerbiggo.prima.primaplay.graphics.HueCycleGradient;
+import com.tiggerbiggo.prima.primaplay.graphics.ImageTools;
+import com.tiggerbiggo.prima.primaplay.node.core.INode;
+import com.tiggerbiggo.prima.primaplay.node.core.RenderNode;
+import com.tiggerbiggo.prima.primaplay.node.implemented.BasicRenderNode;
+import com.tiggerbiggo.prima.primaplay.node.implemented.MapGenNode;
+import com.tiggerbiggo.prima.primaplay.node.implemented.io.AnimationNode;
+import com.tiggerbiggo.prima.primaplay.node.implemented.io.GradientNode;
 import gnode.GLink;
 import gnode.GNode;
 import java.net.URL;

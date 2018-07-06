@@ -1,13 +1,13 @@
 package gnode;
 
 import ch.rs.reflectorgrid.ReflectorGrid;
-import com.tiggerbiggo.primaplay.calculation.Vector2;
-import com.tiggerbiggo.primaplay.node.core.INode;
-import com.tiggerbiggo.primaplay.node.core.INodeHasInput;
-import com.tiggerbiggo.primaplay.node.core.INodeHasOutput;
-import com.tiggerbiggo.primaplay.node.core.RenderNode;
-import com.tiggerbiggo.primaplay.node.link.InputLink;
-import com.tiggerbiggo.primaplay.node.link.OutputLink;
+import com.tiggerbiggo.utils.calculation.Vector2;
+import com.tiggerbiggo.prima.primaplay.node.core.INode;
+import com.tiggerbiggo.prima.primaplay.node.core.INodeHasInput;
+import com.tiggerbiggo.prima.primaplay.node.core.INodeHasOutput;
+import com.tiggerbiggo.prima.primaplay.node.core.RenderNode;
+import com.tiggerbiggo.prima.primaplay.node.link.InputLink;
+import com.tiggerbiggo.prima.primaplay.node.link.OutputLink;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.event.ActionEvent;

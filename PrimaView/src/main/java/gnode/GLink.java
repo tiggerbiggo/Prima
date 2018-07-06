@@ -1,6 +1,6 @@
 package gnode;
 
-import com.tiggerbiggo.primaplay.calculation.Vector2;
+import com.tiggerbiggo.utils.calculation.Vector2;
 import javafx.scene.effect.Bloom;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
