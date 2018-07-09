@@ -2,7 +2,7 @@ package com.tiggerbiggo.utils.calculation;
 
 import ch.rs.reflectorgrid.TransferGrid;
 import java.io.Serializable;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Represents a vector in 2D space. Also contains various methods for calculation.
@@ -32,16 +32,17 @@ public class Vector2 implements Serializable {
     this(xy, xy);
   }
 
-  public Vector2(ComplexNumber c) {
-    this(c.real, c.imaginary);
-  }
-
   /**
    * Default constructor, defaults to (0,0)
    */
   public Vector2() {
     this(0);
   }
+
+  public Vector2(ComplexNumber c) {
+    this(c.real, c.imaginary);
+  }
+
 
   /**
    * Clones this object
@@ -56,7 +57,7 @@ public class Vector2 implements Serializable {
   /**
    * Overridden toString with more descriptive info about this vector
    *
-   * @return String in the format "[@<b>hash code</b>] -- X: <b>X</b>, Y: <3b>Y</b>".
+   * @return String in the format "[@<b>hash code</b>] -- X: <b>X</b>, Y: <b>Y</b>".
    */
   @Override
   public String toString() {
@@ -74,60 +75,31 @@ public class Vector2 implements Serializable {
     this.y = y;
   }
 
-  /**
-   * Getter for the x component
-   *
-   * @return The x component as double
-   */
   public double X() {
     return x;
   }
-
-  /**
-   * Getter for the y component
-   *
-   * @return The y component as double
-   */
   public double Y() {
     return y;
   }
 
-  /**
-   * Getter for the x component cast to float
-   *
-   * @return The x component as float
-   */
+
   public float fX() {
     return (float) x;
   }
-
-  /**
-   * Getter for the y component cast to float
-   *
-   * @return The y component as float
-   */
   public float fY() {
     return (float) y;
   }
 
-  /**
-   * Getter for the x component cast to integer
-   *
-   * @return The x component as integer
-   */
   public int iX() {
     return (int) x;
   }
-
-  /**
-   * Getter for the y component cast to integer
-   *
-   * @return The y component as integer
-   */
   public int iY() {
     return (int) y;
   }
 
+  /**A helper function that simply returns x + y
+   * @return x + y
+   */
   public double xy() {
     return x + y;
   }
@@ -236,15 +208,15 @@ public class Vector2 implements Serializable {
   }
 
   /**
-   * Generates a random vector which lies on a given circle, the center of which is <code>this
-   * </code>.
+   * Generates a random vector which lies on a given circle, around the center of this vector.
    *
    * @param r The radius of the circle
    * @return A random vector on the circle
    */
   public Vector2 randomOnCircle(double r) {
     // Generate random angle
-    double rand = new Random().nextDouble() * Math.PI * 2;
+
+    double rand = ThreadLocalRandom.current().nextDouble() * Math.PI * 2;
     // Make a new vector with length of the radius of the circle which we then rotate
     Vector2 toReturn = Vector2.UP.multiply(new Vector2(r));
     toReturn = toReturn.rotateAround(Vector2.ZERO, rand);
