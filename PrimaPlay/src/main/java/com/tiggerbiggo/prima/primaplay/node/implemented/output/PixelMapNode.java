@@ -1,11 +1,11 @@
 package com.tiggerbiggo.prima.primaplay.node.implemented.output;
 
-import com.tiggerbiggo.utils.calculation.Vector2;
 import com.tiggerbiggo.prima.primaplay.core.RenderParams;
-import com.tiggerbiggo.prima.primaplay.node.core.INodeHasOutput;
+import com.tiggerbiggo.prima.primaplay.node.core.NodeHasOutput;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorOutputLink;
+import com.tiggerbiggo.utils.calculation.Vector2;
 
-public class PixelMapNode implements INodeHasOutput {
+public class PixelMapNode extends NodeHasOutput {
 
   VectorOutputLink out;
   PixelMap map;

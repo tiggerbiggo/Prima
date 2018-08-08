@@ -2,13 +2,12 @@ package com.tiggerbiggo.prima.primaplay.node.implemented.io;
 
 import com.tiggerbiggo.utils.calculation.Vector2;
 import com.tiggerbiggo.prima.primaplay.core.RenderParams;
-import com.tiggerbiggo.prima.primaplay.node.core.INodeHasInput;
-import com.tiggerbiggo.prima.primaplay.node.core.INodeHasOutput;
+import com.tiggerbiggo.prima.primaplay.node.core.NodeInOut;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorArrayOutputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorInputLink;
 import java.util.function.Function;
 
-public class DualAnimateNode implements INodeHasInput, INodeHasOutput {
+public class DualAnimateNode extends NodeInOut {
 
   VectorInputLink inA, inB;
   VectorArrayOutputLink out;

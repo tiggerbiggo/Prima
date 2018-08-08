@@ -11,9 +11,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="PrimaPlay" />
-    <orderEntry type="library" name="Maven: com.github.tiggerbiggo:TransferGrid:d5a3663cbda5036aa44ddf2c490f9fec97aa032f" level="project" />
+    <orderEntry type="library" name="Maven: com.github.ByRicardoSimoes:TransferGrid:6ae5138e09adb804832ea696ab492f036f07be86" level="project" />
     <orderEntry type="module" module-name="PrimaUtils" />
-    <orderEntry type="library" name="Maven: com.github.ByRicardoSimoes:TransferGrid:v1.6.0" level="project" />
     <orderEntry type="library" name="Maven: org.reflections:reflections:0.9.11" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:20.0" level="project" />
     <orderEntry type="library" name="Maven: org.javassist:javassist:3.21.0-GA" level="project" />

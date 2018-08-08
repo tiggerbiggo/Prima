@@ -2,13 +2,12 @@ package com.tiggerbiggo.prima.primaplay.node.implemented.io;
 
 import ch.rs.reflectorgrid.TransferGrid;
 import com.tiggerbiggo.prima.primaplay.core.RenderParams;
-import com.tiggerbiggo.prima.primaplay.node.core.INodeHasInput;
-import com.tiggerbiggo.prima.primaplay.node.core.INodeHasOutput;
+import com.tiggerbiggo.prima.primaplay.node.core.NodeInOut;
 import com.tiggerbiggo.prima.primaplay.node.link.type.ColorArrayInputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.type.ColorArrayOutputLink;
 import java.awt.Color;
 
-public class SuperSampleNode implements INodeHasInput, INodeHasOutput {
+public class SuperSampleNode extends NodeInOut {
 
   ColorArrayInputLink input;
   ColorArrayOutputLink output;
@@ -25,8 +24,7 @@ public class SuperSampleNode implements INodeHasInput, INodeHasOutput {
     output = new ColorArrayOutputLink() {
       @Override
       public Color[] get(RenderParams p) {
-        RenderParams p2 = new RenderParams(p.width() * factor, p.height() * factor, 0, 0,
-            p.frameNum());
+        RenderParams p2 = new RenderParams(p.width() * factor, p.height() * factor, 0, 0, p.frameNum());
 
         double[] r, g, b;
         r = new double[p.frameNum()];

@@ -18,9 +18,7 @@ public class ColorArrayInputLink extends InputLink<Color[]> {
 
   @Override
   public boolean canLink(Link other) {
-    if (other == null) {
-      return false;
-    }
+    if(other == null) return false;
     return other instanceof ColorArrayOutputLink;
   }
 }

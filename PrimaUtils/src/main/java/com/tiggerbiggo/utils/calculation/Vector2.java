@@ -312,6 +312,16 @@ public class Vector2 implements Serializable {
     return in;
   }
 
+  /**Makes a new Vector2 from polar coordinates,
+   * using the X component of this vector as the angle
+   * and the Y component as the radius. <br>
+   *
+   * Calculations are in Radians.
+   */
+  public Vector2 fromPolar(){
+    return new Vector2(Math.sin(x), Math.cos(y));
+  }
+
   public static final Vector2 UP = new Vector2(1, 0);
   public static final Vector2 ZERO = new Vector2(0);
   public static final Vector2 ONE = new Vector2(1);

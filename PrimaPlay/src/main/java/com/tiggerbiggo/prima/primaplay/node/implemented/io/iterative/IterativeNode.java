@@ -1,14 +1,13 @@
 package com.tiggerbiggo.prima.primaplay.node.implemented.io.iterative;
 
 import ch.rs.reflectorgrid.TransferGrid;
+import com.tiggerbiggo.prima.primaplay.node.core.NodeInOut;
 import com.tiggerbiggo.utils.calculation.Vector2;
 import com.tiggerbiggo.prima.primaplay.core.RenderParams;
-import com.tiggerbiggo.prima.primaplay.node.core.INodeHasInput;
-import com.tiggerbiggo.prima.primaplay.node.core.INodeHasOutput;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorInputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorOutputLink;
 
-public abstract class IterativeNode implements INodeHasInput, INodeHasOutput {
+public abstract class IterativeNode extends NodeInOut {
 
   VectorInputLink in;
   VectorOutputLink out;

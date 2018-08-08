@@ -5,8 +5,7 @@ import com.tiggerbiggo.prima.primaplay.core.RenderParams;
 import com.tiggerbiggo.prima.primaplay.graphics.ColorTools;
 import com.tiggerbiggo.prima.primaplay.graphics.ImageTools;
 import com.tiggerbiggo.prima.primaplay.graphics.SafeImage;
-import com.tiggerbiggo.prima.primaplay.node.core.INodeHasInput;
-import com.tiggerbiggo.prima.primaplay.node.core.INodeHasOutput;
+import com.tiggerbiggo.prima.primaplay.node.core.NodeInOut;
 import com.tiggerbiggo.prima.primaplay.node.implemented.NodeFactory;
 import com.tiggerbiggo.prima.primaplay.node.link.type.ColorArrayOutputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorArrayInputLink;
@@ -15,8 +14,7 @@ import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.List;
 
-public class ImageListNode implements INodeHasInput, INodeHasOutput {
-
+public class ImageListNode extends NodeInOut{
   List<SafeImage> imgs;
 
   VectorArrayInputLink uvLink;
@@ -24,7 +22,7 @@ public class ImageListNode implements INodeHasInput, INodeHasOutput {
 
   ColorArrayOutputLink colOut;
 
-  public ImageListNode(List<SafeImage> _imgs) {
+  public ImageListNode(List<SafeImage> _imgs){
     this.imgs = _imgs;
 
     uvLink = new VectorArrayInputLink();
@@ -52,16 +50,16 @@ public class ImageListNode implements INodeHasInput, INodeHasOutput {
           percent *= imgs.size();
 
           //get index number
-          int index = (int) percent;
+          int index = (int)percent;
 
           //re-normalise percentage
-          percent %= 1;
+          percent %=1;
 
           SafeImage imgA = imgs.get(index);
           SafeImage imgB = imgs.get((index + 1) % imgs.size());
 
           Color colorA = imgA.getColor(imgA.denormVector(position[i]));
-          Color colorB = imgB.getColor(imgB.denormVector(position[(i + 1) % params.frameNum()]));
+          Color colorB = imgB.getColor(imgB.denormVector(position[(i+1) % params.frameNum()]));
 
           pixel[i] = ColorTools.colorLerp(colorA, colorB, percent);
         }
@@ -71,7 +69,7 @@ public class ImageListNode implements INodeHasInput, INodeHasOutput {
     addOutput(colOut);
   }
 
-  public ImageListNode(SafeImage... imgs) {
+  public ImageListNode(SafeImage ... imgs){
     this(Arrays.asList(imgs));
   }
 
@@ -79,7 +77,7 @@ public class ImageListNode implements INodeHasInput, INodeHasOutput {
     this(ImageTools.toSafeImage(imgs));
   }
 
-  public ImageListNode() {
+  public ImageListNode(){
     this(new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB));
   }
 

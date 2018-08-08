@@ -8,7 +8,6 @@ import com.tiggerbiggo.prima.primaplay.node.implemented.BasicRenderNode;
 import com.tiggerbiggo.prima.primaplay.node.implemented.MapGenNode;
 import com.tiggerbiggo.prima.primaplay.node.implemented.io.AnimationNode;
 import com.tiggerbiggo.prima.primaplay.node.implemented.io.GradientNode;
-import com.tiggerbiggo.prima.primaplay.node.implemented.io.iterative.FourierSeriesNode;
 import java.awt.Color;
 
 public class Main {
@@ -24,7 +23,7 @@ public class Main {
     o = new MapGenNode(Vector2.MINUSTWO, Vector2.TWO);
     //o = new CombineNode(CombineNode.MUL, o, new ConstNode(2));
 
-    o = chain(o, new FourierSeriesNode(5));
+    //o = chain(o, new FourierSeriesNode(5));
 
     //o = chain(o, new MandelNode(300, 0.1));
 
@@ -40,7 +39,7 @@ public class Main {
     render.link(o);
 
     //FileManager.writeGif(render.render(imgs[0].getWidth(), imgs[0].getHeight(), 1), "demo");
-    FileManager.writeGif(render.render(100, 100, 1), "demo");
+    FileManager.writeGif(render.render(100, 100, 60), "demo");
   }
 
   public static INodeHasOutput chain(INodeHasOutput o, int oI, INodeHasInput i, int iI) {

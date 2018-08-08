@@ -3,12 +3,11 @@ package com.tiggerbiggo.prima.primaplay.node.implemented.io;
 import ch.rs.reflectorgrid.TransferGrid;
 import com.tiggerbiggo.utils.calculation.Vector2;
 import com.tiggerbiggo.prima.primaplay.core.RenderParams;
-import com.tiggerbiggo.prima.primaplay.node.core.INodeHasInput;
-import com.tiggerbiggo.prima.primaplay.node.core.INodeHasOutput;
+import com.tiggerbiggo.prima.primaplay.node.core.NodeInOut;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorInputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorOutputLink;
 
-public class KaliedoNode implements INodeHasInput, INodeHasOutput {
+public class KaliedoNode extends NodeInOut {
 
   @TransferGrid
   Vector2 rotationPoint;
@@ -59,9 +58,7 @@ public class KaliedoNode implements INodeHasInput, INodeHasOutput {
     this(Vector2.ZERO, rotationNum);
   }
 
-  public KaliedoNode() {
-    this(6);
-  }
+  public KaliedoNode(){this(6); }
 
   @Override
   public String getName() {

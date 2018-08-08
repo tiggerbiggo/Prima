@@ -1,8 +1,9 @@
 package com.tiggerbiggo.prima.primaplay.node.core;
 
-import com.tiggerbiggo.utils.calculation.Vector2;
+
 import com.tiggerbiggo.prima.primaplay.core.RenderParams;
 import com.tiggerbiggo.prima.primaplay.node.link.InputLink;
+import com.tiggerbiggo.utils.calculation.Vector2;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.concurrent.ConcurrentLinkedQueue;
