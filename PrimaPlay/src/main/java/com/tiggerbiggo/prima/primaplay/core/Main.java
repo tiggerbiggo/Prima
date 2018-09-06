@@ -1,5 +1,7 @@
 package com.tiggerbiggo.prima.primaplay.core;
 
+import com.tiggerbiggo.prima.primaplay.graphics.ImageTools;
+import com.tiggerbiggo.prima.primaplay.graphics.SafeImage;
 import com.tiggerbiggo.utils.calculation.Vector2;
 import com.tiggerbiggo.prima.primaplay.graphics.SimpleGradient;
 import com.tiggerbiggo.prima.primaplay.node.core.INodeHasInput;
@@ -13,14 +15,14 @@ import java.awt.Color;
 public class Main {
 
   public static void main(String[] args) throws Throwable {
-    //SafeImage[] imgs = ImageTools.toSafeImage(FileManager.getImgsFromFolder("imgs/cookie2/", true));
+    SafeImage img = new SafeImage(FileManager.getImgsFromFolder("imgs")[0]);
 
     INodeHasOutput o;
     INodeHasInput i;
 
     //o = new MapGenNode(new Vector2(0.015625, -1.757813),new Vector2(0.019531, -1.753906));
 
-    o = new MapGenNode(Vector2.MINUSTWO, Vector2.TWO);
+    o = new MapGenNode(Vector2.ZERO, Vector2.ONE);
     //o = new CombineNode(CombineNode.MUL, o, new ConstNode(2));
 
     //o = chain(o, new FourierSeriesNode(5));

@@ -38,9 +38,9 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.github.ByRicardoSimoes</groupId>
-      <artifactId>TransferGrid</artifactId>
-      <version>6ae5138e09adb804832ea696ab492f036f07be86</version>
+      <groupId>com.github.HephaistosCorp</groupId>
+      <artifactId>Loki</artifactId>
+      <version>v1.8.0</version>
     </dependency>
     <dependency>
       <groupId>com.tiggerbiggo</groupId>

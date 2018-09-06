@@ -2,6 +2,7 @@ package com.tiggerbiggo.prima.primaplay.graphics;
 
 import com.tiggerbiggo.utils.calculation.Calculation;
 import java.awt.Color;
+import java.util.function.Function;
 
 /**
  * Contains various static methods for calculating things like Hue, Saturation, Brightness, etc.
@@ -136,3 +137,5 @@ public class ColorTools {
     return Math.min(in.getRed(), Math.min(in.getGreen(), in.getBlue()));
   }
 }
+
+

@@ -11,7 +11,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="PrimaPlay" />
-    <orderEntry type="library" name="Maven: com.github.ByRicardoSimoes:TransferGrid:6ae5138e09adb804832ea696ab492f036f07be86" level="project" />
+    <orderEntry type="library" name="Maven: com.github.HephaistosCorp:Loki:v1.8.0" level="project" />
     <orderEntry type="module" module-name="PrimaUtils" />
     <orderEntry type="library" name="Maven: org.reflections:reflections:0.9.11" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:20.0" level="project" />

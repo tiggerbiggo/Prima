@@ -1,5 +1,8 @@
 package com.tiggerbiggo.prima.primaplay.node.implemented.io;
 
+import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
+import com.tiggerbiggo.prima.primaplay.graphics.ColorConvertType;
+import com.tiggerbiggo.prima.primaplay.node.link.type.VectorOutputLink;
 import com.tiggerbiggo.utils.calculation.Vector2;
 import com.tiggerbiggo.prima.primaplay.core.RenderParams;
 import com.tiggerbiggo.prima.primaplay.graphics.ColorTools;
@@ -17,9 +20,16 @@ import java.util.List;
 public class ImageListNode extends NodeInOut{
   List<SafeImage> imgs;
 
+  @TransferGrid
+  ColorConvertType convertX = ColorConvertType.V;
+
+  @TransferGrid
+  ColorConvertType convertY = ColorConvertType.V;
+
   VectorArrayInputLink uvLink;
   VectorArrayInputLink timeIn;
 
+  VectorOutputLink vecOut;
   ColorArrayOutputLink colOut;
 
   public ImageListNode(List<SafeImage> _imgs){
@@ -30,6 +40,26 @@ public class ImageListNode extends NodeInOut{
 
     timeIn = new VectorArrayInputLink();
     addInput(uvLink, timeIn);
+
+    vecOut = new VectorOutputLink() {
+      @Override
+      public Vector2 get(RenderParams params) {
+        Vector2 position = uvLink.get(params)[0];
+        Vector2 time = timeIn.get(params)[0];
+
+        double percent = Math.abs(time.xy()) % 1;
+
+        //multiply by number of images
+        percent *= imgs.size();
+
+        SafeImage img = imgs.get((int)percent);
+
+        Color sample = img.getColor(img.denormVector(position));
+
+        return new Vector2(convertX.convertColor(sample), convertY.convertColor(sample));
+      }
+    };
+    addOutput(vecOut);
 
     colOut = new ColorArrayOutputLink() {
       @Override

@@ -9,7 +9,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: com.github.ByRicardoSimoes:TransferGrid:6ae5138e09adb804832ea696ab492f036f07be86" level="project" />
+    <orderEntry type="library" name="Maven: com.github.HephaistosCorp:Loki:v1.8.0" level="project" />
     <orderEntry type="module" module-name="PrimaUtils" />
   </component>
 </module>

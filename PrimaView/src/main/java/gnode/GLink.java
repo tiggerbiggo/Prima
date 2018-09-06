@@ -18,7 +18,6 @@ public abstract class GLink extends Circle {
     last = Vector2.ZERO;
 
     setOnDragDetected(event -> {
-      System.out.println("STARTED");
       Dragboard db = startDragAndDrop(TransferMode.MOVE);
 
       ClipboardContent clipboardContent = new ClipboardContent();

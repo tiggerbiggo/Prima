@@ -1,6 +1,7 @@
 package gnode;
 
-import ch.rs.reflectorgrid.ReflectorGrid;
+import ch.hephaistos.utilities.loki.ReflectorGrid;
+import ch.hephaistos.utilities.loki.util.interfaces.ChangeListener;
 import com.tiggerbiggo.utils.calculation.Vector2;
 import com.tiggerbiggo.prima.primaplay.node.core.INode;
 import com.tiggerbiggo.prima.primaplay.node.core.INodeHasInput;
@@ -25,7 +26,7 @@ public class GNode extends AnchorPane {
   private List<GInputLink> inputs;
   private List<GOutputLink> outputs;
 
-  public GNode(int width, int height, int x, int y, INode node, Pane parent) {
+  public GNode(int width, int height, int x, int y, INode node, Pane parent, ChangeListener listener) {
     //super();
     //setHeight(50);
     //setWidth(50);
@@ -87,7 +88,11 @@ public class GNode extends AnchorPane {
       }
 
       ReflectorGrid reflectorGrid = new ReflectorGrid();
-      //getChildren().add(reflectorGrid.transfromIntoGrid(node));
+      reflectorGrid.transfromIntoGrid(node);
+
+      if(listener != null){
+        reflectorGrid.addChangeListener(listener);
+      }
 
       GridPane layoutGrid = new GridPane();
 
@@ -118,9 +123,9 @@ public class GNode extends AnchorPane {
 
       if (!(node instanceof RenderNode)) {
         layoutGrid
-            .addColumn(0, new Text(node.getName()), reflectorGrid.transfromIntoGrid(node), delete);
+            .addColumn(0, new Text(node.getName()), reflectorGrid, delete);
       } else {
-        layoutGrid.addColumn(0, new Text(node.getName()), reflectorGrid.transfromIntoGrid(node));
+        layoutGrid.addColumn(0, new Text(node.getName()), reflectorGrid);
       }
 
       toBack();
@@ -130,8 +135,16 @@ public class GNode extends AnchorPane {
     }
   }
 
+  public GNode(int width, int height, int x, int y, INode node, Pane parent){
+    this(width, height, x, y, node, parent, null);
+  }
+
+  public GNode(INode node, Pane parent, ChangeListener listener){
+    this(50, 50, 0, 0, node, parent, listener);
+  }
+
   public GNode(INode node, Pane parent) {
-    this(50, 50, 0, 0, node, parent);
+    this(node, parent, null);
   }
 
   public Vector2 posAsVector() {

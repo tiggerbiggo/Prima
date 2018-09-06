@@ -37,7 +37,6 @@ public class GOutputLink extends GLink {
       setFill(Color.BLUE);
     } else if (link instanceof VectorOutputLink) {
       setFill(Color.AQUA);
-      System.out.println("SET BLUE");
     }
 
     setOnDragDropped(event -> {

@@ -1,6 +1,6 @@
 package com.tiggerbiggo.prima.primaplay.node.implemented.io.iterative;
 
-import ch.rs.reflectorgrid.TransferGrid;
+import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
 import com.tiggerbiggo.utils.calculation.ComplexNumber;
 import com.tiggerbiggo.utils.calculation.Vector2;
 import com.tiggerbiggo.prima.primaplay.core.RenderParams;

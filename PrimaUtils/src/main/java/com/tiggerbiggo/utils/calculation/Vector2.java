@@ -1,6 +1,6 @@
 package com.tiggerbiggo.utils.calculation;
 
-import ch.rs.reflectorgrid.TransferGrid;
+import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
 import java.io.Serializable;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -10,7 +10,10 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Vector2 implements Serializable {
 
   @TransferGrid
-  private double x, y;
+  private double x;
+
+  @TransferGrid
+  private double y;
 
   /**
    * Constructs a new vector with X and Y components
@@ -322,7 +325,7 @@ public class Vector2 implements Serializable {
     return new Vector2(Math.sin(x), Math.cos(y));
   }
 
-  public static final Vector2 UP = new Vector2(1, 0);
+  public static final Vector2 UP = new Vector2(0, 1);
   public static final Vector2 ZERO = new Vector2(0);
   public static final Vector2 ONE = new Vector2(1);
   public static final Vector2 MINUSONE = new Vector2(-1);

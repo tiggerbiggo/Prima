@@ -30,7 +30,6 @@ public class GLinkLine extends CubicCurve {
   }
 
   public void updatePositions() {
-    System.out.println("Started.");
     setStartVec(input.getWorldPosition());
     setEndVec(output.getWorldPosition());
   }

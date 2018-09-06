@@ -1,17 +1,22 @@
 package sample;
 
+import ch.hephaistos.utilities.loki.util.interfaces.ChangeListener;
 import com.sun.javafx.collections.ObservableListWrapper;
 import com.tiggerbiggo.prima.primaplay.core.FileManager;
 import com.tiggerbiggo.prima.primaplay.graphics.HueCycleGradient;
 import com.tiggerbiggo.prima.primaplay.graphics.ImageTools;
+import com.tiggerbiggo.prima.primaplay.graphics.SimpleGradient;
 import com.tiggerbiggo.prima.primaplay.node.core.INode;
 import com.tiggerbiggo.prima.primaplay.node.core.RenderNode;
 import com.tiggerbiggo.prima.primaplay.node.implemented.BasicRenderNode;
 import com.tiggerbiggo.prima.primaplay.node.implemented.MapGenNode;
 import com.tiggerbiggo.prima.primaplay.node.implemented.io.AnimationNode;
 import com.tiggerbiggo.prima.primaplay.node.implemented.io.GradientNode;
+import com.tiggerbiggo.prima.primaplay.node.implemented.io.ImageListNode;
 import gnode.GLink;
 import gnode.GNode;
+import java.awt.Color;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.Animation;
@@ -22,7 +27,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
@@ -33,7 +37,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
-public class MainController implements Initializable {
+public class MainController implements Initializable, ChangeListener {
 
   @FXML
   private Pane nodeCanvas;
@@ -55,15 +59,18 @@ public class MainController implements Initializable {
   int currentImage;
   Timeline timer;
 
-  RenderNode render;
+  RenderNode renderNode;
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
-    nodeCanvas.getChildren().add(new GNode(new MapGenNode(), nodeCanvas));
-    nodeCanvas.getChildren().add(new GNode(new AnimationNode(), nodeCanvas));
-    nodeCanvas.getChildren().add(new GNode(new GradientNode(new HueCycleGradient()), nodeCanvas));
-    render = new BasicRenderNode();
-    nodeCanvas.getChildren().add(new GNode(50, 50, 300, 100, render, nodeCanvas));
+    nodeCanvas.getChildren().add(new GNode(new MapGenNode(), nodeCanvas, this));
+    nodeCanvas.getChildren().add(new GNode(new AnimationNode(), nodeCanvas, this));
+    nodeCanvas.getChildren().add(new GNode(new GradientNode(new HueCycleGradient()), nodeCanvas, this));
+    //nodeCanvas.getChildren().add(new GNode(new GradientNode(new SimpleGradient(Color.RED, Color.BLUE, false)), nodeCanvas, this));
+    nodeCanvas.getChildren().add(new GNode(new ImageListNode(FileManager.getImgsFromFolder("imgs")), nodeCanvas, this));
+
+    renderNode = new BasicRenderNode();
+    nodeCanvas.getChildren().add(new GNode(50, 50, 300, 100, renderNode, nodeCanvas, this));
 
     timer = new Timeline(new KeyFrame(Duration.seconds(1.0 / 60),
         e -> {
@@ -99,10 +106,18 @@ public class MainController implements Initializable {
     //imgView.fitHeightProperty().bind(anchImageHolder.heightProperty());
   }
 
+  private void refreshImage(int width, int height, int n){
+    imgArray = ImageTools.toFXImage(renderNode.render(width, height, n));
+  }
+
+  private void refreshImage(){
+    refreshImage(100, 100, 60);
+  }
+
   @FXML
   private void onBtnPreview(ActionEvent e) {
     if (btnPreview.getText().equals("Preview")) {
-      imgArray = ImageTools.toFXImage(render.render(100, 100, 60));
+      refreshImage();
       timer.play();
       btnPreview.setText("Stop");
     } else {
@@ -113,7 +128,7 @@ public class MainController implements Initializable {
 
   @FXML
   private void onBtnSave(ActionEvent e) {
-    FileManager.writeGif(render.render(spnWidth.getValue(), spnHeight.getValue(), 60),
+    FileManager.writeGif(renderNode.render(spnWidth.getValue(), spnHeight.getValue(), 60),
         txtFileName.getText());
   }
 
@@ -121,9 +136,15 @@ public class MainController implements Initializable {
   private void onBtnAddNode(ActionEvent e) {
     try {
       INode nodeInstance = comboNodeList.getValue().newInstance();
-      nodeCanvas.getChildren().add(new GNode(nodeInstance, nodeCanvas));
+      GNode newNode = new GNode(nodeInstance, nodeCanvas, this);
+      nodeCanvas.getChildren().add(newNode);
     } catch (InstantiationException | IllegalAccessException ex) {
       ex.printStackTrace();
     }
+  }
+
+  @Override
+  public void onObjectValueChanged(Field field, Object object) {
+    refreshImage();
   }
 }
