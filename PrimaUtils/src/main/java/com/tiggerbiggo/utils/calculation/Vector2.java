@@ -111,6 +111,30 @@ public class Vector2 implements Serializable {
     return new ComplexNumber(this);
   }
 
+  /**Converts this vector into polar coordinates
+   *
+   * @return Vector2 with x = radius and y = angle. Right = 0°
+   */
+  public Vector2 toPolar(){
+    return new Vector2(
+            magnitude()
+            ,
+            angleBetween(RIGHT)
+    );
+  }
+
+  /**Converts this vector from polar coordinates into cartesian ones.
+   *
+   * @return
+   */
+  public Vector2 fromPolar(){
+    return new Vector2(
+            Math.cos(y) * x
+            ,
+            Math.sin(y) * x
+    );
+  }
+
   /**
    * Gets the magnitude of the vector using Pythagorean Theorem
    *
@@ -325,10 +349,13 @@ public class Vector2 implements Serializable {
     return new Vector2(Math.sin(x), Math.cos(y));
   }
 
-  public static final Vector2 UP = new Vector2(0, 1);
   public static final Vector2 ZERO = new Vector2(0);
   public static final Vector2 ONE = new Vector2(1);
   public static final Vector2 MINUSONE = new Vector2(-1);
   public static final Vector2 TWO = new Vector2(2);
   public static final Vector2 MINUSTWO = new Vector2(-2);
+  public static final Vector2 UP         = new Vector2(0, 1);
+  public static final Vector2 DOWN       = new Vector2(0, -1);
+  public static final Vector2 LEFT       = new Vector2(-1, 0);
+  public static final Vector2 RIGHT      = new Vector2(1, 0);
 }
