@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Set;
 import org.reflections.Reflections;
 
-public class NodeList {
+public class NodeReflection {
 
   private static List<Class<? extends INode>> allImplementedNodes;
 
@@ -28,5 +28,15 @@ public class NodeList {
         allImplementedNodes.add(aClass);
       }
     });
+  }
+
+  public static INode parseNode(String toParse){
+    try {
+      Class<? extends INode> clazz = Class.forName(toParse).asSubclass(INode.class);
+      return clazz.newInstance();
+    }
+    catch(ClassNotFoundException | IllegalAccessException | InstantiationException ex){
+      throw new NodeParseException("Error in parseNode method.", ex);
+    }
   }
 }

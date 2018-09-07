@@ -38,11 +38,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.github.HephaistosCorp</groupId>
-      <artifactId>Loki</artifactId>
-      <version>v1.8.0</version>
-    </dependency>
-    <dependency>
       <groupId>com.tiggerbiggo</groupId>
       <artifactId>PrimaUtils</artifactId>
       <version>1.0</version>

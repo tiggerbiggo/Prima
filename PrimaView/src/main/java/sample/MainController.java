@@ -5,7 +5,6 @@ import com.sun.javafx.collections.ObservableListWrapper;
 import com.tiggerbiggo.prima.primaplay.core.FileManager;
 import com.tiggerbiggo.prima.primaplay.graphics.HueCycleGradient;
 import com.tiggerbiggo.prima.primaplay.graphics.ImageTools;
-import com.tiggerbiggo.prima.primaplay.graphics.SimpleGradient;
 import com.tiggerbiggo.prima.primaplay.node.core.INode;
 import com.tiggerbiggo.prima.primaplay.node.core.RenderNode;
 import com.tiggerbiggo.prima.primaplay.node.implemented.BasicRenderNode;
@@ -14,10 +13,11 @@ import com.tiggerbiggo.prima.primaplay.node.implemented.io.AnimationNode;
 import com.tiggerbiggo.prima.primaplay.node.implemented.io.GradientNode;
 import com.tiggerbiggo.prima.primaplay.node.implemented.io.ImageListNode;
 import gnode.GLink;
-import gnode.GNode;
-import java.awt.Color;
+import gnode.GUINode;
 import java.lang.reflect.Field;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -40,7 +40,7 @@ import javafx.util.Duration;
 public class MainController implements Initializable, ChangeListener {
 
   @FXML
-  private Pane nodeCanvas;
+  public Pane nodeCanvas;
   @FXML
   private ImageView imgView;
   @FXML
@@ -61,16 +61,20 @@ public class MainController implements Initializable, ChangeListener {
 
   RenderNode renderNode;
 
+  List<GUINode> nodeList;
+
   @Override
   public void initialize(URL url, ResourceBundle rb) {
-    nodeCanvas.getChildren().add(new GNode(new MapGenNode(), nodeCanvas, this));
-    nodeCanvas.getChildren().add(new GNode(new AnimationNode(), nodeCanvas, this));
-    nodeCanvas.getChildren().add(new GNode(new GradientNode(new HueCycleGradient()), nodeCanvas, this));
-    //nodeCanvas.getChildren().add(new GNode(new GradientNode(new SimpleGradient(Color.RED, Color.BLUE, false)), nodeCanvas, this));
-    nodeCanvas.getChildren().add(new GNode(new ImageListNode(FileManager.getImgsFromFolder("imgs")), nodeCanvas, this));
+    nodeList = new ArrayList<>();
 
     renderNode = new BasicRenderNode();
-    nodeCanvas.getChildren().add(new GNode(50, 50, 300, 100, renderNode, nodeCanvas, this));
+    addNode(new GUINode(renderNode, nodeCanvas, this));
+    addNode(new GUINode(new ImageListNode(FileManager.getImgsFromFolder("imgs")), nodeCanvas, this));
+    addNode(new GUINode(new MapGenNode(), nodeCanvas, this));
+    addNode(new GUINode(new AnimationNode(), nodeCanvas, this));
+    addNode(new GUINode(new GradientNode(new HueCycleGradient()), nodeCanvas, this));
+    //nodeCanvas.getChildren().add(new GUINode(new GradientNode(new SimpleGradient(Color.RED, Color.BLUE, false)), nodeCanvas, this));
+
 
     timer = new Timeline(new KeyFrame(Duration.seconds(1.0 / 60),
         e -> {
@@ -85,11 +89,11 @@ public class MainController implements Initializable, ChangeListener {
         }
     ));
     timer.setCycleCount(Animation.INDEFINITE);
-    timer.setOnFinished(event -> imgView.setImage(null));
+    timer.setOnFinished(e -> imgView.setImage(null));
 
-    nodeCanvas.setOnDragOver(event -> event.acceptTransferModes(TransferMode.ANY));
-    nodeCanvas.setOnDragDropped(event -> {
-      Object gestureSource = event.getGestureSource();
+    nodeCanvas.setOnDragOver(e -> e.acceptTransferModes(TransferMode.ANY));
+    nodeCanvas.setOnDragDropped(e -> {
+      Object gestureSource = e.getGestureSource();
       if (gestureSource == null) {
         return;
       }
@@ -101,7 +105,7 @@ public class MainController implements Initializable, ChangeListener {
     spnHeight
         .setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(50, 5000, 100, 50));
 
-    comboNodeList.setItems(new ObservableListWrapper<>(NodeList.getAllImplementedNodes()));
+    comboNodeList.setItems(new ObservableListWrapper<>(NodeReflection.getAllImplementedNodes()));
     //imgView.fitWidthProperty().bind(anchImageHolder.widthProperty());
     //imgView.fitHeightProperty().bind(anchImageHolder.heightProperty());
   }
@@ -112,6 +116,17 @@ public class MainController implements Initializable, ChangeListener {
 
   private void refreshImage(){
     refreshImage(100, 100, 60);
+  }
+
+  /**
+   * Clears all nodes in the nodeList and all the objects in the nodeCanvas.
+   * The exception is the renderNode, which is special since we need a
+   * reference to it in order to properly render the image.
+   */
+  public void clearNodes(){
+    nodeList.clear();
+    nodeCanvas.getChildren().clear();
+    addNode(new GUINode(renderNode, nodeCanvas, this));
   }
 
   @FXML
@@ -133,11 +148,28 @@ public class MainController implements Initializable, ChangeListener {
   }
 
   @FXML
+  private void onBtnSaveLayout(ActionEvent e){
+
+    //purge deleted entries before save
+    List<GUINode> toDelete = new ArrayList<>();
+    for(GUINode node : nodeList){
+      if(!nodeCanvas.getChildren().contains(node)){
+        toDelete.add(node);
+      }
+    }
+    nodeList.removeAll(toDelete);
+
+    String ser = NodeSerializer.SerializeList(nodeList);
+    System.out.println(ser);
+    NodeSerializer.parseNodes(ser, this);
+  }
+
+  @FXML
   private void onBtnAddNode(ActionEvent e) {
     try {
       INode nodeInstance = comboNodeList.getValue().newInstance();
-      GNode newNode = new GNode(nodeInstance, nodeCanvas, this);
-      nodeCanvas.getChildren().add(newNode);
+      GUINode newNode = new GUINode(nodeInstance, nodeCanvas, this);
+      addNode(newNode);
     } catch (InstantiationException | IllegalAccessException ex) {
       ex.printStackTrace();
     }
@@ -146,5 +178,10 @@ public class MainController implements Initializable, ChangeListener {
   @Override
   public void onObjectValueChanged(Field field, Object object) {
     refreshImage();
+  }
+
+  private void addNode(GUINode node){
+    nodeCanvas.getChildren().add(node);
+    nodeList.add(node);
   }
 }

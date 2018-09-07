@@ -19,19 +19,24 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
-public class GNode extends AnchorPane {
+public class GUINode extends AnchorPane {
 
   public static final double LINK_Y = 30;
+
+  private ReflectorGrid reflectorGrid;
+  private INode node;
 
   private List<GInputLink> inputs;
   private List<GOutputLink> outputs;
 
-  public GNode(int width, int height, int x, int y, INode node, Pane parent, ChangeListener listener) {
+  public GUINode(int width, int height, int x, int y, INode node, Pane parent, ChangeListener listener) {
     //super();
     //setHeight(50);
     //setWidth(50);
 
     //setFill(Color.WHITE);
+
+    this.node = node;
 
     setMinWidth(width);
     setWidth(width);
@@ -67,7 +72,7 @@ public class GNode extends AnchorPane {
         InputLink<?>[] inputs = ((INodeHasInput) node).getInputs();
         for (int i = 0; i < inputs.length; i++) {
           InputLink<?> link = inputs[i];
-          GInputLink tmp = new GInputLink(link, new Vector2(0, LINK_Y + (i * LINK_Y)), parent);
+          GInputLink tmp = new GInputLink(link, this, i, new Vector2(0, LINK_Y + (i * LINK_Y)), parent);
           tmp.updatePosition(posAsVector());
           this.inputs.add(tmp);
           parent.getChildren().add(tmp);
@@ -79,15 +84,14 @@ public class GNode extends AnchorPane {
         OutputLink<?>[] outputs = ((INodeHasOutput) node).getOutputs();
         for (int i = 0; i < outputs.length; i++) {
           OutputLink<?> link = outputs[i];
-          GOutputLink tmp = new GOutputLink(link, new Vector2(getWidth(), LINK_Y + (i * LINK_Y)),
-              parent);
+          GOutputLink tmp = new GOutputLink(link, this, i, new Vector2(getWidth(), LINK_Y + (i * LINK_Y)),parent);
           tmp.updatePosition(posAsVector());
           this.outputs.add(tmp);
           parent.getChildren().add(tmp);
         }
       }
 
-      ReflectorGrid reflectorGrid = new ReflectorGrid();
+      reflectorGrid = new ReflectorGrid();
       reflectorGrid.transfromIntoGrid(node);
 
       if(listener != null){
@@ -103,7 +107,7 @@ public class GNode extends AnchorPane {
 
       getChildren().add(layoutGrid);
 
-      GNode thisNode = this;
+      GUINode thisNode = this;
 
       Button delete = new Button("Delete");
       delete.setOnAction(new EventHandler<ActionEvent>() {
@@ -135,19 +139,35 @@ public class GNode extends AnchorPane {
     }
   }
 
-  public GNode(int width, int height, int x, int y, INode node, Pane parent){
-    this(width, height, x, y, node, parent, null);
+  public void refreshGrid(){
+    reflectorGrid.redoGrid();
   }
 
-  public GNode(INode node, Pane parent, ChangeListener listener){
-    this(50, 50, 0, 0, node, parent, listener);
+  public GUINode(int x, int y, INode node, Pane parent, ChangeListener listener){
+    this(50, 50, x, y, node, parent, listener);
   }
 
-  public GNode(INode node, Pane parent) {
+  public GUINode(INode node, Pane parent, ChangeListener listener){
+    this(0, 0, node, parent, listener);
+  }
+
+  public GUINode(INode node, Pane parent) {
     this(node, parent, null);
   }
 
   public Vector2 posAsVector() {
     return new Vector2(getTranslateX(), getTranslateY());
+  }
+
+  public List<GInputLink> getInputs() {
+    return inputs;
+  }
+
+  public List<GOutputLink> getOutputs() {
+    return outputs;
+  }
+
+  public INode getNode() {
+    return node;
   }
 }

@@ -14,12 +14,17 @@ public class GInputLink extends GLink {
 
   InputLink<?> link;
   private GLinkLine line;
-  Vector2 position;
+  private GOutputLink currentGLink;
+  private GUINode owner;
+  private int index;
   private final Pane parent;
+  Vector2 position;
 
-  public GInputLink(InputLink<?> in, Vector2 position, Pane parent) {
+  public GInputLink(InputLink<?> in, GUINode owner, int index, Vector2 position, Pane parent) {
     link = in;
     this.parent = Objects.requireNonNull(parent);
+    this.owner = Objects.requireNonNull(owner);
+    this.index = index;
 
     if (link instanceof ColorArrayInputLink) {
       setFill(Color.YELLOW);
@@ -42,6 +47,7 @@ public class GInputLink extends GLink {
         if (link.canLink(source.link)) {
           deleteLine();
           link(source);
+          currentGLink = source;
           this.parent.getChildren().add(new GLinkLine(this, source, this.parent));
         }
       }
@@ -59,6 +65,7 @@ public class GInputLink extends GLink {
   @Override
   public void unlink() {
     line = null;
+    currentGLink = null;
     link.unlink();
   }
 
@@ -93,7 +100,19 @@ public class GInputLink extends GLink {
     return line;
   }
 
+  public GOutputLink getCurrentGLink() {
+    return currentGLink;
+  }
+
+  public GUINode getOwner() {
+    return owner;
+  }
+
   public void setLine(GLinkLine line) {
     this.line = Objects.requireNonNull(line);
+  }
+
+  public int getIndex() {
+    return index;
   }
 }

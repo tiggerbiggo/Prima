@@ -2,6 +2,7 @@ package com.tiggerbiggo.utils.calculation;
 
 import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -123,17 +124,6 @@ public class Vector2 implements Serializable {
     );
   }
 
-  /**Converts this vector from polar coordinates into cartesian ones.
-   *
-   * @return
-   */
-  public Vector2 fromPolar(){
-    return new Vector2(
-            Math.cos(y) * x
-            ,
-            Math.sin(y) * x
-    );
-  }
 
   /**
    * Gets the magnitude of the vector using Pythagorean Theorem
@@ -347,6 +337,24 @@ public class Vector2 implements Serializable {
    */
   public Vector2 fromPolar(){
     return new Vector2(Math.sin(x), Math.cos(y));
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Vector2 vector2 = (Vector2) o;
+    return Double.compare(vector2.x, x) == 0 &&
+        Double.compare(vector2.y, y) == 0;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(x, y);
   }
 
   public static final Vector2 ZERO = new Vector2(0);
