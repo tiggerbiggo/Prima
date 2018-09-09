@@ -5,17 +5,19 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<TitledPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
+<TitledPane xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
   <content>
     <AnchorPane>
       <children>
@@ -71,7 +73,17 @@
                         <ComboBox fx:id="comboNodeList" prefHeight="68.0" prefWidth="668.0" GridPane.rowIndex="3" />
                         <Button mnemonicParsing="false" onAction="#onBtnAddNode" prefHeight="9999.0" prefWidth="526.0" text="Add Node" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Button fx:id="btnPreview" mnemonicParsing="false" onAction="#onBtnPreview" prefHeight="9999.0" prefWidth="404.0" text="Preview" />
-                                    <Button fx:id="btnSaveLayout" mnemonicParsing="false" onAction="#onBtnSaveLayout" prefHeight="9999.0" prefWidth="404.0" text="Save Layout" GridPane.columnIndex="1" />
+                                    <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                                       <children>
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Button fx:id="btnSaveLayout" mnemonicParsing="false" onAction="#onBtnSaveLayout" prefHeight="30.0" prefWidth="404.0" text="Save Layout" />
+                                                <Button mnemonicParsing="false" onAction="#onBtnLoadLayout" prefHeight="30.0" prefWidth="404.0" text="Load Layout" />
+                                             </children>
+                                          </HBox>
+                                          <TextArea fx:id="txtSavedText" prefHeight="200.0" prefWidth="200.0" />
+                                       </children>
+                                    </VBox>
                       </children>
                     </GridPane>
                   </children>

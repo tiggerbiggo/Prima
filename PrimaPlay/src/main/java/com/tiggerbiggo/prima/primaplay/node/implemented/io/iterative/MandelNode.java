@@ -45,7 +45,6 @@ public class MandelNode extends IterativeNode {
 
   @Override
   public Vector2 onEscape(Vector2 in, int currentIteration) {
-    System.out.println("Escape");
     double smooth = (currentIteration + 1.0) - Math.log(Math.log(in.magnitude())) / Math.log(2);
 
     return new Vector2(smooth * multiplier);

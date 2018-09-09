@@ -14,6 +14,10 @@ import com.tiggerbiggo.prima.primaplay.node.implemented.io.GradientNode;
 import com.tiggerbiggo.prima.primaplay.node.implemented.io.ImageListNode;
 import gnode.GLink;
 import gnode.GUINode;
+
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,10 +29,9 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -53,6 +56,8 @@ public class MainController implements Initializable, ChangeListener {
   private Spinner<Integer> spnWidth, spnHeight;
   @FXML
   private ComboBox<Class<? extends INode>> comboNodeList;
+  @FXML
+  private TextArea txtSavedText;
 
 
   Image[] imgArray = null;
@@ -69,7 +74,7 @@ public class MainController implements Initializable, ChangeListener {
 
     renderNode = new BasicRenderNode();
     addNode(new GUINode(renderNode, nodeCanvas, this));
-    addNode(new GUINode(new ImageListNode(FileManager.getImgsFromFolder("imgs")), nodeCanvas, this));
+    //addNode(new GUINode(new ImageListNode(FileManager.getImgsFromFolder("imgs")), nodeCanvas, this));
     addNode(new GUINode(new MapGenNode(), nodeCanvas, this));
     addNode(new GUINode(new AnimationNode(), nodeCanvas, this));
     addNode(new GUINode(new GradientNode(new HueCycleGradient()), nodeCanvas, this));
@@ -120,13 +125,11 @@ public class MainController implements Initializable, ChangeListener {
 
   /**
    * Clears all nodes in the nodeList and all the objects in the nodeCanvas.
-   * The exception is the renderNode, which is special since we need a
-   * reference to it in order to properly render the image.
    */
   public void clearNodes(){
     nodeList.clear();
     nodeCanvas.getChildren().clear();
-    addNode(new GUINode(renderNode, nodeCanvas, this));
+    //addNode(new GUINode(renderNode, nodeCanvas, this));
   }
 
   @FXML
@@ -161,7 +164,19 @@ public class MainController implements Initializable, ChangeListener {
 
     String ser = NodeSerializer.SerializeList(nodeList);
     System.out.println(ser);
-    NodeSerializer.parseNodes(ser, this);
+
+    txtSavedText.setText(ser);
+
+    StringSelection stringSelection = new StringSelection(ser);
+    Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+    clipboard.setContents(stringSelection, null);
+
+    //NodeSerializer.parseNodes(ser, this);
+  }
+
+  @FXML
+  private void onBtnLoadLayout(ActionEvent e){
+    NodeSerializer.parseNodes(txtSavedText.getText(), this);
   }
 
   @FXML
