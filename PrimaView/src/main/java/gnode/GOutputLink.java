@@ -49,7 +49,7 @@ public class GOutputLink extends GLink {
         inputLink = (GInputLink) event.getGestureSource();
         if (inputLink.link(this)) {
           //success, create line
-          this.parent.getChildren().add(new GLinkLine(inputLink, this, this.parent));
+          //this.parent.getChildren().add(new GLinkLine(inputLink, this, this.parent));
         }
       }
       updatePosition();

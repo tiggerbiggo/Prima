@@ -47,8 +47,6 @@ public class GInputLink extends GLink {
         if (link.canLink(source.link)) {
           deleteLine();
           link(source);
-          currentGLink = source;
-          this.parent.getChildren().add(new GLinkLine(this, source, this.parent));
         }
       }
       updatePosition();
@@ -82,11 +80,16 @@ public class GInputLink extends GLink {
 
   public boolean link(GOutputLink out) {
     if (link.link(out.getLink())) {
-      /*if(line != null){
+
+      currentGLink = out;
+
+      if(line != null){
         line.delete();
       }
-      parent.getChildren().add(new GLinkLine(this, out, parent));*/
+      parent.getChildren().add(new GLinkLine(this, out, parent));
       // ^Here be bugs
+
+
       return true;
     }
     return false;

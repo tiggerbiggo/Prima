@@ -1,5 +1,7 @@
 package sample;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.tiggerbiggo.prima.primaplay.node.core.INode;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -30,12 +32,13 @@ public class NodeReflection {
     });
   }
 
-  public static INode parseNode(String toParse){
+  public static INode parseNode(String className, String json){
     try {
-      Class<? extends INode> clazz = Class.forName(toParse).asSubclass(INode.class);
-      return clazz.newInstance();
+      INode instance = new Gson().fromJson(json, Class.forName(className).asSubclass(INode.class));
+
+      return instance;
     }
-    catch(ClassNotFoundException | IllegalAccessException | InstantiationException ex){
+    catch(ClassNotFoundException ex){
       throw new NodeParseException("Error in parseNode method.", ex);
     }
   }

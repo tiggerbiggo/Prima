@@ -9,7 +9,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="PrimaUtils" />
     <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="module" module-name="PrimaUtils" />
   </component>
 </module>
