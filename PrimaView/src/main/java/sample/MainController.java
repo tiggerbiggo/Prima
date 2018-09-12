@@ -36,6 +36,7 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
+import javafx.util.StringConverter;
 
 public class MainController implements Initializable, ChangeListener {
 
@@ -105,6 +106,21 @@ public class MainController implements Initializable, ChangeListener {
     spnHeight
         .setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(50, 5000, 100, 50));
 
+    comboNodeList.setConverter(new StringConverter<Class<? extends INode>>() {
+      @Override
+      public String toString(Class<? extends INode> object) {
+        try {
+          return object.newInstance().getName();
+        } catch (InstantiationException | IllegalAccessException e) {
+        }
+        return object.getName();
+      }
+
+      @Override
+      public Class<? extends INode> fromString(String string) {
+        return null;
+      }
+    });
     comboNodeList.setItems(new ObservableListWrapper<>(NodeReflection.getAllImplementedNodes()));
     //imgView.fitWidthProperty().bind(anchImageHolder.widthProperty());
     //imgView.fitHeightProperty().bind(anchImageHolder.heightProperty());

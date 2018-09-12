@@ -94,6 +94,10 @@ public class GUINode extends AnchorPane {
       reflectorGrid = new ReflectorGrid();
       reflectorGrid.transfromIntoGrid(node);
 
+      if(node instanceof ChangeListener){
+        reflectorGrid.addChangeListener((ChangeListener)node);
+      }
+
       if(listener != null){
         reflectorGrid.addChangeListener(listener);
       }

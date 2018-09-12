@@ -1,5 +1,6 @@
 package com.tiggerbiggo.prima.primaplay.core;
 
+import com.tiggerbiggo.prima.primaplay.graphics.SafeImage;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -79,8 +80,7 @@ public class FileManager {
    * @return An array of images, or null if none are found
    * @throws IllegalArgumentException if dirName is null
    */
-  public static BufferedImage[] getImgsFromFolder(String dirName, boolean sort)
-      throws IllegalArgumentException {
+  public static BufferedImage[] getImgsFromFolder(String dirName, boolean sort)throws IllegalArgumentException {
     try {
       File dir = new File(dirName);
       if (!dir.isDirectory()) {
@@ -154,6 +154,23 @@ public class FileManager {
 
   public static BufferedImage[] getImgsFromFolder(String dirName) throws IllegalArgumentException {
     return getImgsFromFolder(dirName, false);
+  }
+
+  public static SafeImage safeGetImg(String filepath){
+    File f = new File(filepath);
+    if (!f.exists() || !f.canRead()) {
+      System.err.println(
+          "Error in safeGetImg: File (" +
+              filepath +
+              ") does not exist or we do not have permission to read it.");
+      return new SafeImage(1, 1);
+    }
+
+    try {
+      return new SafeImage(ImageIO.read(f));
+    } catch (IOException e) {
+      return new SafeImage(1, 1);
+    }
   }
 }
 
