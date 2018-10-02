@@ -118,7 +118,7 @@ public class NodeSerializer {
   /**Parses a saved String
    *
    * @param toParse The String to parse
-   * @param pane The Main Controller to add the nodes to
+   * @param listen The listener to attach to the resultant node pane
    */
   public static NodePane parseNodes(String toParse, ChangeListener listen){
     NodePane pane = new NodePane(listen);

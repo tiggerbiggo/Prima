@@ -73,11 +73,6 @@ public class GUIInputLink extends GUILink {
     link.unlink();
   }
 
-  @Override
-  public void updatePosition(Vector2 offset) {
-    super.updatePosition(offset);
-  }
-
   public void updateLinePos() {
     if (line != null) {
       line.updatePositions();

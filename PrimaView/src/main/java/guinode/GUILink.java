@@ -7,6 +7,7 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.TransferMode;
 import javafx.scene.shape.Circle;
+import javafx.scene.transform.Transform;
 
 public abstract class GUILink extends Circle {
 
@@ -40,6 +41,7 @@ public abstract class GUILink extends Circle {
         unlink();
       }
     });
+    setManaged(false);
   }
 
   public abstract void unlink();
@@ -54,8 +56,8 @@ public abstract class GUILink extends Circle {
 
   public void updatePosition(Vector2 parentPosition) {
     Vector2 added = parentPosition.add(this.offset);
-    setCenterX(added.X());
-    setCenterY(added.Y());
+    setLayoutX(added.X());
+    setLayoutY(added.Y());
     last = parentPosition.clone();
   }
 

@@ -14,6 +14,7 @@ import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -28,6 +29,8 @@ public class GUINode extends AnchorPane {
 
   private List<GUIInputLink> inputs;
   private List<GUIOutputLink> outputs;
+
+  private double offsetX, offsetY;
 
   public GUINode(int width, int height, int x, int y, INode node, Pane parent, ChangeListener listener) {
     //super();
@@ -48,22 +51,19 @@ public class GUINode extends AnchorPane {
     setTranslateX(x);
     setTranslateY(y);
 
+    setOnMousePressed(new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent event) {
+        offsetX = getLayoutX() - event.getSceneX();
+        offsetY = getLayoutY() - event.getSceneY();
+      }
+    });
+
     setOnMouseDragged(e -> {
-      setTranslateX(e.getSceneX());
-      setTranslateY(e.getSceneY());
+      setLayoutX(e.getSceneX() + offsetX);
+      setLayoutY(e.getSceneY() + offsetY);
 
-      for (GUIInputLink i : inputs) {
-        i.updatePosition(posAsVector());
-        i.updateLinePos();
-        i.toFront();
-      }
-
-      for (GUIOutputLink o : outputs) {
-        o.setRelativeOffset(new Vector2(getWidth(), o.getOffset().Y()));
-        o.updatePosition(posAsVector());
-        o.updateLinePos();
-        o.toFront();
-      }
+      updateLinkPositions();
     });
 
     if (node != null) {
@@ -72,10 +72,11 @@ public class GUINode extends AnchorPane {
         InputLink<?>[] inputs = ((INodeHasInput) node).getInputs();
         for (int i = 0; i < inputs.length; i++) {
           InputLink<?> link = inputs[i];
-          GUIInputLink tmp = new GUIInputLink(link, this, i, new Vector2(0, LINK_Y + (i * LINK_Y)), parent);
-          tmp.updatePosition(posAsVector());
-          this.inputs.add(tmp);
-          parent.getChildren().add(tmp);
+          GUIInputLink newLink = new GUIInputLink(link, this, i, new Vector2(0, LINK_Y + (i * LINK_Y)), parent);
+          newLink.updatePosition(posAsVector());
+          this.inputs.add(newLink);
+          //parent.getChildren().add(tmp);
+          getChildren().add(newLink);
         }
       }
 
@@ -84,10 +85,10 @@ public class GUINode extends AnchorPane {
         OutputLink<?>[] outputs = ((INodeHasOutput) node).getOutputs();
         for (int i = 0; i < outputs.length; i++) {
           OutputLink<?> link = outputs[i];
-          GUIOutputLink tmp = new GUIOutputLink(link, this, i, new Vector2(getWidth(), LINK_Y + (i * LINK_Y)),parent);
-          tmp.updatePosition(posAsVector());
-          this.outputs.add(tmp);
-          parent.getChildren().add(tmp);
+          GUIOutputLink newLink = new GUIOutputLink(link, this, i, new Vector2(getWidth(), LINK_Y + (i * LINK_Y)),parent);
+          newLink.updatePosition(posAsVector());
+          this.outputs.add(newLink);
+          getChildren().add(newLink);
         }
       }
 
@@ -159,7 +160,7 @@ public class GUINode extends AnchorPane {
   }
 
   public Vector2 posAsVector() {
-    return new Vector2(getTranslateX(), getTranslateY());
+    return new Vector2(getLayoutX(), getLayoutY());
   }
 
   public List<GUIInputLink> getInputs() {
@@ -172,5 +173,20 @@ public class GUINode extends AnchorPane {
 
   public INode getNode() {
     return node;
+  }
+
+  public void updateLinkPositions(){
+    for (GUIInputLink i : inputs) {
+      //i.updatePosition(posAsVector());
+      i.updateLinePos();
+      i.toFront();
+    }
+
+    for (GUIOutputLink o : outputs) {
+      o.setRelativeOffset(new Vector2(getWidth(), o.getOffset().Y()));
+      o.updatePosition(Vector2.ZERO);
+      o.updateLinePos();
+      o.toFront();
+    }
   }
 }

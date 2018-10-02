@@ -70,11 +70,6 @@ public class GUIOutputLink extends GUILink {
     }
   }
 
-  @Override
-  public void updatePosition(Vector2 offset) {
-    super.updatePosition(offset);
-  }
-
   public void updateLinePos() {
     lineList.forEach(GUILinkLine::updatePositions);
   }
