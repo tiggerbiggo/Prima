@@ -1,14 +1,15 @@
 package sample;
 
 import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
+import ch.hephaistos.utilities.loki.util.interfaces.ChangeListener;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.tiggerbiggo.prima.primaplay.node.core.INode;
-import gnode.GInputLink;
-import gnode.GOutputLink;
-import gnode.GUINode;
+import guinode.GUIInputLink;
+import guinode.GUIOutputLink;
+import guinode.GUINode;
 
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
@@ -18,17 +19,21 @@ public class NodeSerializer {
 
   public static final String SEP = "@";
 
+  public static String SerializeNodePane(NodePane in){
+    return SerializeList(in.nodeList);
+  }
+
   public static String SerializeList(List<GUINode> nodeList){
     StringBuilder savedString = new StringBuilder();
 
-    GUINode n = nodeList.get(0);
+    GUINode n;//nodeList.get(0);
 
-    savedString.append((int)n.getTranslateX());
-    savedString.append(SEP);
-    savedString.append((int)n.getTranslateY());
-    savedString.append("\n");
+    //savedString.append((int)n.getTranslateX());
+    //savedString.append(SEP);
+    //savedString.append((int)n.getTranslateY());
+    //savedString.append("\n");
 
-    for(int i=1; i<nodeList.size(); i++){
+    for(int i=0; i<nodeList.size(); i++){
       n = nodeList.get(i);
       savedString.append(i);
       savedString.append(SEP);
@@ -46,10 +51,15 @@ public class NodeSerializer {
 
     for(int i=0; i<nodeList.size(); i++){
       n = nodeList.get(i);
-      List<GInputLink> inputs = n.getInputs();
+      List<GUIInputLink> inputs = n.getInputs();
       for(int j=0; j<inputs.size(); j++){
-        GInputLink in = inputs.get(j);
-        savedString.append(getNodeOutputNumFromInput(in, nodeList));
+        GUIInputLink in = inputs.get(j);
+        try {
+          savedString.append(getNodeOutputNumFromInput(in, nodeList));
+        }
+        catch(NodeParseException e){
+          continue;
+        }
         savedString.append(SEP);
         savedString.append(in.getCurrentGLink().getIndex());
         savedString.append(SEP);
@@ -83,7 +93,7 @@ public class NodeSerializer {
     return gson.toJson(node);
   }
 
-  public static int getNodeInputNum(GInputLink in, List<GUINode> nodeList){
+  public static int getNodeInputNum(GUIInputLink in, List<GUINode> nodeList){
     if(in == null) throw new NodeParseException("Input link passed was null");
     if(nodeList == null) throw new NodeParseException("Node List passed was null");
     for(int i=0; i<nodeList.size(); i++){
@@ -92,10 +102,10 @@ public class NodeSerializer {
     throw new NodeParseException("Input link passed does not match with any node in the list");
   }
 
-  private static int getNodeOutputNumFromInput(GInputLink in, List<GUINode> nodeList) throws NodeParseException{
+  private static int getNodeOutputNumFromInput(GUIInputLink in, List<GUINode> nodeList) throws NodeParseException{
     if(in == null) throw new NodeParseException("Input link passed was null");
     if(nodeList == null) throw new NodeParseException("Node List passed was null");
-    GOutputLink out = in.getCurrentGLink();
+    GUIOutputLink out = in.getCurrentGLink();
     if(out == null) {
       throw new NodeParseException("Input link passed has no linked output");
     }
@@ -105,8 +115,13 @@ public class NodeSerializer {
     throw new NodeParseException("Input link passed does not match with any node in the list");
   }
 
-  public static void parseNodes(String toParse, MainController control){
-    control.clearNodes();
+  /**Parses a saved String
+   *
+   * @param toParse The String to parse
+   * @param pane The Main Controller to add the nodes to
+   */
+  public static NodePane parseNodes(String toParse, ChangeListener listen){
+    NodePane pane = new NodePane(listen);
 
     String[] lines = toParse.split("\n");
     List<GUINode> nodeList = new ArrayList<>();
@@ -114,19 +129,19 @@ public class NodeSerializer {
     int currentLine = 0;
     do{
       String[] parsedLine = lines[currentLine].split(SEP);
-      if(currentLine == 0 && parsedLine.length == 2){
+      /*if(currentLine == 0 && parsedLine.length == 2){
         //Add the render node at position 0
         nodeList.add(new GUINode(
                 Integer.parseInt(parsedLine[0]),
                 Integer.parseInt(parsedLine[1]),
-                control.renderNode,
-                control.nodeCanvas,
-                control
+                pane.renderNode,
+                pane,
+                listen
         ));
         currentLine++;
         continue;
-      }
-      else if(parsedLine.length != 5){
+      }*/
+      if(parsedLine.length != 5){
         throw new NodeParseException("Parsed line length != 5. Current Line: " + currentLine + ", String: " + lines[currentLine]);
       }
 
@@ -135,29 +150,27 @@ public class NodeSerializer {
               Integer.parseInt(parsedLine[3]),
               Integer.parseInt(parsedLine[4]),
               NodeReflection.parseNode(parsedLine[1], parsedLine[2]),
-              control.nodeCanvas,
-              control));
+              pane,
+              listen));
 
       currentLine++;
     }while(!lines[currentLine].equals("-"));
 
-    control.nodeCanvas.getChildren().addAll(nodeList);
-    control.nodeList.addAll(nodeList);
+    pane.addNode(nodeList);
 
     currentLine++;
 
     do{
       int[] links = parseLinks(lines[currentLine]);
 
-      GOutputLink output = nodeList.get(links[0]).getOutputs().get(links[1]);
-      GInputLink input = nodeList.get(links[2]).getInputs().get(links[3]);
+      GUIOutputLink output = nodeList.get(links[0]).getOutputs().get(links[1]);
+      GUIInputLink input = nodeList.get(links[2]).getInputs().get(links[3]);
 
       input.link(output);
-
-
-
       currentLine++;
     }while(currentLine < lines.length);
+
+    return pane;
   }
 
       /*

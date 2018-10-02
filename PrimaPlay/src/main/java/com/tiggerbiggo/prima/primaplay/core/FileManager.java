@@ -1,5 +1,6 @@
 package com.tiggerbiggo.prima.primaplay.core;
 
+import com.tiggerbiggo.prima.primaplay.graphics.ImageTools;
 import com.tiggerbiggo.prima.primaplay.graphics.SafeImage;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;

@@ -3,26 +3,23 @@ package sample;
 import ch.hephaistos.utilities.loki.util.interfaces.ChangeListener;
 import com.sun.javafx.collections.ObservableListWrapper;
 import com.tiggerbiggo.prima.primaplay.core.FileManager;
-import com.tiggerbiggo.prima.primaplay.graphics.HueCycleGradient;
 import com.tiggerbiggo.prima.primaplay.graphics.ImageTools;
 import com.tiggerbiggo.prima.primaplay.node.core.INode;
-import com.tiggerbiggo.prima.primaplay.node.core.RenderNode;
 import com.tiggerbiggo.prima.primaplay.node.implemented.BasicRenderNode;
-import com.tiggerbiggo.prima.primaplay.node.implemented.MapGenNode;
-import com.tiggerbiggo.prima.primaplay.node.implemented.io.AnimationNode;
-import com.tiggerbiggo.prima.primaplay.node.implemented.io.GradientNode;
-import com.tiggerbiggo.prima.primaplay.node.implemented.io.ImageListNode;
-import gnode.GLink;
-import gnode.GUINode;
+import guinode.GUILink;
+import guinode.GUINode;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.awt.image.BufferedImage;
 import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -37,14 +34,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
 
 public class MainController implements Initializable, ChangeListener {
 
+  public NodePane nodePane;
+
   @FXML
-  public Pane nodeCanvas;
+  public AnchorPane nodeContainer;
   @FXML
   private ImageView imgView;
   @FXML
@@ -60,30 +58,30 @@ public class MainController implements Initializable, ChangeListener {
   @FXML
   private TextArea txtSavedText;
 
+  private String DEFAULT =
+      "0@com.tiggerbiggo.prima.primaplay.node.implemented.MapGenNode@{\"aX\":0.0,\"aY\":0.0,\"dx\":1.0,\"dy\":1.0}@35@29\n"
+      + "1@com.tiggerbiggo.prima.primaplay.node.implemented.io.TransformNode@{\"function\":\"SINSIN\"}@319@43\n"
+      + "2@com.tiggerbiggo.prima.primaplay.node.implemented.BasicRenderNode@{}@925@92\n"
+      + "3@com.tiggerbiggo.prima.primaplay.node.implemented.io.GradientNode@{}@752@82\n"
+      + "4@com.tiggerbiggo.prima.primaplay.node.implemented.io.AnimationNode@{}@567@66\n"
+      + "-\n"
+      + "0@0@1@0\n"
+      + "3@0@2@0\n"
+      + "4@0@3@0\n"
+      + "1@0@4@0\n";
+
 
   Image[] imgArray = null;
   int currentImage;
   Timeline timer;
 
-  RenderNode renderNode;
-
-  List<GUINode> nodeList;
+  private Future<BufferedImage[]> renderTask;
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
-    nodeList = new ArrayList<>();
-
-    renderNode = new BasicRenderNode();
-    addNode(new GUINode(renderNode, nodeCanvas, this));
-    //addNode(new GUINode(new ImageListNode(FileManager.getImgsFromFolder("imgs")), nodeCanvas, this));
-    addNode(new GUINode(new MapGenNode(), nodeCanvas, this));
-    addNode(new GUINode(new AnimationNode(), nodeCanvas, this));
-    addNode(new GUINode(new GradientNode(new HueCycleGradient()), nodeCanvas, this));
-    //nodeCanvas.getChildren().add(new GUINode(new GradientNode(new SimpleGradient(Color.RED, Color.BLUE, false)), nodeCanvas, this));
-
-
     timer = new Timeline(new KeyFrame(Duration.seconds(1.0 / 60),
         e -> {
+          imgArray = pollRenderer();
           if (imgArray == null) {
             return;
           }
@@ -97,13 +95,21 @@ public class MainController implements Initializable, ChangeListener {
     timer.setCycleCount(Animation.INDEFINITE);
     timer.setOnFinished(e -> imgView.setImage(null));
 
-    nodeCanvas.setOnDragOver(e -> e.acceptTransferModes(TransferMode.ANY));
-    nodeCanvas.setOnDragDropped(e -> {
+    nodePane = new NodePane(this);
+    nodePane = NodeSerializer.parseNodes(DEFAULT, this);
+    AnchorPane.setBottomAnchor(nodePane, 0.0);
+    AnchorPane.setTopAnchor(nodePane, 0.0);
+    AnchorPane.setLeftAnchor(nodePane, 0.0);
+    AnchorPane.setRightAnchor(nodePane, 0.0);
+    nodeContainer.getChildren().add(nodePane);
+
+    nodePane.setOnDragOver(e -> e.acceptTransferModes(TransferMode.ANY));
+    nodePane.setOnDragDropped(e -> {
       Object gestureSource = e.getGestureSource();
       if (gestureSource == null) {
         return;
       }
-      if (gestureSource instanceof GLink) {
+      if (gestureSource instanceof GUILink) {
       }
     });
 
@@ -131,27 +137,31 @@ public class MainController implements Initializable, ChangeListener {
     //imgView.fitHeightProperty().bind(anchImageHolder.heightProperty());
   }
 
-  private void refreshImage(int width, int height, int n){
-    imgArray = ImageTools.toFXImage(renderNode.render(width, height, n));
+  private Image[] pollRenderer(){
+    if(renderTask == null) return imgArray;
+    if(renderTask.isDone()) {
+      try {
+        Image[] toReturn = ImageTools.toFXImage(renderTask.get());
+        renderTask = null;
+        return toReturn;
+      } catch (InterruptedException | ExecutionException e) {
+        e.printStackTrace();
+        return imgArray;
+      }
+    }
+    return imgArray;
   }
 
-  private void refreshImage(){
-    refreshImage(100, 100, 60);
-  }
-
-  /**
-   * Clears all nodes in the nodeList and all the objects in the nodeCanvas.
-   */
-  public void clearNodes(){
-    nodeList.clear();
-    nodeCanvas.getChildren().clear();
-    //addNode(new GUINode(renderNode, nodeCanvas, this));
+  public void startPreviewRender(){
+    if(renderTask != null) renderTask.cancel(true);
+    imgArray = null;
+    renderTask = nodePane.renderAsync(100, 100, 60);
   }
 
   @FXML
   private void onBtnPreview(ActionEvent e) {
     if (btnPreview.getText().equals("Preview")) {
-      refreshImage();
+      startPreviewRender();
       timer.play();
       btnPreview.setText("Stop");
     } else {
@@ -162,23 +172,16 @@ public class MainController implements Initializable, ChangeListener {
 
   @FXML
   private void onBtnSave(ActionEvent e) {
-    FileManager.writeGif(renderNode.render(spnWidth.getValue(), spnHeight.getValue(), 60),
-        txtFileName.getText());
+    FileManager.writeGif(nodePane.render(spnWidth.getValue(), spnHeight.getValue(), 60), txtFileName.getText());
   }
 
   @FXML
   private void onBtnSaveLayout(ActionEvent e){
 
     //purge deleted entries before save
-    List<GUINode> toDelete = new ArrayList<>();
-    for(GUINode node : nodeList){
-      if(!nodeCanvas.getChildren().contains(node)){
-        toDelete.add(node);
-      }
-    }
-    nodeList.removeAll(toDelete);
+    nodePane.purgeNodes();
 
-    String ser = NodeSerializer.SerializeList(nodeList);
+    String ser = NodeSerializer.SerializeNodePane(nodePane);
     System.out.println(ser);
 
     txtSavedText.setText(ser);
@@ -192,15 +195,26 @@ public class MainController implements Initializable, ChangeListener {
 
   @FXML
   private void onBtnLoadLayout(ActionEvent e){
-    NodeSerializer.parseNodes(txtSavedText.getText(), this);
+    try{
+      NodePane tmpPane = NodeSerializer.parseNodes(txtSavedText.getText(), this);
+      if(tmpPane != null){
+        nodeContainer.getChildren().clear();
+        nodeContainer.getChildren().add(tmpPane);
+        nodePane.clearNodes();
+        nodePane = tmpPane;
+      }
+    }
+    catch(NodeParseException ex){
+      //oh dear, display error message
+    }
   }
 
   @FXML
   private void onBtnAddNode(ActionEvent e) {
     try {
       INode nodeInstance = comboNodeList.getValue().newInstance();
-      GUINode newNode = new GUINode(nodeInstance, nodeCanvas, this);
-      addNode(newNode);
+      //GUINode newNode = new GUINode(nodeInstance, nodePane, this);
+      nodePane.addNode(nodeInstance);
     } catch (InstantiationException | IllegalAccessException ex) {
       ex.printStackTrace();
     }
@@ -208,11 +222,6 @@ public class MainController implements Initializable, ChangeListener {
 
   @Override
   public void onObjectValueChanged(Field field, Object object) {
-    refreshImage();
-  }
-
-  private void addNode(GUINode node){
-    nodeCanvas.getChildren().add(node);
-    nodeList.add(node);
+    startPreviewRender();
   }
 }

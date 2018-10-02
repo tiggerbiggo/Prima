@@ -1,12 +1,12 @@
-package gnode;
+package guinode;
 
 import ch.hephaistos.utilities.loki.ReflectorGrid;
 import ch.hephaistos.utilities.loki.util.interfaces.ChangeListener;
+import com.tiggerbiggo.prima.primaplay.node.implemented.BasicRenderNode;
 import com.tiggerbiggo.utils.calculation.Vector2;
 import com.tiggerbiggo.prima.primaplay.node.core.INode;
 import com.tiggerbiggo.prima.primaplay.node.core.INodeHasInput;
 import com.tiggerbiggo.prima.primaplay.node.core.INodeHasOutput;
-import com.tiggerbiggo.prima.primaplay.node.core.RenderNode;
 import com.tiggerbiggo.prima.primaplay.node.link.InputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.OutputLink;
 import java.util.ArrayList;
@@ -26,8 +26,8 @@ public class GUINode extends AnchorPane {
   private ReflectorGrid reflectorGrid;
   private INode node;
 
-  private List<GInputLink> inputs;
-  private List<GOutputLink> outputs;
+  private List<GUIInputLink> inputs;
+  private List<GUIOutputLink> outputs;
 
   public GUINode(int width, int height, int x, int y, INode node, Pane parent, ChangeListener listener) {
     //super();
@@ -52,13 +52,13 @@ public class GUINode extends AnchorPane {
       setTranslateX(e.getSceneX());
       setTranslateY(e.getSceneY());
 
-      for (GInputLink i : inputs) {
+      for (GUIInputLink i : inputs) {
         i.updatePosition(posAsVector());
         i.updateLinePos();
         i.toFront();
       }
 
-      for (GOutputLink o : outputs) {
+      for (GUIOutputLink o : outputs) {
         o.setRelativeOffset(new Vector2(getWidth(), o.getOffset().Y()));
         o.updatePosition(posAsVector());
         o.updateLinePos();
@@ -72,7 +72,7 @@ public class GUINode extends AnchorPane {
         InputLink<?>[] inputs = ((INodeHasInput) node).getInputs();
         for (int i = 0; i < inputs.length; i++) {
           InputLink<?> link = inputs[i];
-          GInputLink tmp = new GInputLink(link, this, i, new Vector2(0, LINK_Y + (i * LINK_Y)), parent);
+          GUIInputLink tmp = new GUIInputLink(link, this, i, new Vector2(0, LINK_Y + (i * LINK_Y)), parent);
           tmp.updatePosition(posAsVector());
           this.inputs.add(tmp);
           parent.getChildren().add(tmp);
@@ -84,7 +84,7 @@ public class GUINode extends AnchorPane {
         OutputLink<?>[] outputs = ((INodeHasOutput) node).getOutputs();
         for (int i = 0; i < outputs.length; i++) {
           OutputLink<?> link = outputs[i];
-          GOutputLink tmp = new GOutputLink(link, this, i, new Vector2(getWidth(), LINK_Y + (i * LINK_Y)),parent);
+          GUIOutputLink tmp = new GUIOutputLink(link, this, i, new Vector2(getWidth(), LINK_Y + (i * LINK_Y)),parent);
           tmp.updatePosition(posAsVector());
           this.outputs.add(tmp);
           parent.getChildren().add(tmp);
@@ -117,11 +117,11 @@ public class GUINode extends AnchorPane {
       delete.setOnAction(new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
-          for (GInputLink i : inputs) {
+          for (GUIInputLink i : inputs) {
             i.deleteLine();
             parent.getChildren().remove(i);
           }
-          for (GOutputLink o : outputs) {
+          for (GUIOutputLink o : outputs) {
             o.deleteAllLines();
             parent.getChildren().remove(o);
           }
@@ -129,9 +129,8 @@ public class GUINode extends AnchorPane {
         }
       });
 
-      if (!(node instanceof RenderNode)) {
-        layoutGrid
-            .addColumn(0, new Text(node.getName()), reflectorGrid, delete);
+      if (!(node instanceof BasicRenderNode)) {
+        layoutGrid.addColumn(0, new Text(node.getName()), reflectorGrid, delete);
       } else {
         layoutGrid.addColumn(0, new Text(node.getName()), reflectorGrid);
       }
@@ -163,11 +162,11 @@ public class GUINode extends AnchorPane {
     return new Vector2(getTranslateX(), getTranslateY());
   }
 
-  public List<GInputLink> getInputs() {
+  public List<GUIInputLink> getInputs() {
     return inputs;
   }
 
-  public List<GOutputLink> getOutputs() {
+  public List<GUIOutputLink> getOutputs() {
     return outputs;
   }
 

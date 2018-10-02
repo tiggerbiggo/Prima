@@ -14,6 +14,7 @@ public class GradientNode extends NodeInOut {
   VectorArrayInputLink inputLink;
   ColorArrayOutputLink out;
 
+
   Gradient g;
 
   public GradientNode(Gradient _g) {

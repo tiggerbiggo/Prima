@@ -1,7 +1,6 @@
-package com.tiggerbiggo.prima.primaplay.node.core;
+package com.tiggerbiggo.prima.primaplay.core;
 
 
-import com.tiggerbiggo.prima.primaplay.core.RenderParams;
 import com.tiggerbiggo.prima.primaplay.node.link.InputLink;
 import com.tiggerbiggo.utils.calculation.Vector2;
 import java.awt.Color;

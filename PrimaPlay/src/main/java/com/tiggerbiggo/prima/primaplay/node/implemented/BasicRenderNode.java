@@ -1,31 +1,29 @@
 package com.tiggerbiggo.prima.primaplay.node.implemented;
 
-import com.tiggerbiggo.prima.primaplay.node.core.RenderNode;
-import com.tiggerbiggo.prima.primaplay.node.core.Renderer;
-import com.tiggerbiggo.prima.primaplay.node.link.InputLink;
+import com.tiggerbiggo.prima.primaplay.core.NewRenderer;
+import com.tiggerbiggo.prima.primaplay.node.core.NodeHasInput;
+import com.tiggerbiggo.prima.primaplay.core.Renderer;
 import com.tiggerbiggo.prima.primaplay.node.link.type.ColorArrayInputLink;
 import java.awt.image.BufferedImage;
+import java.util.concurrent.Future;
 
-public class BasicRenderNode extends RenderNode {
+public class BasicRenderNode extends NodeHasInput{
 
-  private ColorArrayInputLink inputLink = new ColorArrayInputLink();
+  private ColorArrayInputLink inputLink;
 
-  @Override
-  public InputLink<?>[] getInputs() {
-    return new InputLink[]{inputLink};
+  public BasicRenderNode(){
+    inputLink = new ColorArrayInputLink();
+    addInput(inputLink);
   }
 
-  @Override
-  public InputLink<?> getInput(int n) {
-    return inputLink;
+  public Future<BufferedImage[]> renderAsync(int width, int height, int n){
+    return NewRenderer.renderAsync(inputLink, width, height, n);
   }
 
-  @Override
   public BufferedImage[] render(int width, int height, int n) {
     return Renderer.render(inputLink, width, height, n);
   }
 
-  @Override
   public BufferedImage renderSingle(int width, int height) {
     return Renderer.renderSingle(inputLink, width, height);
   }

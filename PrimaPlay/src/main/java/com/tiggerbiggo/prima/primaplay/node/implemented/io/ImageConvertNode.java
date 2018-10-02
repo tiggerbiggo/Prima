@@ -7,38 +7,34 @@ import com.tiggerbiggo.prima.primaplay.core.RenderParams;
 import com.tiggerbiggo.prima.primaplay.graphics.ColorConvertType;
 import com.tiggerbiggo.prima.primaplay.graphics.SafeImage;
 import com.tiggerbiggo.prima.primaplay.node.core.NodeInOut;
+import com.tiggerbiggo.prima.primaplay.node.link.type.ImageInputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorInputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorOutputLink;
 import com.tiggerbiggo.utils.calculation.Vector2;
 import java.awt.Color;
 import java.lang.reflect.Field;
 
-public class ImageConvertNode extends NodeInOut implements ChangeListener{
-
-  @TransferGrid
-  private String imagePath = "";
+public class ImageConvertNode extends NodeInOut{
 
   @TransferGrid
   private ColorConvertType convertX = ColorConvertType.V;
   @TransferGrid
   private ColorConvertType convertY = ColorConvertType.V;
 
-  private SafeImage currentImage;
-
   private VectorInputLink pos;
+  private ImageInputLink img;
+
   private VectorOutputLink out;
 
   public ImageConvertNode(){
     pos = new VectorInputLink();
-    addInput(pos);
+    img = new ImageInputLink();
+    addInput(pos, img);
 
     out = new VectorOutputLink() {
       @Override
       public Vector2 get(RenderParams p) {
-        if(currentImage == null){
-          updateImage();
-          return Vector2.ZERO;
-        }
+        SafeImage currentImage = img.get(p);
 
         Vector2 position = pos.get(p);
 
@@ -50,8 +46,6 @@ public class ImageConvertNode extends NodeInOut implements ChangeListener{
       }
     };
     addOutput(out);
-
-    updateImage();
   }
 
   @Override
@@ -62,15 +56,5 @@ public class ImageConvertNode extends NodeInOut implements ChangeListener{
   @Override
   public String getDescription() {
     return "Converts a single still image to numbers.";
-  }
-
-  @Override
-  public void onObjectValueChanged(Field field, Object o) {
-    //update image
-    updateImage();
-  }
-
-  public void updateImage(){
-    currentImage = FileManager.safeGetImg(imagePath);
   }
 }

@@ -2,6 +2,8 @@ package com.tiggerbiggo.prima.primaplay.node.implemented.io;
 
 import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
 import com.tiggerbiggo.prima.primaplay.graphics.ColorConvertType;
+import com.tiggerbiggo.prima.primaplay.node.link.type.ImageArrayInputLink;
+import com.tiggerbiggo.prima.primaplay.node.link.type.VectorArrayOutputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorOutputLink;
 import com.tiggerbiggo.utils.calculation.Vector2;
 import com.tiggerbiggo.prima.primaplay.core.RenderParams;
@@ -18,8 +20,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ImageListNode extends NodeInOut{
-  List<SafeImage> imgs;
-
   @TransferGrid
   ColorConvertType convertX = ColorConvertType.V;
 
@@ -28,35 +28,43 @@ public class ImageListNode extends NodeInOut{
 
   VectorArrayInputLink uvLink;
   VectorArrayInputLink timeIn;
+  ImageArrayInputLink imgLink;
 
-  VectorOutputLink vecOut;
+  VectorArrayOutputLink vecOut;
   ColorArrayOutputLink colOut;
 
-  public ImageListNode(List<SafeImage> _imgs){
-    this.imgs = _imgs;
-
+  public ImageListNode(){
     uvLink = new VectorArrayInputLink();
-    uvLink.link(NodeFactory.stillAnim().getOutput(0));
-
     timeIn = new VectorArrayInputLink();
-    addInput(uvLink, timeIn);
+    imgLink = new ImageArrayInputLink();
 
-    vecOut = new VectorOutputLink() {
+    addInput(uvLink, timeIn, imgLink);
+
+    vecOut = new VectorArrayOutputLink() {
       @Override
-      public Vector2 get(RenderParams params) {
-        Vector2 position = uvLink.get(params)[0];
-        Vector2 time = timeIn.get(params)[0];
+      public Vector2[] get(RenderParams params) {
+        Vector2[] position = uvLink.get(params);
+        Vector2[] time = timeIn.get(params);
+        Vector2[] toReturn = new Vector2[params.frameNum()];
 
-        double percent = Math.abs(time.xy()) % 1;
+        SafeImage[] imgs = imgLink.get(params);
 
-        //multiply by number of images
-        percent *= imgs.size();
+        for(int i=0; i<toReturn.length; i++) {
+          double percent = Math.abs(time[i].xy()) % 1;
 
-        SafeImage img = imgs.get((int)percent);
+          //multiply by number of images
+          percent *= imgs.length;
 
-        Color sample = img.getColor(img.denormVector(position));
+          SafeImage img = imgs[(int)percent];
 
-        return new Vector2(convertX.convertColor(sample), convertY.convertColor(sample));
+          Color sample = img.getColor(img.denormVector(position[i]));
+
+          toReturn[i] = new Vector2(
+              convertX.convertColor(sample),
+              convertY.convertColor(sample));
+        }
+
+        return toReturn;
       }
     };
     addOutput(vecOut);
@@ -70,6 +78,8 @@ public class ImageListNode extends NodeInOut{
         Vector2[] position = uvLink.get(params);
         Vector2[] time = timeIn.get(params);
 
+        SafeImage[] imgs = imgLink.get(params);
+
         Color[] pixel = new Color[params.frameNum()];
 
         for (int i = 0; i < params.frameNum(); i++) {
@@ -77,7 +87,7 @@ public class ImageListNode extends NodeInOut{
           double percent = Math.abs(time[i].xy()) % 1;
 
           //multiply by number of images
-          percent *= imgs.size();
+          percent *= imgs.length;
 
           //get index number
           int index = (int)percent;
@@ -85,8 +95,8 @@ public class ImageListNode extends NodeInOut{
           //re-normalise percentage
           percent %=1;
 
-          SafeImage imgA = imgs.get(index);
-          SafeImage imgB = imgs.get((index + 1) % imgs.size());
+          SafeImage imgA = imgs[index];
+          SafeImage imgB = imgs[(index + 1) % imgs.length];
 
           Color colorA = imgA.getColor(imgA.denormVector(position[i]));
           Color colorB = imgB.getColor(imgB.denormVector(position[(i+1) % params.frameNum()]));
@@ -97,18 +107,6 @@ public class ImageListNode extends NodeInOut{
       }
     };
     addOutput(colOut);
-  }
-
-  public ImageListNode(SafeImage ... imgs){
-    this(Arrays.asList(imgs));
-  }
-
-  public ImageListNode(BufferedImage... imgs) {
-    this(ImageTools.toSafeImage(imgs));
-  }
-
-  public ImageListNode(){
-    this(new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB));
   }
 
   @Override

@@ -1,5 +1,7 @@
-package gnode;
+package guinode;
 
+import com.tiggerbiggo.prima.primaplay.node.link.type.ImageArrayInputLink;
+import com.tiggerbiggo.prima.primaplay.node.link.type.ImageInputLink;
 import com.tiggerbiggo.utils.calculation.Vector2;
 import com.tiggerbiggo.prima.primaplay.node.link.InputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.type.ColorArrayInputLink;
@@ -10,17 +12,17 @@ import java.util.Objects;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
-public class GInputLink extends GLink {
+public class GUIInputLink extends GUILink {
 
   InputLink<?> link;
-  private GLinkLine line;
-  private GOutputLink currentGLink;
+  private GUILinkLine line;
+  private GUIOutputLink currentGLink;
   private GUINode owner;
   private int index;
   private final Pane parent;
   Vector2 position;
 
-  public GInputLink(InputLink<?> in, GUINode owner, int index, Vector2 position, Pane parent) {
+  public GUIInputLink(InputLink<?> in, GUINode owner, int index, Vector2 position, Pane parent) {
     link = in;
     this.parent = Objects.requireNonNull(parent);
     this.owner = Objects.requireNonNull(owner);
@@ -34,6 +36,10 @@ public class GInputLink extends GLink {
       setFill(Color.BLUE);
     } else if (link instanceof VectorInputLink) {
       setFill(Color.AQUA);
+    } else if (link instanceof ImageInputLink) {
+      setFill(Color.GREEN);
+    } else if (link instanceof ImageArrayInputLink) {
+      setFill(Color.DARKGREEN);
     } else {
       System.out.println("ERR: " + link);
     }
@@ -41,9 +47,9 @@ public class GInputLink extends GLink {
     setRelativeOffset(position);
 
     setOnDragDropped(event -> {
-      GOutputLink source;
-      if (event.getGestureSource() instanceof GOutputLink) {
-        source = (GOutputLink) event.getGestureSource();
+      GUIOutputLink source;
+      if (event.getGestureSource() instanceof GUIOutputLink) {
+        source = (GUIOutputLink) event.getGestureSource();
         if (link.canLink(source.link)) {
           deleteLine();
           link(source);
@@ -78,7 +84,7 @@ public class GInputLink extends GLink {
     }
   }
 
-  public boolean link(GOutputLink out) {
+  public boolean link(GUIOutputLink out) {
     if (link.link(out.getLink())) {
 
       currentGLink = out;
@@ -86,7 +92,7 @@ public class GInputLink extends GLink {
       if(line != null){
         line.delete();
       }
-      parent.getChildren().add(new GLinkLine(this, out, parent));
+      parent.getChildren().add(new GUILinkLine(this, out, parent));
       // ^Here be bugs
 
 
@@ -99,11 +105,11 @@ public class GInputLink extends GLink {
     return link;
   }
 
-  public GLinkLine getLine() {
+  public GUILinkLine getLine() {
     return line;
   }
 
-  public GOutputLink getCurrentGLink() {
+  public GUIOutputLink getCurrentGLink() {
     return currentGLink;
   }
 
@@ -111,7 +117,7 @@ public class GInputLink extends GLink {
     return owner;
   }
 
-  public void setLine(GLinkLine line) {
+  public void setLine(GUILinkLine line) {
     this.line = Objects.requireNonNull(line);
   }
 

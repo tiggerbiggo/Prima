@@ -1,5 +1,7 @@
-package gnode;
+package guinode;
 
+import com.tiggerbiggo.prima.primaplay.node.link.type.ImageArrayOutputLink;
+import com.tiggerbiggo.prima.primaplay.node.link.type.ImageOutputLink;
 import com.tiggerbiggo.utils.calculation.Vector2;
 import com.tiggerbiggo.prima.primaplay.node.link.OutputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.type.ColorArrayOutputLink;
@@ -12,11 +14,11 @@ import java.util.Objects;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
-public class GOutputLink extends GLink {
+public class GUIOutputLink extends GUILink {
 
   OutputLink<?> link;
 
-  List<GLinkLine> lineList;
+  List<GUILinkLine> lineList;
 
   private Vector2 position;
   private GUINode owner;
@@ -24,7 +26,7 @@ public class GOutputLink extends GLink {
 
   private final Pane parent;
 
-  public GOutputLink(OutputLink<?> in, GUINode owner, int index, Vector2 position, Pane parent) {
+  public GUIOutputLink(OutputLink<?> in, GUINode owner, int index, Vector2 position, Pane parent) {
     link = in;
     setRelativeOffset(position);
     lineList = new ArrayList<>();
@@ -41,15 +43,19 @@ public class GOutputLink extends GLink {
       setFill(Color.BLUE);
     } else if (link instanceof VectorOutputLink) {
       setFill(Color.AQUA);
+    }else if (link instanceof ImageOutputLink) {
+      setFill(Color.GREEN);
+    }else if (link instanceof ImageArrayOutputLink) {
+      setFill(Color.DARKGREEN);
     }
 
     setOnDragDropped(event -> {
-      GInputLink inputLink;
-      if (event.getGestureSource() instanceof GInputLink) {
-        inputLink = (GInputLink) event.getGestureSource();
+      GUIInputLink inputLink;
+      if (event.getGestureSource() instanceof GUIInputLink) {
+        inputLink = (GUIInputLink) event.getGestureSource();
         if (inputLink.link(this)) {
           //success, create line
-          //this.parent.getChildren().add(new GLinkLine(inputLink, this, this.parent));
+          //this.parent.getChildren().add(new GUILinkLine(inputLink, this, this.parent));
         }
       }
       updatePosition();
@@ -67,29 +73,28 @@ public class GOutputLink extends GLink {
   @Override
   public void updatePosition(Vector2 offset) {
     super.updatePosition(offset);
-
   }
 
   public void updateLinePos() {
-    lineList.forEach(GLinkLine::updatePositions);
+    lineList.forEach(GUILinkLine::updatePositions);
   }
 
   public OutputLink<?> getLink() {
     return link;
   }
 
-  public void addLine(GLinkLine line) {
+  public void addLine(GUILinkLine line) {
     lineList.add(line);
   }
 
-  public void forgetLine(GLinkLine toForget) {
+  public void forgetLine(GUILinkLine toForget) {
     toForget = Objects.requireNonNull(toForget);
     lineList.remove(toForget);
   }
 
   public void deleteAllLines() {
     while (lineList.size() > 0) {
-      GLinkLine line = lineList.get(0);
+      GUILinkLine line = lineList.get(0);
       line.delete();
     }
   }

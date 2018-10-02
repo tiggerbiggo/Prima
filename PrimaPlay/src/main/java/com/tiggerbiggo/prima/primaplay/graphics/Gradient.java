@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * Stores colors and calculates gradients
  */
-public abstract class Gradient implements Serializable {
+public abstract class Gradient implements Serializable{
 
   /**
    * Abstract method for evaluating gradients

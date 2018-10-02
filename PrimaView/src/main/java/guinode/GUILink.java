@@ -1,4 +1,4 @@
-package gnode;
+package guinode;
 
 import com.tiggerbiggo.utils.calculation.Vector2;
 import javafx.scene.effect.Bloom;
@@ -8,11 +8,11 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.TransferMode;
 import javafx.scene.shape.Circle;
 
-public abstract class GLink extends Circle {
+public abstract class GUILink extends Circle {
 
   private Vector2 offset, last;
 
-  public GLink() { //extends Circle
+  public GUILink() { //extends Circle
     super(10);
 
     last = Vector2.ZERO;

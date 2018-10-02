@@ -39,6 +39,9 @@ public class ImageTools {
   }
 
   public static SafeImage[] toSafeImage(BufferedImage[] imgs) {
+    if(imgs == null)
+      return blankArray();
+
     SafeImage[] toReturn = new SafeImage[imgs.length];
     for (int i = 0; i < imgs.length; i++) {
       toReturn[i] = new SafeImage(imgs[i]);
@@ -76,5 +79,13 @@ public class ImageTools {
 
   public static Image toFXImage(SafeImage img) {
     return toFXImage(toBufferedImage(img));
+  }
+
+  public static SafeImage blankImage(){
+    return new SafeImage(100,100);
+  }
+
+  public static SafeImage[] blankArray(){
+    return new SafeImage[]{blankImage()};
   }
 }

@@ -1,4 +1,4 @@
-package gnode;
+package guinode;
 
 import com.tiggerbiggo.utils.calculation.Vector2;
 import java.util.Objects;
@@ -6,15 +6,15 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.CubicCurve;
 
-public class GLinkLine extends CubicCurve {
+public class GUILinkLine extends CubicCurve {
 
-  GInputLink input;
-  GOutputLink output;
+  GUIInputLink input;
+  GUIOutputLink output;
   Pane parent;
 
   private final double AMNT = 50;
 
-  public GLinkLine(GInputLink input, GOutputLink output, Pane parent) {
+  public GUILinkLine(GUIInputLink input, GUIOutputLink output, Pane parent) {
     this.input = Objects.requireNonNull(input);
     this.output = Objects.requireNonNull(output);
     this.parent = Objects.requireNonNull(parent);

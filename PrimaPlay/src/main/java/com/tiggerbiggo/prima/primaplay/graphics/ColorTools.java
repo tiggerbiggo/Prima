@@ -136,6 +136,20 @@ public class ColorTools {
   public static int getMin(Color in) {
     return Math.min(in.getRed(), Math.min(in.getGreen(), in.getBlue()));
   }
+
+  /**
+   * Given a Color, multiplies all components by the multiplier. Clamps result between 0 and 255.
+   * @param in The color to multiply
+   * @param toMul The number to multiply each component by
+   * @return The result color, or null if in was null
+   */
+  public static Color multiply(Color in, double toMul){
+    return new Color(
+        Math.min(255, Math.max((int)(in.getRed() * toMul), 0)),
+        Math.min(255, Math.max((int)(in.getGreen() * toMul), 0)),
+        Math.min(255, Math.max((int)(in.getBlue() * toMul), 0))
+    );
+  }
 }
 
 
