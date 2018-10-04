@@ -1,0 +1,7 @@
+#LinkLine{
+  -fx-stroke:'#ffffff';
+  -fx-fill:transparent;
+}
+#NodePane{
+  -fx-background-color:'#0a0649';
+}

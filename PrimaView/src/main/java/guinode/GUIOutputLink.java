@@ -20,20 +20,17 @@ public class GUIOutputLink extends GUILink {
 
   List<GUILinkLine> lineList;
 
-  private Vector2 position;
   private GUINode owner;
   private int index;
 
-  private final Pane parent;
-
-  public GUIOutputLink(OutputLink<?> in, GUINode owner, int index, Vector2 position, Pane parent) {
+  public GUIOutputLink(OutputLink<?> in, GUINode owner, int index, double yOffset) {
     link = in;
-    setRelativeOffset(position);
     lineList = new ArrayList<>();
 
-    this.parent = parent;
     this.owner = owner;
     this.index = index;
+
+    setCenterY(yOffset);
 
     if (link instanceof ColorArrayOutputLink) {
       setFill(Color.YELLOW);
@@ -49,17 +46,17 @@ public class GUIOutputLink extends GUILink {
       setFill(Color.DARKGREEN);
     }
 
+    GUIOutputLink thisLink = this;
+
     setOnDragDropped(event -> {
       GUIInputLink inputLink;
       if (event.getGestureSource() instanceof GUIInputLink) {
         inputLink = (GUIInputLink) event.getGestureSource();
-        if (inputLink.link(this)) {
+        if (inputLink.link(thisLink)) {
           //success, create line
-          //this.parent.getChildren().add(new GUILinkLine(inputLink, this, this.parent));
+          new GUILinkLine(inputLink, thisLink);
         }
       }
-      updatePosition();
-      updateLinePos();
     });
   }
 
@@ -70,21 +67,28 @@ public class GUIOutputLink extends GUILink {
     }
   }
 
-  public void updateLinePos() {
-    lineList.forEach(GUILinkLine::updatePositions);
+  @Override
+  public void triggerUnlink() {
+    unlink();
   }
 
   public OutputLink<?> getLink() {
     return link;
   }
 
+  public void addLine(GUIInputLink link){
+    addLine(new GUILinkLine(link, this));
+  }
+
   public void addLine(GUILinkLine line) {
     lineList.add(line);
+    owner.getChildren().add(line);
   }
 
   public void forgetLine(GUILinkLine toForget) {
     toForget = Objects.requireNonNull(toForget);
     lineList.remove(toForget);
+    owner.getChildren().remove(toForget);
   }
 
   public void deleteAllLines() {

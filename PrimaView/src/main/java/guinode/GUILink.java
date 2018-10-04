@@ -1,6 +1,7 @@
 package guinode;
 
 import com.tiggerbiggo.utils.calculation.Vector2;
+import javafx.geometry.Bounds;
 import javafx.scene.effect.Bloom;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
@@ -32,19 +33,18 @@ public abstract class GUILink extends Circle {
     setOnDragEntered(event -> setEffect(new Bloom(0.1)));
     setOnDragExited(event -> setEffect(null));
 
-    setOnDragOver(event -> {
-      event.acceptTransferModes(TransferMode.MOVE);
-    });
+    setOnDragOver(event -> event.acceptTransferModes(TransferMode.MOVE));
 
     setOnMouseClicked(event -> {
       if (event.getButton().equals(MouseButton.SECONDARY)) {
-        unlink();
+        triggerUnlink();
       }
     });
     setManaged(false);
   }
 
   public abstract void unlink();
+  public abstract void triggerUnlink();
 
   public Vector2 getOffset() {
     return offset;
@@ -54,21 +54,7 @@ public abstract class GUILink extends Circle {
     this.offset = offset;
   }
 
-  public void updatePosition(Vector2 parentPosition) {
-    Vector2 added = parentPosition.add(this.offset);
-    setLayoutX(added.X());
-    setLayoutY(added.Y());
-    last = parentPosition.clone();
-  }
-
-  public void updatePosition() {
-    if (last == null) {
-      last = Vector2.ZERO;
-    }
-    updatePosition(last);
-  }
-
-  public Vector2 getWorldPosition() {
-    return new Vector2(getCenterX(), getCenterY());
+  public Bounds getWorldPosition() {
+    return localToScene(getBoundsInLocal());
   }
 }

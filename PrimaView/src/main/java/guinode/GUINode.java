@@ -48,8 +48,8 @@ public class GUINode extends AnchorPane {
 
     setStyle("-fx-background-color: #888888");
 
-    setTranslateX(x);
-    setTranslateY(y);
+    setLayoutX(x);
+    setLayoutY(y);
 
     setOnMousePressed(new EventHandler<MouseEvent>() {
       @Override
@@ -62,8 +62,6 @@ public class GUINode extends AnchorPane {
     setOnMouseDragged(e -> {
       setLayoutX(e.getSceneX() + offsetX);
       setLayoutY(e.getSceneY() + offsetY);
-
-      updateLinkPositions();
     });
 
     if (node != null) {
@@ -72,8 +70,7 @@ public class GUINode extends AnchorPane {
         InputLink<?>[] inputs = ((INodeHasInput) node).getInputs();
         for (int i = 0; i < inputs.length; i++) {
           InputLink<?> link = inputs[i];
-          GUIInputLink newLink = new GUIInputLink(link, this, i, new Vector2(0, LINK_Y + (i * LINK_Y)), parent);
-          newLink.updatePosition(posAsVector());
+          GUIInputLink newLink = new GUIInputLink(link, this, i, LINK_Y + (i * LINK_Y));
           this.inputs.add(newLink);
           //parent.getChildren().add(tmp);
           getChildren().add(newLink);
@@ -85,8 +82,8 @@ public class GUINode extends AnchorPane {
         OutputLink<?>[] outputs = ((INodeHasOutput) node).getOutputs();
         for (int i = 0; i < outputs.length; i++) {
           OutputLink<?> link = outputs[i];
-          GUIOutputLink newLink = new GUIOutputLink(link, this, i, new Vector2(getWidth(), LINK_Y + (i * LINK_Y)),parent);
-          newLink.updatePosition(posAsVector());
+          GUIOutputLink newLink = new GUIOutputLink(link, this, i, LINK_Y + (i * LINK_Y));
+          newLink.centerXProperty().bind(widthProperty());
           this.outputs.add(newLink);
           getChildren().add(newLink);
         }
@@ -113,19 +110,15 @@ public class GUINode extends AnchorPane {
       getChildren().add(layoutGrid);
 
       GUINode thisNode = this;
-
       Button delete = new Button("Delete");
       delete.setOnAction(new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
           for (GUIInputLink i : inputs) {
-            i.deleteLine();
-            parent.getChildren().remove(i);
+            i.unlink();
           }
-          for (GUIOutputLink o : outputs) {
-            o.deleteAllLines();
-            parent.getChildren().remove(o);
-          }
+          getChildren().removeAll(inputs);
+          getChildren().removeAll(outputs);
           parent.getChildren().remove(thisNode);
         }
       });
@@ -173,20 +166,5 @@ public class GUINode extends AnchorPane {
 
   public INode getNode() {
     return node;
-  }
-
-  public void updateLinkPositions(){
-    for (GUIInputLink i : inputs) {
-      //i.updatePosition(posAsVector());
-      i.updateLinePos();
-      i.toFront();
-    }
-
-    for (GUIOutputLink o : outputs) {
-      o.setRelativeOffset(new Vector2(getWidth(), o.getOffset().Y()));
-      o.updatePosition(Vector2.ZERO);
-      o.updateLinePos();
-      o.toFront();
-    }
   }
 }

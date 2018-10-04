@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import javafx.application.Platform;
 import javafx.scene.layout.Pane;
 
 public class NodePane extends Pane {

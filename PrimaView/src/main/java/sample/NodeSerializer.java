@@ -14,6 +14,7 @@ import guinode.GUINode;
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.application.Platform;
 
 public class NodeSerializer {
 
@@ -41,9 +42,9 @@ public class NodeSerializer {
       savedString.append(SEP);
       savedString.append(toJson(n.getNode()));
       savedString.append(SEP);
-      savedString.append((int)n.getTranslateX());
+      savedString.append((int)n.getLayoutX());
       savedString.append(SEP);
-      savedString.append((int)n.getTranslateY());
+      savedString.append((int)n.getLayoutY());
       savedString.append("\n");
     }
 
@@ -145,13 +146,14 @@ public class NodeSerializer {
         throw new NodeParseException("Parsed line length != 5. Current Line: " + currentLine + ", String: " + lines[currentLine]);
       }
 
-      nodeList.add(
-          new GUINode(
-              Integer.parseInt(parsedLine[3]),
-              Integer.parseInt(parsedLine[4]),
-              NodeReflection.parseNode(parsedLine[1], parsedLine[2]),
-              pane,
-              listen));
+      GUINode parsedNode = new GUINode(
+          Integer.parseInt(parsedLine[3]),
+          Integer.parseInt(parsedLine[4]),
+          NodeReflection.parseNode(parsedLine[1], parsedLine[2]),
+          pane,
+          listen);
+
+      nodeList.add(parsedNode);
 
       currentLine++;
     }while(!lines[currentLine].equals("-"));

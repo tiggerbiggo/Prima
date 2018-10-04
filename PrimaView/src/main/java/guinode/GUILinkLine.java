@@ -2,7 +2,9 @@ package guinode;
 
 import com.tiggerbiggo.utils.calculation.Vector2;
 import java.util.Objects;
-import javafx.scene.layout.Pane;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.DoubleBinding;
+import javafx.geometry.Bounds;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.CubicCurve;
 
@@ -10,49 +12,90 @@ public class GUILinkLine extends CubicCurve {
 
   GUIInputLink input;
   GUIOutputLink output;
-  Pane parent;
 
   private final double AMNT = 50;
 
-  public GUILinkLine(GUIInputLink input, GUIOutputLink output, Pane parent) {
-    this.input = Objects.requireNonNull(input);
-    this.output = Objects.requireNonNull(output);
-    this.parent = Objects.requireNonNull(parent);
+  public GUILinkLine(GUIInputLink _input, GUIOutputLink _output) {
+    input = Objects.requireNonNull(_input);
+    output = Objects.requireNonNull(_output);
 
-    this.input.setLine(this);
-    this.output.addLine(this);
+    output.addLine(this);
+    input.setLine(this);
 
     setStroke(Color.BLACK);
-
     setFill(Color.TRANSPARENT);
 
-    updatePositions();
+    setManaged(false);
+
+    doBindings();
   }
 
-  public void updatePositions() {
-    setStartVec(input.getWorldPosition());
-    setEndVec(output.getWorldPosition());
-  }
+  private void doBindings(){
+    DoubleBinding inputXBinding, inputYBinding, outputXBinding, outputYBinding;
+    outputXBinding = Bindings.createDoubleBinding(
+        () -> sceneToLocal(
+            output.localToScene(
+                output.getCenterX(),
+                output.getCenterY()
+            )
+        ).getX(),
+        output.getOwner().layoutXProperty(),
+        input.getOwner().layoutXProperty(),
+        output.centerXProperty());
 
-  public void setStartVec(Vector2 vec) {
-    setControlX1(vec.X() - AMNT);
-    setControlY1(vec.Y());
-    setStartX(vec.X());
-    setStartY(vec.Y());
-  }
+    outputYBinding = Bindings.createDoubleBinding(
+        () -> sceneToLocal(
+            output.localToScene(
+                output.getCenterX(),
+                output.getCenterY()
+            )
+        ).getY(),
+        output.getOwner().layoutYProperty(),
+        input.getOwner().layoutYProperty(),
+        output.centerXProperty());
 
-  public void setEndVec(Vector2 vec) {
-    setControlX2(AMNT + vec.X());
-    setControlY2(vec.Y());
-    setEndX(vec.X());
-    setEndY(vec.Y());
-  }
+    inputXBinding = Bindings.createDoubleBinding(
+        () -> {
+          return sceneToLocal(
+              input.localToScene(
+                  input.getCenterX(),
+                  input.getCenterY()
+              )
+          ).getX();
+        },
+        input.getOwner().layoutXProperty(),
+        output.getOwner().layoutXProperty(),
+        output.centerXProperty());
 
+    inputYBinding = Bindings.createDoubleBinding(
+        () -> {
+          return sceneToLocal(
+              input.localToScene(
+                  input.getCenterX(),
+                  input.getCenterY()
+              )
+          ).getY();
+        },
+        input.getOwner().layoutYProperty(),
+        output.getOwner().layoutYProperty(),
+        output.centerXProperty());
+
+    startXProperty().bind(inputXBinding);
+    startYProperty().bind(inputYBinding);
+    endXProperty().bind(outputXBinding);
+    endYProperty().bind(outputYBinding);
+
+    controlX1Property().bind(startXProperty().subtract(AMNT));
+    controlY1Property().bind(startYProperty());
+    controlX2Property().bind(endXProperty().add(AMNT));
+    controlY2Property().bind(endYProperty());
+
+    toFront();
+  }
 
   //commit sudoku
   public void delete() {
     input.unlink();
     output.forgetLine(this);
-    parent.getChildren().remove(this);
   }
 }

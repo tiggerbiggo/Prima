@@ -14,19 +14,18 @@ import javafx.scene.paint.Color;
 
 public class GUIInputLink extends GUILink {
 
-  InputLink<?> link;
+  private InputLink<?> link;
   private GUILinkLine line;
   private GUIOutputLink currentGLink;
   private GUINode owner;
   private int index;
-  private final Pane parent;
-  Vector2 position;
 
-  public GUIInputLink(InputLink<?> in, GUINode owner, int index, Vector2 position, Pane parent) {
+  public GUIInputLink(InputLink<?> in, GUINode owner, int index, double yOffset) {
     link = in;
-    this.parent = Objects.requireNonNull(parent);
     this.owner = Objects.requireNonNull(owner);
     this.index = index;
+
+    setCenterY(yOffset);
 
     if (link instanceof ColorArrayInputLink) {
       setFill(Color.YELLOW);
@@ -44,53 +43,41 @@ public class GUIInputLink extends GUILink {
       System.out.println("ERR: " + link);
     }
 
-    setRelativeOffset(position);
-
     setOnDragDropped(event -> {
       GUIOutputLink source;
       if (event.getGestureSource() instanceof GUIOutputLink) {
         source = (GUIOutputLink) event.getGestureSource();
         if (link.canLink(source.link)) {
-          deleteLine();
+          if(line != null)
+            line.delete();
           link(source);
         }
       }
-      updatePosition();
-      updateLinePos();
     });
-  }
-
-  public void deleteLine() {
-    if (line != null) {
-      line.delete();
-    }
   }
 
   @Override
   public void unlink() {
-    line = null;
     currentGLink = null;
     link.unlink();
   }
 
-  public void updateLinePos() {
-    if (line != null) {
-      line.updatePositions();
+  @Override
+  public void triggerUnlink() {
+    if(line != null){
+      line.delete();
     }
+  }
+
+  public void setLine(GUILinkLine line){
+    this.line = line;
   }
 
   public boolean link(GUIOutputLink out) {
     if (link.link(out.getLink())) {
-
       currentGLink = out;
-
-      if(line != null){
-        line.delete();
-      }
-      parent.getChildren().add(new GUILinkLine(this, out, parent));
+      new GUILinkLine(this, out);
       // ^Here be bugs
-
-
       return true;
     }
     return false;
@@ -100,20 +87,12 @@ public class GUIInputLink extends GUILink {
     return link;
   }
 
-  public GUILinkLine getLine() {
-    return line;
-  }
-
   public GUIOutputLink getCurrentGLink() {
     return currentGLink;
   }
 
   public GUINode getOwner() {
     return owner;
-  }
-
-  public void setLine(GUILinkLine line) {
-    this.line = Objects.requireNonNull(line);
   }
 
   public int getIndex() {
