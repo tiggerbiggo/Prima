@@ -46,7 +46,7 @@ public class MultiImageLoadNode extends NodeHasOutput implements ChangeListener{
   }
 
   @Override
-  public void onObjectValueChanged(Field field, Object o) {
+  public void onObjectValueChanged(Field field, Object oldValue, Object newValue, Object o) {
     if(field.equals(f_filename)){
       imgs = ImageTools.toSafeImage(FileManager.getImgsFromFolder(filename, true));
     }

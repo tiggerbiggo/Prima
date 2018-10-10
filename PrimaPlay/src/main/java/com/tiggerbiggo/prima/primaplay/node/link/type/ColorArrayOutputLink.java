@@ -10,4 +10,8 @@ public abstract class ColorArrayOutputLink extends OutputLink<Color[]> {
     if(other == null) return false;
     return other instanceof ColorArrayInputLink;
   }
+  @Override
+  public String getStyleClass() {
+    return "ColorArrayLink";
+  }
 }

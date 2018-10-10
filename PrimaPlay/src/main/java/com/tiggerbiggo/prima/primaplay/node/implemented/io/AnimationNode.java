@@ -1,11 +1,11 @@
 package com.tiggerbiggo.prima.primaplay.node.implemented.io;
 
-import com.tiggerbiggo.utils.calculation.Calculation;
-import com.tiggerbiggo.utils.calculation.Vector2;
 import com.tiggerbiggo.prima.primaplay.core.RenderParams;
 import com.tiggerbiggo.prima.primaplay.node.core.NodeInOut;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorArrayOutputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorInputLink;
+import com.tiggerbiggo.utils.calculation.Calculation;
+import com.tiggerbiggo.utils.calculation.Vector2;
 import java.util.function.Function;
 
 public class AnimationNode extends NodeInOut {

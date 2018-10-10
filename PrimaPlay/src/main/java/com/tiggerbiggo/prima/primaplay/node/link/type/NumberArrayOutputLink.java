@@ -24,4 +24,9 @@ public abstract class NumberArrayOutputLink extends OutputLink<Double[]> {
     if(other == null) return false;
     return other instanceof NumberArrayInputLink;
   }
+
+  @Override
+  public String getStyleClass() {
+    return "NumberArrayLink";
+  }
 }

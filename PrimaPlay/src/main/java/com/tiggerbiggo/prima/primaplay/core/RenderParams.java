@@ -2,14 +2,14 @@ package com.tiggerbiggo.prima.primaplay.core;
 
 public class RenderParams {
 
-  private int width, height, x, y, n;
+  private int width, height, x, y, frameNum;
 
-  public RenderParams(int width, int height, int x, int y, int n) {
+  public RenderParams(int width, int height, int x, int y, int frameNum) {
     this.width = width;
     this.height = height;
     this.x = x;
     this.y = y;
-    this.n = n;
+    this.frameNum = frameNum;
   }
 
   public int width() {
@@ -29,7 +29,7 @@ public class RenderParams {
   }
 
   public int frameNum() {
-    return n;
+    return frameNum;
   }
 
   public void setWidth(int width) {
@@ -48,12 +48,12 @@ public class RenderParams {
     this.y = y;
   }
 
-  public void setN(int n) {
-    this.n = n;
+  public void setFrameNum(int frameNum) {
+    this.frameNum = frameNum;
   }
 
   @Override
   public RenderParams clone() {
-    return new RenderParams(width, height, x, y, n);
+    return new RenderParams(width, height, x, y, frameNum);
   }
 }

@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
-import javafx.application.Platform;
 import javafx.scene.layout.Pane;
 
 public class NodePane extends Pane {
@@ -21,6 +20,8 @@ public class NodePane extends Pane {
   public NodePane(ChangeListener _listener){
     listener = _listener;
     renderNode = null;//new BasicRenderNode();
+
+    getStyleClass().add("NodePane");
 
     nodeList = new ArrayList<>();
     //addNode(new GUINode(renderNode, this));
@@ -50,7 +51,10 @@ public class NodePane extends Pane {
     nodeList.add(node);
   }
 
-
+  public void deleteNode(GUINode node){
+    getChildren().remove(node);
+    nodeList.remove(node);
+  }
 
   public Future<BufferedImage[]> renderAsync(int w, int h, int n) throws NullPointerException{
     return renderNode.renderAsync(w, h, n);
@@ -70,13 +74,4 @@ public class NodePane extends Pane {
     getChildren().clear();
   }
 
-  public void purgeNodes(){
-    List<GUINode> toDelete = new ArrayList<>();
-    for(GUINode n : nodeList){
-      if(!getChildren().contains(n)){
-        toDelete.add(n);
-      }
-    }
-    getChildren().removeAll(toDelete);
-  }
 }

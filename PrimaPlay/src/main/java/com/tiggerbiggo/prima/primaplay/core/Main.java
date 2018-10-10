@@ -1,8 +1,6 @@
 package com.tiggerbiggo.prima.primaplay.core;
 
-import com.tiggerbiggo.prima.primaplay.graphics.ImageTools;
 import com.tiggerbiggo.prima.primaplay.graphics.SafeImage;
-import com.tiggerbiggo.utils.calculation.Vector2;
 import com.tiggerbiggo.prima.primaplay.graphics.SimpleGradient;
 import com.tiggerbiggo.prima.primaplay.node.core.INodeHasInput;
 import com.tiggerbiggo.prima.primaplay.node.core.INodeHasOutput;
@@ -10,6 +8,7 @@ import com.tiggerbiggo.prima.primaplay.node.implemented.BasicRenderNode;
 import com.tiggerbiggo.prima.primaplay.node.implemented.MapGenNode;
 import com.tiggerbiggo.prima.primaplay.node.implemented.io.AnimationNode;
 import com.tiggerbiggo.prima.primaplay.node.implemented.io.GradientNode;
+import com.tiggerbiggo.utils.calculation.Vector2;
 import java.awt.Color;
 
 public class Main {

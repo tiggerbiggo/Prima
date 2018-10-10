@@ -1,9 +1,9 @@
 package com.tiggerbiggo.prima.primaplay.node.implemented.io.iterative;
 
 import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
+import com.tiggerbiggo.prima.primaplay.core.RenderParams;
 import com.tiggerbiggo.utils.calculation.ComplexNumber;
 import com.tiggerbiggo.utils.calculation.Vector2;
-import com.tiggerbiggo.prima.primaplay.core.RenderParams;
 
 public class MandelNode extends IterativeNode {
 

@@ -1,23 +1,17 @@
 package com.tiggerbiggo.prima.primaplay.node.implemented.io;
 
 import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
-import com.tiggerbiggo.prima.primaplay.graphics.ColorConvertType;
-import com.tiggerbiggo.prima.primaplay.node.link.type.ImageArrayInputLink;
-import com.tiggerbiggo.prima.primaplay.node.link.type.VectorArrayOutputLink;
-import com.tiggerbiggo.prima.primaplay.node.link.type.VectorOutputLink;
-import com.tiggerbiggo.utils.calculation.Vector2;
 import com.tiggerbiggo.prima.primaplay.core.RenderParams;
+import com.tiggerbiggo.prima.primaplay.graphics.ColorConvertType;
 import com.tiggerbiggo.prima.primaplay.graphics.ColorTools;
-import com.tiggerbiggo.prima.primaplay.graphics.ImageTools;
 import com.tiggerbiggo.prima.primaplay.graphics.SafeImage;
 import com.tiggerbiggo.prima.primaplay.node.core.NodeInOut;
-import com.tiggerbiggo.prima.primaplay.node.implemented.NodeFactory;
 import com.tiggerbiggo.prima.primaplay.node.link.type.ColorArrayOutputLink;
+import com.tiggerbiggo.prima.primaplay.node.link.type.ImageArrayInputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorArrayInputLink;
+import com.tiggerbiggo.prima.primaplay.node.link.type.VectorArrayOutputLink;
+import com.tiggerbiggo.utils.calculation.Vector2;
 import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.util.Arrays;
-import java.util.List;
 
 public class ImageListNode extends NodeInOut{
   @TransferGrid

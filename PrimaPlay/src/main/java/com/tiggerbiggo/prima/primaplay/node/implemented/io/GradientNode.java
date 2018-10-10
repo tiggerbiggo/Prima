@@ -1,13 +1,12 @@
 package com.tiggerbiggo.prima.primaplay.node.implemented.io;
 
-import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
-import com.tiggerbiggo.utils.calculation.Vector2;
 import com.tiggerbiggo.prima.primaplay.core.RenderParams;
 import com.tiggerbiggo.prima.primaplay.graphics.Gradient;
 import com.tiggerbiggo.prima.primaplay.graphics.HueCycleGradient;
 import com.tiggerbiggo.prima.primaplay.node.core.NodeInOut;
 import com.tiggerbiggo.prima.primaplay.node.link.type.ColorArrayOutputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorArrayInputLink;
+import com.tiggerbiggo.utils.calculation.Vector2;
 import java.awt.Color;
 
 public class GradientNode extends NodeInOut {

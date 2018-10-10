@@ -1,8 +1,6 @@
 package com.tiggerbiggo.prima.primaplay.node.implemented.io;
 
 import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
-import ch.hephaistos.utilities.loki.util.interfaces.ChangeListener;
-import com.tiggerbiggo.prima.primaplay.core.FileManager;
 import com.tiggerbiggo.prima.primaplay.core.RenderParams;
 import com.tiggerbiggo.prima.primaplay.graphics.ColorConvertType;
 import com.tiggerbiggo.prima.primaplay.graphics.SafeImage;
@@ -12,7 +10,6 @@ import com.tiggerbiggo.prima.primaplay.node.link.type.VectorInputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorOutputLink;
 import com.tiggerbiggo.utils.calculation.Vector2;
 import java.awt.Color;
-import java.lang.reflect.Field;
 
 public class ImageConvertNode extends NodeInOut{
 

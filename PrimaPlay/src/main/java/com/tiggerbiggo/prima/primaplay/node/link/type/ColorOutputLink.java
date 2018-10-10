@@ -2,17 +2,17 @@ package com.tiggerbiggo.prima.primaplay.node.link.type;
 
 import com.tiggerbiggo.prima.primaplay.node.link.Link;
 import com.tiggerbiggo.prima.primaplay.node.link.OutputLink;
-import com.tiggerbiggo.utils.calculation.Vector2;
+import java.awt.Color;
 
-public abstract class VectorArrayOutputLink extends OutputLink<Vector2[]> {
+public abstract class ColorOutputLink extends OutputLink<Color> {
   @Override
   public boolean canLink(Link other) {
     if(other == null) return false;
-    return other instanceof VectorArrayInputLink;
+    return other instanceof ColorInputLink;
   }
 
   @Override
   public String getStyleClass() {
-    return "VectorArrayLink";
+    return "ColorLink";
   }
 }

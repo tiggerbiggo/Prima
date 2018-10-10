@@ -352,6 +352,14 @@ public class Vector2 implements Serializable {
         Double.compare(vector2.y, y) == 0;
   }
 
+  public static Vector2[] blankArray(int n){
+    Vector2[] toReturn = new Vector2[n];
+    for(int i=0; i<n; i++){
+      toReturn[i] = ZERO;
+    }
+    return toReturn;
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(x, y);

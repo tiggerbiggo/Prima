@@ -1,9 +1,12 @@
 package com.tiggerbiggo.prima.primaplay.node.implemented;
 
 import com.tiggerbiggo.prima.primaplay.core.NewRenderer;
-import com.tiggerbiggo.prima.primaplay.node.core.NodeHasInput;
+import com.tiggerbiggo.prima.primaplay.core.RenderParams;
 import com.tiggerbiggo.prima.primaplay.core.Renderer;
+import com.tiggerbiggo.prima.primaplay.graphics.ColorTools;
+import com.tiggerbiggo.prima.primaplay.node.core.NodeHasInput;
 import com.tiggerbiggo.prima.primaplay.node.link.type.ColorArrayInputLink;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.concurrent.Future;
 
@@ -12,7 +15,12 @@ public class BasicRenderNode extends NodeHasInput{
   private ColorArrayInputLink inputLink;
 
   public BasicRenderNode(){
-    inputLink = new ColorArrayInputLink();
+    inputLink = new ColorArrayInputLink() {
+      @Override
+      public Color[] defaultValue(RenderParams p) {
+        return ColorTools.blankArray(p.frameNum());
+      }
+    };
     addInput(inputLink);
   }
 

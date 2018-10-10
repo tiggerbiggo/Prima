@@ -1,16 +1,7 @@
 package guinode;
 
-import com.tiggerbiggo.prima.primaplay.node.link.type.ImageArrayInputLink;
-import com.tiggerbiggo.prima.primaplay.node.link.type.ImageInputLink;
-import com.tiggerbiggo.utils.calculation.Vector2;
 import com.tiggerbiggo.prima.primaplay.node.link.InputLink;
-import com.tiggerbiggo.prima.primaplay.node.link.type.ColorArrayInputLink;
-import com.tiggerbiggo.prima.primaplay.node.link.type.NumberArrayInputLink;
-import com.tiggerbiggo.prima.primaplay.node.link.type.VectorArrayInputLink;
-import com.tiggerbiggo.prima.primaplay.node.link.type.VectorInputLink;
 import java.util.Objects;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 
 public class GUIInputLink extends GUILink {
 
@@ -21,27 +12,15 @@ public class GUIInputLink extends GUILink {
   private int index;
 
   public GUIInputLink(InputLink<?> in, GUINode owner, int index, double yOffset) {
+    super();
+
     link = in;
     this.owner = Objects.requireNonNull(owner);
     this.index = index;
 
     setCenterY(yOffset);
 
-    if (link instanceof ColorArrayInputLink) {
-      setFill(Color.YELLOW);
-    } else if (link instanceof NumberArrayInputLink) {
-      setFill(Color.GREY);
-    } else if (link instanceof VectorArrayInputLink) {
-      setFill(Color.BLUE);
-    } else if (link instanceof VectorInputLink) {
-      setFill(Color.AQUA);
-    } else if (link instanceof ImageInputLink) {
-      setFill(Color.GREEN);
-    } else if (link instanceof ImageArrayInputLink) {
-      setFill(Color.DARKGREEN);
-    } else {
-      System.out.println("ERR: " + link);
-    }
+    getStyleClass().addAll("GUILink", link.getStyleClass());
 
     setOnDragDropped(event -> {
       GUIOutputLink source;

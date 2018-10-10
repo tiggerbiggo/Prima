@@ -6,15 +6,20 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.sun.deploy.util.StringUtils;
 import com.tiggerbiggo.prima.primaplay.node.core.INode;
 import guinode.GUIInputLink;
-import guinode.GUIOutputLink;
 import guinode.GUINode;
-
+import guinode.GUIOutputLink;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.annotation.Annotation;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.application.Platform;
+import java.util.Objects;
 
 public class NodeSerializer {
 
@@ -198,5 +203,43 @@ public class NodeSerializer {
       toReturn[i] = Integer.parseInt(strings[i]);
     }
     return toReturn;
+  }
+
+  public static NodePane parseFromFile(File file, ChangeListener listener) throws NodeParseException{
+    try {
+      List<String> lines = Files.readAllLines(file.toPath(), Charset.defaultCharset());
+      String result = StringUtils.join(lines, "\n");
+      System.out.println("------------------");
+      System.out.println(result);
+      System.out.println("------------------");
+      return parseNodes(result, listener);
+    } catch (IOException e) {
+      return null;
+    }
+  }
+
+  public static String saveToFile(NodePane pane, File toWrite) throws IOException {
+    Objects.requireNonNull(pane);
+    Objects.requireNonNull(toWrite);
+
+    if(!toWrite.exists())
+    {
+      try {
+        toWrite.createNewFile();
+      } catch (IOException e) {
+        throw e;
+      }
+    }
+
+    String ser = SerializeNodePane(pane);
+
+    System.out.println(ser);
+
+    try(FileWriter fw = new FileWriter(toWrite)) {
+      fw.append(ser);
+    } catch (IOException e) {
+      throw e;
+    }
+    return ser;
   }
 }

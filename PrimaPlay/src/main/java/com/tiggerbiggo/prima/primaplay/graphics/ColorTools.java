@@ -2,7 +2,6 @@ package com.tiggerbiggo.prima.primaplay.graphics;
 
 import com.tiggerbiggo.utils.calculation.Calculation;
 import java.awt.Color;
-import java.util.function.Function;
 
 /**
  * Contains various static methods for calculating things like Hue, Saturation, Brightness, etc.
@@ -149,6 +148,23 @@ public class ColorTools {
         Math.min(255, Math.max((int)(in.getGreen() * toMul), 0)),
         Math.min(255, Math.max((int)(in.getBlue() * toMul), 0))
     );
+  }
+
+  /**Generates an array of Color.BLACK with length n
+   *
+   * @param n
+   * @return 
+   * @throws ArrayIndexOutOfBoundsException if n < 0
+   */
+  public static Color[] blankArray(int n) throws ArrayIndexOutOfBoundsException{
+    if(n < 0){
+      throw new ArrayIndexOutOfBoundsException("Error in ColorTools.blankArray: Number given was < 0, n: " + n);
+    }
+    Color[] toReturn = new Color[n];
+    for (int i=0 ;i<n; i++){
+      toReturn[i] = Color.BLACK;
+    }
+    return toReturn;
   }
 }
 

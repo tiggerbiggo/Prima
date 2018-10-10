@@ -1,11 +1,8 @@
 package guinode;
 
-import com.tiggerbiggo.utils.calculation.Vector2;
 import java.util.Objects;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.DoubleBinding;
-import javafx.geometry.Bounds;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.CubicCurve;
 
 public class GUILinkLine extends CubicCurve {
@@ -22,10 +19,11 @@ public class GUILinkLine extends CubicCurve {
     output.addLine(this);
     input.setLine(this);
 
-    setStroke(Color.BLACK);
-    setFill(Color.TRANSPARENT);
+
+    getStyleClass().add("LinkLine");
 
     setManaged(false);
+    setMouseTransparent(true);
 
     doBindings();
   }
@@ -38,7 +36,7 @@ public class GUILinkLine extends CubicCurve {
                 output.getCenterX(),
                 output.getCenterY()
             )
-        ).getX(),
+        ).getX() + output.getRadius(),
         output.getOwner().layoutXProperty(),
         input.getOwner().layoutXProperty(),
         output.centerXProperty());
@@ -61,7 +59,7 @@ public class GUILinkLine extends CubicCurve {
                   input.getCenterX(),
                   input.getCenterY()
               )
-          ).getX();
+          ).getX() - input.getRadius();
         },
         input.getOwner().layoutXProperty(),
         output.getOwner().layoutXProperty(),

@@ -10,4 +10,9 @@ public abstract class ImageArrayOutputLink extends OutputLink<SafeImage[]>{
   public boolean canLink(Link other) {
     return other != null && other instanceof ImageArrayInputLink;
   }
+
+  @Override
+  public String getStyleClass() {
+    return "ImageArrayLink";
+  }
 }

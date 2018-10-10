@@ -1,18 +1,9 @@
 package guinode;
 
-import com.tiggerbiggo.prima.primaplay.node.link.type.ImageArrayOutputLink;
-import com.tiggerbiggo.prima.primaplay.node.link.type.ImageOutputLink;
-import com.tiggerbiggo.utils.calculation.Vector2;
 import com.tiggerbiggo.prima.primaplay.node.link.OutputLink;
-import com.tiggerbiggo.prima.primaplay.node.link.type.ColorArrayOutputLink;
-import com.tiggerbiggo.prima.primaplay.node.link.type.NumberArrayOutputLink;
-import com.tiggerbiggo.prima.primaplay.node.link.type.VectorArrayOutputLink;
-import com.tiggerbiggo.prima.primaplay.node.link.type.VectorOutputLink;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 
 public class GUIOutputLink extends GUILink {
 
@@ -24,6 +15,8 @@ public class GUIOutputLink extends GUILink {
   private int index;
 
   public GUIOutputLink(OutputLink<?> in, GUINode owner, int index, double yOffset) {
+    super();
+
     link = in;
     lineList = new ArrayList<>();
 
@@ -32,19 +25,7 @@ public class GUIOutputLink extends GUILink {
 
     setCenterY(yOffset);
 
-    if (link instanceof ColorArrayOutputLink) {
-      setFill(Color.YELLOW);
-    } else if (link instanceof NumberArrayOutputLink) {
-      setFill(Color.GREY);
-    } else if (link instanceof VectorArrayOutputLink) {
-      setFill(Color.BLUE);
-    } else if (link instanceof VectorOutputLink) {
-      setFill(Color.AQUA);
-    }else if (link instanceof ImageOutputLink) {
-      setFill(Color.GREEN);
-    }else if (link instanceof ImageArrayOutputLink) {
-      setFill(Color.DARKGREEN);
-    }
+    getStyleClass().addAll("GUILink", link.getStyleClass());
 
     GUIOutputLink thisLink = this;
 
@@ -82,13 +63,13 @@ public class GUIOutputLink extends GUILink {
 
   public void addLine(GUILinkLine line) {
     lineList.add(line);
-    owner.getChildren().add(line);
+    owner.getParentPane().getChildren().add(line);
   }
 
   public void forgetLine(GUILinkLine toForget) {
     toForget = Objects.requireNonNull(toForget);
     lineList.remove(toForget);
-    owner.getChildren().remove(toForget);
+    owner.getParentPane().getChildren().remove(toForget);
   }
 
   public void deleteAllLines() {

@@ -5,36 +5,37 @@ import com.sun.javafx.collections.ObservableListWrapper;
 import com.tiggerbiggo.prima.primaplay.core.FileManager;
 import com.tiggerbiggo.prima.primaplay.graphics.ImageTools;
 import com.tiggerbiggo.prima.primaplay.node.core.INode;
-import com.tiggerbiggo.prima.primaplay.node.implemented.BasicRenderNode;
 import guinode.GUILink;
-import guinode.GUINode;
-
-import java.awt.*;
+import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
 
@@ -43,7 +44,7 @@ public class MainController implements Initializable, ChangeListener {
   public NodePane nodePane;
 
   @FXML
-  public AnchorPane nodeContainer;
+  public Pane nodeContainer;
   @FXML
   private ImageView imgView;
   @FXML
@@ -58,6 +59,10 @@ public class MainController implements Initializable, ChangeListener {
   private ComboBox<Class<? extends INode>> comboNodeList;
   @FXML
   private TextArea txtSavedText;
+  @FXML
+  private BorderPane pannableContainer;
+  @FXML
+  private ScrollPane scrollPane;
 
   private String DEFAULT =
       "0@com.tiggerbiggo.prima.primaplay.node.implemented.MapGenNode@{\"aX\":0.0,\"aY\":0.0,\"dx\":1.0,\"dy\":1.0}@35@29\n"
@@ -95,6 +100,9 @@ public class MainController implements Initializable, ChangeListener {
     ));
     timer.setCycleCount(Animation.INDEFINITE);
     timer.setOnFinished(e -> imgView.setImage(null));
+
+    pannableContainer.minWidthProperty().bind(scrollPane.widthProperty());
+    pannableContainer.minHeightProperty().bind(scrollPane.heightProperty());
 
     nodePane = new NodePane(this);
     nodePane = NodeSerializer.parseNodes(DEFAULT, this);
@@ -178,35 +186,54 @@ public class MainController implements Initializable, ChangeListener {
 
   @FXML
   private void onBtnSaveLayout(ActionEvent e){
+    String ser;
 
-    //purge deleted entries before save
-    nodePane.purgeNodes();
+    try{
+      File chosen =  FileManager.showSaveDialogue();
 
-    String ser = NodeSerializer.SerializeNodePane(nodePane);
-    System.out.println(ser);
+      ser = NodeSerializer.saveToFile(nodePane, chosen);
 
-    txtSavedText.setText(ser);
+      ViewMain.setTitleToFile(chosen);
+    }catch(IOException ex){
+      return;
+    }
 
     StringSelection stringSelection = new StringSelection(ser);
     Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
     clipboard.setContents(stringSelection, null);
-
-    //NodeSerializer.parseNodes(ser, this);
   }
 
   @FXML
   private void onBtnLoadLayout(ActionEvent e){
     try{
-      NodePane tmpPane = NodeSerializer.parseNodes(txtSavedText.getText(), this);
-      if(tmpPane != null){
-        nodeContainer.getChildren().clear();
-        nodeContainer.getChildren().add(tmpPane);
-        nodePane.clearNodes();
-        nodePane = tmpPane;
-      }
+      File chosen = FileManager.showOpenDialogue();
+
+      NodePane tmpPane = NodeSerializer.parseFromFile(chosen, this);
+      //Open file dialogue
+
+      //NodeSerializer.parseNodes(txtSavedText.getText(), this);
+      nodeContainer.getChildren().clear();
+      nodePane.clearNodes();
+      nodePane = tmpPane;
+
+      AnchorPane.setBottomAnchor(nodePane, 0.0);
+      AnchorPane.setTopAnchor(nodePane, 0.0);
+      AnchorPane.setLeftAnchor(nodePane, 0.0);
+      AnchorPane.setRightAnchor(nodePane, 0.0);
+
+      nodeContainer.getChildren().add(nodePane);
+
+      ViewMain.setTitleToFile(chosen);
+
+      startPreviewRender();
+      timer.stop();
+      timer.play();
     }
     catch(NodeParseException ex){
+      System.out.println("oh dear: " + ex.getMessage());
       //oh dear, display error message
+    } catch (IOException e1) {
+      // nothing
     }
   }
 
@@ -222,7 +249,10 @@ public class MainController implements Initializable, ChangeListener {
   }
 
   @Override
-  public void onObjectValueChanged(Field field, Object object) {
+  public void onObjectValueChanged(Field field, Object oldValue, Object newValue, Object object) {
+    System.out.println("OLD VALUE: " + oldValue.toString());
+    System.out.println("NEW VALUE: " + newValue.toString());
+    System.out.println("-----------------------------------");
     startPreviewRender();
   }
 }

@@ -1,7 +1,54 @@
-#LinkLine{
-  -fx-stroke:'#ffffff';
+.LinkLine{
+  -fx-stroke: '#f4b700';
   -fx-fill:transparent;
 }
-#NodePane{
-  -fx-background-color:'#0a0649';
+.NodePane{
+  -fx-background-color:'#333333';
+}
+.label{
+  -fx-text-fill: '#eeeeee';
+}
+.GUINode{
+  -fx-border-color: '#f4b700';
+  -fx-border-radius: 10;
+  -fx-background-color:'#777777';
+  -fx-background-radius: 10;
+  -fx-padding: 10;
+}
+.button{
+  -fx-background-color: '#825636';
+  -fx-text-fill: '#ffd700';
+  -fx-border-color: '#f4b700';
+  -fx-border-radius: 60;
+  -fx-background-radius: 60;
+}
+
+.split-pane-divider {
+  -fx-background-color: '#f4b700';
+}
+
+.GUILink{
+  -fx-stroke: '#f4b700';
+  -fx-stroke-width: 2;
+}
+.ColorArrayLink{
+  -fx-fill: yellow;
+}
+.NumberArrayLink{
+  -fx-fill: grey;
+}
+.VectorArrayLink{
+  -fx-fill: blue;
+}
+.VectorLink{
+  -fx-fill: aqua;
+}
+.ImageLink{
+  -fx-fill: green;
+}
+.ImageArrayLink{
+  -fx-fill: '#00ff00';
+}
+.ColorLink{
+  -fx-fill: '#ffffff';
 }

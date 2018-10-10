@@ -1,15 +1,18 @@
 package com.tiggerbiggo.prima.primaplay.core;
 
-import com.tiggerbiggo.prima.primaplay.graphics.ImageTools;
 import com.tiggerbiggo.prima.primaplay.graphics.SafeImage;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import javax.imageio.stream.FileImageOutputStream;
 import javax.imageio.stream.ImageOutputStream;
@@ -172,6 +175,42 @@ public class FileManager {
     } catch (IOException e) {
       return new SafeImage(1, 1);
     }
+  }
+
+  private static final FileChooser fileChooser = new FileChooser();
+
+  public static File showOpenDialogue() throws IOException {
+    return showOpenDialogue(null);
+  }
+
+  public static File showOpenDialogue(Stage stage) throws IOException {
+    new File("saves/").createNewFile();
+    fileChooser.getExtensionFilters().clear();
+    fileChooser.getExtensionFilters().add(new ExtensionFilter("Prima layout file", "*.prim"));
+    fileChooser.setTitle("Load");
+    fileChooser.setInitialDirectory(new File("saves/"));
+    File file = fileChooser.showOpenDialog(stage);
+    if(file != null){
+      return file;
+    }
+    throw new FileNotFoundException("User cancelled input, or file path invalid.");
+  }
+
+  public static File showSaveDialogue() throws IOException{
+    return showSaveDialogue(null);
+  }
+
+  public static File showSaveDialogue(Stage stage) throws IOException {
+    new File("saves/").createNewFile();
+    fileChooser.getExtensionFilters().clear();
+    fileChooser.getExtensionFilters().add(new ExtensionFilter("Prima layout file", "*.prim"));
+    fileChooser.setTitle("Save");
+    fileChooser.setInitialDirectory(new File("saves/"));
+    File file = fileChooser.showSaveDialog(stage);
+    if (file != null) {
+      return file;
+    }
+    throw new FileNotFoundException("User cancelled input, or file path invalid.");
   }
 }
 

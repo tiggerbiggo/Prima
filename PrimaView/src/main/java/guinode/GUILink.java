@@ -1,6 +1,7 @@
 package guinode;
 
 import com.tiggerbiggo.utils.calculation.Vector2;
+import javafx.event.Event;
 import javafx.geometry.Bounds;
 import javafx.scene.effect.Bloom;
 import javafx.scene.input.ClipboardContent;
@@ -8,7 +9,6 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.TransferMode;
 import javafx.scene.shape.Circle;
-import javafx.scene.transform.Transform;
 
 public abstract class GUILink extends Circle {
 
@@ -17,6 +17,7 @@ public abstract class GUILink extends Circle {
   public GUILink() { //extends Circle
     super(10);
 
+    getStyleClass().add("GUILink");
     last = Vector2.ZERO;
 
     setOnDragDetected(event -> {
@@ -35,12 +36,17 @@ public abstract class GUILink extends Circle {
 
     setOnDragOver(event -> event.acceptTransferModes(TransferMode.MOVE));
 
-    setOnMouseClicked(event -> {
+    setOnMouseDragged(Event::consume);
+
+    setOnMousePressed(event -> {
       if (event.getButton().equals(MouseButton.SECONDARY)) {
         triggerUnlink();
       }
+      System.out.println("Clicked");
+      event.consume();
     });
     setManaged(false);
+    toFront();
   }
 
   public abstract void unlink();

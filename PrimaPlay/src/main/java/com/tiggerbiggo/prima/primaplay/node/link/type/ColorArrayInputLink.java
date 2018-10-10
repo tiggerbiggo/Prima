@@ -1,5 +1,7 @@
 package com.tiggerbiggo.prima.primaplay.node.link.type;
 
+import com.tiggerbiggo.prima.primaplay.core.RenderParams;
+import com.tiggerbiggo.prima.primaplay.graphics.ColorTools;
 import com.tiggerbiggo.prima.primaplay.node.link.InputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.Link;
 import com.tiggerbiggo.prima.primaplay.node.link.OutputLink;
@@ -17,8 +19,18 @@ public class ColorArrayInputLink extends InputLink<Color[]> {
   }
 
   @Override
+  public Color[] defaultValue(RenderParams p) {
+    return ColorTools.blankArray(p.frameNum());
+  }
+
+  @Override
   public boolean canLink(Link other) {
     if(other == null) return false;
     return other instanceof ColorArrayOutputLink;
+  }
+
+  @Override
+  public String getStyleClass() {
+    return "ColorArrayLink";
   }
 }

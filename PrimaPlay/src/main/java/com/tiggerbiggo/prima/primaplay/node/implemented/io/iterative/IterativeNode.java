@@ -1,11 +1,11 @@
 package com.tiggerbiggo.prima.primaplay.node.implemented.io.iterative;
 
 import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
-import com.tiggerbiggo.prima.primaplay.node.core.NodeInOut;
-import com.tiggerbiggo.utils.calculation.Vector2;
 import com.tiggerbiggo.prima.primaplay.core.RenderParams;
+import com.tiggerbiggo.prima.primaplay.node.core.NodeInOut;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorInputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorOutputLink;
+import com.tiggerbiggo.utils.calculation.Vector2;
 
 public abstract class IterativeNode extends NodeInOut {
 

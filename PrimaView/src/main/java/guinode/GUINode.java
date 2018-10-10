@@ -2,23 +2,22 @@ package guinode;
 
 import ch.hephaistos.utilities.loki.ReflectorGrid;
 import ch.hephaistos.utilities.loki.util.interfaces.ChangeListener;
-import com.tiggerbiggo.prima.primaplay.node.implemented.BasicRenderNode;
-import com.tiggerbiggo.utils.calculation.Vector2;
 import com.tiggerbiggo.prima.primaplay.node.core.INode;
 import com.tiggerbiggo.prima.primaplay.node.core.INodeHasInput;
 import com.tiggerbiggo.prima.primaplay.node.core.INodeHasOutput;
+import com.tiggerbiggo.prima.primaplay.node.implemented.BasicRenderNode;
 import com.tiggerbiggo.prima.primaplay.node.link.InputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.OutputLink;
+import com.tiggerbiggo.utils.calculation.Vector2;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
+import sample.NodePane;
 
 public class GUINode extends AnchorPane {
 
@@ -32,12 +31,16 @@ public class GUINode extends AnchorPane {
 
   private double offsetX, offsetY;
 
-  public GUINode(int width, int height, int x, int y, INode node, Pane parent, ChangeListener listener) {
+  private NodePane parent;
+
+  public GUINode(int width, int height, int x, int y, INode node, NodePane _parent, ChangeListener listener) {
     //super();
     //setHeight(50);
     //setWidth(50);
 
     //setFill(Color.WHITE);
+
+    parent = _parent;
 
     this.node = node;
 
@@ -46,25 +49,60 @@ public class GUINode extends AnchorPane {
     setMinHeight(height);
     setHeight(height);
 
-    setStyle("-fx-background-color: #888888");
+    this.getStyleClass().add("GUINode");
 
     setLayoutX(x);
     setLayoutY(y);
+    addEventHandler(MouseEvent.ANY, event -> {
+      if(event.getButton() != MouseButton.MIDDLE) event.consume();
+    });
 
-    setOnMousePressed(new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent event) {
-        offsetX = getLayoutX() - event.getSceneX();
-        offsetY = getLayoutY() - event.getSceneY();
-      }
+    setOnMousePressed(event -> {
+      if(event.getButton() != MouseButton.PRIMARY)
+        return;
+
+      offsetX = getLayoutX() - event.getSceneX();
+      offsetY = getLayoutY() - event.getSceneY();
+      System.out.println("Other Clicked");
+      event.consume();
     });
 
     setOnMouseDragged(e -> {
-      setLayoutX(e.getSceneX() + offsetX);
-      setLayoutY(e.getSceneY() + offsetY);
+      if(e.getButton() != MouseButton.PRIMARY)
+        return;
+      if(e.getSceneX() + offsetX >= 0)
+        setLayoutX(e.getSceneX() + offsetX);
+      else
+        setLayoutX(0);
+
+      if(e.getSceneY() + offsetY >= 0)
+        setLayoutY(e.getSceneY() + offsetY);
+      else
+        setLayoutY(0);
+      e.consume();
     });
 
     if (node != null) {
+      reflectorGrid = new ReflectorGrid();
+      reflectorGrid.transfromIntoGrid(node);
+
+      if(node instanceof ChangeListener){
+        reflectorGrid.addChangeListener((ChangeListener)node);
+      }
+
+      if(listener != null){
+        reflectorGrid.addChangeListener(listener);
+      }
+
+      GridPane layoutGrid = new GridPane();
+
+      setTopAnchor(layoutGrid, 0.0);
+      setLeftAnchor(layoutGrid, 0.0);
+      setBottomAnchor(layoutGrid, 0.0);
+      setRightAnchor(layoutGrid, 0.0);
+
+      getChildren().add(layoutGrid);
+
       inputs = new ArrayList<>();
       if (node instanceof INodeHasInput) {
         InputLink<?>[] inputs = ((INodeHasInput) node).getInputs();
@@ -89,44 +127,25 @@ public class GUINode extends AnchorPane {
         }
       }
 
-      reflectorGrid = new ReflectorGrid();
-      reflectorGrid.transfromIntoGrid(node);
-
-      if(node instanceof ChangeListener){
-        reflectorGrid.addChangeListener((ChangeListener)node);
-      }
-
-      if(listener != null){
-        reflectorGrid.addChangeListener(listener);
-      }
-
-      GridPane layoutGrid = new GridPane();
-
-      setTopAnchor(layoutGrid, 0.0);
-      setLeftAnchor(layoutGrid, 0.0);
-      setBottomAnchor(layoutGrid, 0.0);
-      setRightAnchor(layoutGrid, 0.0);
-
-      getChildren().add(layoutGrid);
 
       GUINode thisNode = this;
       Button delete = new Button("Delete");
-      delete.setOnAction(new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent event) {
-          for (GUIInputLink i : inputs) {
-            i.unlink();
-          }
-          getChildren().removeAll(inputs);
-          getChildren().removeAll(outputs);
-          parent.getChildren().remove(thisNode);
+      delete.setOnAction(event -> {
+        for (GUIInputLink i : inputs) {
+          i.triggerUnlink();
         }
+        for(GUIOutputLink o : outputs){
+          o.triggerUnlink();
+        }
+        getChildren().removeAll(inputs);
+        getChildren().removeAll(outputs);
+        parent.deleteNode(thisNode);
       });
 
       if (!(node instanceof BasicRenderNode)) {
-        layoutGrid.addColumn(0, new Text(node.getName()), reflectorGrid, delete);
+        layoutGrid.addColumn(0, new Label(node.getName()), reflectorGrid, delete);
       } else {
-        layoutGrid.addColumn(0, new Text(node.getName()), reflectorGrid);
+        layoutGrid.addColumn(0, new Label(node.getName()), reflectorGrid);
       }
 
       toBack();
@@ -140,15 +159,15 @@ public class GUINode extends AnchorPane {
     reflectorGrid.redoGrid();
   }
 
-  public GUINode(int x, int y, INode node, Pane parent, ChangeListener listener){
+  public GUINode(int x, int y, INode node, NodePane parent, ChangeListener listener){
     this(50, 50, x, y, node, parent, listener);
   }
 
-  public GUINode(INode node, Pane parent, ChangeListener listener){
+  public GUINode(INode node, NodePane parent, ChangeListener listener){
     this(0, 0, node, parent, listener);
   }
 
-  public GUINode(INode node, Pane parent) {
+  public GUINode(INode node, NodePane parent) {
     this(node, parent, null);
   }
 
@@ -166,5 +185,9 @@ public class GUINode extends AnchorPane {
 
   public INode getNode() {
     return node;
+  }
+
+  public NodePane getParentPane() {
+    return parent;
   }
 }
