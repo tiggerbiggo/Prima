@@ -143,9 +143,9 @@ public class GUINode extends AnchorPane {
       });
 
       if (!(node instanceof BasicRenderNode)) {
-        layoutGrid.addColumn(0, new Label(node.getName()), reflectorGrid, delete);
+        layoutGrid.addColumn(0, new Label(node.getName()), node.getFXNode(listener), delete);
       } else {
-        layoutGrid.addColumn(0, new Label(node.getName()), reflectorGrid);
+        layoutGrid.addColumn(0, new Label(node.getName()), node.getFXNode(listener));
       }
 
       toBack();
@@ -153,10 +153,6 @@ public class GUINode extends AnchorPane {
       throw new IllegalArgumentException(
           "Given node does not implement IO! Node is either corrupt or tiggerbiggo is a bad coder. Probably both.");
     }
-  }
-
-  public void refreshGrid(){
-    reflectorGrid.redoGrid();
   }
 
   public GUINode(int x, int y, INode node, NodePane parent, ChangeListener listener){

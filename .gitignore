@@ -5,3 +5,5 @@ out/
 *.gif
 target/
 imgs/
+*.prim
+*.jar

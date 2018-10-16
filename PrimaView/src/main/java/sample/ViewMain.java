@@ -1,6 +1,7 @@
 package sample;
 
 import java.io.File;
+import java.net.URLDecoder;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -34,5 +35,9 @@ public class ViewMain extends Application {
     if(f != null){
       mainStage.setTitle("Prima: " + f.getName());
     }
+  }
+
+  public static Stage getMainStage(){
+    return mainStage;
   }
 }

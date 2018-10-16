@@ -6,7 +6,6 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.sun.deploy.util.StringUtils;
 import com.tiggerbiggo.prima.primaplay.node.core.INode;
 import guinode.GUIInputLink;
 import guinode.GUINode;
@@ -18,6 +17,8 @@ import java.lang.annotation.Annotation;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -82,7 +83,9 @@ public class NodeSerializer {
     GsonBuilder builder = new GsonBuilder().addSerializationExclusionStrategy(new ExclusionStrategy() {
       @Override
       public boolean shouldSkipField(FieldAttributes f) {
+        System.out.println(f.getClass() + " : " + f.getName());
         for(Annotation a : f.getAnnotations()){
+          System.out.println("    Found Annotation: " + a.annotationType());
           if(a.annotationType().equals(TransferGrid.class)){
             return false;
           }
@@ -208,7 +211,7 @@ public class NodeSerializer {
   public static NodePane parseFromFile(File file, ChangeListener listener) throws NodeParseException{
     try {
       List<String> lines = Files.readAllLines(file.toPath(), Charset.defaultCharset());
-      String result = StringUtils.join(lines, "\n");
+      String result = join(lines, "\n");
       System.out.println("------------------");
       System.out.println(result);
       System.out.println("------------------");
@@ -241,5 +244,17 @@ public class NodeSerializer {
       throw e;
     }
     return ser;
+  }
+
+  private static String join(Collection var0, String var1) {
+    StringBuffer var2 = new StringBuffer();
+
+    for(Iterator var3 = var0.iterator(); var3.hasNext(); var2.append((String)var3.next())) {
+      if (var2.length() != 0) {
+        var2.append(var1);
+      }
+    }
+
+    return var2.toString();
   }
 }

@@ -7,7 +7,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -17,6 +16,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+
 <AnchorPane prefHeight="781.0" prefWidth="1015.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
 <children>
   <SplitPane dividerPositions="0.5695952615992103" styleClass="NodePane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -58,8 +58,7 @@
                   <RowConstraints maxHeight="1.7976931348623157E308" vgrow="NEVER" />
                 </rowConstraints>
                 <children>
-                  <Button fx:id="btnSave" maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtnSave" prefHeight="40.0" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="txtFileName" maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="-Infinity" prefHeight="40.0" promptText="Filename" text="Filename" GridPane.rowIndex="2" />
+                  <Button fx:id="btnSave" maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtnSave" prefHeight="40.0" text="Export Image" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                     <children>
                       <Label prefHeight="21.0" prefWidth="729.0" text="Image Width:" />
@@ -72,13 +71,13 @@
                       <Spinner fx:id="spnHeight" editable="true" maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="-Infinity" prefHeight="40.0" />
                     </children>
                   </VBox>
-                  <ComboBox fx:id="comboNodeList" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="40.0" GridPane.rowIndex="3" />
-                  <Button maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtnAddNode" prefHeight="40.0" text="Add Node" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Button fx:id="btnPreview" maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtnPreview" prefHeight="40.0" text="Preview" />
+                  <ComboBox fx:id="comboNodeList" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="40.0" styleClass="buttonLeft" GridPane.rowIndex="3" />
+                  <Button maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtnAddNode" prefHeight="40.0" styleClass="buttonRight" text="Add Node" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button fx:id="btnPreview" maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtnPreview" prefHeight="40.0" styleClass="buttonLeft" text="Preview" />
                               <HBox maxWidth="1.7976931348623157E308" minWidth="-Infinity" GridPane.columnIndex="1">
                                  <children>
-                                    <Button fx:id="btnSaveLayout" maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtnSaveLayout" prefHeight="40.0" text="Save Layout" HBox.hgrow="ALWAYS" />
-                                    <Button maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtnLoadLayout" prefHeight="40.0" text="Load Layout" HBox.hgrow="ALWAYS" />
+                                    <Button fx:id="btnSaveLayout" maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtnSaveLayout" prefHeight="40.0" styleClass="buttonMid" text="Save Layout" HBox.hgrow="ALWAYS" />
+                                    <Button maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtnLoadLayout" prefHeight="40.0" styleClass="buttonRight" text="Load Layout" HBox.hgrow="ALWAYS" />
                                  </children>
                               </HBox>
                 </children>

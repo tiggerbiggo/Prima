@@ -64,16 +64,19 @@ public class MainController implements Initializable, ChangeListener {
   @FXML
   private ScrollPane scrollPane;
 
-  private String DEFAULT =
-      "0@com.tiggerbiggo.prima.primaplay.node.implemented.MapGenNode@{\"aX\":0.0,\"aY\":0.0,\"dx\":1.0,\"dy\":1.0}@35@29\n"
-      + "1@com.tiggerbiggo.prima.primaplay.node.implemented.io.TransformNode@{\"function\":\"SINSIN\"}@319@43\n"
-      + "2@com.tiggerbiggo.prima.primaplay.node.implemented.BasicRenderNode@{}@925@92\n"
-      + "3@com.tiggerbiggo.prima.primaplay.node.implemented.io.GradientNode@{}@752@82\n"
-      + "4@com.tiggerbiggo.prima.primaplay.node.implemented.io.AnimationNode@{}@567@66\n"
+  private String DEFAULT = "0@com.tiggerbiggo.prima.primaplay.node.implemented.MapGenNode@{\"aX\":0.0,\"aY\":0.0,\"dx\":1.0,\"dy\":1.0}@35@29\n"
+      + "1@com.tiggerbiggo.prima.primaplay.node.implemented.io.TransformNode@{\"function\":\"SINSIN\"}@326@99\n"
+      + "2@com.tiggerbiggo.prima.primaplay.node.implemented.BasicRenderNode@{}@963@111\n"
+      + "3@com.tiggerbiggo.prima.primaplay.node.implemented.io.GradientNode@{}@770@81\n"
+      + "4@com.tiggerbiggo.prima.primaplay.node.implemented.io.AnimationNode@{}@599@53\n"
+      + "5@com.tiggerbiggo.prima.primaplay.node.implemented.output.ColorNode@{\"r\":77,\"g\":128,\"b\":77}@418@405\n"
+      + "6@com.tiggerbiggo.prima.primaplay.node.implemented.output.ColorNode@{\"r\":255,\"g\":255,\"b\":102}@428@268\n"
       + "-\n"
       + "0@0@1@0\n"
       + "3@0@2@0\n"
       + "4@0@3@0\n"
+      + "6@0@3@1\n"
+      + "5@0@3@2\n"
       + "1@0@4@0\n";
 
 
@@ -181,7 +184,13 @@ public class MainController implements Initializable, ChangeListener {
 
   @FXML
   private void onBtnSave(ActionEvent e) {
-    FileManager.writeGif(nodePane.render(spnWidth.getValue(), spnHeight.getValue(), 60), txtFileName.getText());
+    try {
+      FileManager.writeGif(
+          nodePane.render(spnWidth.getValue(), spnHeight.getValue(), 60),
+          FileManager.showSaveDialogue(ViewMain.getMainStage(), "exports/", FileManager.GIF).toString());
+    } catch (IOException ex) {
+      ex.printStackTrace();
+    }
   }
 
   @FXML

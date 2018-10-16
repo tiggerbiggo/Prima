@@ -18,15 +18,14 @@ public class ColorInputLink extends InputLink<Color> {
   }
 
   @Override
-  public Color defaultValue(RenderParams p) {
-    return Color.BLACK;
+  public boolean canLink(Link other) {
+    if(other == null) return false;
+    return other instanceof ColorOutputLink;
   }
 
   @Override
-  public boolean canLink(Link other) {
-    if(other == null) return false;
-    return other instanceof ColorArrayOutputLink;
-  }
+  public Color defaultValue(RenderParams p) {return Color.BLACK;}
+
   @Override
   public String getStyleClass() {
     return "ColorLink";

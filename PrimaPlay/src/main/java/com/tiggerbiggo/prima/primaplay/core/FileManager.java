@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -26,7 +28,7 @@ public class FileManager {
   public static void writeGif(BufferedImage[] imgSequence, int BufferedImageType,
       int timeBetweenFramesMS, boolean loop, String filename) {
     try {
-      try (ImageOutputStream output = new FileImageOutputStream(new File(filename + ".gif"))) {
+      try (ImageOutputStream output = new FileImageOutputStream(fromRelative(filename + ".gif"))) {
         GifSequenceWriter writer = new GifSequenceWriter(output, BufferedImageType,
             timeBetweenFramesMS, loop);
         for (BufferedImage B : imgSequence) {
@@ -86,7 +88,7 @@ public class FileManager {
    */
   public static BufferedImage[] getImgsFromFolder(String dirName, boolean sort)throws IllegalArgumentException {
     try {
-      File dir = new File(dirName);
+      File dir = fromRelative(dirName);
       if (!dir.isDirectory()) {
         return null;
       }
@@ -161,11 +163,15 @@ public class FileManager {
   }
 
   public static SafeImage safeGetImg(String filepath){
-    File f = new File(filepath);
+    return safeGetImg(fromRelative(filepath));
+
+  }
+
+  public static SafeImage safeGetImg(File f){
     if (!f.exists() || !f.canRead()) {
       System.err.println(
           "Error in safeGetImg: File (" +
-              filepath +
+              f.toString() +
               ") does not exist or we do not have permission to read it.");
       return new SafeImage(1, 1);
     }
@@ -180,15 +186,27 @@ public class FileManager {
   private static final FileChooser fileChooser = new FileChooser();
 
   public static File showOpenDialogue() throws IOException {
-    return showOpenDialogue(null);
+    return showOpenDialogue("");
   }
 
-  public static File showOpenDialogue(Stage stage) throws IOException {
-    new File("saves/").createNewFile();
+  public static File showOpenDialogue(String path) throws IOException{
+    return showOpenDialogue(path, PRIM);
+  }
+
+  public static File showOpenDialogue(String path, ExtensionFilter ... filters) throws IOException{
+    return showOpenDialogue(null, path, filters);
+  }
+
+  public static File showOpenDialogue(Stage stage, String path, ExtensionFilter ... filters) throws IOException {
+    File f = fromRelative(path);
+
+    f.mkdirs();
+
     fileChooser.getExtensionFilters().clear();
-    fileChooser.getExtensionFilters().add(new ExtensionFilter("Prima layout file", "*.prim"));
+    fileChooser.getExtensionFilters().addAll(filters);
     fileChooser.setTitle("Load");
-    fileChooser.setInitialDirectory(new File("saves/"));
+    fileChooser.setInitialDirectory(f);
+
     File file = fileChooser.showOpenDialog(stage);
     if(file != null){
       return file;
@@ -197,21 +215,60 @@ public class FileManager {
   }
 
   public static File showSaveDialogue() throws IOException{
-    return showSaveDialogue(null);
+    return showSaveDialogue(null, "", PRIM);
   }
 
-  public static File showSaveDialogue(Stage stage) throws IOException {
-    new File("saves/").createNewFile();
+  public static File showSaveDialogue(Stage stage, String path, ExtensionFilter ... filters) throws IOException {
+    File f = fromRelative(path);
+
+    System.out.println(f);
+
+    f.mkdirs();
+
     fileChooser.getExtensionFilters().clear();
-    fileChooser.getExtensionFilters().add(new ExtensionFilter("Prima layout file", "*.prim"));
+    fileChooser.getExtensionFilters().addAll(filters);
     fileChooser.setTitle("Save");
-    fileChooser.setInitialDirectory(new File("saves/"));
+    fileChooser.setInitialDirectory(f);
     File file = fileChooser.showSaveDialog(stage);
     if (file != null) {
       return file;
     }
     throw new FileNotFoundException("User cancelled input, or file path invalid.");
   }
+
+  public static String getRunningPath(){
+    String path = FileManager.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+    try {
+      String decoded = URLDecoder.decode(path, "UTF-8");
+
+      if(decoded.endsWith("jar"))
+        decoded = decoded.substring(0, decoded.lastIndexOf("/") + 1);
+
+      System.out.println("Running path: " + decoded);
+      return decoded;
+    } catch (UnsupportedEncodingException e) {
+      System.err.println("Unable to get jar path: ");
+      e.printStackTrace();
+      System.exit(0);
+    }
+    return "";
+  }
+
+  public static File fromRelative(String rel){
+    return new File(getRunningPath() + rel);
+  }
+
+  public static final ExtensionFilter PRIM = new ExtensionFilter("Prima Layout File", "*.prim");
+
+  public static final ExtensionFilter GIF = new ExtensionFilter("Animated Gif", "*.gif");
+
+  public static final ExtensionFilter[] IMGS = new ExtensionFilter[]{
+      new ExtensionFilter("PNG file", "*.png"),
+      new ExtensionFilter("JPEG file", "*.jpeg, *.jpg"),
+      new ExtensionFilter("TIFF file", "*.tiff, *.tif"),
+      new ExtensionFilter("BMP file", "*.bmp")
+  };
+
 }
 
 

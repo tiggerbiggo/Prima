@@ -15,12 +15,46 @@
   -fx-background-radius: 10;
   -fx-padding: 10;
 }
+
+.textArea{
+  -fx-background-color: '#825636';
+    -fx-text-fill: '#ffd700';
+    -fx-border-color: '#f4b700';
+    -fx-border-radius: 60;
+    -fx-background-radius: 60;
+}
+
 .button{
   -fx-background-color: '#825636';
   -fx-text-fill: '#ffd700';
   -fx-border-color: '#f4b700';
   -fx-border-radius: 60;
   -fx-background-radius: 60;
+}
+
+.buttonLeft{
+    -fx-border-radius: 60 0 0 60;
+    -fx-background-radius: 60 0 0 60;
+}
+
+.buttonRight{
+    -fx-border-radius: 0 60 60 0;
+    -fx-background-radius: 0 60 60 0;
+}
+
+.buttonTop{
+    -fx-border-radius: 60 60 0 0;
+    -fx-background-radius: 60 60 0 0;
+}
+
+.buttonBottom{
+    -fx-border-radius: 0 0 60 60;
+    -fx-background-radius: 0 0 60 60;
+}
+
+.buttonMid{
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
 }
 
 .split-pane-divider {

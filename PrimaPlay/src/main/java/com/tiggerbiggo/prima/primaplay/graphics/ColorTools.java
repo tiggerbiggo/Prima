@@ -166,6 +166,23 @@ public class ColorTools {
     }
     return toReturn;
   }
+
+  public static Color fromFXColor(javafx.scene.paint.Color fxColor){
+    return new Color(
+        (int)(fxColor.getRed() * 255),
+        (int)(fxColor.getGreen() * 255),
+        (int)(fxColor.getBlue() * 255)
+    );
+  }
+
+  public static javafx.scene.paint.Color toFXColor(Color c){
+    return new javafx.scene.paint.Color(
+        c.getRed() / 255d,
+        c.getGreen() / 255d,
+        c.getBlue() / 255d,
+        1
+    );
+  }
 }
 
 
