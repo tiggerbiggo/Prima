@@ -170,7 +170,7 @@ public class NodeSerializer {
 
     currentLine++;
 
-    do{
+    while(currentLine < lines.length){
       int[] links = parseLinks(lines[currentLine]);
 
       GUIOutputLink output = nodeList.get(links[0]).getOutputs().get(links[1]);
@@ -178,7 +178,7 @@ public class NodeSerializer {
 
       input.link(output);
       currentLine++;
-    }while(currentLine < lines.length);
+    }
 
     return pane;
   }

@@ -7,3 +7,4 @@ target/
 imgs/
 *.prim
 *.jar
+*.bat

@@ -5,6 +5,7 @@ import com.tiggerbiggo.prima.primaplay.node.core.INode;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import org.reflections.Reflections;
@@ -17,6 +18,17 @@ public class NodeReflection {
     if (allImplementedNodes == null) {
       setNodeList();
     }
+    allImplementedNodes.sort((o1, o2) -> {
+      try {
+        String s1, s2;
+        s1 = o1.newInstance().getName();
+        s2 = o2.newInstance().getName();
+        return s1.compareTo(s2);
+      } catch (InstantiationException | IllegalAccessException e) {
+        e.printStackTrace();
+      }
+      return 0;
+    });
     return Collections.unmodifiableList(allImplementedNodes);
   }
 

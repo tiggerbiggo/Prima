@@ -86,3 +86,7 @@
 .ColorLink{
   -fx-fill: '#ffffff';
 }
+.CommentPane{
+  -fx-width : 300;
+  -fx-height: 300;
+}
