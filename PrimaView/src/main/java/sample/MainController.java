@@ -186,8 +186,14 @@ public class MainController implements Initializable, ChangeListener {
   private void onBtnSave(ActionEvent e) {
     try {
       FileManager.writeGif(
-          nodePane.render(spnWidth.getValue(), spnHeight.getValue(), 60),
-          FileManager.showSaveDialogue(ViewMain.getMainStage(), "exports/", FileManager.GIF).toString());
+          nodePane.render(
+              spnWidth.getValue(),
+              spnHeight.getValue(),
+              60),
+          FileManager.showSaveDialogue(
+              ViewMain.getMainStage(),
+              "exports/",
+              FileManager.GIF));
     } catch (IOException ex) {
       ex.printStackTrace();
     }

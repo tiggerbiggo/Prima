@@ -179,7 +179,6 @@ public class NodeSerializer {
       input.link(output);
       currentLine++;
     }
-
     return pane;
   }
 

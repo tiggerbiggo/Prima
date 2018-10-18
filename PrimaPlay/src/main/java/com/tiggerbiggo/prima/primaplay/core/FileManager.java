@@ -26,9 +26,9 @@ import javax.imageio.stream.MemoryCacheImageOutputStream;
 public class FileManager {
 
   public static void writeGif(BufferedImage[] imgSequence, int BufferedImageType,
-      int timeBetweenFramesMS, boolean loop, String filename) {
+      int timeBetweenFramesMS, boolean loop, File file) {
     try {
-      try (ImageOutputStream output = new FileImageOutputStream(fromRelative(filename + ".gif"))) {
+      try (ImageOutputStream output = new FileImageOutputStream(file)) {
         GifSequenceWriter writer = new GifSequenceWriter(output, BufferedImageType,
             timeBetweenFramesMS, loop);
         for (BufferedImage B : imgSequence) {
@@ -40,8 +40,8 @@ public class FileManager {
     }
   }
 
-  public static void writeGif(BufferedImage[] imgSequence, String filename) {
-    writeGif(imgSequence, BufferedImage.TYPE_INT_RGB, 0, true, filename);
+  public static void writeGif(BufferedImage[] imgSequence, File file) {
+    writeGif(imgSequence, BufferedImage.TYPE_INT_RGB, 0, true, file);
   }
 
   public static byte[] writeByteArray(BufferedImage img) {
