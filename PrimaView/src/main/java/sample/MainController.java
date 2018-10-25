@@ -83,6 +83,8 @@ public class MainController implements Initializable, ChangeListener {
   Image[] imgArray = null;
   int currentImage;
   Timeline timer;
+  boolean isSaved;  //is the file saved?
+  File savedLayoutPath; //the path of the saved file
 
   private Future<BufferedImage[]> renderTask;
 
@@ -167,7 +169,7 @@ public class MainController implements Initializable, ChangeListener {
   public void startPreviewRender(){
     if(renderTask != null) renderTask.cancel(true);
     imgArray = null;
-    renderTask = nodePane.renderAsync(100, 100, 60);
+    renderTask = nodePane.renderAsync(spnWidth.getValue(), spnHeight.getValue(), 60);
   }
 
   @FXML
@@ -181,7 +183,6 @@ public class MainController implements Initializable, ChangeListener {
       btnPreview.setText("Preview");
     }
   }
-
   @FXML
   private void onBtnSave(ActionEvent e) {
     try {
@@ -194,6 +195,7 @@ public class MainController implements Initializable, ChangeListener {
               ViewMain.getMainStage(),
               "exports/",
               FileManager.GIF));
+              isSaved = true;
     } catch (IOException ex) {
       ex.printStackTrace();
     }
@@ -204,14 +206,19 @@ public class MainController implements Initializable, ChangeListener {
     String ser;
 
     try{
+      if(isSaved){
+        ser = NodeSerializer.saveToFile(nodePane, savedLayoutPath);
+      } else {
       File chosen =  FileManager.showSaveDialogue();
-
       ser = NodeSerializer.saveToFile(nodePane, chosen);
-
+      savedLayoutPath = chosen;
+      isSaved = true;
       ViewMain.setTitleToFile(chosen);
+      }
     }catch(IOException ex){
       return;
     }
+
 
     StringSelection stringSelection = new StringSelection(ser);
     Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -224,6 +231,7 @@ public class MainController implements Initializable, ChangeListener {
       File chosen = FileManager.showOpenDialogue();
 
       NodePane tmpPane = NodeSerializer.parseFromFile(chosen, this);
+      isSaved = true;
       //Open file dialogue
 
       //NodeSerializer.parseNodes(txtSavedText.getText(), this);

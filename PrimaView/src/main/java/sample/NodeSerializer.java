@@ -236,8 +236,7 @@ public class NodeSerializer {
     String ser = SerializeNodePane(pane);
 
     System.out.println(ser);
-
-    try(FileWriter fw = new FileWriter(toWrite)) {
+    try(FileWriter fw = new FileWriter(toWrite + ".prim")) {
       fw.append(ser);
     } catch (IOException e) {
       throw e;
