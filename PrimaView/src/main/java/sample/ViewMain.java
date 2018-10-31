@@ -1,10 +1,13 @@
 package sample;
 
 import java.io.File;
+import java.util.Optional;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -31,6 +34,10 @@ public class ViewMain extends Application {
     s.getStylesheets().add(getClass().getResource("/default.css").toString());
     exportStage.setScene(s);
     exportStage.initModality(Modality.APPLICATION_MODAL);
+    primaryStage.setOnCloseRequest(event -> {
+      exitPopup();
+      event.consume();
+    });
 
     primaryStage.show();
   }
@@ -45,6 +52,15 @@ public class ViewMain extends Application {
     } else{
       mainStage.setTitle("Prima: No File Loaded");
     }
+  }
+
+  void exitPopup(){
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setContentText("Are you sure you want to exit Prima?");
+    alert.setTitle("Exit?");
+    Optional<ButtonType> res = alert.showAndWait();
+    if(res.get().equals(ButtonType.OK))
+      System.exit(0);
   }
 
   public static Stage getMainStage(){

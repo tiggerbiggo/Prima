@@ -3,7 +3,6 @@ package com.tiggerbiggo.prima.primaplay.graphics;
 import com.tiggerbiggo.utils.calculation.Calculation;
 import com.tiggerbiggo.utils.calculation.Vector2;
 import java.awt.Color;
-import java.io.Serializable;
 
 /**
  * Simple gradient for 2 colors

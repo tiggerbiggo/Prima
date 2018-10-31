@@ -3,12 +3,8 @@ package com.tiggerbiggo.prima.primaplay.node.implemented.output;
 import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
 import ch.hephaistos.utilities.loki.util.interfaces.ChangeListener;
 import com.tiggerbiggo.prima.primaplay.node.core.NodeHasOutput;
-import com.tiggerbiggo.utils.calculation.GUITools;
-import javafx.beans.binding.DoubleBinding;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 

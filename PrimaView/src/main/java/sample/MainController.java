@@ -18,7 +18,6 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -27,10 +26,6 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -40,8 +35,6 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
 
@@ -56,7 +49,7 @@ public class MainController implements Initializable, ChangeListener {
   @FXML
   private ImageView imgView;
   @FXML
-  private Button btnPreview, exportButton;
+  private Button btnPreview;
   @FXML
   private ComboBox<Class<? extends INode>> comboNodeList;
   @FXML
@@ -190,7 +183,6 @@ public class MainController implements Initializable, ChangeListener {
       btnPreview.setText("Preview");
     }
   }
-
   @FXML
   private void onExportPressed(){
     ViewMain.getExportStage().showAndWait();
@@ -198,7 +190,7 @@ public class MainController implements Initializable, ChangeListener {
 
   private void saveLayout(){
     try{
-      File chosen = null;
+      File chosen;
 
       if(currentFile == null)
         chosen =  FileManager.showSaveDialogue();
@@ -261,7 +253,6 @@ public class MainController implements Initializable, ChangeListener {
     System.out.println("-----------------------------------");
     startPreviewRender();
   }
-
   private void setupMenuBar(){
     Menu file = new Menu("File");
 

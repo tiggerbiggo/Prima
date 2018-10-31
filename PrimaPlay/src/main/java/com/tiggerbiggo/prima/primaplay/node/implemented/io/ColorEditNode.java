@@ -2,12 +2,6 @@
 
 package com.tiggerbiggo.prima.primaplay.node.implemented.io;
 
-import com.tiggerbiggo.prima.primaplay.graphics.ColorTools;
-import com.tiggerbiggo.prima.primaplay.node.core.NodeInOut;
-import java.awt.Color;
-import java.util.function.BiFunction;
-import java.util.function.Function;
-
 public class ColorEditNode{//} extends NodeInOut {
   
   
