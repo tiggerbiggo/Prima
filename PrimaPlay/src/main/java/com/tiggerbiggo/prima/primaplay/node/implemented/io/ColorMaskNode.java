@@ -40,7 +40,7 @@ public class ColorMaskNode extends NodeInOut{
         }
 
         for(int i=0; i<toReturn.length; i++){
-          toReturn[i] = ColorTools.multiply(toReturn[i], multiplier);
+          //toReturn[i] = ColorTools.multiply(toReturn[i], multiplier); TODO: BORKED
         }
         return toReturn;
       }

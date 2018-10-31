@@ -1,33 +1,41 @@
+* {
+  -my-outline: '#f4b700';
+  -my-nodebg: '#777777';
+  -my-darkbg: '#333333';
+  -my-accent: '#825636';
+  -my-lightaccent: '#9b7357';
+}
+
 .LinkLine{
-  -fx-stroke: '#f4b700';
+  -fx-stroke: -my-outline;
   -fx-fill:transparent;
 }
 .NodePane{
-  -fx-background-color:'#333333';
+  -fx-background-color: -my-darkbg;
 }
-.label{
-  -fx-text-fill: '#eeeeee';
-}
+
 .GUINode{
-  -fx-border-color: '#f4b700';
+  -fx-border-color: -my-outline;
   -fx-border-radius: 10;
-  -fx-background-color:'#777777';
+  -fx-background-color: -my-nodebg;
   -fx-background-radius: 10;
   -fx-padding: 10;
 }
 
-.textArea{
-  -fx-background-color: '#825636';
-    -fx-text-fill: '#ffd700';
-    -fx-border-color: '#f4b700';
-    -fx-border-radius: 60;
-    -fx-background-radius: 60;
+.label{
+  -fx-text-fill: -my-outline;
+}
+
+.text-field{
+  -fx-background-color: -my-lightaccent;
+  -fx-text-fill: -my-outline;
+  -fx-border-color: -my-outline;
 }
 
 .button{
-  -fx-background-color: '#825636';
-  -fx-text-fill: '#ffd700';
-  -fx-border-color: '#f4b700';
+  -fx-background-color: -my-accent;
+  -fx-text-fill: -my-outline;
+  -fx-border-color: -my-outline;
   -fx-border-radius: 60;
   -fx-background-radius: 60;
 }
@@ -51,18 +59,15 @@
     -fx-border-radius: 0 0 60 60;
     -fx-background-radius: 0 0 60 60;
 }
-
 .buttonMid{
     -fx-border-radius: 0;
     -fx-background-radius: 0;
 }
-
 .split-pane-divider {
-  -fx-background-color: '#f4b700';
+  -fx-background-color: -my-outline;
 }
-
 .GUILink{
-  -fx-stroke: '#f4b700';
+  -fx-stroke: -my-outline;
   -fx-stroke-width: 2;
 }
 .ColorArrayLink{
@@ -78,15 +83,112 @@
   -fx-fill: aqua;
 }
 .ImageLink{
-  -fx-fill: green;
+  -fx-fill: '#00aa00';
 }
 .ImageArrayLink{
   -fx-fill: '#00ff00';
 }
 .ColorLink{
-  -fx-fill: '#ffffff';
+  -fx-fill: white;
 }
-.CommentPane{
-  -fx-width : 300;
-  -fx-height: 300;
+.slider .track{
+  -fx-background-color: -my-outline;
+}
+.slider .thumb{
+  -fx-background-color: -my-accent;
+  -fx-border-color: -my-outline;
+  -fx-border-radius: 100;
+}
+
+.color-picker{
+  -fx-color-label-visible: false;
+  -fx-color-rect-width: 30;
+  -fx-color-rect-height: 30;
+}
+
+.picker-color{
+  -fx-width: 100;
+}
+
+.color-picker .arrow{
+  -fx-background-color:transparent;
+}
+
+.no-border{
+  -fx-border-color:transparent;
+  -fx-background-color:transparent;
+}
+
+* {
+    -fx-my-menu-color: -my-outline;
+    -fx-my-menu-color-highlighted: -my-darkbg;
+    -fx-my-menu-font-color: black;
+    -fx-my-menu-font-color-highlighted: #ffffff;
+}
+
+/* MENU BAR + Top-level MENU BUTTONS */
+/*** The menu bar itself ***/
+.menu-bar {
+    -fx-background-color: -fx-my-menu-color;
+}
+
+/*** Top-level menu itself (not selected / hovered) ***/
+.menu-bar > .container > .menu-button {
+    -fx-background-color: -fx-my-menu-color;
+}
+
+/*** Top-level menu's label (not selected / hovered) ***/
+.menu-bar > .container > .menu-button > .label {
+    -fx-text-fill: -fx-my-menu-font-color;
+}
+
+/*** Top-level menu's label (disabled) ***/
+.menu-bar > .container > .menu-button > .label:disabled {
+    -fx-opacity: 1.0;
+}
+
+/*** Top-level menu itself (selected / hovered) ***/
+.menu-bar > .container > .menu-button:hover,
+.menu-bar > .container > .menu-button:focused,
+.menu-bar > .container > .menu-button:showing {
+    -fx-background-color: -fx-my-menu-color-highlighted;
+}
+
+/*** Top-level menu's label (selected / hovered) ***/
+.menu-bar > .container > .menu-button:hover > .label,
+.menu-bar > .container > .menu-button:focused > .label,
+.menu-bar > .container > .menu-button:showing > .label {
+    -fx-text-fill: -fx-my-menu-font-color-highlighted;
+}
+
+/* MENU ITEM (children of a MENU BUTTON) */
+/*** The item itself (not hovered / focused) ***/
+.menu-item {
+    -fx-background-color: -fx-my-menu-color;
+}
+
+/*** The item's label (not hovered / focused) ***/
+.menu-item .label {
+    -fx-text-fill: -fx-my-menu-font-color;
+}
+
+/*** The item's label (disabled) ***/
+.menu-item .label:disabled {
+    -fx-opacity: 1.0;
+}
+
+/*** The item itself (hovered / focused) ***/
+.menu-item:focused, .menu-item:hovered {
+    -fx-background-color: -fx-my-menu-color-highlighted;
+}
+
+/*** The item's label (hovered / focused) ***/
+.menu-item:focused .label, .menu-item:hovered .label {
+    -fx-text-fill: -fx-my-menu-font-color-highlighted;
+}
+
+/* CONTEXT MENU */
+/*** The context menu that contains a menu's menu items ***/
+.context-menu {
+    -fx-background-color: -fx-my-menu-color;
 }

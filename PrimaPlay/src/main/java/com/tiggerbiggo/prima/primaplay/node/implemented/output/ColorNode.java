@@ -65,6 +65,7 @@ public class ColorNode extends NodeHasOutput {
     if(picker == null) {
       c = new Color(r, g, b);
       picker = new ColorPicker(ColorTools.toFXColor(c));
+      picker.getStyleClass().add("no-border");
     }
 
     picker.setOnAction(new EventHandler<ActionEvent>() {
@@ -81,9 +82,11 @@ public class ColorNode extends NodeHasOutput {
 
     GUITools.setAllAnchors(picker, 0);
 
-    AnchorPane pane = new AnchorPane(picker);
-    pane.setMinWidth(200);
-    pane.setMinHeight(40);
-    return pane;
+    AnchorPane p = new AnchorPane(picker);
+
+    p.setMinWidth(50);
+    p.setMinHeight(50);
+
+    return p;
   }
 }
