@@ -297,5 +297,4 @@ public class MainController implements Initializable, ChangeListener {
   public NodePane getNodePane() {
     return nodePane;
   }
-
 }
