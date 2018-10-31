@@ -1,7 +1,6 @@
 package sample;
 
 import com.tiggerbiggo.prima.primaplay.core.FileManager;
-import com.tiggerbiggo.prima.primaplay.core.Renderer;
 import com.tiggerbiggo.prima.primaplay.node.implemented.BasicRenderNode;
 import java.io.File;
 import java.io.IOException;

@@ -3,7 +3,6 @@ package com.tiggerbiggo.prima.primaplay.node.implemented.io;
 import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
 import ch.hephaistos.utilities.loki.util.interfaces.ChangeListener;
 import com.tiggerbiggo.prima.primaplay.core.RenderParams;
-import com.tiggerbiggo.prima.primaplay.graphics.Gradient;
 import com.tiggerbiggo.prima.primaplay.graphics.HueCycleGradient;
 import com.tiggerbiggo.prima.primaplay.graphics.SimpleGradient;
 import com.tiggerbiggo.prima.primaplay.node.core.NodeInOut;
@@ -14,8 +13,6 @@ import com.tiggerbiggo.utils.calculation.ReflectionHelper;
 import com.tiggerbiggo.utils.calculation.Vector2;
 import java.awt.Color;
 import java.lang.reflect.Field;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 
