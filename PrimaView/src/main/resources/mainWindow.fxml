@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="781.0" prefWidth="1015.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
+<children>
+      <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <MenuBar fx:id="menuBar" VBox.vgrow="ALWAYS" />
+        <SplitPane dividerPositions="0.5695952615992103" maxHeight="1.7976931348623157E308" styleClass="NodePane" VBox.vgrow="ALWAYS">
+          <items>
+                  <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" pannable="true" prefWidth="600.0" styleClass="NodePane" vbarPolicy="NEVER">
+                     <content>
+                        <BorderPane fx:id="pannableContainer" styleClass="NodePane">
+                           <center>
+                              <Pane fx:id="nodeContainer" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                     </content>
+                  </ScrollPane>
+            <AnchorPane maxWidth="600.0">
+              <children>
+                <GridPane layoutX="7.0" layoutY="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" />
+                  </columnConstraints>
+                  <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                  <children>
+                    <AnchorPane fx:id="anchImageHolder" minWidth="-Infinity" GridPane.hgrow="ALWAYS">
+                      <children>
+                        <ImageView fx:id="imgView" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                      </children>
+                    </AnchorPane>
+                    <GridPane maxWidth="1.7976931348623157E308" minWidth="-Infinity" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+                      <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="-Infinity" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="-Infinity" />
+                      </columnConstraints>
+                      <rowConstraints>
+                        <RowConstraints vgrow="NEVER" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" vgrow="NEVER" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" vgrow="NEVER" />
+                      </rowConstraints>
+                      <children>
+                        <Button fx:id="btnSave" maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtnSave" prefHeight="40.0" text="Export Image" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                          <children>
+                            <Label prefHeight="21.0" prefWidth="729.0" text="Image Width:" />
+                            <Spinner fx:id="spnWidth" editable="true" maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="-Infinity" prefHeight="40.0" style="-fx-background-radius: 999; -fx-border-radius: 999; -fx-background-color: #000000;" />
+                          </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                          <children>
+                            <Label maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="20.0" text="Image Height:" />
+                            <Spinner fx:id="spnHeight" editable="true" maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="-Infinity" prefHeight="40.0" />
+                          </children>
+                        </VBox>
+                        <ComboBox fx:id="comboNodeList" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="40.0" styleClass="buttonLeft" GridPane.rowIndex="3" />
+                        <Button maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtnAddNode" prefHeight="40.0" styleClass="buttonRight" text="Add Node" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Button fx:id="btnPreview" maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtnPreview" prefHeight="40.0" text="Preview" />
+                                    <HBox maxWidth="1.7976931348623157E308" minWidth="-Infinity" GridPane.columnIndex="1" />
+                      </children>
+                    </GridPane>
+                  </children>
+                </GridPane>
+              </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+            </AnchorPane>
+          </items>
+        </SplitPane>
+         </children>
+      </VBox>
+</children>
+</AnchorPane>

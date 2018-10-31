@@ -79,6 +79,10 @@ public class FileManager {
     return writeByteArray(imgSequence, BufferedImage.TYPE_INT_RGB, 0, true);
   }
 
+  public static void writeImage(BufferedImage img, File out) throws IOException {
+    ImageIO.write(img, out.getName().substring(out.getName().lastIndexOf('.')+1), out);
+  }
+
   /**
    * Reads in all images from a directory in an arbitrary order.
    *
@@ -266,7 +270,8 @@ public class FileManager {
       new ExtensionFilter("PNG file", "*.png"),
       new ExtensionFilter("JPEG file", "*.jpeg, *.jpg"),
       new ExtensionFilter("TIFF file", "*.tiff, *.tif"),
-      new ExtensionFilter("BMP file", "*.bmp")
+      new ExtensionFilter("BMP file", "*.bmp"),
+      new ExtensionFilter("All files", "*.*")
   };
 
 }

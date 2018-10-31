@@ -6,9 +6,6 @@ import com.tiggerbiggo.prima.primaplay.core.FileManager;
 import com.tiggerbiggo.prima.primaplay.graphics.ImageTools;
 import com.tiggerbiggo.prima.primaplay.node.core.INode;
 import guinode.GUILink;
-import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -21,10 +18,14 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
@@ -32,16 +33,23 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
 
 public class MainController implements Initializable, ChangeListener {
 
   public NodePane nodePane;
+
+  public static MainController thisController;
 
   @FXML
   public Pane nodeContainer;
@@ -63,6 +71,8 @@ public class MainController implements Initializable, ChangeListener {
   private BorderPane pannableContainer;
   @FXML
   private ScrollPane scrollPane;
+  @FXML
+  private MenuBar menuBar;
 
   private String DEFAULT = "0@com.tiggerbiggo.prima.primaplay.node.implemented.MapGenNode@{\"aX\":0.0,\"aY\":0.0,\"dx\":1.0,\"dy\":1.0}@35@29\n"
       + "1@com.tiggerbiggo.prima.primaplay.node.implemented.io.TransformNode@{\"function\":\"SINSIN\"}@326@99\n"
@@ -86,8 +96,12 @@ public class MainController implements Initializable, ChangeListener {
 
   private Future<BufferedImage[]> renderTask;
 
+  File currentFile = null;
+
   @Override
   public void initialize(URL url, ResourceBundle rb) {
+    thisController = this;
+
     timer = new Timeline(new KeyFrame(Duration.seconds(1.0 / 60),
         e -> {
           imgArray = pollRenderer();
@@ -147,6 +161,8 @@ public class MainController implements Initializable, ChangeListener {
     comboNodeList.setItems(new ObservableListWrapper<>(NodeReflection.getAllImplementedNodes()));
     //imgView.fitWidthProperty().bind(anchImageHolder.widthProperty());
     //imgView.fitHeightProperty().bind(anchImageHolder.heightProperty());
+
+    setupMenuBar();
   }
 
   private Image[] pollRenderer(){
@@ -170,6 +186,11 @@ public class MainController implements Initializable, ChangeListener {
     renderTask = nodePane.renderAsync(100, 100, 60);
   }
 
+  private void setCurrentFile(File f){
+    currentFile = f;
+    ViewMain.setTitleToFile(f);
+  }
+
   @FXML
   private void onBtnPreview(ActionEvent e) {
     if (btnPreview.getText().equals("Preview")) {
@@ -185,6 +206,8 @@ public class MainController implements Initializable, ChangeListener {
   @FXML
   private void onBtnSave(ActionEvent e) {
     try {
+
+
       FileManager.writeGif(
           nodePane.render(
               spnWidth.getValue(),
@@ -199,27 +222,24 @@ public class MainController implements Initializable, ChangeListener {
     }
   }
 
-  @FXML
-  private void onBtnSaveLayout(ActionEvent e){
-    String ser;
-
+  private void saveLayout(){
     try{
-      File chosen =  FileManager.showSaveDialogue();
+      File chosen = null;
 
-      ser = NodeSerializer.saveToFile(nodePane, chosen);
+      if(currentFile == null)
+        chosen =  FileManager.showSaveDialogue();
+      else
+        chosen = currentFile;
 
-      ViewMain.setTitleToFile(chosen);
+      NodeSerializer.saveToFile(nodePane, chosen);
+
+      setCurrentFile(chosen);
     }catch(IOException ex){
-      return;
+      ex.printStackTrace();
     }
-
-    StringSelection stringSelection = new StringSelection(ser);
-    Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-    clipboard.setContents(stringSelection, null);
   }
 
-  @FXML
-  private void onBtnLoadLayout(ActionEvent e){
+  private void loadLayout(){
     try{
       File chosen = FileManager.showOpenDialogue();
 
@@ -238,17 +258,14 @@ public class MainController implements Initializable, ChangeListener {
 
       nodeContainer.getChildren().add(nodePane);
 
-      ViewMain.setTitleToFile(chosen);
+      setCurrentFile(chosen);
 
       startPreviewRender();
       timer.stop();
       timer.play();
     }
-    catch(NodeParseException ex){
-      System.out.println("oh dear: " + ex.getMessage());
-      //oh dear, display error message
-    } catch (IOException e1) {
-      // nothing
+    catch(NodeParseException | IOException ex){
+      ex.printStackTrace();
     }
   }
 
@@ -269,5 +286,47 @@ public class MainController implements Initializable, ChangeListener {
     System.out.println("NEW VALUE: " + newValue.toString());
     System.out.println("-----------------------------------");
     startPreviewRender();
+  }
+
+  private void setupMenuBar(){
+    Menu file = new Menu("File");
+
+    MenuItem save, saveAs, open, export;
+
+    save = new MenuItem("Save");
+    save.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.SHORTCUT_DOWN));
+    save.setOnAction(event -> saveLayout());
+
+    saveAs = new MenuItem("Save As...");
+    saveAs.setAccelerator(
+        new KeyCodeCombination(
+            KeyCode.S,
+            KeyCombination.SHORTCUT_DOWN,
+            KeyCombination.SHIFT_DOWN));
+    saveAs.setOnAction(event -> {
+      currentFile = null;
+      saveLayout();
+    });
+
+    open = new MenuItem("Open...");
+    open.setAccelerator(new KeyCodeCombination(KeyCode.O, KeyCombination.SHORTCUT_DOWN));
+    open.setOnAction(event -> loadLayout());
+
+    export = new MenuItem("Export...");
+    export.setOnAction(new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent event) {
+        ViewMain.getExportStage().showAndWait();
+      }
+    });
+    //open export window
+
+    file.getItems().addAll(save, saveAs, open, export);
+
+    menuBar.getMenus().addAll(file);
+  }
+
+  public NodePane getNodePane() {
+    return nodePane;
   }
 }
