@@ -9,9 +9,11 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.nio.Buffer;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -19,6 +21,10 @@ import javax.imageio.ImageIO;
 import javax.imageio.stream.FileImageOutputStream;
 import javax.imageio.stream.ImageOutputStream;
 import javax.imageio.stream.MemoryCacheImageOutputStream;
+import org.jcodec.api.awt.AWTSequenceEncoder;
+import org.jcodec.common.io.NIOUtils;
+import org.jcodec.common.io.SeekableByteChannel;
+import org.jcodec.common.model.Rational;
 
 /**
  * Provides methods for reading and writing images.
@@ -42,6 +48,29 @@ public class FileManager {
 
   public static void writeGif(BufferedImage[] imgSequence, File file) {
     writeGif(imgSequence, BufferedImage.TYPE_INT_RGB, 0, true, file);
+  }
+
+
+  public static void writeVideo(BufferedImage[] imgSequence, File file, int timesToLoop){
+    if(timesToLoop <= 0)return;
+
+    SeekableByteChannel out = null;
+    try {
+      out = NIOUtils.writableFileChannel(file.getAbsolutePath());
+
+      AWTSequenceEncoder encoder = new AWTSequenceEncoder(out, Rational.R(25, 1));
+      for(int n=0; n<timesToLoop; n++) {
+        for (int i = 0; i < imgSequence.length; i++) {
+          encoder.encodeImage(imgSequence[i]);
+        }
+      }
+      // Finalize the encoding, i.e. clear the buffers, write the header, etc.
+      encoder.finish();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } finally {
+      NIOUtils.closeQuietly(out);
+    }
   }
 
   public static byte[] writeByteArray(BufferedImage img) {
@@ -92,9 +121,10 @@ public class FileManager {
    */
   public static BufferedImage[] getImgsFromFolder(String dirName, boolean sort)throws IllegalArgumentException {
     try {
-      File dir = fromRelative(dirName);
+      File dir = new File(dirName);//fromRelative(dirName);
       if (!dir.isDirectory()) {
-        return null;
+        dir = fromRelative(dirName);
+        if(!dir.isDirectory())return null;
       }
 
       FilenameFilter filter = new FilenameFilter() {
@@ -142,7 +172,6 @@ public class FileManager {
       for (int i = 0; i < imageFiles.size(); i++) {
         try {
           toReturn[i] = ImageIO.read(imageFiles.get(i));
-          System.out.println(imageFiles.get(i).getName());
         } catch (IOException | IllegalArgumentException e) {
           System.err
               .printf("Exception when reading image from file '%s', %s",
@@ -188,53 +217,66 @@ public class FileManager {
   }
 
   private static final FileChooser fileChooser = new FileChooser();
+  private static final DirectoryChooser dirChooser = new DirectoryChooser();
 
-  public static File showOpenDialogue() throws IOException {
-    return showOpenDialogue("");
-  }
-
-  public static File showOpenDialogue(String path) throws IOException{
-    return showOpenDialogue(path, PRIM);
-  }
-
-  public static File showOpenDialogue(String path, ExtensionFilter ... filters) throws IOException{
-    return showOpenDialogue(null, path, filters);
-  }
-
-  public static File showOpenDialogue(Stage stage, String path, ExtensionFilter ... filters) throws IOException {
+  public static File showFolderDialogue(String path) throws IOException{
     File f = fromRelative(path);
-
     f.mkdirs();
 
+    dirChooser.setInitialDirectory(f);
+    return showFolderDialogue();
+  }
+
+  public static File showFolderDialogue() throws IOException{
+    File f = dirChooser.showDialog(null);
+
+    if(f != null){
+      return f;
+    }
+    throw new FileNotFoundException("User cancelled input, or file path invalid.");
+  }
+
+  {
+    setInitialDirectory(fromRelative(""));
+  }
+
+  public static void setInitialDirectory(File f){
+    fileChooser.setInitialDirectory(f);
+  }
+
+  public static File showOpenDialogue() throws IOException{
+    return showOpenDialogue(PRIM);
+  }
+
+  public static File showOpenDialogue(ExtensionFilter ... filters) throws IOException{
+    return showOpenDialogue(null, filters);
+  }
+
+  public static File showOpenDialogue(Stage stage,  ExtensionFilter ... filters) throws IOException {
     fileChooser.getExtensionFilters().clear();
     fileChooser.getExtensionFilters().addAll(filters);
     fileChooser.setTitle("Load");
-    fileChooser.setInitialDirectory(f);
 
     File file = fileChooser.showOpenDialog(stage);
     if(file != null){
+      setInitialDirectory(file.getParentFile());
       return file;
     }
     throw new FileNotFoundException("User cancelled input, or file path invalid.");
   }
 
   public static File showSaveDialogue() throws IOException{
-    return showSaveDialogue(null, "", PRIM);
+    return showSaveDialogue(null, PRIM);
   }
 
-  public static File showSaveDialogue(Stage stage, String path, ExtensionFilter ... filters) throws IOException {
-    File f = fromRelative(path);
-
-    System.out.println(f);
-
-    f.mkdirs();
-
+  public static File showSaveDialogue(Stage stage, ExtensionFilter ... filters) throws IOException {
     fileChooser.getExtensionFilters().clear();
     fileChooser.getExtensionFilters().addAll(filters);
     fileChooser.setTitle("Save");
-    fileChooser.setInitialDirectory(f);
+
     File file = fileChooser.showSaveDialog(stage);
     if (file != null) {
+      setInitialDirectory(file.getParentFile());
       return file;
     }
     throw new FileNotFoundException("User cancelled input, or file path invalid.");
@@ -248,7 +290,6 @@ public class FileManager {
       if(decoded.endsWith("jar"))
         decoded = decoded.substring(0, decoded.lastIndexOf("/") + 1);
 
-      System.out.println("Running path: " + decoded);
       return decoded;
     } catch (UnsupportedEncodingException e) {
       System.err.println("Unable to get jar path: ");
@@ -265,6 +306,8 @@ public class FileManager {
   public static final ExtensionFilter PRIM = new ExtensionFilter("Prima Layout File", "*.prim");
 
   public static final ExtensionFilter GIF = new ExtensionFilter("Animated Gif", "*.gif");
+
+  public static final ExtensionFilter MP4 = new ExtensionFilter("MP4 file", "*.mp4");
 
   public static final ExtensionFilter[] IMGS = new ExtensionFilter[]{
       new ExtensionFilter("PNG file", "*.png"),

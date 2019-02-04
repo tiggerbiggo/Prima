@@ -1,6 +1,6 @@
 package com.tiggerbiggo.prima.primaplay.node.link;
 
-import com.tiggerbiggo.prima.primaplay.core.RenderParams;
+import com.tiggerbiggo.prima.primaplay.core.render.RenderParams;
 
 public abstract class InputLink<T> extends Link{
   protected OutputLink<T> currentLink;
@@ -19,6 +19,4 @@ public abstract class InputLink<T> extends Link{
   }
 
   public abstract T defaultValue(RenderParams p);
-
-
 }

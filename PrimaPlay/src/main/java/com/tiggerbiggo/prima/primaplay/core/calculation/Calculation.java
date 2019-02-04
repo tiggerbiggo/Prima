@@ -1,4 +1,4 @@
-package com.tiggerbiggo.utils.calculation;
+package com.tiggerbiggo.prima.primaplay.core.calculation;
 
 /**
  * A class containing various math based utilities.
@@ -17,6 +17,8 @@ public class Calculation {
   public static double lerp(double f1, double f2, double a) {
     return f1 + (a * (f2 - f1));
   }
+
+
 
   /**
    * Performs real lerp operation, then clamps the result between the min and max values given.

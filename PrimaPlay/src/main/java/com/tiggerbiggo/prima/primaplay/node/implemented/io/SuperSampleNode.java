@@ -1,7 +1,7 @@
 package com.tiggerbiggo.prima.primaplay.node.implemented.io;
 
 import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
-import com.tiggerbiggo.prima.primaplay.core.RenderParams;
+import com.tiggerbiggo.prima.primaplay.core.render.RenderParams;
 import com.tiggerbiggo.prima.primaplay.node.core.NodeInOut;
 import com.tiggerbiggo.prima.primaplay.node.link.type.ColorArrayInputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.type.ColorArrayOutputLink;
@@ -35,8 +35,6 @@ public class SuperSampleNode extends NodeInOut {
             p2.setX((p.x() * factor) + i);
             p2.setY((p.y() * factor) + j);
 
-            //System.out.println("x, y: " + p2.x() + ", "+ p2.y());
-
             Color[] cA = input.get(p2);
             for (int k = 0; k < cA.length; k++) {
               r[k] += cA[k].getRed();
@@ -44,11 +42,8 @@ public class SuperSampleNode extends NodeInOut {
               g[k] += cA[k].getGreen();
               b[k] += cA[k].getBlue();
             }
-            //System.out.println("i, j: " + i + ", " + j + ", r: " + r[0] + ", cA[0]: " + cA[0].getRed());
           }
-          //System.out.println();
         }
-        //System.out.println("_______________");
 
         int fac2 = factor * factor;
 

@@ -1,6 +1,6 @@
 package com.tiggerbiggo.prima.primaplay.node.implemented.io;
 
-import com.tiggerbiggo.prima.primaplay.core.RenderParams;
+import com.tiggerbiggo.prima.primaplay.core.render.RenderParams;
 import com.tiggerbiggo.prima.primaplay.node.core.NodeInOut;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorArrayOutputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorInputLink;
@@ -30,7 +30,7 @@ public class DualAnimateNode extends NodeInOut {
         B = inB.get(p);
         Vector2[] toReturn = new Vector2[p.frameNum()];
         for (int i = 0; i < p.frameNum(); i++) {
-          toReturn[i] = A.lerpVector(B, func.apply((double) i / p.frameNum()));
+          toReturn[i] = A.lerp(B, func.apply((double) i / p.frameNum()));
         }
         return toReturn;
       }

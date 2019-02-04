@@ -1,7 +1,7 @@
 package com.tiggerbiggo.prima.primaplay.node.implemented.io;
 
 import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
-import com.tiggerbiggo.prima.primaplay.core.RenderParams;
+import com.tiggerbiggo.prima.primaplay.core.render.RenderParams;
 import com.tiggerbiggo.prima.primaplay.graphics.ColorConvertType;
 import com.tiggerbiggo.prima.primaplay.graphics.ColorTools;
 import com.tiggerbiggo.prima.primaplay.graphics.SafeImage;
@@ -10,6 +10,7 @@ import com.tiggerbiggo.prima.primaplay.node.link.type.ColorArrayOutputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.type.ImageArrayInputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorArrayInputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorArrayOutputLink;
+import com.tiggerbiggo.prima.primaplay.node.link.type.defaults.MapGenDefaultLink;
 import com.tiggerbiggo.utils.calculation.Vector2;
 import java.awt.Color;
 
@@ -28,8 +29,23 @@ public class ImageListNode extends NodeInOut{
   ColorArrayOutputLink colOut;
 
   public ImageListNode(){
-    uvLink = new VectorArrayInputLink();
-    timeIn = new VectorArrayInputLink();
+    uvLink = new VectorArrayInputLink(){
+      @Override
+      public Vector2[] defaultValue(RenderParams p) {
+        Vector2[] toReturn = new Vector2[p.frameNum()];
+        Vector2 mapped = MapGenDefaultLink.mapFromParams(p);
+        for(int i=0; i<p.frameNum(); i++){
+          toReturn[i] = mapped;
+        }
+        return toReturn;
+      }
+    };
+    timeIn = new VectorArrayInputLink(){
+      @Override
+      public Vector2[] defaultValue(RenderParams p) {
+        return Vector2.simpleCycle(p.frameNum());
+      }
+    };
     imgLink = new ImageArrayInputLink();
 
     addInput(uvLink, timeIn, imgLink);

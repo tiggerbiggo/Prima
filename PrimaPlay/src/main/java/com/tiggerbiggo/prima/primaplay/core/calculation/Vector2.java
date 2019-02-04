@@ -1,4 +1,4 @@
-package com.tiggerbiggo.utils.calculation;
+package com.tiggerbiggo.prima.primaplay.core.calculation;
 
 import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
 import java.io.Serializable;
@@ -176,7 +176,7 @@ public class Vector2 implements Serializable {
    * @param p A vector representing the percentage
    * @return The calculated vector
    */
-  public Vector2 lerpVector(Vector2 other, Vector2 p) {
+  public Vector2 lerp(Vector2 other, Vector2 p) {
     return new Vector2(Calculation.lerp(this.x, other.x, p.x),
         Calculation.lerp(this.y, other.y, p.y));
   }
@@ -188,8 +188,8 @@ public class Vector2 implements Serializable {
    * @param p A double representing the percentage. <p>0 = 0%, 1 = 100%
    * @return The calculated vector
    */
-  public Vector2 lerpVector(Vector2 other, double p) {
-    return lerpVector(other, new Vector2(p));
+  public Vector2 lerp(Vector2 other, double p) {
+    return lerp(other, new Vector2(p));
   }
 
   /**
@@ -239,6 +239,10 @@ public class Vector2 implements Serializable {
     toReturn = toReturn.rotateAround(Vector2.ZERO, rand);
     // Add the center point to offset it
     return toReturn.add(this);
+  }
+
+  public Vector2 multiply(double other){
+    return multiply(new Vector2(other));
   }
 
   /**
@@ -356,6 +360,15 @@ public class Vector2 implements Serializable {
     Vector2[] toReturn = new Vector2[n];
     for(int i=0; i<n; i++){
       toReturn[i] = ZERO;
+    }
+    return toReturn;
+  }
+
+  public static Vector2[] simpleCycle(int n){
+    Vector2[] toReturn = new Vector2[n];
+    for(int i=0; i<n; i++){
+      double m = (double)i/n;
+      toReturn[i] = new Vector2(m/2, m/2);
     }
     return toReturn;
   }

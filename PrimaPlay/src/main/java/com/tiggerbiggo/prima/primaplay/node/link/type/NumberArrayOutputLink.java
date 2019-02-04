@@ -1,6 +1,6 @@
 package com.tiggerbiggo.prima.primaplay.node.link.type;
 
-import com.tiggerbiggo.prima.primaplay.core.RenderParams;
+import com.tiggerbiggo.prima.primaplay.core.render.RenderParams;
 import com.tiggerbiggo.prima.primaplay.node.link.Link;
 import com.tiggerbiggo.prima.primaplay.node.link.OutputLink;
 

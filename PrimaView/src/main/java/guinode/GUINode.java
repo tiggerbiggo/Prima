@@ -63,7 +63,6 @@ public class GUINode extends AnchorPane {
 
       offsetX = getLayoutX() - event.getSceneX();
       offsetY = getLayoutY() - event.getSceneY();
-      System.out.println("Other Clicked");
       event.consume();
     });
 
@@ -86,13 +85,12 @@ public class GUINode extends AnchorPane {
       reflectorGrid = new ReflectorGrid();
       reflectorGrid.transfromIntoGrid(node);
 
-      if(node instanceof ChangeListener){
-        reflectorGrid.addChangeListener((ChangeListener)node);
-      }
-
-      if(listener != null){
-        reflectorGrid.addChangeListener(listener);
-      }
+//      if(node instanceof ChangeListener){
+//        reflectorGrid.addChangeListener((ChangeListener)node);
+//      }
+//      if(listener != null){
+//        reflectorGrid.addChangeListener(listener);
+//      } //TODO: Implement Loki changes after it's updated
 
       GridPane layoutGrid = new GridPane();
 

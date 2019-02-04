@@ -96,13 +96,29 @@ public class SafeImage implements Serializable {
    * @return The RGB Value sampled from (X, Y)
    */
   public int getRGB(int x, int y) {
-    x = x % width;
-    y = y % height;
-
-    x = Math.abs(x);
-    y = Math.abs(y);
+    x = safeX(x);
+    y = safeY(y);
 
     return img.getRGB(x, y);
+  }
+
+  public void setColor(int x, int y, Color c){
+    x = safeX(x);
+    y = safeY(y);
+
+    img.setRGB(x, y, c.getRGB());
+  }
+
+  public int safeX(int x){
+    x = x % width;
+    x = Math.abs(x);
+    return x;
+  }
+
+  public int safeY(int y){
+    y = y % height;
+    y = Math.abs(y);
+    return y;
   }
 
   public int getWidth() {

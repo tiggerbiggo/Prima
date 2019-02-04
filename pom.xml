@@ -12,7 +12,6 @@
   <modules>
     <module>PrimaPlay</module>
     <module>PrimaView</module>
-    <module>PrimaUtils</module>
   </modules>
 
 </project>

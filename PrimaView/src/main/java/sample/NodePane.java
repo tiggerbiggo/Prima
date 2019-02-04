@@ -1,16 +1,19 @@
 package sample;
 
 import ch.hephaistos.utilities.loki.util.interfaces.ChangeListener;
+import com.tiggerbiggo.prima.primaplay.core.render.RenderCallback;
+import com.tiggerbiggo.prima.primaplay.core.render.RenderTask;
 import com.tiggerbiggo.prima.primaplay.node.core.INode;
 import com.tiggerbiggo.prima.primaplay.node.implemented.BasicRenderNode;
 import guinode.GUINode;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import sample.components.NodePopup;
 
 public class NodePane extends Pane {
   BasicRenderNode renderNode = null;
@@ -25,6 +28,23 @@ public class NodePane extends Pane {
 
     nodeList = new ArrayList<>();
     //addNode(new GUINode(renderNode, this));
+
+    setOnMouseClicked(new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent event) {
+        System.out.println("Event hit.");
+        if(event.getButton().equals(MouseButton.SECONDARY)){
+          System.out.println("Secondary down");
+          event.consume();
+          NodePopup nodeMenu = new NodePopup(
+              NodePane.this,
+              (int)event.getScreenX(),
+              (int)event.getScreenY()
+          );
+          nodeMenu.show(NodePane.this, event.getScreenX(), event.getScreenY());
+        }
+      }
+    });
   }
 
   public void addNode(INode node){
@@ -56,17 +76,8 @@ public class NodePane extends Pane {
     nodeList.remove(node);
   }
 
-  public Future<BufferedImage[]> renderAsync(int w, int h, int n) throws NullPointerException{
-    return renderNode.renderAsync(w, h, n);
-  }
-
-  public BufferedImage[] render(int w, int h, int n) throws NullPointerException{
-    try {
-      return renderAsync(w, h, n).get();
-    } catch (InterruptedException | ExecutionException e) {
-      e.printStackTrace();
-    }
-    return null;
+  public RenderTask renderAsync(int w, int h, int n, String desc, RenderCallback callback) throws NullPointerException{
+    return renderNode.renderAsync(w, h, n, desc, callback);
   }
 
   public void clearNodes(){
@@ -74,4 +85,7 @@ public class NodePane extends Pane {
     getChildren().clear();
   }
 
+  public ChangeListener getListener() {
+    return listener;
+  }
 }

@@ -3,7 +3,7 @@ package com.tiggerbiggo.prima.primaplay.node.implemented.output;
 
 import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
 import ch.hephaistos.utilities.loki.util.interfaces.ChangeListener;
-import com.tiggerbiggo.prima.primaplay.core.RenderParams;
+import com.tiggerbiggo.prima.primaplay.core.render.RenderParams;
 import com.tiggerbiggo.prima.primaplay.graphics.ColorTools;
 import com.tiggerbiggo.prima.primaplay.node.core.NodeHasOutput;
 import com.tiggerbiggo.prima.primaplay.node.link.type.ColorOutputLink;

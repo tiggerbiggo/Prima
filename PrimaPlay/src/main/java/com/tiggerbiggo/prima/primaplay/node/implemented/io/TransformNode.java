@@ -1,12 +1,18 @@
 package com.tiggerbiggo.prima.primaplay.node.implemented.io;
 
+import ch.hephaistos.utilities.loki.ReflectorGrid;
 import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
-import com.tiggerbiggo.prima.primaplay.core.RenderParams;
+import ch.hephaistos.utilities.loki.util.interfaces.ChangeListener;
+import com.tiggerbiggo.prima.primaplay.core.render.RenderParams;
 import com.tiggerbiggo.prima.primaplay.node.core.NodeInOut;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorInputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorOutputLink;
+import com.tiggerbiggo.utils.calculation.Calculation;
 import com.tiggerbiggo.utils.calculation.Vector2;
 import java.util.function.BiFunction;
+import javafx.scene.Node;
+import javafx.scene.layout.VBox;
+import sample.components.Knob;
 
 public class TransformNode extends NodeInOut {
 
@@ -16,6 +22,8 @@ public class TransformNode extends NodeInOut {
   private VectorInputLink input;
   private VectorOutputLink output;
 
+  transient Knob n = null;
+
   public TransformNode(TransformFunctions _function) {
     this.function = _function;
     input = new VectorInputLink();
@@ -24,8 +32,10 @@ public class TransformNode extends NodeInOut {
     output = new VectorOutputLink() {
       @Override
       public Vector2 get(RenderParams p) {
-        Vector2 tmp = input.get(p);
-        return function.apply(tmp.X(), tmp.Y());
+        Vector2 raw = input.get(p);
+        Vector2 tmp = function.apply(raw.X(), raw.Y());
+        if(n != null) return raw.lerp(tmp,n.getValue());
+        return tmp;
       }
     };
     addOutput(output);
@@ -43,6 +53,19 @@ public class TransformNode extends NodeInOut {
   @Override
   public String getDescription() {
     return "Transforms a given Vector using a given Function object.";
+  }
+
+  @Override
+  public Node getFXNode(ChangeListener listener) {
+    ReflectorGrid grid = new ReflectorGrid();
+    grid.transfromIntoGrid(this);
+
+    n = new Knob(0, 1);
+    n.setChangeListener(listener);
+
+    VBox box = new VBox(grid, n);
+
+    return box;
   }
 }
 
@@ -99,6 +122,8 @@ enum TransformFunctions {
   }),
   SQUAREXY((x, y) -> {
     return new Vector2(x * x, y * y);
+  }),NORMALIZE((x, y) -> {
+    return new Vector2(x, y).normalize();
   });
 
   BiFunction<Double, Double, Vector2> func;

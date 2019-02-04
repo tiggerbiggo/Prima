@@ -1,4 +1,4 @@
-package com.tiggerbiggo.prima.primaplay.core;
+package com.tiggerbiggo.prima.primaplay.core.render;
 
 public class RenderParams {
 

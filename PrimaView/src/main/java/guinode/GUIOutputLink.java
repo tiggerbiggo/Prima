@@ -53,6 +53,11 @@ public class GUIOutputLink extends GUILink {
     unlink();
   }
 
+  @Override
+  public void doNodeMenu() {
+
+  }
+
   public OutputLink<?> getLink() {
     return link;
   }

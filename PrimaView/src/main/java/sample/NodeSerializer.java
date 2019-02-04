@@ -83,9 +83,7 @@ public class NodeSerializer {
     GsonBuilder builder = new GsonBuilder().addSerializationExclusionStrategy(new ExclusionStrategy() {
       @Override
       public boolean shouldSkipField(FieldAttributes f) {
-        System.out.println(f.getClass() + " : " + f.getName());
         for(Annotation a : f.getAnnotations()){
-          System.out.println("    Found Annotation: " + a.annotationType());
           if(a.annotationType().equals(TransferGrid.class)){
             return false;
           }
@@ -211,9 +209,6 @@ public class NodeSerializer {
     try {
       List<String> lines = Files.readAllLines(file.toPath(), Charset.defaultCharset());
       String result = join(lines, "\n");
-      System.out.println("------------------");
-      System.out.println(result);
-      System.out.println("------------------");
       return parseNodes(result, listener);
     } catch (IOException e) {
       return null;
@@ -235,8 +230,7 @@ public class NodeSerializer {
 
     String ser = SerializeNodePane(pane);
 
-    System.out.println(ser);
-    try(FileWriter fw = new FileWriter(toWrite + ".prim")) {
+    try(FileWriter fw = new FileWriter(toWrite)) {
       fw.append(ser);
     } catch (IOException e) {
       throw e;

@@ -1,6 +1,9 @@
 package sample;
 
 import com.tiggerbiggo.prima.primaplay.core.FileManager;
+import com.tiggerbiggo.prima.primaplay.core.render.RenderCallback;
+import com.tiggerbiggo.prima.primaplay.graphics.ImageTools;
+import com.tiggerbiggo.prima.primaplay.graphics.SafeImage;
 import com.tiggerbiggo.prima.primaplay.node.implemented.BasicRenderNode;
 import java.io.File;
 import java.io.IOException;
@@ -19,12 +22,10 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 public class ExportController implements Initializable {
 
-  ExtensionFilter currentFilter = FileManager.GIF;
-
   ExportController thisController;
 
   @FXML
-  RadioButton GIF, IMG;
+  RadioButton GIF, MP4, IMG;
   @FXML
   TextField filename;
   @FXML
@@ -32,9 +33,9 @@ public class ExportController implements Initializable {
   @FXML
   Label frameNumLabel;
   @FXML
-  Slider fpsSlider;
+  Slider loopNumSlider;
   @FXML
-  Label fpsLabel;
+  Label loopNumLabel;
   @FXML
   Button exportButton;
   @FXML
@@ -55,8 +56,8 @@ public class ExportController implements Initializable {
         o -> frameNumLabel.setText((int)frameNumSlider.getValue() + "")
     );
 
-    fpsSlider.valueProperty().addListener(
-        o -> fpsLabel.setText((int)fpsSlider.getValue() + "")
+    loopNumSlider.valueProperty().addListener(
+        o -> loopNumLabel.setText((int)loopNumSlider.getValue() + "")
     );
 
     GIF.setOnMouseClicked(event -> {
@@ -68,12 +69,21 @@ public class ExportController implements Initializable {
       exportButton.setDisable(true);
     });
 
-    IMG.setOnMouseClicked(event -> {
+    MP4.setOnMouseClicked(event -> {
       if(lastSelected != 1){
         //We have been newly selected, clear file box
         filename.setText("");
       }
       lastSelected = 1;
+      exportButton.setDisable(true);
+    });
+
+    IMG.setOnMouseClicked(event -> {
+      if(lastSelected != 2){
+        //We have been newly selected, clear file box
+        filename.setText("");
+      }
+      lastSelected = 2;
       exportButton.setDisable(true);
     });
 
@@ -83,7 +93,7 @@ public class ExportController implements Initializable {
 
   public void doFileOpen(ExtensionFilter ... filters){
     try {
-      currentFile = FileManager.showSaveDialogue(ViewMain.getExportStage(), "exports/", filters);
+      currentFile = FileManager.showSaveDialogue(ViewMain.getExportStage(), filters);
 
       filename.setText(currentFile.toString());
       exportButton.setDisable(false);
@@ -98,6 +108,8 @@ public class ExportController implements Initializable {
   public void onFileOpen(){
     if (GIF.isSelected())
       doFileOpen(FileManager.GIF);
+    else if(MP4.isSelected())
+      doFileOpen(FileManager.MP4);
     else
       doFileOpen(FileManager.IMGS);
   }
@@ -109,8 +121,33 @@ public class ExportController implements Initializable {
       return;
     }
     if(GIF.isSelected()){
-      //export as GIF
-      FileManager.writeGif(currentRender.render(widthSpinner.getValue(), heightSpinner.getValue(), (int)frameNumSlider.getValue()), currentFile);
+      currentRender.renderAsync(
+          widthSpinner.getValue(),
+          heightSpinner.getValue(),
+          (int) frameNumSlider.getValue(),
+          "Rendering and Exporting GIF. Filename: " + currentFile.getName(),
+          new RenderCallback() {
+            File f = currentFile;
+            @Override
+            public void callback(SafeImage[] imgs) {
+              FileManager.writeGif(ImageTools.toBufferedImage(imgs), f);
+            }
+          });
     }
+    else if(MP4.isSelected()){
+      currentRender.renderAsync(
+          widthSpinner.getValue(),
+          heightSpinner.getValue(),
+          (int) frameNumSlider.getValue(),
+          "Rendering and exporting MP4. Filename: " + currentFile.getName(),
+          new RenderCallback() {
+            File f = currentFile;
+            @Override
+            public void callback(SafeImage[] imgs) {
+              FileManager.writeVideo(ImageTools.toBufferedImage(imgs), f, (int)loopNumSlider.getValue());
+            }
+          });
+    }
+    ViewMain.getExportStage().close();
   }
 }

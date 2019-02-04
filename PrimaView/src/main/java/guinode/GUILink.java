@@ -39,11 +39,14 @@ public abstract class GUILink extends Circle {
     setOnMouseDragged(Event::consume);
 
     setOnMousePressed(event -> {
-      if (event.getButton().equals(MouseButton.SECONDARY)) {
+      if (event.getButton().equals(MouseButton.MIDDLE)) {
         triggerUnlink();
+        event.consume();
       }
-      System.out.println("Clicked");
-      event.consume();
+      else if(event.getButton().equals(MouseButton.SECONDARY)){
+        doNodeMenu();
+        event.consume();
+      }
     });
     setManaged(false);
     toFront();
@@ -51,6 +54,7 @@ public abstract class GUILink extends Circle {
 
   public abstract void unlink();
   public abstract void triggerUnlink();
+  public abstract void doNodeMenu();
 
   public Vector2 getOffset() {
     return offset;

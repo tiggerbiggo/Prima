@@ -1,7 +1,7 @@
 package com.tiggerbiggo.prima.primaplay.node.implemented.io.iterative;
 
 import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
-import com.tiggerbiggo.prima.primaplay.core.RenderParams;
+import com.tiggerbiggo.prima.primaplay.core.render.RenderParams;
 import com.tiggerbiggo.utils.calculation.ComplexNumber;
 import com.tiggerbiggo.utils.calculation.Vector2;
 
@@ -52,7 +52,6 @@ public class MandelNode extends IterativeNode {
 
   @Override
   public Vector2 onBound(Vector2 in, int currentIteration) {
-    //System.out.println("Bound");
     return in;
   }
 

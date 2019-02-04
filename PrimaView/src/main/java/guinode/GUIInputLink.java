@@ -1,7 +1,11 @@
 package guinode;
 
+import com.tiggerbiggo.prima.primaplay.node.core.INode;
+import com.tiggerbiggo.prima.primaplay.node.core.NodeHasOutput;
 import com.tiggerbiggo.prima.primaplay.node.link.InputLink;
 import java.util.Objects;
+import java.util.function.Predicate;
+import sample.components.NodePopup;
 
 public class GUIInputLink extends GUILink {
 
@@ -46,6 +50,28 @@ public class GUIInputLink extends GUILink {
     if(line != null){
       line.delete();
     }
+  }
+
+  @Override
+  public void doNodeMenu() {
+
+  }
+
+  public void doNodeMenu(int x, int y) {
+    NodePopup pop = new NodePopup(
+        owner.getParentPane(),
+        new Predicate<INode>() {
+      @Override
+      public boolean test(INode node) {
+        if(node instanceof NodeHasOutput){
+          //((NodeHasOutput)node).
+        }
+        return false;
+      }
+    },
+        x,
+        y
+    );
   }
 
   public void setLine(GUILinkLine line){

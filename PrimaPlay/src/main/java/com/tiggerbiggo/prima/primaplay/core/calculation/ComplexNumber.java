@@ -1,4 +1,4 @@
-package com.tiggerbiggo.utils.calculation;
+package com.tiggerbiggo.prima.primaplay.core.calculation;
 
 public class ComplexNumber {
 

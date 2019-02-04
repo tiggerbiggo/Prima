@@ -3,15 +3,30 @@ package com.tiggerbiggo.prima.primaplay.node.implemented.output;
 import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
 import ch.hephaistos.utilities.loki.util.interfaces.ChangeListener;
 import com.tiggerbiggo.prima.primaplay.core.FileManager;
-import com.tiggerbiggo.prima.primaplay.core.RenderParams;
+import com.tiggerbiggo.prima.primaplay.core.render.RenderParams;
 import com.tiggerbiggo.prima.primaplay.graphics.ImageTools;
 import com.tiggerbiggo.prima.primaplay.graphics.SafeImage;
 import com.tiggerbiggo.prima.primaplay.node.core.NodeHasOutput;
 import com.tiggerbiggo.prima.primaplay.node.link.type.ImageArrayOutputLink;
+import com.tiggerbiggo.utils.calculation.GUITools;
 import com.tiggerbiggo.utils.calculation.ReflectionHelper;
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 
 public class MultiImageLoadNode extends NodeHasOutput implements ChangeListener{
+  private transient File file;
+
   @TransferGrid
   private String filename = "";
 
@@ -21,6 +36,8 @@ public class MultiImageLoadNode extends NodeHasOutput implements ChangeListener{
   private ImageArrayOutputLink out;
 
   private SafeImage[] imgs = null;
+
+  private transient Label nameLabel, widthLabel, heightLabel;
 
   public MultiImageLoadNode(){
     out = new ImageArrayOutputLink() {
@@ -33,6 +50,10 @@ public class MultiImageLoadNode extends NodeHasOutput implements ChangeListener{
       }
     };
     addOutput(out);
+
+    nameLabel = new Label(nameString + "N/A");
+    widthLabel = new Label(widthString + "0");
+    heightLabel = new Label(heightString + "0");
   }
 
   @Override
@@ -51,4 +72,63 @@ public class MultiImageLoadNode extends NodeHasOutput implements ChangeListener{
       imgs = ImageTools.toSafeImage(FileManager.getImgsFromFolder(filename, true));
     }
   }
+
+  public void updateImage() {
+    if (file != null) {
+      imgs = ImageTools.toSafeImage(FileManager.getImgsFromFolder(filename + "\\", true));
+      if(imgs != null && imgs[0] != null) {
+        nameLabel.setText(nameString + file.getName());
+        widthLabel.setText(widthString + imgs[0].getWidth());
+        heightLabel.setText(heightString + imgs[0].getHeight());
+      }
+      else
+      {
+        nameLabel.setText("ERROR, image was null.");
+      }
+    }
+  }
+
+  @Override
+  public Node getFXNode(ChangeListener listener) {
+    TextField field = new TextField(filename);
+    if (file == null) {
+      file = new File(filename);
+      updateImage();
+    }
+
+    Button loadButton = new Button("...");
+    loadButton.getStyleClass().add("buttonRight");
+    loadButton.setPrefWidth(40);
+    loadButton.setPrefHeight(40);
+    loadButton.setOnAction(new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent event) {
+        try {
+          String old = filename;
+          file = FileManager.showFolderDialogue("imgs/");
+          filename = file.toString();
+          updateImage();
+          field.setText(filename);
+
+          listener.onObjectValueChanged(f_filename, old, filename, this);
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
+    });
+
+    field.setPrefWidth(Region.USE_COMPUTED_SIZE);
+    field.setPrefHeight(40);
+    field.setEditable(false);
+
+    GUITools.setAllAnchors(field, 0);
+    AnchorPane loader = new AnchorPane(new HBox(field, loadButton));
+
+
+    return new VBox(loader, nameLabel, widthLabel, heightLabel);
+  }
+
+  final String nameString = "Filename: ";
+  final String widthString = "Width: ";
+  final String heightString = "Height: ";
 }

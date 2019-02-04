@@ -3,7 +3,7 @@ package com.tiggerbiggo.prima.primaplay.node.implemented.output;
 import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
 import ch.hephaistos.utilities.loki.util.interfaces.ChangeListener;
 import com.tiggerbiggo.prima.primaplay.core.FileManager;
-import com.tiggerbiggo.prima.primaplay.core.RenderParams;
+import com.tiggerbiggo.prima.primaplay.core.render.RenderParams;
 import com.tiggerbiggo.prima.primaplay.graphics.ImageTools;
 import com.tiggerbiggo.prima.primaplay.graphics.SafeImage;
 import com.tiggerbiggo.prima.primaplay.node.core.NodeHasOutput;
@@ -17,24 +17,28 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 
 public class ImageLoadNode extends NodeHasOutput {
 
-  private File file;
+  private transient File file;
 
   @TransferGrid
   private String filename = "";
 
-  private static Field f_filename = ReflectionHelper
+  private transient static Field f_filename = ReflectionHelper
       .getFieldFromClass(ImageLoadNode.class, "filename");
 
-  private ImageOutputLink out;
+  private transient ImageOutputLink out;
 
-  private SafeImage img = null;
+  private transient SafeImage img = null;
+
+  private transient Label nameLabel, widthLabel, heightLabel;
 
   public ImageLoadNode() {
     out = new ImageOutputLink() {
@@ -48,6 +52,10 @@ public class ImageLoadNode extends NodeHasOutput {
       }
     };
     addOutput(out);
+
+    nameLabel = new Label(nameString + "N/A");
+    widthLabel = new Label(widthString + "0");
+    heightLabel = new Label(heightString + "0");
   }
 
   @Override
@@ -63,6 +71,11 @@ public class ImageLoadNode extends NodeHasOutput {
   public void updateImage() {
     if (file != null) {
       img = FileManager.safeGetImg(file);
+      if(img != null) {
+        nameLabel.setText(nameString + file.getName());
+        widthLabel.setText(widthString + img.getWidth());
+        heightLabel.setText(heightString + img.getHeight());
+      }
     }
   }
 
@@ -83,12 +96,12 @@ public class ImageLoadNode extends NodeHasOutput {
       public void handle(ActionEvent event) {
         try {
           String old = filename;
-          file = FileManager.showOpenDialogue("imgs/", FileManager.IMGS);
+          file = FileManager.showOpenDialogue(FileManager.IMGS);
           updateImage();
           filename = file.toString();
           field.setText(filename);
-          listener.onObjectValueChanged(f_filename, old, filename, this);
 
+          listener.onObjectValueChanged(f_filename, old, filename, this);
         } catch (IOException e) {
           e.printStackTrace();
         }
@@ -97,18 +110,17 @@ public class ImageLoadNode extends NodeHasOutput {
 
     field.setPrefWidth(Region.USE_COMPUTED_SIZE);
     field.setPrefHeight(40);
-
-    field.setOnAction(new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-        filename = field.getText();
-      }
-    });
+    field.setEditable(false);
 
     GUITools.setAllAnchors(field, 0);
+    AnchorPane loader = new AnchorPane(new HBox(field, loadButton));
 
-    AnchorPane toReturn = new AnchorPane(new HBox(field, loadButton));
 
-    return toReturn;
+    return new VBox(loader, nameLabel, widthLabel, heightLabel);
   }
+
+  final String nameString = "Filename: ";
+  final String widthString = "Width: ";
+  final String heightString = "Height: ";
+
 }

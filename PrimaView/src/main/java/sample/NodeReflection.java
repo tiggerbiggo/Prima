@@ -37,7 +37,8 @@ public class NodeReflection {
         "com.tiggerbiggo.prima.primaplay.node.implemented").getSubTypesOf(INode.class);
     classes.iterator().forEachRemaining(aClass -> {
       if (!Modifier.isAbstract(aClass.getModifiers())) {
-        allImplementedNodes.add(aClass);
+        if(!aClass.getName().endsWith("BasicRenderNode")) //remove render node from list
+          allImplementedNodes.add(aClass);
       }
     });
   }

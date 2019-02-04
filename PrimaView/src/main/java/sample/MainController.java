@@ -1,10 +1,14 @@
 package sample;
 
+import ch.hephaistos.utilities.loki.ReflectorGrid;
 import ch.hephaistos.utilities.loki.util.interfaces.ChangeListener;
 import com.sun.javafx.collections.ObservableListWrapper;
 import com.tiggerbiggo.prima.primaplay.core.FileManager;
+import com.tiggerbiggo.prima.primaplay.core.render.RenderCallback;
 import com.tiggerbiggo.prima.primaplay.graphics.ImageTools;
+import com.tiggerbiggo.prima.primaplay.graphics.SafeImage;
 import com.tiggerbiggo.prima.primaplay.node.core.INode;
+import com.tiggerbiggo.utils.calculation.ReflectionHelper;
 import guinode.GUILink;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -22,6 +26,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -34,7 +39,11 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
 
@@ -58,6 +67,8 @@ public class MainController implements Initializable, ChangeListener {
   private ScrollPane scrollPane;
   @FXML
   private MenuBar menuBar;
+  @FXML
+  private VBox mainBox;
 
   private String DEFAULT = "0@com.tiggerbiggo.prima.primaplay.node.implemented.MapGenNode@{\"aX\":0.0,\"aY\":0.0,\"dx\":1.0,\"dy\":1.0}@35@29\n"
       + "1@com.tiggerbiggo.prima.primaplay.node.implemented.io.TransformNode@{\"function\":\"SINSIN\"}@326@99\n"
@@ -79,17 +90,17 @@ public class MainController implements Initializable, ChangeListener {
   int currentImage;
   Timeline timer;
 
-  private Future<BufferedImage[]> renderTask;
-
   File currentFile = null;
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     thisController = this;
 
+
+    new ReflectorGrid().addChangeListener(this);
+
     timer = new Timeline(new KeyFrame(Duration.seconds(1.0 / 60),
         e -> {
-          imgArray = pollRenderer();
           if (imgArray == null) {
             return;
           }
@@ -102,6 +113,13 @@ public class MainController implements Initializable, ChangeListener {
     ));
     timer.setCycleCount(Animation.INDEFINITE);
     timer.setOnFinished(e -> imgView.setImage(null));
+
+
+    Label progressLabel = new Label();
+    RenderBar renderBar = new RenderBar(progressLabel);
+    mainBox.getChildren().add(new HBox(renderBar, progressLabel));
+
+    mainBox.getStyleClass().add("NodePane");
 
     pannableContainer.minWidthProperty().bind(scrollPane.widthProperty());
     pannableContainer.minHeightProperty().bind(scrollPane.heightProperty());
@@ -146,25 +164,14 @@ public class MainController implements Initializable, ChangeListener {
     setupMenuBar();
   }
 
-  private Image[] pollRenderer(){
-    if(renderTask == null) return imgArray;
-    if(renderTask.isDone()) {
-      try {
-        Image[] toReturn = ImageTools.toFXImage(renderTask.get());
-        renderTask = null;
-        return toReturn;
-      } catch (InterruptedException | ExecutionException e) {
-        e.printStackTrace();
-        return imgArray;
-      }
-    }
-    return imgArray;
-  }
-
   public void startPreviewRender(){
-    if(renderTask != null) renderTask.cancel(true);
     imgArray = null;
-    renderTask = nodePane.renderAsync(100, 100, 60);
+    nodePane.renderAsync(100, 100, 60, "Preview render", new RenderCallback() {
+      @Override
+      public void callback(SafeImage[] imgs) {
+        imgArray = ImageTools.toFXImage(imgs);
+      }
+    });
   }
 
   private void setCurrentFile(File f){
@@ -229,6 +236,8 @@ public class MainController implements Initializable, ChangeListener {
       startPreviewRender();
       timer.stop();
       timer.play();
+
+
     }
     catch(NodeParseException | IOException ex){
       ex.printStackTrace();
@@ -248,9 +257,6 @@ public class MainController implements Initializable, ChangeListener {
 
   @Override
   public void onObjectValueChanged(Field field, Object oldValue, Object newValue, Object object) {
-    System.out.println("OLD VALUE: " + oldValue.toString());
-    System.out.println("NEW VALUE: " + newValue.toString());
-    System.out.println("-----------------------------------");
     startPreviewRender();
   }
   private void setupMenuBar(){

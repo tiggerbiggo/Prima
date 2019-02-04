@@ -2,7 +2,7 @@ package com.tiggerbiggo.prima.primaplay.node.implemented.io;
 
 import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
 import ch.hephaistos.utilities.loki.util.interfaces.ChangeListener;
-import com.tiggerbiggo.prima.primaplay.core.RenderParams;
+import com.tiggerbiggo.prima.primaplay.core.render.RenderParams;
 import com.tiggerbiggo.prima.primaplay.graphics.HueCycleGradient;
 import com.tiggerbiggo.prima.primaplay.graphics.SimpleGradient;
 import com.tiggerbiggo.prima.primaplay.node.core.NodeInOut;
@@ -68,11 +68,9 @@ public class GradientNode extends NodeInOut {
     CheckBox cb = new CheckBox("Hue Cycle");
     cb.setSelected(hueCycle);
 
-    Object thisObj = this;
-
     cb.setOnAction(event -> {
       hueCycle = cb.isSelected();
-      listener.onObjectValueChanged(f_hueCycle, !hueCycle, hueCycle, thisObj);
+      listener.onObjectValueChanged(f_hueCycle, !hueCycle, hueCycle, GradientNode.this);
     });
     return cb;
   }

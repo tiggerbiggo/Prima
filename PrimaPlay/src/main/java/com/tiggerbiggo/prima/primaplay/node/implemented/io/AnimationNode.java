@@ -1,6 +1,6 @@
 package com.tiggerbiggo.prima.primaplay.node.implemented.io;
 
-import com.tiggerbiggo.prima.primaplay.core.RenderParams;
+import com.tiggerbiggo.prima.primaplay.core.render.RenderParams;
 import com.tiggerbiggo.prima.primaplay.node.core.NodeInOut;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorArrayOutputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorInputLink;

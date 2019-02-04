@@ -1,7 +1,7 @@
 package com.tiggerbiggo.prima.primaplay.node.implemented;
 
 import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
-import com.tiggerbiggo.prima.primaplay.core.RenderParams;
+import com.tiggerbiggo.prima.primaplay.core.render.RenderParams;
 import com.tiggerbiggo.prima.primaplay.node.core.INodeHasOutput;
 import com.tiggerbiggo.prima.primaplay.node.link.OutputLink;
 import com.tiggerbiggo.prima.primaplay.node.link.type.VectorOutputLink;
