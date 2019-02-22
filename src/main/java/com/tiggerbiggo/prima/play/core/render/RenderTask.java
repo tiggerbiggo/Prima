@@ -6,84 +6,75 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+import javafx.util.Pair;
 
-public class RenderTask {
-  int width, height, frameNum;
+public class RenderTask implements Runnable {
 
-  ConcurrentLinkedDeque<RenderCoordinate> coords;
-  ColorArrayInputLink in;
+  private int width, height, frameNum;
+  private RenderID id;
 
-  AtomicInteger count;
-  int startCount;
-  String description;
+  private ColorArrayInputLink link;
+  private List<RenderCallback> callbacks;
+  private SafeImage[] imgs;
+  private Lock[] locks;
 
-  RenderID id;
+  private AtomicInteger count;
 
-  List<RenderCallback> callbacks;
-
-  SafeImage[] imgs;
-
-  public RenderTask(int _width, int _height, int _frameNum, ColorArrayInputLink _in, String _description, RenderCallback ... _callbacks){
-    width = _width;
-    height = _height;
-    frameNum = _frameNum;
-    in = _in;
-    description = _description;
-
-    callbacks = new ArrayList<>();
-    if(_callbacks != null)
-      callbacks.addAll(Arrays.asList(_callbacks));
-
-    coords = new ConcurrentLinkedDeque<>();
-    for(int i=0; i<width; i++){
-      for(int j=0; j<height; j++){
-        coords.add(new RenderCoordinate(i, j));
-      }
-    }
+  public RenderTask(int width, int height, int frameNum, ColorArrayInputLink link,
+      RenderCallback... _callbacks) {
+    this.width = width;
+    this.height = height;
+    this.frameNum = frameNum;
+    this.link = link;
+    id = new RenderID();
 
     imgs = new SafeImage[frameNum];
-    for(int i=0; i<frameNum; i++){
+    for (int i = 0; i < imgs.length; i++) {
       imgs[i] = new SafeImage(width, height);
     }
 
-    startCount = width * height;
-    count = new AtomicInteger(startCount);
+    locks = new ReentrantLock[width];
 
-    id = new RenderID();
-  }
-
-  public void addCallback(RenderCallback c){
-    callbacks.add(c);
-  }
-
-  public boolean step(){
-    RenderCoordinate coord = coords.poll();
-    if(coord == null) return false;
-
-    Color[] colors = in.get(new RenderParams(width, height, coord.x, coord.y, frameNum, id));
-    if(colors.length != frameNum) return false;
-    for(int i=0; i<frameNum; i++){
-      imgs[i].setColor(coord.x, coord.y, colors[i]);
+    for (int i = 0; i < width; i++) {
+      locks[i] = new ReentrantLock();
     }
-    if(count.decrementAndGet() == 0)
-    {
-      callbacks.forEach(c -> c.callback(imgs));
-      return false;
+
+    callbacks = new ArrayList<>();
+    if (_callbacks != null) {
+      callbacks.addAll(Arrays.asList(_callbacks));
     }
-    return true;
+
+    count = new AtomicInteger(width * height);
   }
 
-  public SafeImage[] getImgs() {
-    return imgs;
+  @Override
+  public void run() {
+    out:
+    for (int i = 0; i < width; i++) {
+      if (locks[i].tryLock()) {
+        //Lock, then don't unlock. This means that we don't have to perform any further checks.
+        for (int j = 0; j < height; j++) {
+
+          Color[] renderedPix = link.get(new RenderParams(width, height, i, j, frameNum, id));
+          for (int k = 0; k < frameNum; k++) {
+            imgs[k].setColor(i, j, renderedPix[k]);
+          }
+
+          if (count.decrementAndGet() == 1) {
+            doCallbacks();
+            break out;
+          }
+        }
+      }
+    }
   }
 
-  public double getPercentage(){
-    return (double)count.get()/startCount;
-  }
-
-  public String getDescription(){
-    return description;
+  private void doCallbacks() {
+    for (RenderCallback c : callbacks) {
+      c.callback(imgs);
+    }
   }
 }

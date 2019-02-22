@@ -1,6 +1,7 @@
 package com.tiggerbiggo.prima.view.sample.control;
 
 import com.tiggerbiggo.prima.play.core.render.RenderCallback;
+import com.tiggerbiggo.prima.play.core.render.RenderTask;
 import com.tiggerbiggo.prima.play.graphics.SafeImage;
 import com.tiggerbiggo.prima.view.sample.components.AnimatedImageView;
 import java.net.URL;
@@ -64,7 +65,7 @@ public class PreviewController implements Initializable {
 
     refreshButton.setOnAction(e -> {
       view.stop();
-      MainController.thisController.nodePane.renderAsync(width, height, 60, "Preview Window Render",
+      RenderTask t = MainController.thisController.nodePane.renderAsync(width, height, 60, "Preview Window Render",
           new RenderCallback() {
             @Override
             public void callback(SafeImage[] i) {
@@ -75,6 +76,8 @@ public class PreviewController implements Initializable {
               }
             }
           });
+
+      
     });
 
     updateFields();

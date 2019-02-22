@@ -21,8 +21,8 @@ public class RenderBar extends ProgressBar {
     timer = new Timeline(new KeyFrame(Duration.seconds(1d / 60), new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent event) {
-        Renderer inst = Renderer.getInstance();
-        l.setText("Queue length: " + inst.getQueueLength() + ", Current task name: " + inst.getCurrentName());
+        //Renderer inst = Renderer.getInstance();
+        //l.setText("Queue length: " + inst.getQueueLength() + ", Current task name: " + inst.getCurrentName());
       }
     }));
     timer.setCycleCount(Animation.INDEFINITE);
@@ -32,6 +32,6 @@ public class RenderBar extends ProgressBar {
   }
 
   private void updateProgress(){
-    this.setProgress(1-Renderer.getInstance().getCurrentProgress());
+    //this.setProgress(1-Renderer.getInstance().getCurrentProgress());
   }
 }

@@ -11,9 +11,10 @@ import com.tiggerbiggo.prima.play.node.link.type.VectorOutputLink;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ConvolutionNode extends NodeInOut{
+public class ConvolutionNode extends NodeInOut {
+
   @TransferGrid
-  Convolution c;
+  Convolution c = Convolution.SOBEL1;
 
   transient final Map<RenderID, RenderCache<Vector2>> cacheMap;
 
@@ -21,7 +22,7 @@ public class ConvolutionNode extends NodeInOut{
 
   VectorOutputLink out;
 
-  public ConvolutionNode(){
+  public ConvolutionNode() {
     cacheMap = new HashMap<>();
 
     in = new VectorInputLink();
@@ -40,13 +41,20 @@ public class ConvolutionNode extends NodeInOut{
 
         Vector2 toReturn = Vector2.ZERO;
 
-        for(int i=-1; i<=1; i++){
-          for(int j=-1; j<=1; j++){
-            toReturn.add(
-                c.convolutePosition(i, j, cache.get(new RenderParams(p.width(), p.height(), p.x()+i, p.y()+j, p.frameNum(), p.getId())
-            )));
+        for (int i = -1; i <= 1; i++) {
+          for (int j = -1; j <= 1; j++) {
+            if (p.x() + i < 0 || p.x() + i >= p.width()) {
+              continue;
+            }
+            if (p.y() + j < 0 || p.y() + j >= p.height()) {
+              continue;
+            }
+            Vector2 toConv = cache.get(new RenderParams(p.width(), p.height(), p.x() + i, p.y() + j, p.frameNum(), p.getId()));
+            toReturn = toReturn.add(c.convolutePosition(i, j, toConv));
           }
         }
+
+        System.out.println(toReturn);
 
         return toReturn;
       }
@@ -67,24 +75,30 @@ public class ConvolutionNode extends NodeInOut{
   }
 }
 
-enum Convolution{
+enum Convolution {
   SOBEL1(new double[][]{
-      { 1, 0,-1},
-      { 0, 0, 0},
+      {1, 0, -1},
+      {0, 0, 0},
       {-1, 0, 1}
   }),
   SOBEL2(new double[][]{
-      { 0, 1, 0},
-      { 1,-4, 1},
-      { 0, 1, 0}
-  });
+      {0, 1, 0},
+      {1, -4, 1},
+      {0, 1, 0}
+  }),
+  BOXBLUR(new double[][]{
+      {1, 1, 1},
+      {1, 1, 1},
+      {1, 1, 1}
+  })
+  ;
   double[][] convolution;
 
-  Convolution(double[][] _convolution){
+  Convolution(double[][] _convolution) {
     convolution = _convolution;
   }
 
-  public Vector2 convolutePosition(int x, int y, Vector2 in){
-    return in.multiply(convolution[x][y]);
+  public Vector2 convolutePosition(int x, int y, Vector2 in) {
+    return in.multiply(convolution[x + 1][y + 1]);
   }
 }

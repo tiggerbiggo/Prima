@@ -1,89 +1,45 @@
 package com.tiggerbiggo.prima.play.core.render;
 
-import com.tiggerbiggo.prima.play.graphics.SafeImage;
-import java.util.ArrayDeque;
-import java.util.Queue;
+import com.tiggerbiggo.prima.play.node.link.type.ColorArrayInputLink;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Renderer {
-  private static Renderer inst;
+  private static final int DEFAULT_THREAD_NUM = 6;
+  private static Renderer defaultRenderer;
+  public static Renderer getDefaultRenderer() {
+    if(defaultRenderer == null) defaultRenderer = new Renderer();
+    return defaultRenderer;
+  }
+
   private ExecutorService exec;
   private int threadNum;
-  private Queue<RenderTask> taskList;
 
-  public Renderer(int _threadNum){
-    if(inst == null)
-      inst = this;
-    threadNum = _threadNum;
+  public Renderer(){
+    this(DEFAULT_THREAD_NUM);
+  }
+
+  public Renderer(int threadNum) {
+    this.threadNum = threadNum;
     exec = Executors.newFixedThreadPool(threadNum);
-    taskList = new ArrayDeque<>();
   }
 
-  public void queue(RenderTask task){
-    task.addCallback(new RenderCallback() {
-      @Override
-      public void callback(SafeImage[] imgs) {
-        taskList.poll();
-        submit();
-      }
-    });
-    taskList.add(task);
-    if(taskList.size() == 1) {
-
-      submit();
+  public static RenderTask queueToDefaultRenderer(int width, int height, int frameNum, ColorArrayInputLink link, RenderCallback ... callbacks){
+    if(defaultRenderer == null){
+      defaultRenderer = new Renderer();
     }
+
+    return defaultRenderer.queueRender(width, height, frameNum, link, callbacks);
   }
 
-  private void submit(){
-    RenderTask task = taskList.peek();
-    if(task != null) {
-      for (int i = 0; i < threadNum; i++) {
-        exec.submit(new RenderSlave(task));
-      }
+  public RenderTask queueRender(int width, int height, int frameNum, ColorArrayInputLink link, RenderCallback ... callbacks) {
+    RenderTask toReturn = new RenderTask(width, height, frameNum, link, callbacks);
+
+    for (int i = 0; i < threadNum; i++) {
+      exec.submit(toReturn);
     }
-  }
 
-  public static Renderer getInstance(){
-    if(inst == null){
-      inst = new Renderer(6);
-    }
-    return inst;
-  }
-
-  public String getCurrentName(){
-    if(taskList.size() == 0) return "No Render Tasks";
-    return taskList.peek().getDescription();
-  }
-
-  public double getCurrentProgress(){
-    if(taskList.size() == 0) return 0;
-    return taskList.peek().getPercentage();
-  }
-
-  public int getQueueLength(){
-    return taskList.size();
+    return toReturn;
   }
 }
 
-class RenderSlave implements Runnable{
-  RenderTask task;
-
-  public RenderSlave(RenderTask _task){
-    task = _task;
-  }
-
-  @Override
-  public void run() {
-    while(task.step());
-  }
-}
-
-class RenderCoordinate{
-  int x, y;
-
-  public RenderCoordinate(int x, int y){
-    this.x = x;
-    this.y = y;
-  }
-}

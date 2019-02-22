@@ -27,9 +27,7 @@ public class BasicRenderNode extends NodeHasInput{
   }
 
   public RenderTask renderAsync(int width, int height, int frameNum, String desc, RenderCallback ... callbacks){
-    RenderTask task = new RenderTask(width, height, frameNum, inputLink, desc, callbacks);
-    Renderer.getInstance().queue(task);
-    return task;
+    return Renderer.queueToDefaultRenderer(width, height, frameNum, inputLink, callbacks);
   }
 
   @Override
