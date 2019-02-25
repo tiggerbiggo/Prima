@@ -13,8 +13,12 @@ public interface INodeHasInput extends INode{
   }
 
   default boolean link(INodeHasOutput toLink, int input, int output) {
-    return getInput(input).link(toLink.getOutput(output));
+    boolean result = getInput(input).link(toLink.getOutput(output));
+    if(result) onLinked();
+    return result;
   }
+
+  default void onLinked(){}
 
   default boolean link(INodeHasOutput toLink) {
     return link(toLink, 0, 0);

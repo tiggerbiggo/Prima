@@ -1,8 +1,11 @@
 package com.tiggerbiggo.prima.play.node.link.type;
 
+import com.tiggerbiggo.prima.play.core.calculation.Calculation;
 import com.tiggerbiggo.prima.play.core.render.RenderParams;
+import com.tiggerbiggo.prima.play.graphics.ColorTools;
 import com.tiggerbiggo.prima.play.node.link.Link;
 import com.tiggerbiggo.prima.play.node.link.OutputLink;
+import java.awt.Color;
 
 public abstract class NumberArrayOutputLink extends OutputLink<Double[]> {
   public static NumberArrayOutputLink BASICLOOP = new NumberArrayOutputLink() {
@@ -38,5 +41,10 @@ public abstract class NumberArrayOutputLink extends OutputLink<Double[]> {
     if(currentFrame <0 || currentFrame >= got.length) return "Frame num outside bounds. Tell tiggerbiggo he's a bad coder.";
 
     return "Double: " + got[currentFrame];
+  }
+
+  @Override
+  public Color getColor(RenderParams p) {
+    return ColorTools.colorLerp(Color.BLACK, Color.WHITE, Calculation.modLoop(get(p.asSingleFrame())[0], true));
   }
 }

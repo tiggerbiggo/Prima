@@ -4,6 +4,7 @@ import com.tiggerbiggo.prima.play.core.render.RenderParams;
 import com.tiggerbiggo.prima.play.node.link.InputLink;
 import com.tiggerbiggo.prima.play.node.link.Link;
 import com.tiggerbiggo.prima.play.node.link.OutputLink;
+import java.awt.Color;
 
 public class UniversalInputLink extends InputLink<Object> {
   OutputLink<?> link;
@@ -27,5 +28,11 @@ public class UniversalInputLink extends InputLink<Object> {
   @Override
   public String getStyleClass() {
     return "UniversalLink";
+  }
+
+  public Color getColor(RenderParams p){return link.getColor(p);}
+
+  public String getDetail(RenderParams p){
+    return link.describeValue(p, 0);
   }
 }

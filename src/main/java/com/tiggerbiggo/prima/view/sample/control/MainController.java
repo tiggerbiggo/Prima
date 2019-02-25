@@ -45,6 +45,7 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -60,6 +61,8 @@ public class MainController implements Initializable, ChangeListener {
   @FXML
   public Pane nodeContainer;
   @FXML
+  private Pane previewPane;
+  @FXML
   private BorderPane pannableContainer;
   @FXML
   private ScrollPane scrollPane;
@@ -67,6 +70,8 @@ public class MainController implements Initializable, ChangeListener {
   private MenuBar menuBar;
   @FXML
   private VBox mainBox;
+
+  private AnimatedImageView view;
 
   private String DEFAULT = "0@com.tiggerbiggo.prima.play.node.implemented.output.MapGenNode@{\"aX\":0.0,\"aY\":0.0,\"dx\":1.0,\"dy\":1.0}@35@29\n"
       + "1@com.tiggerbiggo.prima.play.node.implemented.io.TransformNode@{\"function\":\"SINSIN\"}@326@99\n"
@@ -91,9 +96,9 @@ public class MainController implements Initializable, ChangeListener {
 
     new ReflectorGrid().addChangeListener(this);
 
-    Label progressLabel = new Label();
-    RenderBar renderBar = new RenderBar(progressLabel);
-    mainBox.getChildren().add(new HBox(renderBar, progressLabel));
+    //Label progressLabel = new Label();
+    //RenderBar renderBar = new RenderBar(progressLabel);
+    //mainBox.getChildren().add(new HBox(renderBar, progressLabel));
 
     mainBox.getStyleClass().add("NodePane");
 
@@ -117,6 +122,24 @@ public class MainController implements Initializable, ChangeListener {
       if (gestureSource instanceof GUILink) {
       }
     });
+
+    view = new AnimatedImageView();
+    previewPane.getChildren().add(view);
+
+    previewPane.setOnMouseClicked(e -> {
+      nodePane.renderAsync(200, 200, 60, "Preview Render", new RenderCallback() {
+        @Override
+        public void callback(SafeImage[] imgs) {
+          view.setImgs(imgs);
+          view.start();
+        }
+      });
+    });
+
+    view.setImgs(new SafeImage[]{new SafeImage(200, 200)});
+    view.start();
+
+    previewPane.toFront();
 
     setupMenuBar();
   }

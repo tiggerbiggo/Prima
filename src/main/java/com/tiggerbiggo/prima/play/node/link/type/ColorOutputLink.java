@@ -25,4 +25,9 @@ public abstract class ColorOutputLink extends OutputLink<Color> {
 
     return "Color\nR: " + got.getRed() + "\nG: " + got.getGreen() + "\nB: " + got.getBlue();
   }
+
+  @Override
+  public Color getColor(RenderParams p) {
+    return get(p);
+  }
 }

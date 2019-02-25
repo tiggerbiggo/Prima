@@ -110,6 +110,10 @@ public class Knob extends Canvas {
     return value;
   }
 
+  public void setValue(double newVal){
+    value = Calculation.clamp(min, max, newVal);
+  }
+
   public void setChangeListener(ChangeListener _listener){
     listener = _listener;
   }

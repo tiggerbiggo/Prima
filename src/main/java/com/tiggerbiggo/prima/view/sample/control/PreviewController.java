@@ -77,7 +77,7 @@ public class PreviewController implements Initializable {
             }
           });
 
-      
+
     });
 
     updateFields();

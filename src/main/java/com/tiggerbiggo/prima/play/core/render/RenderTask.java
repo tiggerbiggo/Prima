@@ -77,4 +77,9 @@ public class RenderTask implements Runnable {
       c.callback(imgs);
     }
   }
+
+  public void addCallback(RenderCallback callback){
+    if(callback == null) return;
+    callbacks.add(callback);
+  }
 }

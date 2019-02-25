@@ -61,4 +61,6 @@ public class RenderParams {
   public RenderParams clone() {
     return new RenderParams(width, height, x, y, frameNum, id);
   }
+
+  public RenderParams asSingleFrame(){return new RenderParams(width, height, x, y, 1, id);}
 }

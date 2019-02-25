@@ -3,15 +3,21 @@ package com.tiggerbiggo.prima.play.node.implemented.io;
 import ch.hephaistos.utilities.loki.ReflectorGrid;
 import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
 import ch.hephaistos.utilities.loki.util.interfaces.ChangeListener;
+import com.sun.javafx.collections.ObservableListWrapper;
 import com.tiggerbiggo.prima.play.core.Callback;
 import com.tiggerbiggo.prima.play.core.calculation.Vector2;
 import com.tiggerbiggo.prima.play.core.render.RenderParams;
 import com.tiggerbiggo.prima.play.node.core.NodeInOut;
+import com.tiggerbiggo.prima.play.node.link.type.VectorArrayInputLink;
+import com.tiggerbiggo.prima.play.node.link.type.VectorArrayOutputLink;
 import com.tiggerbiggo.prima.play.node.link.type.VectorInputLink;
 import com.tiggerbiggo.prima.play.node.link.type.VectorOutputLink;
 import com.tiggerbiggo.prima.view.sample.components.Knob;
+import java.util.Arrays;
 import java.util.function.BiFunction;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 
 public class TransformNode extends NodeInOut {
@@ -23,9 +29,9 @@ public class TransformNode extends NodeInOut {
   private VectorOutputLink output;
 
   @TransferGrid
-  double lerpPercent = 1;
+  private double lerpPercent = 1;
 
-  public TransformNode(TransformFunctions _function) {
+  private TransformNode(TransformFunctions _function) {
     this.function = _function;
     input = new VectorInputLink();
     addInput(input);
@@ -57,10 +63,13 @@ public class TransformNode extends NodeInOut {
 
   @Override
   public Node getFXNode(ChangeListener listener) {
-    ReflectorGrid grid = new ReflectorGrid();
-    grid.transfromIntoGrid(this);
+    ComboBox<TransformFunctions> funcBox = new ComboBox<>();
+    funcBox.setItems(new ObservableListWrapper<>(Arrays.asList(TransformFunctions.values())));
+    funcBox.setOnAction(e -> function = funcBox.getValue());
+    funcBox.setValue(function);
 
     Knob n = new Knob(0, 1);
+    n.setValue(lerpPercent);
     n.setChangeListener(listener);
     n.setCallback(new Callback() {
       @Override
@@ -69,7 +78,7 @@ public class TransformNode extends NodeInOut {
       }
     });
 
-    return new VBox(grid, n);
+    return new VBox(funcBox, n);
   }
 }
 

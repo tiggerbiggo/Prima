@@ -28,4 +28,9 @@ public abstract class ColorArrayOutputLink extends OutputLink<Color[]> {
         + "\nG: " + got[currentFrame].getGreen()
         + "\nB: " + got[currentFrame].getBlue();
   }
+
+  @Override
+  public Color getColor(RenderParams p) {
+    return get(p.asSingleFrame())[0];
+  }
 }

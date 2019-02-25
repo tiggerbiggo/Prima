@@ -27,7 +27,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 
 public class NodeSerializer {
-  public static final String PARSER_VERSION_STRING = "|Prim-p2|";
+  public static final String PARSER_VERSION_STRING = "|Prim-p5|";
 
   public static final String SEP = "@";
 

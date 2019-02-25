@@ -5,7 +5,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Renderer {
-  private static final int DEFAULT_THREAD_NUM = 6;
+  private static final int DEFAULT_THREAD_NUM = 3;
   private static Renderer defaultRenderer;
   public static Renderer getDefaultRenderer() {
     if(defaultRenderer == null) defaultRenderer = new Renderer();
