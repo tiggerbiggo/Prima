@@ -1,5 +1,6 @@
 package com.tiggerbiggo.prima.play.node.implemented.io;
 
+import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
 import com.tiggerbiggo.prima.play.core.calculation.Calculation;
 import com.tiggerbiggo.prima.play.core.calculation.Vector2;
 import com.tiggerbiggo.prima.play.core.render.RenderParams;
@@ -10,14 +11,13 @@ import java.util.function.Function;
 
 public class AnimationNode extends NodeInOut {
 
-  private Function<Double, Vector2> func;
+  @TransferGrid
+  private AnimFunctions func = AnimFunctions.SIMPLE;
 
   private VectorInputLink toAnimate;
   private VectorArrayOutputLink animated;
 
-  public AnimationNode(Function<Double, Vector2> _func) {
-    this.func = _func;
-
+  public AnimationNode() {
     toAnimate = new VectorInputLink();
     addInput(toAnimate);
 
@@ -39,18 +39,6 @@ public class AnimationNode extends NodeInOut {
     addOutput(animated);
   }
 
-  public AnimationNode() {
-    this(SIMPLE);
-  }
-
-
-  public static final Function<Double, Vector2> SIMPLE = Vector2::new;
-  public static final Function<Double, Vector2> SINSIN = (i) -> new Vector2(
-      Math.sin(i * Math.PI * 2) * (1 / Math.PI));
-  public static final Function<Double, Vector2> REVERSE = (i) -> new Vector2(
-      Calculation.modLoop(i, true));
-  public static final Function<Double, Vector2> STILL = (i) -> new Vector2(0);
-
   @Override
   public String getName() {
     return "Animation Node";
@@ -59,5 +47,24 @@ public class AnimationNode extends NodeInOut {
   @Override
   public String getDescription() {
     return "Animates given input vector to produce animated array of vectors.";
+  }
+}
+
+enum AnimFunctions{
+  SIMPLE(Vector2::new),
+  SINSIN ((i) -> new Vector2(Math.sin(i * Math.PI * 2) / Math.PI)),
+  SINCOS ((i) -> new Vector2(Math.sin(i * Math.PI * 2) / Math.PI, Math.cos(i * Math.PI * 2) / Math.PI)),
+  REVERSE ((i) -> new Vector2(Calculation.modLoop(i, true))),
+  STILL ((i) -> new Vector2(0)),
+  JUSTX ((i) -> new Vector2(i, 0)),
+  JUSTY ((i) -> new Vector2(0, i));
+
+  Function<Double, Vector2> func;
+  AnimFunctions(Function<Double, Vector2> _func){
+    func = _func;
+  }
+
+  public Vector2 apply(double in){
+    return func.apply(in);
   }
 }

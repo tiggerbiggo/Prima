@@ -7,14 +7,11 @@ import com.tiggerbiggo.prima.play.core.calculation.Vector2;
 import com.tiggerbiggo.prima.play.core.render.RenderParams;
 import com.tiggerbiggo.prima.play.node.core.NodeHasOutput;
 import com.tiggerbiggo.prima.play.node.link.type.VectorOutputLink;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -23,9 +20,13 @@ public class PolarNode extends NodeHasOutput {
   private boolean useRadians = true;
   @TransferGrid
   private boolean loopAngle = false;
+  @TransferGrid
+  private boolean spiral = false;
 
   @TransferGrid
   private double zoom = 1;
+  @TransferGrid
+  private double stretch = 1;
 
   private VectorOutputLink out;
 
@@ -40,6 +41,7 @@ public class PolarNode extends NodeHasOutput {
         xy = xy.subtract(Vector2.ONE);
 
         double angle = xy.angleBetween(Vector2.UP);
+        double percentRound = angle / Math.PI;
         if(loopAngle){
           //angle *= 2;
           angle = Calculation.modLoop(angle, Math.PI*2, true);
@@ -48,7 +50,9 @@ public class PolarNode extends NodeHasOutput {
 
 
         //x = theta, y=radius
+        angle *= stretch;
         xy = new Vector2(angle, xy.magnitude() * zoom);
+        if(spiral) xy = xy.add(0, percentRound);
 
         return xy;
       }
@@ -76,9 +80,21 @@ public class PolarNode extends NodeHasOutput {
     loop_angle.setSelected(loopAngle);
     loop_angle.setOnAction(e -> loopAngle = loop_angle.isSelected());
 
+    final CheckBox spiral_check = new CheckBox("Spiral");
+    spiral_check.setSelected(spiral);
+    spiral_check.setOnAction(e -> spiral = spiral_check.isSelected());
+
     final Slider zoom_amnt = new Slider(0, 10, zoom);
     zoom_amnt.valueProperty().addListener(e -> zoom = zoom_amnt.getValue());
 
-    return new VBox(use_radians, loop_angle, new HBox(new Label("Zoom: "), zoom_amnt));
+    final Slider stretch_amnt = new Slider(0, 10, stretch);
+    stretch_amnt.valueProperty().addListener(e -> stretch = stretch_amnt.getValue());
+    stretch_amnt.setOnMouseClicked(event -> {
+      if(event.getButton().equals(MouseButton.SECONDARY)){
+        stretch_amnt.setValue(1);
+      }
+    });
+
+    return new VBox(use_radians, loop_angle, spiral_check, new HBox(zoom_amnt, new Label("Zoom")), new HBox(stretch_amnt, new Label("Stretch")));
   }
 }

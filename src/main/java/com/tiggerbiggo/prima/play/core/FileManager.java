@@ -117,6 +117,12 @@ public class FileManager {
     ImageIO.write(img, out.getName().substring(out.getName().lastIndexOf('.')+1), out);
   }
 
+  public static void writeImagesToFolder(BufferedImage[] imgs, File directory, String name) throws IOException{
+    for (int i = 0; i <imgs.length; i++) {
+      writeImage(imgs[i], new File(directory.getPath() + name + i));
+    }
+  }
+
   /**
    * Reads in all images from a directory in an arbitrary order.
    *
@@ -338,11 +344,11 @@ public class FileManager {
   public static final ExtensionFilter MP4 = new ExtensionFilter("MP4 file", "*.mp4");
 
   public static final ExtensionFilter[] IMGS = new ExtensionFilter[]{
+      new ExtensionFilter("All files", "*.*"),
       new ExtensionFilter("PNG file", "*.png"),
       new ExtensionFilter("JPEG file", "*.jpeg, *.jpg"),
       new ExtensionFilter("TIFF file", "*.tiff, *.tif"),
-      new ExtensionFilter("BMP file", "*.bmp"),
-      new ExtensionFilter("All files", "*.*")
+      new ExtensionFilter("BMP file", "*.bmp")
   };
 
 }

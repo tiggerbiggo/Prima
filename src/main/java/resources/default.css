@@ -1,6 +1,7 @@
 * {
   -my-outline: '#f4b700';
   -my-nodebg: '#777777';
+  -my-nodebgSelected: '#888888';
   -my-darkbg: '#333333';
   -my-accent: '#825636';
   -my-lightaccent: '#9b7357';
@@ -20,6 +21,11 @@
   -fx-background-color: -my-nodebg;
   -fx-background-radius: 10;
   -fx-padding: 10;
+}
+
+.NodeSelected{
+  -fx-border-color: white;
+  -fx-background-color: -my-nodebgSelected;
 }
 
 .label{

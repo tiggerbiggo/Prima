@@ -17,7 +17,7 @@ public class ViewMain extends Application {
   private static Stage exportStage;
   private static Stage previewStage;
 
-  public static final String CSS_STRING = ViewMain.class.getResource("/default.css").toString();
+  private static final String CSS_STRING = ViewMain.class.getResource("/default.css").toString();
 
   @Override
   public void start(Stage primaryStage) throws Exception {
@@ -63,12 +63,12 @@ public class ViewMain extends Application {
     }
   }
 
-  void exitPopup(){
+  private void exitPopup(){
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
     alert.setContentText("Are you sure you want to exit Prima?");
     alert.setTitle("Exit?");
     Optional<ButtonType> res = alert.showAndWait();
-    if(res.get().equals(ButtonType.OK))
+    if(res.isPresent() && res.get().equals(ButtonType.OK))
       System.exit(0);
   }
 

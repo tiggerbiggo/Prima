@@ -61,7 +61,7 @@
                   <HBox maxHeight="40.0" prefHeight="40.0" styleClass="button">
                      <children>
                         <Label alignment="CENTER" maxHeight="1.7976931348623157E308" text="Number of Frames" />
-                        <Slider fx:id="frameNumSlider" blockIncrement="1.0" majorTickUnit="30.0" max="120.0" maxHeight="1.7976931348623157E308" min="1.0" minorTickCount="5" value="60.0" HBox.hgrow="ALWAYS" />
+                        <Slider fx:id="frameNumSlider" blockIncrement="1.0" majorTickUnit="30.0" max="500.0" maxHeight="1.7976931348623157E308" min="1.0" minorTickCount="5" value="60.0" HBox.hgrow="ALWAYS" />
                         <Label fx:id="frameNumLabel" maxHeight="1.7976931348623157E308" text="60" />
                      </children>
                      <padding>

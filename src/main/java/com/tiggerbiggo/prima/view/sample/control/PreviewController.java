@@ -4,24 +4,28 @@ import com.tiggerbiggo.prima.play.core.render.RenderCallback;
 import com.tiggerbiggo.prima.play.core.render.RenderTask;
 import com.tiggerbiggo.prima.play.graphics.SafeImage;
 import com.tiggerbiggo.prima.view.sample.components.AnimatedImageView;
+import com.tiggerbiggo.prima.view.sample.components.DraggableValueField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 
 public class PreviewController implements Initializable {
 
   @FXML
   Button mulButton, divButton, refreshButton;
 
-  @FXML
-  TextField widthField, heightField;
+  DraggableValueField widthField, heightField;
 
   @FXML
   Pane imagePane;
+
+  @FXML
+  HBox widthHeightBox;
 
   AnimatedImageView view;
 
@@ -32,6 +36,14 @@ public class PreviewController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     view = new AnimatedImageView();
     imagePane.getChildren().add(view);
+
+    widthField = new DraggableValueField(100, 1, 10000, 1);
+    heightField = new DraggableValueField(100, 1, 10000, 1);
+
+    HBox.setHgrow(widthField, Priority.ALWAYS);
+    HBox.setHgrow(heightField, Priority.ALWAYS);
+
+    widthHeightBox.getChildren().addAll(widthField, heightField);
 
     mulButton.setOnAction(e -> {
       width *= 2;
@@ -45,23 +57,9 @@ public class PreviewController implements Initializable {
       updateFields();
     });
 
-    widthField.setOnAction(e -> {
-      try{
-        width = Integer.parseInt(widthField.getText());
-      }
-      catch (NumberFormatException ex){
-        updateFields();
-      }
-    });
+    widthField.addCallback(value -> width = (int)value);
 
-    heightField.setOnAction(e -> {
-      try{
-        height = Integer.parseInt(heightField.getText());
-      }
-      catch (NumberFormatException ex){
-        updateFields();
-      }
-    });
+    heightField.addCallback(value -> height = (int)value);
 
     refreshButton.setOnAction(e -> {
       view.stop();
@@ -84,8 +82,8 @@ public class PreviewController implements Initializable {
   }
 
   public void updateFields(){
-    widthField.setText(width + "");
-    heightField.setText(height + "");
+    widthField.setValue(width);
+    heightField.setValue(height);
   }
 
   public void sizePane(){

@@ -275,8 +275,12 @@ public class Vector2 implements Serializable {
     return new Vector2(this.X() + other.X(), this.Y() + other.Y());
   }
 
+  public Vector2 add(double x, double y){
+    return add(new Vector2(x, y));
+  }
+
   public Vector2 add(double xy) {
-    return add(new Vector2(xy));
+    return add(xy, xy);
   }
 
   /**

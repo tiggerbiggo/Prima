@@ -21,14 +21,14 @@ public class Calculation {
 
 
   /**
-   * Performs real lerp operation, then clamps the result between the min and max values given.
+   * Performs lerp operation, then clamps the result between the min and max values given.
    *
    * @param f1 Start number
    * @param f2 End number
    * @param a Interpolation coefficient
    * @param min Min value
    * @param max Max value
-   * @return Result of the com.tiggerbiggo.utils.calculation
+   * @return Result of the calculation
    */
   public static double clampedLerp(double f1, double f2, double a, double min, double max) {
     return clamp(min, max, lerp(f1, f2, a));

@@ -5,36 +5,45 @@ import com.tiggerbiggo.prima.play.core.calculation.CombineFunction;
 import com.tiggerbiggo.prima.play.core.calculation.Vector2;
 import com.tiggerbiggo.prima.play.core.render.RenderParams;
 import com.tiggerbiggo.prima.play.node.core.NodeInOut;
-import com.tiggerbiggo.prima.play.node.link.type.VectorInputLink;
-import com.tiggerbiggo.prima.play.node.link.type.VectorOutputLink;
+import com.tiggerbiggo.prima.play.node.link.type.VectorArrayInputLink;
+import com.tiggerbiggo.prima.play.node.link.type.VectorArrayOutputLink;
 import java.util.function.BiFunction;
 
-public class CombineNode extends NodeInOut {
+public class MultiCombineNode extends NodeInOut {
 
   @TransferGrid
   private CombineFunction func;
 
-  private VectorInputLink A, B;
-  private VectorOutputLink out;
+  private VectorArrayInputLink A, B;
+  private VectorArrayOutputLink out;
 
 
-  public CombineNode(CombineFunction _func) {
+  public MultiCombineNode(CombineFunction _func) {
     func = _func;
 
-    A = new VectorInputLink();
-    B = new VectorInputLink();
+    A = new VectorArrayInputLink();
+    B = new VectorArrayInputLink();
     addInput(A, B);
 
-    out = new VectorOutputLink() {
+    out = new VectorArrayOutputLink() {
       @Override
-      public Vector2 get(RenderParams p) {
-        return func.apply(A.get(p), B.get(p));
+      public Vector2[] get(RenderParams p) {
+        Vector2[] gotA = A.get(p);
+        Vector2[] gotB = B.get(p);
+
+        Vector2[] toReturn = new Vector2[p.frameNum()];
+
+        for (int i = 0; i < p.frameNum(); i++) {
+          toReturn[i] = func.apply(gotA[i], gotB[i]);
+        }
+
+        return toReturn;
       }
     };
     addOutput(out);
   }
 
-  public CombineNode() {
+  public MultiCombineNode() {
     this(CombineFunction.ADD);
   }
 
@@ -46,12 +55,12 @@ public class CombineNode extends NodeInOut {
 
   @Override
   public String getName() {
-    return "Combine Node";
+    return "Multi Combine Node";
   }
 
   @Override
   public String getDescription() {
-    return "Combines 2 vectors using some function to produce another vector.";
+    return "Combines 2 vector arrays using some function to produce another vector.";
   }
 }
 

@@ -2,6 +2,7 @@ package com.tiggerbiggo.prima.play.node.core;
 
 import ch.hephaistos.utilities.loki.ReflectorGrid;
 import ch.hephaistos.utilities.loki.util.interfaces.ChangeListener;
+import java.util.Random;
 import javafx.scene.Node;
 
 public interface INode {
@@ -12,4 +13,6 @@ public interface INode {
     grid.transfromIntoGrid(this);
     return grid;
   }
+
+  default void randomize(Random r){}
 }

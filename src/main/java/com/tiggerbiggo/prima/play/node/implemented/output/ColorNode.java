@@ -8,6 +8,7 @@ import com.tiggerbiggo.prima.play.core.calculation.ReflectionHelper;
 import com.tiggerbiggo.prima.play.core.render.RenderParams;
 import com.tiggerbiggo.prima.play.graphics.ColorTools;
 import com.tiggerbiggo.prima.play.node.core.NodeHasOutput;
+import com.tiggerbiggo.prima.play.node.link.type.ColorArrayOutputLink;
 import com.tiggerbiggo.prima.play.node.link.type.ColorOutputLink;
 import java.awt.Color;
 import java.lang.reflect.Field;
@@ -20,6 +21,7 @@ import javafx.scene.layout.AnchorPane;
 public class ColorNode extends NodeHasOutput {
 
   private ColorOutputLink out;
+  private ColorArrayOutputLink animOut;
 
   private Color c;
 
@@ -45,7 +47,17 @@ public class ColorNode extends NodeHasOutput {
         return c;
       }
     };
-    addOutput(out);
+    animOut = new ColorArrayOutputLink() {
+      @Override
+      public Color[] get(RenderParams p) {
+        Color[] toReturn = new Color[p.frameNum()];
+        for(int i=0; i<p.frameNum(); i++){
+          toReturn[i] = c;
+        }
+        return toReturn;
+      }
+    };
+    addOutput(out, animOut);
   }
 
   @Override

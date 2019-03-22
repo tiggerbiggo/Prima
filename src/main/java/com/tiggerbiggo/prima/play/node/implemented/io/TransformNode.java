@@ -1,6 +1,5 @@
 package com.tiggerbiggo.prima.play.node.implemented.io;
 
-import ch.hephaistos.utilities.loki.ReflectorGrid;
 import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
 import ch.hephaistos.utilities.loki.util.interfaces.ChangeListener;
 import com.sun.javafx.collections.ObservableListWrapper;
@@ -8,14 +7,11 @@ import com.tiggerbiggo.prima.play.core.Callback;
 import com.tiggerbiggo.prima.play.core.calculation.Vector2;
 import com.tiggerbiggo.prima.play.core.render.RenderParams;
 import com.tiggerbiggo.prima.play.node.core.NodeInOut;
-import com.tiggerbiggo.prima.play.node.link.type.VectorArrayInputLink;
-import com.tiggerbiggo.prima.play.node.link.type.VectorArrayOutputLink;
 import com.tiggerbiggo.prima.play.node.link.type.VectorInputLink;
 import com.tiggerbiggo.prima.play.node.link.type.VectorOutputLink;
 import com.tiggerbiggo.prima.view.sample.components.Knob;
 import java.util.Arrays;
 import java.util.function.BiFunction;
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;

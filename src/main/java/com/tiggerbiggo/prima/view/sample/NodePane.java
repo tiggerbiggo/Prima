@@ -32,9 +32,10 @@ public class NodePane extends Pane {
     setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent event) {
-        System.out.println("Event hit.");
-        if(event.getButton().equals(MouseButton.SECONDARY)){
-          System.out.println("Secondary down");
+        if(event.getButton().equals(MouseButton.PRIMARY)){
+          deselectAll();
+        }
+        else if(event.getButton().equals(MouseButton.SECONDARY)){
           event.consume();
           NodePopup nodeMenu = new NodePopup(
               NodePane.this,
@@ -71,7 +72,52 @@ public class NodePane extends Pane {
     nodeList.add(node);
   }
 
-  public void deleteNode(GUINode node){
+  public void doDragOffsets(MouseEvent e){
+    for(GUINode n : nodeList){
+      if(n.isSelected()){
+        n.setDragOffset(e);
+      }
+    }
+  }
+
+  public void doDrag(MouseEvent e){
+    for(GUINode n : nodeList){
+      if(n.isSelected()){
+        n.doDrag(e);
+      }
+    }
+  }
+
+  public void doSelection(MouseEvent e){
+    if(!e.isControlDown()){
+      deselectAll();
+    }
+  }
+
+  public void deselectAll(){
+    for(GUINode n : nodeList){
+      n.setSelected(false);
+    }
+  }
+
+  public void selectAll(){
+    for(GUINode n : nodeList){
+      n.setSelected(true);
+    }
+  }
+
+  public void deleteSelectedNodes(){
+    List<GUINode> toDelete = new ArrayList<>();
+    for(GUINode n : nodeList){
+      if(n.isSelected()) toDelete.add(n);
+    }
+
+    for(GUINode n : toDelete){
+      n.delete();
+    }
+  }
+
+  public void forgetNode(GUINode node){
     getChildren().remove(node);
     nodeList.remove(node);
   }

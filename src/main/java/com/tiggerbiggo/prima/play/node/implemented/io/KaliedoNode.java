@@ -37,7 +37,7 @@ public class KaliedoNode extends NodeInOut {
         baseAngle = Math.PI * 2;
         baseAngle /= rotationNum;
 
-        angle = new Vector2(5, 0).angleBetween(point);
+        angle = Vector2.RIGHT.angleBetween(point);
         multiplier = (int) (angle / baseAngle);
 
         angle = baseAngle * -multiplier;

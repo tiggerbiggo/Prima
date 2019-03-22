@@ -1,9 +1,7 @@
 package com.tiggerbiggo.prima.play.node.link.type;
 
-import com.tiggerbiggo.prima.play.core.calculation.Calculation;
 import com.tiggerbiggo.prima.play.core.calculation.Vector2;
 import com.tiggerbiggo.prima.play.core.render.RenderParams;
-import com.tiggerbiggo.prima.play.graphics.ColorTools;
 import com.tiggerbiggo.prima.play.graphics.SimpleGradient;
 import com.tiggerbiggo.prima.play.node.link.Link;
 import com.tiggerbiggo.prima.play.node.link.OutputLink;

@@ -1,6 +1,5 @@
 package com.tiggerbiggo.prima.view.sample;
 
-import com.tiggerbiggo.prima.play.core.render.Renderer;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

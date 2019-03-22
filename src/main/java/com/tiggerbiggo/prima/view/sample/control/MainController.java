@@ -2,26 +2,23 @@ package com.tiggerbiggo.prima.view.sample.control;
 
 import ch.hephaistos.utilities.loki.ReflectorGrid;
 import ch.hephaistos.utilities.loki.util.interfaces.ChangeListener;
-import com.sun.javafx.collections.ObservableListWrapper;
 import com.tiggerbiggo.prima.play.core.FileManager;
+import com.tiggerbiggo.prima.play.core.calculation.GUITools;
 import com.tiggerbiggo.prima.play.core.render.RenderCallback;
-import com.tiggerbiggo.prima.play.graphics.ImageTools;
 import com.tiggerbiggo.prima.play.graphics.SafeImage;
-import com.tiggerbiggo.prima.play.node.core.INode;
 import com.tiggerbiggo.prima.play.node.implemented.BasicRenderNode;
-import com.tiggerbiggo.prima.view.guinode.GUILink;
 import com.tiggerbiggo.prima.view.guinode.GUINode;
 import com.tiggerbiggo.prima.view.sample.NodePane;
 import com.tiggerbiggo.prima.view.sample.NodeParseException;
-import com.tiggerbiggo.prima.view.sample.NodeReflection;
 import com.tiggerbiggo.prima.view.sample.NodeSerializer;
-import com.tiggerbiggo.prima.view.sample.RenderBar;
 import com.tiggerbiggo.prima.view.sample.ViewMain;
 import com.tiggerbiggo.prima.view.sample.components.AnimatedImageView;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URL;
+import java.util.ArrayDeque;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.embed.swing.SwingFXUtils;
@@ -31,10 +28,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -43,14 +37,9 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
-import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.util.StringConverter;
 
 public class MainController implements Initializable, ChangeListener {
 
@@ -61,9 +50,9 @@ public class MainController implements Initializable, ChangeListener {
   @FXML
   public Pane nodeContainer;
   @FXML
-  private Pane previewPane;
+  private AnchorPane previewPane;
   @FXML
-  private BorderPane pannableContainer;
+  private AnchorPane pannableContainer;
   @FXML
   private ScrollPane scrollPane;
   @FXML
@@ -73,28 +62,18 @@ public class MainController implements Initializable, ChangeListener {
 
   private AnimatedImageView view;
 
-  private String DEFAULT = "0@com.tiggerbiggo.prima.play.node.implemented.output.MapGenNode@{\"aX\":0.0,\"aY\":0.0,\"dx\":1.0,\"dy\":1.0}@35@29\n"
-      + "1@com.tiggerbiggo.prima.play.node.implemented.io.TransformNode@{\"function\":\"SINSIN\"}@326@99\n"
-      + "2@com.tiggerbiggo.prima.play.node.implemented.BasicRenderNode@{}@963@111\n"
-      + "3@com.tiggerbiggo.prima.play.node.implemented.io.GradientNode@{}@770@81\n"
-      + "4@com.tiggerbiggo.prima.play.node.implemented.io.AnimationNode@{}@599@53\n"
-      + "5@com.tiggerbiggo.prima.play.node.implemented.output.ColorNode@{\"r\":77,\"g\":128,\"b\":77}@418@405\n"
-      + "6@com.tiggerbiggo.prima.play.node.implemented.output.ColorNode@{\"r\":255,\"g\":255,\"b\":102}@428@268\n"
-      + "-\n"
-      + "0@0@1@0\n"
-      + "3@0@2@0\n"
-      + "4@0@3@0\n"
-      + "6@0@3@1\n"
-      + "5@0@3@2\n"
-      + "1@0@4@0\n";
-
   File currentFile = null;
+
+  private ArrayDeque<String> undoQueue, redoQueue;
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     thisController = this;
 
     new ReflectorGrid().addChangeListener(this);
+
+    undoQueue = new ArrayDeque<>();
+    redoQueue = new ArrayDeque<>();
 
     //Label progressLabel = new Label();
     //RenderBar renderBar = new RenderBar(progressLabel);
@@ -105,23 +84,17 @@ public class MainController implements Initializable, ChangeListener {
     pannableContainer.minWidthProperty().bind(scrollPane.widthProperty());
     pannableContainer.minHeightProperty().bind(scrollPane.heightProperty());
 
-    nodePane = new NodePane(this);
-    nodePane = NodeSerializer.parseNodes(DEFAULT, this);
-    AnchorPane.setBottomAnchor(nodePane, 0.0);
-    AnchorPane.setTopAnchor(nodePane, 0.0);
-    AnchorPane.setLeftAnchor(nodePane, 0.0);
-    AnchorPane.setRightAnchor(nodePane, 0.0);
-    nodeContainer.getChildren().add(nodePane);
+    resetLayout();
 
-    nodePane.setOnDragOver(e -> e.acceptTransferModes(TransferMode.ANY));
-    nodePane.setOnDragDropped(e -> {
-      Object gestureSource = e.getGestureSource();
-      if (gestureSource == null) {
-        return;
-      }
-      if (gestureSource instanceof GUILink) {
-      }
-    });
+//    nodePane.setOnDragOver(e -> e.acceptTransferModes(TransferMode.ANY));
+//    nodePane.setOnDragDropped(e -> {
+//      Object gestureSource = e.getGestureSource();
+//      if (gestureSource == null) {
+//        return;
+//      }
+//      if (gestureSource instanceof GUILink) {
+//      }
+//    });
 
     view = new AnimatedImageView();
     previewPane.getChildren().add(view);
@@ -142,6 +115,7 @@ public class MainController implements Initializable, ChangeListener {
     previewPane.toFront();
 
     setupMenuBar();
+
   }
 
   private void setCurrentFile(File f){
@@ -167,7 +141,11 @@ public class MainController implements Initializable, ChangeListener {
   }
 
   private void resetLayout(){
-    resetLayout(new NodePane(this));
+    if(nodePane == null) nodePane = new NodePane(this);
+
+    NodePane tmp = new NodePane(this);
+    tmp.addNode(new GUINode(200, 200, new BasicRenderNode(), tmp, MainController.this));
+    resetLayout(tmp);
   }
 
   private void resetLayout(NodePane newPane) {
@@ -176,12 +154,13 @@ public class MainController implements Initializable, ChangeListener {
     nodePane.clearNodes();
     nodePane = newPane;
 
-    AnchorPane.setBottomAnchor(nodePane, 0.0);
-    AnchorPane.setTopAnchor(nodePane, 0.0);
-    AnchorPane.setLeftAnchor(nodePane, 0.0);
-    AnchorPane.setRightAnchor(nodePane, 0.0);
+    GUITools.setAllAnchors(nodePane, 0.0);
 
     nodeContainer.getChildren().add(nodePane);
+
+    redoQueue.clear();
+    undoQueue.clear();
+    undoQueue.addFirst(NodeSerializer.SerializeNodePane(nodePane));
   }
 
   private void loadLayout(){
@@ -217,9 +196,6 @@ public class MainController implements Initializable, ChangeListener {
         Optional<ButtonType> result = a.showAndWait();
         if (result.isPresent() && result.get().equals(ButtonType.YES)) {
           resetLayout();
-          nodePane.addNode(
-              new GUINode(200, 200, new BasicRenderNode(), nodePane, MainController.this));
-
         }
       }
     });
@@ -251,6 +227,24 @@ public class MainController implements Initializable, ChangeListener {
 
     file.getItems().addAll(newPane, save, saveAs, open, export);
 
+    //EDIT MENU
+    Menu edit = new Menu("Menu");
+
+    MenuItem undo, redo, selectAll;
+
+    undo = new MenuItem("Undo");
+    undo.setAccelerator(new KeyCodeCombination(KeyCode.Z, KeyCombination.SHORTCUT_DOWN));
+    undo.setOnAction(e -> undo());
+
+    redo = new MenuItem("Redo");
+    redo.setAccelerator(new KeyCodeCombination(KeyCode.Y, KeyCombination.SHORTCUT_DOWN));
+    redo.setOnAction(e -> redo());
+
+    selectAll = new MenuItem("Select All");
+    selectAll.setAccelerator(new KeyCodeCombination(KeyCode.A, KeyCombination.SHORTCUT_DOWN));
+    selectAll.setOnAction(e -> nodePane.selectAll());
+
+    edit.getItems().addAll(undo, redo, selectAll);
 
     //TOOLS MENU
     Menu tools = new Menu("Tools");
@@ -297,7 +291,7 @@ public class MainController implements Initializable, ChangeListener {
 
     view.getItems().addAll(preview);
 
-    menuBar.getMenus().addAll(file, view, tools);
+    menuBar.getMenus().addAll(file, edit, view, tools);
   }
 
   public NodePane getNodePane() {
@@ -307,5 +301,37 @@ public class MainController implements Initializable, ChangeListener {
   @Override
   public void onObjectValueChanged(Field field, Object oldValue, Object newValue, Object object) {
 
+    redoQueue.clear();
+    undoQueue.addFirst(NodeSerializer.SerializeNodePane(nodePane));
+    System.out.println("UNDO QUEUE LENGTH: " + undoQueue.size());
+  }
+
+  @FXML
+  private void onMouseEnterPreview(){
+    //TODO: show stuff
+  }
+
+  private void undo(){
+    try{
+      String s = undoQueue.remove();
+
+      resetLayout(NodeSerializer.parseNodes(s, this));
+      redoQueue.addFirst(s);
+    }
+    catch(NoSuchElementException ex){
+      //no undo elements
+    }
+  }
+
+  private void redo(){
+    try{
+      String s = redoQueue.remove();
+
+      resetLayout(NodeSerializer.parseNodes(s, this));
+      undoQueue.addFirst(s);
+    }
+    catch(NoSuchElementException ex){
+      //no undo elements
+    }
   }
 }

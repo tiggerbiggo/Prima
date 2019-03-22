@@ -9,8 +9,8 @@ import java.awt.Color;
 
 public class SuperSampleNode extends NodeInOut {
 
-  ColorArrayInputLink input;
-  ColorArrayOutputLink output;
+  private ColorArrayInputLink input;
+  private ColorArrayOutputLink output;
 
   @TransferGrid
   private int factor;
@@ -24,28 +24,35 @@ public class SuperSampleNode extends NodeInOut {
     output = new ColorArrayOutputLink() {
       @Override
       public Color[] get(RenderParams p) {
-        RenderParams p2 = new RenderParams(p.width() * factor, p.height() * factor, 0, 0, p.frameNum(), p.getId());
+        int width = p.width() * factor;
+        int height = p.height() * factor;
+        int framenum = p.frameNum();
 
         double[] r, g, b;
-        r = new double[p.frameNum()];
-        g = new double[p.frameNum()];
-        b = new double[p.frameNum()];
+        r = new double[framenum];
+        g = new double[framenum];
+        b = new double[framenum];
         for (int i = 0; i < factor; i++) {
           for (int j = 0; j < factor; j++) {
-            p2.setX((p.x() * factor) + i);
-            p2.setY((p.y() * factor) + j);
+            //p2.setX((p.x() * factor) + i);
+            //p2.setY((p.y() * factor) + j);
 
-            Color[] cA = input.get(p2);
+            Color[] cA = input.get(new RenderParams(
+                width, height,
+                ((p.x() * factor) + i),
+                ((p.y() * factor) + j),
+                framenum,
+                p.getId()
+            ));
             for (int k = 0; k < cA.length; k++) {
               r[k] += cA[k].getRed();
-
               g[k] += cA[k].getGreen();
               b[k] += cA[k].getBlue();
             }
           }
         }
 
-        int fac2 = factor * factor;
+        double fac2 = factor * factor;
 
         Color[] toReturn = new Color[p.frameNum()];
         for (int i = 0; i < toReturn.length; i++) {

@@ -1,5 +1,6 @@
 package com.tiggerbiggo.prima.play.graphics;
 
+import com.tiggerbiggo.prima.play.core.calculation.Calculation;
 import com.tiggerbiggo.prima.play.core.calculation.Vector2;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -55,6 +56,14 @@ public class SafeImage implements Serializable {
 
   public Vector2 denormVector(Vector2 in) {
     return in.multiply(sizeAsVector());
+  }
+
+  public Vector2 denormVectorAndLoop(Vector2 in, boolean xLoop, boolean yLoop){
+    in = new Vector2(
+        Calculation.modLoop(in.X(), xLoop),
+        Calculation.modLoop(in.Y(), yLoop)
+    );
+    return denormVector(in);
   }
 
   /**

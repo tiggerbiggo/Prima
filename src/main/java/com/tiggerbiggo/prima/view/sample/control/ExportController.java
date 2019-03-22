@@ -68,36 +68,21 @@ public class ExportController implements Initializable {
       heightSpinner.getValueFactory().setValue(heightSpinner.getValue()/2);
     });
 
-
-    GIF.setOnMouseClicked(event -> {
-      if(lastSelected != 0){
-        //We have been newly selected, clear file box
-        filename.setText("");
-      }
-      lastSelected = 0;
-      exportButton.setDisable(true);
-    });
-
-    MP4.setOnMouseClicked(event -> {
-      if(lastSelected != 1){
-        //We have been newly selected, clear file box
-        filename.setText("");
-      }
-      lastSelected = 1;
-      exportButton.setDisable(true);
-    });
-
-    IMG.setOnMouseClicked(event -> {
-      if(lastSelected != 2){
-        //We have been newly selected, clear file box
-        filename.setText("");
-      }
-      lastSelected = 2;
-      exportButton.setDisable(true);
-    });
+    GIF.setOnMouseClicked(e -> doSelectionLogic(0));
+    MP4.setOnMouseClicked(e -> doSelectionLogic(1));
+    IMG.setOnMouseClicked(e -> doSelectionLogic(2));
 
     widthSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 8000, 100, 100));
     heightSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 8000, 100, 100));
+  }
+
+  private void doSelectionLogic(int num){
+    if(lastSelected != num){
+      //We have been newly selected, clear file box
+      filename.setText("");
+    }
+    lastSelected = num;
+    exportButton.setDisable(true);
   }
 
   public void doFileOpen(ExtensionFilter ... filters){

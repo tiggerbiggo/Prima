@@ -3,23 +3,33 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.shape.Circle?>
 <AnchorPane prefHeight="781.0" prefWidth="1015.0" styleClass="NodePane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tiggerbiggo.prima.view.sample.control.MainController">
 <children>
-      <Pane fx:id="previewPane" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <AnchorPane fx:id="previewPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <HBox prefHeight="30.0" />
+               </children>
+            </FlowPane>
+            <Circle fill="DODGERBLUE" radius="15.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" style="-fx-fill: #00000000; -fx-stroke: #ffffff;" AnchorPane.leftAnchor="-15.0" AnchorPane.topAnchor="-15.0" />
+         </children>
+      </AnchorPane>
       <VBox fx:id="mainBox" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <MenuBar fx:id="menuBar" VBox.vgrow="ALWAYS" />
             <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" pannable="true" prefWidth="600.0" styleClass="NodePane" vbarPolicy="NEVER">
                <content>
-                  <BorderPane fx:id="pannableContainer" styleClass="NodePane">
-                     <center>
-                        <Pane fx:id="nodeContainer" />
-                     </center>
-                  </BorderPane>
+                  <AnchorPane fx:id="pannableContainer" styleClass="NodePane">
+                     <children>
+                        <Pane fx:id="nodeContainer" AnchorPane.bottomAnchor="230.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0" />
+                     </children>
+                  </AnchorPane>
                </content>
             </ScrollPane>
          </children>

@@ -9,13 +9,10 @@ import com.tiggerbiggo.prima.play.node.core.NodeHasInput;
 import com.tiggerbiggo.prima.play.node.link.type.UniversalInputLink;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 public class AnalysisNode extends NodeHasInput {
