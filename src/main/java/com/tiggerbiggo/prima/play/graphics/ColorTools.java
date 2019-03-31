@@ -212,6 +212,14 @@ public class ColorTools {
         c1.getBlue() / c2.getBlue()
     );
   }
+
+  public static Color invert(Color c){
+    return constrain(
+        255 - c.getRed(),
+        255 - c.getGreen(),
+        255 - c.getBlue()
+    );
+  }
 }
 
 

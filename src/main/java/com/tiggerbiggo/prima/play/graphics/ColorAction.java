@@ -7,7 +7,8 @@ public enum ColorAction{
   ADD("Add", ColorTools::add),
   SUB("Subtract", ColorTools::subtract),
   MUL("Multiply", ColorTools::multiply),
-  DIV("Divide", ColorTools::divide);
+  DIV("Divide", ColorTools::divide),
+  INV("Invert", (c1, c2) -> {return ColorTools.invert(c1);});
 
   String name;
   BiFunction<Color, Color, Color> func;

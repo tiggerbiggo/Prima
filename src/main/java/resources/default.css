@@ -97,6 +97,10 @@
 .ColorLink{
   -fx-fill: white;
 }
+
+.PointLink{
+  -fx-fill: 'e305fc';
+}
 .slider .track{
   -fx-background-color: -my-outline;
 }
