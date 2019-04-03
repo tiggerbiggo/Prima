@@ -53,14 +53,10 @@ public class ConvolutionNode extends NodeInOut {
             toReturn = toReturn.add(c.convolutePosition(i, j, toConv));
           }
         }
-
-        System.out.println(toReturn);
-
         return toReturn;
       }
     };
     addOutput(out);
-
   }
 
 

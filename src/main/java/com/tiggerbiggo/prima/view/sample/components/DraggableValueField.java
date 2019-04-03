@@ -114,6 +114,4 @@ public class DraggableValueField extends TextField {
     callbacks.add(c);
     return this;
   }
-
-
 }
