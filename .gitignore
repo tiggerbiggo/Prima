@@ -5,7 +5,6 @@ out/
 *.gif
 target/
 imgs/
-*.prim
 *.jar
 *.bat
 *.zip

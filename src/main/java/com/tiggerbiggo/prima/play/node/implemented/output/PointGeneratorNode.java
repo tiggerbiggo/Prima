@@ -54,6 +54,9 @@ enum PointGenType{
     return new Vector2(i*Math.PI * 0.3, i*0.2).fromPolar();
   }),
   SPOINK(i -> {
+    return new Vector2(((i*0.11) % 2)-1, ((i * 0.01) % 2)-1);
+  }),
+  SPOINK2(i -> {
     return new Vector2((i*0.11) % 1, (i * 0.01) % 1);
   });
 
