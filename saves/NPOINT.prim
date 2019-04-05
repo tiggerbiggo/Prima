@@ -1,0 +1,15 @@
+|Prim-p7|
+0@com.tiggerbiggo.prima.play.node.implemented.BasicRenderNode@{}@1437@271
+1@com.tiggerbiggo.prima.play.node.implemented.io.GradientNode@{"hueCycle":false}@1259@389
+2@com.tiggerbiggo.prima.play.node.implemented.io.AnimationNode@{"func":"SIMPLE"}@721@225
+3@com.tiggerbiggo.prima.play.node.implemented.io.NearestPointNode@{}@620@404
+4@com.tiggerbiggo.prima.play.node.implemented.output.PointGeneratorNode@{"pointNumber":700}@196@579
+5@com.tiggerbiggo.prima.play.node.implemented.output.MapGenNode@{"aX":-1.1,"aY":-1.1,"dx":2.2,"dy":2.2}@147@280
+6@com.tiggerbiggo.prima.play.node.implemented.output.ColorNode@{"r":153,"g":128,"b":230}@755@514
+-
+1@0@0@0
+2@0@1@0
+6@0@1@2
+3@0@2@0
+5@0@3@0
+4@0@3@1

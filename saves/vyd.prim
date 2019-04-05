@@ -1,0 +1,17 @@
+|Prim-p7|
+0@com.tiggerbiggo.prima.play.node.implemented.BasicRenderNode@{}@1212@129
+1@com.tiggerbiggo.prima.play.node.implemented.io.GradientNode@{"hueCycle":false}@989@169
+2@com.tiggerbiggo.prima.play.node.implemented.io.ImageConvertNode@{"convertX":"V","convertY":"V","xLoop":false,"yLoop":false}@578@208
+3@com.tiggerbiggo.prima.play.node.implemented.output.ImageLoadNode@{"filename":"C:\\Users\\a678364\\Documents\\Programs\\Personal\\Prima\\imgs\\a3d1d5fea7372373bb0f56fe29467a04.png"}@140@346
+4@com.tiggerbiggo.prima.play.node.implemented.io.AnimationNode@{"func":"SIMPLE"}@644@14
+5@com.tiggerbiggo.prima.play.node.implemented.io.ColorEditNode@{"action":"ADD"}@778@366
+6@com.tiggerbiggo.prima.play.node.implemented.output.ColorNode@{"r":77,"g":77,"b":77}@592@469
+-
+1@0@0@0
+4@0@1@0
+2@2@1@1
+5@0@1@2
+3@0@2@2
+2@0@4@0
+2@2@5@0
+6@0@5@1

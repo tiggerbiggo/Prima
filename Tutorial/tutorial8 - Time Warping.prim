@@ -1,0 +1,14 @@
+0@com.tiggerbiggo.prima.primaplay.node.implemented.BasicRenderNode@{}@1376@248
+1@com.tiggerbiggo.prima.primaplay.node.implemented.io.AnimationNode@{}@707@56
+2@com.tiggerbiggo.prima.primaplay.node.implemented.output.CommentNode@{"comment":"The multi image loader is identical to the image loader, except instead of specifying a single image, you specify an entire folder of images.\n\nThese images can be in any supported format, and they must be numbered in the order you wish them to appear, e.g:\n\nthing 1.png\nthing 2.png\nthing 3.png\n\netc...\n\nThe name of the file doesn\u0027t matter, as long as each image has a number before the extension.","x":287.0,"y":427.0}@18@290
+3@com.tiggerbiggo.prima.primaplay.node.implemented.MapGenNode@{"aX":0.0,"aY":0.0,"dx":3.0,"dy":3.0}@27@33
+4@com.tiggerbiggo.prima.primaplay.node.implemented.io.TransformNode@{"function":"SINSIN"}@360@33
+5@com.tiggerbiggo.prima.primaplay.node.implemented.output.CommentNode@{"comment":"There are 2 animation inputs on the Image List Node. These correspond to position and time respectively. What this means is that you can \"time warp\" animations and distort which frame appears in what part of the image and at what time. I\u0027ve prepared an example set and placed it under Tutorial/imageList/, so select that folder and you should see the animation pop up in the preview window. This is simply the animation being played frame by frame, with no distortion.","x":363.0,"y":225.0}@444@478
+6@com.tiggerbiggo.prima.primaplay.node.implemented.io.ImageListNode@{"convertX":"V","convertY":"V"}@939@109
+7@com.tiggerbiggo.prima.primaplay.node.implemented.output.CommentNode@{"comment":"Finally, linking up the Animation Node to the second blue input on the Image List Node will apply the time warping effect. Try changing the transform type to get different effects.","x":272.0,"y":151.0}@931@507
+8@com.tiggerbiggo.prima.primaplay.node.implemented.output.MultiImageLoadNode@{"filename":""}@501@213
+-
+6@1@0@0
+4@0@1@0
+3@0@4@0
+8@0@6@2

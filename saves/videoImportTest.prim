@@ -1,0 +1,15 @@
+|Prim-p2|
+0@com.tiggerbiggo.prima.play.node.implemented.MapGenNode@{"aX":6.0,"aY":6.0,"dx":1.0,"dy":0.2}@35@29
+1@com.tiggerbiggo.prima.play.node.implemented.BasicRenderNode@{}@1392@297
+2@com.tiggerbiggo.prima.play.node.implemented.io.AnimationNode@{}@700@268
+3@com.tiggerbiggo.prima.play.node.implemented.io.ImageListNode@{"convertX":"B","convertY":"B"}@852@496
+4@com.tiggerbiggo.prima.play.node.implemented.output.VideoLoadNode@{"filename":"C:\\Users\\a678364\\Downloads\\2019-02-11_23-50-11.mp4"}@333@650
+5@com.tiggerbiggo.prima.play.node.implemented.io.GradientNode@{"hueCycle":false}@1125@198
+6@com.tiggerbiggo.prima.play.node.implemented.output.ColorNode@{"r":255,"g":255,"b":77}@974@260
+-
+3@1@1@0
+0@0@2@0
+2@0@3@1
+4@0@3@2
+3@0@5@0
+6@0@5@1

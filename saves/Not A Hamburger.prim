@@ -1,0 +1,15 @@
+|Prim-p1|
+0@com.tiggerbiggo.prima.play.node.implemented.MapGenNode@{"aX":-5.0,"aY":-5.0,"dx":10.0,"dy":10.0}@62@455
+1@com.tiggerbiggo.prima.play.node.implemented.io.TransformNode@{"function":"SINSIN"}@603@97
+2@com.tiggerbiggo.prima.play.node.implemented.BasicRenderNode@{}@2028@264
+3@com.tiggerbiggo.prima.play.node.implemented.io.GradientNode@{"hueCycle":false}@1606@123
+4@com.tiggerbiggo.prima.play.node.implemented.io.AnimationNode@{}@985@47
+5@com.tiggerbiggo.prima.play.node.implemented.output.ColorNode@{"r":255,"g":102,"b":102}@1309@322
+6@com.tiggerbiggo.prima.play.node.implemented.output.ColorNode@{"r":0,"g":26,"b":128}@1305@155
+7@com.tiggerbiggo.prima.play.node.implemented.io.TransformNode@{"function":"SINSIN"}@691@429
+-
+0@0@1@0
+3@0@2@0
+4@0@3@0
+6@0@3@1
+5@0@3@2

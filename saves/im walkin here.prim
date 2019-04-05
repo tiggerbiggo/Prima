@@ -1,0 +1,13 @@
+|Prim-p2|
+0@com.tiggerbiggo.prima.play.node.implemented.input.BasicRenderNode@{}@1077@211
+1@com.tiggerbiggo.prima.play.node.implemented.io.GradientNode@{"hueCycle":true}@845@184
+2@com.tiggerbiggo.prima.play.node.implemented.io.ImageListNode@{"convertX":"V","convertY":"V"}@590@506
+3@com.tiggerbiggo.prima.play.node.implemented.output.VideoLoadNode@{"filename":"C:\\Users\\a678364\\Documents\\Programs\\Personal\\Prima\\imgs\\bones2backg.mp4"}@162@630
+4@com.tiggerbiggo.prima.play.node.implemented.io.AnimationNode@{}@424@340
+5@com.tiggerbiggo.prima.play.node.implemented.output.MapGenNode@{"aX":0.0,"aY":0.0,"dx":1.0,"dy":1.0}@68@145
+-
+1@0@0@0
+2@0@1@0
+4@0@2@1
+3@0@2@2
+5@0@4@0

@@ -1,0 +1,11 @@
+|Prim-p7|
+0@com.tiggerbiggo.prima.play.node.implemented.BasicRenderNode@{}@879@143
+1@com.tiggerbiggo.prima.play.node.implemented.io.AnimationNode@{"func":"JUSTX"}@325@39
+2@com.tiggerbiggo.prima.play.node.implemented.output.MapGenNode@{"aX":0.0,"aY":0.0,"dx":1.0,"dy":1.0}@0@48
+3@com.tiggerbiggo.prima.play.node.implemented.io.ImageListNode@{"convertX":"V","convertY":"V"}@580@176
+4@com.tiggerbiggo.prima.play.node.implemented.output.MultiImageLoadNode@{"filename":"C:\\Users\\a678364\\Documents\\Programs\\Personal\\Prima\\imgs\\b a r t"}@4@346
+-
+3@1@0@0
+2@0@1@0
+1@0@3@1
+4@0@3@2

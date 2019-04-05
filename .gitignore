@@ -13,3 +13,4 @@ log.txt
 *.png
 *.mp4
 .DS_Store
+Releases/

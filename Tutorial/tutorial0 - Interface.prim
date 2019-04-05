@@ -1,0 +1,9 @@
+0@com.tiggerbiggo.prima.primaplay.node.implemented.MapGenNode@{"aX":0.0,"aY":0.0,"dx":6.0,"dy":6.0}@17@22
+1@com.tiggerbiggo.prima.primaplay.node.implemented.BasicRenderNode@{}@712@31
+2@com.tiggerbiggo.prima.primaplay.node.implemented.io.GradientNode@{"hueCycle":true}@516@24
+3@com.tiggerbiggo.prima.primaplay.node.implemented.io.AnimationNode@{}@333@22
+4@com.tiggerbiggo.prima.primaplay.node.implemented.output.CommentNode@{"comment":"Welcome to Prima! I have prepared a set of tutorial save files that should hopefully assist you with getting to grips with how the program works, and how to make your own cool images.\n","x":306.0,"y":137.0}@0@285
+5@com.tiggerbiggo.prima.primaplay.node.implemented.output.CommentNode@{"comment":"Lets start with the interface. The main node view (this part you\u0027re looking at now) contains all the nodes you\u0027ll be using. You can see some of the nodes above, and each one has a different function. Each one has coloured \"Links\" attached. You can link these together by clicking and dragging on them. Links can only go from like to like color, so blue cannot link to yellow, etc.","x":312.0,"y":257.0}@351@284
+6@com.tiggerbiggo.prima.primaplay.node.implemented.output.CommentNode@{"comment":"Try linking up all of the above nodes, ignoring the links you cannot connect together (we\u0027ll get to those later).\n\nOnce you\u0027re done, click \"Preview\" on the right to see the image you\u0027ve made. ","x":269.0,"y":158.0}@708@284
+7@com.tiggerbiggo.prima.primaplay.node.implemented.output.CommentNode@{"comment":"Congratulations! Now we can move on to the rest of the tutorial. Load Tutorial 1 when you\u0027re done.\n\nIf you made a mistake or deleted something, just re-load the tutorial file with \"Load Layout\".","x":273.0,"y":172.0}@709@542
+-

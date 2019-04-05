@@ -1,0 +1,22 @@
+0@com.tiggerbiggo.prima.primaplay.node.implemented.MapGenNode@{"aX":0.0,"aY":0.0,"dx":6.0,"dy":6.0}@39@26
+1@com.tiggerbiggo.prima.primaplay.node.implemented.BasicRenderNode@{}@1371@258
+2@com.tiggerbiggo.prima.primaplay.node.implemented.io.GradientNode@{"hueCycle":false}@1185@226
+3@com.tiggerbiggo.prima.primaplay.node.implemented.io.AnimationNode@{}@949@151
+4@com.tiggerbiggo.prima.primaplay.node.implemented.io.TransformNode@{"function":"SINSIN"}@344@26
+5@com.tiggerbiggo.prima.primaplay.node.implemented.output.ColorNode@{"r":255,"g":255,"b":0}@972@250
+6@com.tiggerbiggo.prima.primaplay.node.implemented.output.ColorNode@{"r":255,"g":0,"b":0}@973@384
+7@com.tiggerbiggo.prima.primaplay.node.implemented.output.CommentNode@{"comment":"Now we have 2 map generators and 2 transforms. The layout is identical between them, however notice the dx and dy values are different. This allows the same effect to be \"layered\" using the combine node. \n\nThe other thing this allows you to do is change the operator used to combine the 2 paths. Try changing this to \"DIV\" for a cool effect. You can also play about with the scales of the map generators to see if you can find some cool combinations. remember to save and share your cool stuff!\n\nWe are almost ready to get onto how to deal with images. I haven\u0027t provided any images for you since I don\u0027t want to deal with copyright, but you can select any images you already have on your computer to use for this. Bear in mind ones with smooth gradients and interesting coarse patterns work best.","x":473.0,"y":375.0}@370@453
+8@com.tiggerbiggo.prima.primaplay.node.implemented.MapGenNode@{"aX":0.0,"aY":0.0,"dx":12.0,"dy":12.0}@40@270
+9@com.tiggerbiggo.prima.primaplay.node.implemented.io.TransformNode@{"function":"SINSIN"}@344@270
+10@com.tiggerbiggo.prima.primaplay.node.implemented.io.CombineNode@{"func":"ADD"}@696@26
+11@com.tiggerbiggo.prima.primaplay.node.implemented.output.CommentNode@{"comment":"All the combine node does is combine 2 different paths together into one. Good for layering textures and manipulating numbers.","x":190.0,"y":124.0}@665@191
+-
+2@0@1@0
+3@0@2@0
+5@0@2@1
+6@0@2@2
+10@0@3@0
+0@0@4@0
+8@0@9@0
+4@0@10@0
+9@0@10@1

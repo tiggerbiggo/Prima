@@ -1,0 +1,16 @@
+0@com.tiggerbiggo.prima.primaplay.node.implemented.MapGenNode@{"aX":-1.0,"aY":-1.0,"dx":2.0,"dy":2.0}@17@22
+1@com.tiggerbiggo.prima.primaplay.node.implemented.BasicRenderNode@{}@1364@45
+2@com.tiggerbiggo.prima.primaplay.node.implemented.io.GradientNode@{"hueCycle":false}@1122@86
+3@com.tiggerbiggo.prima.primaplay.node.implemented.io.AnimationNode@{}@962@38
+4@com.tiggerbiggo.prima.primaplay.node.implemented.output.ColorNode@{"r":255,"g":255,"b":255}@798@226
+5@com.tiggerbiggo.prima.primaplay.node.implemented.output.CommentNode@{"comment":"Great, so we have a more interesting image, but it\u0027s stuck as just rainbow colours. Maybe we want something a little bit more refined.\n\nAs you can see, I\u0027ve added a \"Color Node\", but it\u0027s not showing up in the image because \"Hue Cycle\" on this gradient node is ticked (This is what gives the rainbows). This overrides the incoming colours, so we just need to untick it.\n\nSo we have a color in one link, and since we do not yet have a link for the other color the node defaults to using black, therefore we get a yellow and black image. (You can link the same input to multiple outputs, so you could just link the first color node to both color inputs, but then you\u0027d just get all yellow instead...)\n\nEvery input has a default value when nothing is connected to it, but these default values are normally not very interesting. Add a new color node and link it up to the other color input on the gradient node. Now we can change both of the colors in our images!\n\nGet comfortable with changing these colors, then load Tutorial 3 which covers the Map Gen Node.","x":559.0,"y":432.0}@581@401
+6@com.tiggerbiggo.prima.primaplay.node.implemented.output.CommentNode@{"comment":"Tip: Unlink nodes using right-click","x":153.0,"y":100.0}@194@339
+7@com.tiggerbiggo.prima.primaplay.node.implemented.io.KaliedoNode@{"rotationPoint":{"x":0.0,"y":0.0},"rotationNum":100}@314@41
+8@com.tiggerbiggo.prima.primaplay.node.implemented.io.iterative.MandelNode@{"multiplier":0.1,"iter":300}@661@62
+-
+2@0@1@0
+3@0@2@0
+4@0@2@1
+8@0@3@0
+0@0@7@0
+7@0@8@0
