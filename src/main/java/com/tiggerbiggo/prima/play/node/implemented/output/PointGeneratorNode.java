@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.function.Function;
 
 public class PointGeneratorNode extends NodeHasOutput {
-  transient HashMap<RenderID, Vector2[]> renderCache;
 
   @TransferGrid
   public int pointNumber;
@@ -21,8 +20,6 @@ public class PointGeneratorNode extends NodeHasOutput {
   private PointOutputLink out;
 
   public PointGeneratorNode(){
-    renderCache = new HashMap<>();
-
     out = new PointOutputLink() {
       @Override
       public Vector2[] get(RenderParams pa) {
@@ -54,7 +51,7 @@ enum PointGenType{
     return new Vector2(i*Math.PI * 0.3, i*0.2).fromPolar();
   }),
   SPOINK(i -> {
-    return new Vector2(((i*0.11) % 2)-1, ((i * 0.01) % 2)-1);
+    return new Vector2((i*0.11) % 2, (i * 0.01) % 2);
   }),
   SPOINK2(i -> {
     return new Vector2((i*0.11) % 1, (i * 0.01) % 1);

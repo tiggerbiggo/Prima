@@ -28,32 +28,39 @@ public class CommentNode extends NodeHasOutput{
     return "Write comments";
   }
 
-  public static final double MIN_SIZE = 100;
-  public static final double DRAG_SIZE = 20;
+  public static final double MIN_SIZE = 100;//minimum dimensions of the content
+  public static final double DRAG_SIZE = 20;//
 
   private double offsetX, offsetY;
 
   @Override
   public Node getFXNode(ChangeListener listener) {
-    TextArea ta = new TextArea(comment);
+    TextArea content = new TextArea(comment);
     Pane dragPane = new Pane();
-    Pane p = new Pane(ta, dragPane);
+    Pane toReturn = new Pane(content, dragPane);
 
     //20x20 pane
     //bind bottom right of anchor pane to the drag pane
+    //my logic when coming up with it ^
 
-    ta.setPrefWidth(Double.MAX_VALUE);
-    ta.setPrefHeight(Double.MAX_VALUE);
+    // Custom Event Code //
+    content.setOnKeyReleased(event -> comment = content.getText());
+    content.setWrapText(true);
+    // ///////////////// //
 
-    ta.maxWidthProperty().bind(p.widthProperty());
-    ta.maxHeightProperty().bind(p.heightProperty().subtract(DRAG_SIZE));
+    //TODO: Factory Class!
 
-    ta.setOnKeyReleased(event -> comment = ta.getText());
-    ta.setWrapText(true);
+    // ========================== Common ========================== //
+    // Content Layout //
+    content.setPrefWidth(Double.MAX_VALUE);
+    content.setPrefHeight(Double.MAX_VALUE);
+    content.maxWidthProperty().bind(toReturn.widthProperty());
+    content.maxHeightProperty().bind(toReturn.heightProperty().subtract(DRAG_SIZE));
+    // ////////////// //
+
 
     dragPane.setMinWidth(DRAG_SIZE);
     dragPane.setMinHeight(DRAG_SIZE);
-
     dragPane.setTranslateX(x);
     dragPane.setTranslateY(y);
     dragPane.getStyleClass().add("button");
@@ -92,13 +99,15 @@ public class CommentNode extends NodeHasOutput{
     dragPane.toFront();
 
 
-    p.setPrefWidth(Double.MAX_VALUE);
-    p.setPrefHeight(Double.MAX_VALUE);
-    p.maxWidthProperty().bind(dragPane.translateXProperty().add(DRAG_SIZE));
-    p.maxHeightProperty().bind(dragPane.translateYProperty().add(DRAG_SIZE));
+    toReturn.setPrefWidth(Double.MAX_VALUE);
+    toReturn.setPrefHeight(Double.MAX_VALUE);
+    toReturn.maxWidthProperty().bind(dragPane.translateXProperty().add(DRAG_SIZE));
+    toReturn.maxHeightProperty().bind(dragPane.translateYProperty().add(DRAG_SIZE));
 
-    p.getStyleClass().add("CommentPane");
+    toReturn.getStyleClass().add("CommentPane");
 
-    return p;
+    return toReturn;
+
+
   }
 }

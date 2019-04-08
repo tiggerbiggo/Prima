@@ -17,16 +17,14 @@ import javafx.scene.layout.VBox;
 
 public class AnalysisNode extends NodeHasInput {
 
-  private static final int WIDTH = 140;
-  private static final int HEIGHT = 140;
+  transient private static final int WIDTH = 140;
+  transient private static final int HEIGHT = 140;
+  transient private UniversalInputLink input;
+  transient private Timeline timer;
 
-  private UniversalInputLink input;
+  transient private ImageView view;
 
-  private Timeline timer;
-
-  private ImageView view;
-
-  private RenderID currentID;
+  transient private RenderID currentID;
 
   public AnalysisNode() {
     input = new UniversalInputLink();
