@@ -80,7 +80,10 @@
   -fx-fill: yellow;
 }
 .NumberArrayLink{
-  -fx-fill: grey;
+  -fx-fill: '#8e8e8d';
+}
+.NumberLink{
+  -fx-fill: '#95a387';
 }
 .VectorArrayLink{
   -fx-fill: blue;

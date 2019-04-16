@@ -75,6 +75,8 @@ public class DraggableValueField extends TextField {
         updateDisplay();
       }
     });
+
+    updateDisplay();
   }
 
   public DraggableValueField() {
