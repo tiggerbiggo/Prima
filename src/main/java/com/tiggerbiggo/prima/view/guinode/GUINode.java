@@ -117,29 +117,7 @@ public class GUINode extends AnchorPane {
 
       getChildren().add(layoutGrid);
 
-      inputs = new ArrayList<>();
-      if (node instanceof INodeHasInput) {
-        InputLink<?>[] inputs = ((INodeHasInput) node).getInputs();
-        for (int i = 0; i < inputs.length; i++) {
-          InputLink<?> link = inputs[i];
-          GUIInputLink newLink = new GUIInputLink(link, this, i, LINK_Y + (i * LINK_Y));
-          this.inputs.add(newLink);
-          //parent.getChildren().add(tmp);
-          getChildren().add(newLink);
-        }
-      }
-
-      outputs = new ArrayList<>();
-      if (node instanceof INodeHasOutput) {
-        OutputLink<?>[] outputs = ((INodeHasOutput) node).getOutputs();
-        for (int i = 0; i < outputs.length; i++) {
-          OutputLink<?> link = outputs[i];
-          GUIOutputLink newLink = new GUIOutputLink(link, this, i, LINK_Y + (i * LINK_Y));
-          newLink.centerXProperty().bind(widthProperty());
-          this.outputs.add(newLink);
-          getChildren().add(newLink);
-        }
-      }
+      updateLinks(node);
 
       int maxIoIndex = Math.max(inputs.size(), outputs.size());
 
@@ -167,6 +145,37 @@ public class GUINode extends AnchorPane {
 
   public GUINode(INode node, NodePane parent) {
     this(node, parent, null);
+  }
+
+  public void updateLinks(INode node){
+    //for each old:
+    //if new link can still connect to old external link:
+    //
+
+
+    inputs = new ArrayList<>();
+    if (node instanceof INodeHasInput) {
+      InputLink<?>[] inputs = ((INodeHasInput) node).getInputs();
+      for (int i = 0; i < inputs.length; i++) {
+        InputLink<?> link = inputs[i];
+        GUIInputLink newLink = new GUIInputLink(link, this, i, LINK_Y + (i * LINK_Y));
+        this.inputs.add(newLink);
+        //parent.getChildren().add(tmp);
+        getChildren().add(newLink);
+      }
+    }
+
+    outputs = new ArrayList<>();
+    if (node instanceof INodeHasOutput) {
+      OutputLink<?>[] outputs = ((INodeHasOutput) node).getOutputs();
+      for (int i = 0; i < outputs.length; i++) {
+        OutputLink<?> link = outputs[i];
+        GUIOutputLink newLink = new GUIOutputLink(link, this, i, LINK_Y + (i * LINK_Y));
+        newLink.centerXProperty().bind(widthProperty());
+        this.outputs.add(newLink);
+        getChildren().add(newLink);
+      }
+    }
   }
 
   public void doDrag(MouseEvent e){

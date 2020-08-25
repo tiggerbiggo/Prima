@@ -117,9 +117,9 @@ public class FileManager {
     ImageIO.write(img, out.getName().substring(out.getName().lastIndexOf('.')+1), out);
   }
 
-  public static void writeImagesToFolder(BufferedImage[] imgs, File directory, String name) throws IOException{
+  public static void writeImagesToFolder(BufferedImage[] imgs, File directory, String name, String ext) throws IOException{
     for (int i = 0; i <imgs.length; i++) {
-      writeImage(imgs[i], new File(directory.getPath() + name + i));
+      writeImage(imgs[i], new File(directory.getPath() + File.separator +  name + i + "." + ext));
     }
   }
 
@@ -169,6 +169,8 @@ public class FileManager {
             String sA, sB;
             sA = o1.getName();
             sB = o2.getName();
+
+
 
             sA = sA.substring(sA.lastIndexOf(' ') + 1, sA.indexOf('.'));
             sB = sB.substring(sB.lastIndexOf(' ') + 1, sB.indexOf('.'));
@@ -350,6 +352,15 @@ public class FileManager {
       new ExtensionFilter("TIFF file", "*.tiff, *.tif"),
       new ExtensionFilter("BMP file", "*.bmp")
   };
+
+  public static final ExtensionFilter[] STRICT_IMGS = new ExtensionFilter[]{
+          new ExtensionFilter("PNG file", "*.png"),
+          new ExtensionFilter("JPEG file", "*.jpeg, *.jpg"),
+          new ExtensionFilter("TIFF file", "*.tiff, *.tif"),
+          new ExtensionFilter("BMP file", "*.bmp")
+  };
+
+  public static final ExtensionFilter TXT = new ExtensionFilter("Text File", "*.txt");
 
 }
 

@@ -12,6 +12,8 @@ import com.tiggerbiggo.prima.play.node.link.type.ImageArrayInputLink;
 import com.tiggerbiggo.prima.play.node.link.type.VectorArrayInputLink;
 import com.tiggerbiggo.prima.play.node.link.type.VectorArrayOutputLink;
 import com.tiggerbiggo.prima.play.node.link.type.defaults.MapGenDefaultLink;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.awt.Color;
 
 public class ImageListNode extends NodeInOut{
@@ -29,7 +31,7 @@ public class ImageListNode extends NodeInOut{
   ColorArrayOutputLink colOut;
 
   public ImageListNode(){
-    uvLink = new VectorArrayInputLink(){
+    uvLink = new VectorArrayInputLink("Position Input"){
       @Override
       public Vector2[] defaultValue(RenderParams p) {
         Vector2[] toReturn = new Vector2[p.frameNum()];
@@ -40,17 +42,17 @@ public class ImageListNode extends NodeInOut{
         return toReturn;
       }
     };
-    timeIn = new VectorArrayInputLink(){
+    timeIn = new VectorArrayInputLink("Time Input"){
       @Override
       public Vector2[] defaultValue(RenderParams p) {
         return Vector2.simpleCycle(p.frameNum());
       }
     };
-    imgLink = new ImageArrayInputLink();
+    imgLink = new ImageArrayInputLink("Image");
 
     addInput(uvLink, timeIn, imgLink);
 
-    vecOut = new VectorArrayOutputLink() {
+    vecOut = new VectorArrayOutputLink("Vector Output") {
       @Override
       public Vector2[] get(RenderParams params) {
         Vector2[] position = uvLink.get(params);
@@ -76,10 +78,21 @@ public class ImageListNode extends NodeInOut{
 
         return toReturn;
       }
-    };
-    addOutput(vecOut);
 
-    colOut = new ColorArrayOutputLink() {
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        //TODO
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        //TODO
+        throw new NotImplementedException();
+      }
+    };
+
+    colOut = new ColorArrayOutputLink("Color Output") {
       @Override
       public Color[] get(RenderParams params) {
         //We use a list of vectors as the position in the image,
@@ -115,8 +128,20 @@ public class ImageListNode extends NodeInOut{
         }
         return pixel;
       }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        //TODO
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        //TODO
+        throw new NotImplementedException();
+      }
     };
-    addOutput(colOut);
+    addOutput(vecOut, colOut);
   }
 
   @Override

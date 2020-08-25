@@ -5,22 +5,14 @@ import com.tiggerbiggo.prima.play.core.render.RenderParams;
 import com.tiggerbiggo.prima.play.graphics.ColorTools;
 import com.tiggerbiggo.prima.play.node.link.Link;
 import com.tiggerbiggo.prima.play.node.link.OutputLink;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.awt.Color;
 
 public abstract class NumberArrayOutputLink extends OutputLink<Double[]> {
-  public static NumberArrayOutputLink BASICLOOP = new NumberArrayOutputLink() {
-    @Override
-    public Double[] get(RenderParams p) {
-      int n = p.frameNum();
-      Double[] toReturn = new Double[n];
-
-      for(int i=0; i<n; i++){
-        toReturn[i] = (double)i/n;
-      }
-
-      return toReturn;
-    }
-  };
+  public NumberArrayOutputLink(String desc){
+    this.desc = desc;
+  }
 
   @Override
   public boolean canLink(Link other) {
@@ -44,7 +36,23 @@ public abstract class NumberArrayOutputLink extends OutputLink<Double[]> {
   }
 
   @Override
-  public Color getColor(RenderParams p) {
-    return ColorTools.colorLerp(Color.BLACK, Color.WHITE, Calculation.modLoop(get(p.asSingleFrame())[0], true));
+  public Color[] getColors(RenderParams p) {
+    Color[] toReturn = new Color[p.frameNum()];
+    Double[] got = get(p);
+    for(int i=0; i<p.frameNum(); i++){
+      toReturn[i] = ColorTools.colorLerp(Color.BLACK, Color.WHITE, Calculation.modLoop(got[i], true));
+    }
+
+    return toReturn;
+  }
+
+  @Override
+  public String getReturnType() {
+    return "float";
+  }
+
+  @Override
+  public boolean isSingular() {
+    return false;
   }
 }

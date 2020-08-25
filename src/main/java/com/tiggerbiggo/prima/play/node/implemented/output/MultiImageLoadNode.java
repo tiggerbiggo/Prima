@@ -23,6 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class MultiImageLoadNode extends NodeHasOutput implements ChangeListener{
   private transient File file;
@@ -43,13 +44,22 @@ public class MultiImageLoadNode extends NodeHasOutput implements ChangeListener{
   final String heightString = "Height: ";
 
   public MultiImageLoadNode(){
-    out = new ImageArrayOutputLink() {
+    out = new ImageArrayOutputLink("Out") {
       @Override
       public SafeImage[] get(RenderParams p) {
         if(imgs != null)
           return imgs;
         else
           return ImageTools.blankArray();
+      }
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        throw new NotImplementedException();
       }
     };
     addOutput(out);
@@ -78,7 +88,7 @@ public class MultiImageLoadNode extends NodeHasOutput implements ChangeListener{
 
   public void updateImage() {
     if (file != null) {
-      imgs = ImageTools.toSafeImage(FileManager.getImgsFromFolder(filename + "\\", true));
+      imgs = ImageTools.toSafeImage(FileManager.getImgsFromFolder(filename + File.separator, true));
       if(imgs != null && imgs[0] != null) {
         nameLabel.setText(nameString + file.getName());
         widthLabel.setText(widthString + imgs[0].getWidth());

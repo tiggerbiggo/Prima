@@ -5,6 +5,7 @@ import com.tiggerbiggo.prima.play.core.render.RenderParams;
 import com.tiggerbiggo.prima.play.node.core.NodeInOut;
 import com.tiggerbiggo.prima.play.node.link.type.NumberArrayOutputLink;
 import com.tiggerbiggo.prima.play.node.link.type.VectorArrayInputLink;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class VectorConvertNode extends NodeInOut {
 
@@ -12,10 +13,10 @@ public class VectorConvertNode extends NodeInOut {
   private NumberArrayOutputLink out;
 
   public VectorConvertNode() {
-    in = new VectorArrayInputLink();
+    in = new VectorArrayInputLink("In");
     addInput(in);
 
-    out = new NumberArrayOutputLink() {
+    out = new NumberArrayOutputLink("Out") {
       @Override
       public Double[] get(RenderParams p) {
         Vector2[] arr = in.get(p);
@@ -25,6 +26,18 @@ public class VectorConvertNode extends NodeInOut {
           toReturn[i] = arr[i].xy();
         }
         return toReturn;
+      }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        //TODO
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        //TODO
+        throw new NotImplementedException();
       }
     };
     addOutput(out);

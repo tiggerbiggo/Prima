@@ -17,10 +17,10 @@ public class BasicRenderNode extends NodeHasInput{
   private ColorArrayInputLink inputLink;
 
   public BasicRenderNode(){
-    inputLink = new ColorArrayInputLink() {
+    inputLink = new ColorArrayInputLink("To Renderer") {
       @Override
       public Color[] defaultValue(RenderParams p) {
-        return ColorTools.blankArray(p.frameNum());
+        return ColorTools.colorArray(p.frameNum());
       }
     };
     addInput(inputLink);
@@ -32,7 +32,7 @@ public class BasicRenderNode extends NodeHasInput{
 
   @Override
   public String getName() {
-    return "Basic Render Node";
+    return "OUTPUT";
   }
 
   @Override

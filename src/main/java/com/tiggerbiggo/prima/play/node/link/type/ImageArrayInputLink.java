@@ -9,6 +9,10 @@ import com.tiggerbiggo.prima.play.node.link.OutputLink;
 
 public class ImageArrayInputLink extends InputLink<SafeImage[]> {
 
+  public ImageArrayInputLink(String desc){
+    this.desc = desc;
+  }
+
   @Override
   public boolean link(OutputLink<?> toLink) {
     if (canLink(toLink)) {

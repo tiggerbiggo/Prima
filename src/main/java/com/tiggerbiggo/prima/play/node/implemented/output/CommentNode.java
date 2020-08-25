@@ -48,8 +48,6 @@ public class CommentNode extends NodeHasOutput{
     content.setWrapText(true);
     // ///////////////// //
 
-    //TODO: Factory Class!
-
     // ========================== Common ========================== //
     // Content Layout //
     content.setPrefWidth(Double.MAX_VALUE);

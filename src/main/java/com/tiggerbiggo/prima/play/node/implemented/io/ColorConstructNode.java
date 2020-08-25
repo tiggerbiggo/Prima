@@ -7,6 +7,8 @@ import com.tiggerbiggo.prima.play.node.core.NodeInOut;
 import com.tiggerbiggo.prima.play.node.link.type.ColorArrayOutputLink;
 import com.tiggerbiggo.prima.play.node.link.type.NumberArrayInputLink;
 import com.tiggerbiggo.prima.play.node.link.type.VectorInputLink;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.awt.Color;
 
 public class ColorConstructNode extends NodeInOut {
@@ -17,19 +19,16 @@ public class ColorConstructNode extends NodeInOut {
   private ColorArrayOutputLink out;
 
   public ColorConstructNode(){
-    posIn = new VectorInputLink();
-    rLink = new NumberArrayInputLink();
-    gLink = new NumberArrayInputLink();
-    bLink = new NumberArrayInputLink();
+    rLink = new NumberArrayInputLink("R");
+    gLink = new NumberArrayInputLink("G");
+    bLink = new NumberArrayInputLink("B");
 
-    addInput(posIn, rLink, gLink, bLink);
+    addInput(rLink, gLink, bLink);
 
-    out = new ColorArrayOutputLink() {
+    out = new ColorArrayOutputLink("Out") {
       @Override
       public Color[] get(RenderParams p) {
         Color[] toReturn = new Color[p.frameNum()];
-
-        Vector2 pos = posIn.get(p);
 
         Double[] r = rLink.get(p);
         Double[] g = gLink.get(p);
@@ -43,6 +42,18 @@ public class ColorConstructNode extends NodeInOut {
         }
 
         return toReturn;
+      }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        //TODO
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        //TODO
+        throw new NotImplementedException();
       }
     };
 

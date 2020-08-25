@@ -8,6 +8,10 @@ import java.awt.Color;
 
 public class ColorInputLink extends InputLink<Color> {
 
+  public ColorInputLink(String desc){
+    this.desc = desc;
+  }
+
   @Override
   public boolean link(OutputLink<?> toLink) {
     if (canLink(toLink)) {

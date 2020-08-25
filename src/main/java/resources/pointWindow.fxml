@@ -1,25 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tiggerbiggo.prima.view.sample.control.point.PointController">
    <children>
-      <SplitPane dividerPositions="0.29797979797979796" prefHeight="500.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <ScrollPane pannable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <content>
-                        <Canvas fx:id="mainCanvas" height="200.0" width="200.0" />
-                     </content>
-                  </ScrollPane>
-               </children>
-            </AnchorPane>
-          <AnchorPane maxWidth="250.0" minWidth="100.0" />
-        </items>
-      </SplitPane>
+      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <MenuBar>
+               <menus>
+                  <Menu mnemonicParsing="false" text="File">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="View">
+                     <items>
+                        <CheckMenuItem fx:id="showGhostsMenu" mnemonicParsing="false" text="Show all ghosts" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+            <SplitPane dividerPositions="0.29797979797979796" prefHeight="500.0" prefWidth="500.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <ScrollPane pannable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <content>
+                              <Canvas fx:id="mainCanvas" height="300.0" width="300.0" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
+                  <VBox>
+                     <children>
+                        <HBox>
+                           <children>
+                              <Button fx:id="addButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addPoint" prefHeight="40.0" prefWidth="40.0" styleClass="buttonMid" text="+" />
+                              <Button fx:id="delButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deletePoint" prefHeight="40.0" prefWidth="40.0" styleClass="buttonMid" text="-" />
+                           </children>
+                        </HBox>
+                        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="NEVER">
+                           <content>
+                              <ListView fx:id="pointListView" />
+                           </content>
+                        </ScrollPane>
+                        <VBox fx:id="propertyBox" prefHeight="200.0" />
+                     </children>
+                  </VBox>
+              </items>
+            </SplitPane>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

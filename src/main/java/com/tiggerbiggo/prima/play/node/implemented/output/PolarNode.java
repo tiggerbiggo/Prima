@@ -11,9 +11,11 @@ import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.Spinner;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class PolarNode extends NodeHasOutput {
   @TransferGrid
@@ -31,7 +33,7 @@ public class PolarNode extends NodeHasOutput {
   private VectorOutputLink out;
 
   public PolarNode() {
-    out = new VectorOutputLink() {
+    out = new VectorOutputLink("Out") {
       @Override
       public Vector2 get(RenderParams p) {
         Vector2 xy = new Vector2(p.x(), p.y());
@@ -55,6 +57,15 @@ public class PolarNode extends NodeHasOutput {
         if(spiral) xy = xy.add(0, percentRound);
 
         return xy;
+      }
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        throw new NotImplementedException();
       }
     };
     addOutput(out);
@@ -84,16 +95,13 @@ public class PolarNode extends NodeHasOutput {
     spiral_check.setSelected(spiral);
     spiral_check.setOnAction(e -> spiral = spiral_check.isSelected());
 
-    final Slider zoom_amnt = new Slider(0, 10, zoom);
+    final Spinner<Double> zoom_amnt = new Spinner<>(0, 10, zoom);
     zoom_amnt.valueProperty().addListener(e -> zoom = zoom_amnt.getValue());
+    zoom_amnt.setEditable(true);
 
-    final Slider stretch_amnt = new Slider(0, 10, stretch);
+    final Spinner<Double> stretch_amnt = new Spinner<>(0, 10, stretch);
     stretch_amnt.valueProperty().addListener(e -> stretch = stretch_amnt.getValue());
-    stretch_amnt.setOnMouseClicked(event -> {
-      if(event.getButton().equals(MouseButton.SECONDARY)){
-        stretch_amnt.setValue(1);
-      }
-    });
+    stretch_amnt.setEditable(true);
 
     return new VBox(use_radians, loop_angle, spiral_check, new HBox(zoom_amnt, new Label("Zoom")), new HBox(stretch_amnt, new Label("Stretch")));
   }

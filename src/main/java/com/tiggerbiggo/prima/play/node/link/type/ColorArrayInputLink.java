@@ -9,6 +9,10 @@ import java.awt.Color;
 
 public class ColorArrayInputLink extends InputLink<Color[]> {
 
+  public ColorArrayInputLink(String desc){
+    this.desc = desc;
+  }
+
   @Override
   public boolean link(OutputLink<?> toLink) {
     if (canLink(toLink)) {
@@ -20,7 +24,7 @@ public class ColorArrayInputLink extends InputLink<Color[]> {
 
   @Override
   public Color[] defaultValue(RenderParams p) {
-    return ColorTools.blankArray(p.frameNum());
+    return ColorTools.colorArray(p.frameNum());
   }
 
   @Override

@@ -8,6 +8,8 @@ import com.tiggerbiggo.prima.view.sample.components.NodePopup;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 
 public class GUIOutputLink extends GUILink {
@@ -44,6 +46,7 @@ public class GUIOutputLink extends GUILink {
         }
       }
     });
+    Tooltip.install(this, new Tooltip(link.getDesc()));
   }
 
   @Override

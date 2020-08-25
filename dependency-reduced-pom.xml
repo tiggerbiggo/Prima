@@ -6,6 +6,11 @@
   <name>Prima</name>
   <version>1.0</version>
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/java/resources</directory>
+      </resource>
+    </resources>
     <finalName>primaView</finalName>
     <plugins>
       <plugin>

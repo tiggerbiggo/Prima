@@ -8,6 +8,8 @@ import com.tiggerbiggo.prima.play.node.core.NodeInOut;
 import com.tiggerbiggo.prima.play.node.link.type.ColorArrayInputLink;
 import com.tiggerbiggo.prima.play.node.link.type.ColorArrayOutputLink;
 import com.tiggerbiggo.prima.play.node.link.type.NumberArrayInputLink;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.awt.Color;
 
 public class ColorMaskNode extends NodeInOut{
@@ -24,12 +26,12 @@ public class ColorMaskNode extends NodeInOut{
   private ColorArrayOutputLink out;
 
   public ColorMaskNode(){
-    colorA = new ColorArrayInputLink();
-    colorB = new ColorArrayInputLink();
-    maskIn = new NumberArrayInputLink();
+    colorA = new ColorArrayInputLink("A");
+    colorB = new ColorArrayInputLink("B");
+    maskIn = new NumberArrayInputLink("C");
     addInput(colorA, colorB, maskIn);
 
-    out = new ColorArrayOutputLink() {
+    out = new ColorArrayOutputLink("Out") {
       @Override
       public Color[] get(RenderParams p) {
         //for each frame:
@@ -49,6 +51,18 @@ public class ColorMaskNode extends NodeInOut{
         }
 
         return toReturn;
+      }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        //TODO
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        //TODO
+        throw new NotImplementedException();
       }
     };
     addOutput(out);

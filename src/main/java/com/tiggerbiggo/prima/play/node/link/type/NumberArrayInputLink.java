@@ -6,6 +6,9 @@ import com.tiggerbiggo.prima.play.node.link.Link;
 import com.tiggerbiggo.prima.play.node.link.OutputLink;
 
 public class NumberArrayInputLink extends InputLink<Double[]> {
+  public NumberArrayInputLink(String desc){
+    this.desc = desc;
+  }
   @Override
   public boolean link(OutputLink toLink) {
     if (canLink(toLink)) {

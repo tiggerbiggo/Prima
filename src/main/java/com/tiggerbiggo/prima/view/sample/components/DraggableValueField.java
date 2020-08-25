@@ -74,6 +74,8 @@ public class DraggableValueField extends TextField {
       catch(NumberFormatException ex){
         updateDisplay();
       }
+
+      doCallbacks();
     });
   }
 
@@ -85,6 +87,10 @@ public class DraggableValueField extends TextField {
     value = val;
     value = Calculation.clamp(min, max, value);
     updateDisplay();
+  }
+
+  public double getValue() {
+    return value;
   }
 
   private void doCallbacks(){

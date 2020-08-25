@@ -136,21 +136,25 @@ public class ColorTools {
     return Math.min(in.getRed(), Math.min(in.getGreen(), in.getBlue()));
   }
 
-  /**Generates an array of Color.BLACK with length n
+  /**Generates an array of col with length n
    *
    * @param n
    * @return 
    * @throws ArrayIndexOutOfBoundsException if n < 0
    */
-  public static Color[] blankArray(int n) throws ArrayIndexOutOfBoundsException{
+  public static Color[] colorArray(int n, Color col) throws ArrayIndexOutOfBoundsException{
     if(n < 0){
-      throw new ArrayIndexOutOfBoundsException("Error in ColorTools.blankArray: Number given was < 0, n: " + n);
+      throw new ArrayIndexOutOfBoundsException("Error in ColorTools.colorArray: Number given was < 0, n: " + n);
     }
     Color[] toReturn = new Color[n];
     for (int i=0 ;i<n; i++){
-      toReturn[i] = Color.BLACK;
+      toReturn[i] = col;
     }
     return toReturn;
+  }
+
+  public static Color[] colorArray(int n) throws ArrayIndexOutOfBoundsException{
+    return colorArray(n, Color.BLACK);
   }
 
   public static Color fromFXColor(javafx.scene.paint.Color fxColor){
@@ -219,6 +223,20 @@ public class ColorTools {
         255 - c.getGreen(),
         255 - c.getBlue()
     );
+  }
+
+  public static int absoluteDifference(Color A, Color B){
+    return
+            Math.abs(A.getRed() - B.getRed()) +
+            Math.abs(A.getGreen() - B.getGreen()) +
+            Math.abs(A.getBlue() - B.getBlue());
+  }
+
+  public static String colorAsVec4(Color c){
+    float r = c.getRed()/255f;
+    float g = c.getGreen()/255f;
+    float b = c.getBlue()/255f;
+    return "vec4("+r+","+g+","+b+",0)";
   }
 }
 

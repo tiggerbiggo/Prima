@@ -72,8 +72,8 @@ public class ExportController implements Initializable {
     MP4.setOnMouseClicked(e -> doSelectionLogic(1));
     IMG.setOnMouseClicked(e -> doSelectionLogic(2));
 
-    widthSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 8000, 100, 100));
-    heightSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 8000, 100, 100));
+    widthSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 2000, 100, 100));
+    heightSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 2000, 100, 100));
   }
 
   private void doSelectionLogic(int num){
@@ -81,6 +81,7 @@ public class ExportController implements Initializable {
       //We have been newly selected, clear file box
       filename.setText("");
     }
+    loopNumSlider.setDisable(num != 1);
     lastSelected = num;
     exportButton.setDisable(true);
   }
@@ -105,7 +106,7 @@ public class ExportController implements Initializable {
     else if(MP4.isSelected())
       doFileOpen(FileManager.MP4);
     else
-      doFileOpen(FileManager.IMGS);
+      doFileOpen(FileManager.STRICT_IMGS);
   }
 
   public void onExport(){
@@ -141,6 +142,30 @@ public class ExportController implements Initializable {
               FileManager.writeVideo(ImageTools.toBufferedImage(imgs), f, (int)loopNumSlider.getValue());
             }
           });
+    }
+    else if(IMG.isSelected()){
+      currentRender.renderAsync(
+              widthSpinner.getValue(),
+              heightSpinner.getValue(),
+              (int) frameNumSlider.getValue(),
+              "Rendering and exporting MP4. Filename: " + currentFile.getName(),
+              new RenderCallback() {
+                File f = currentFile;
+                @Override
+                public void callback(SafeImage[] imgs) {
+                  try {
+                    String dir = f.getPath();
+                    String ext = dir.substring(dir.lastIndexOf('.')+1);
+                    String name = dir.substring(dir.lastIndexOf(File.separatorChar)+1, dir.lastIndexOf('.'));
+                    dir = dir.substring(0, dir.lastIndexOf(File.separatorChar));
+                    FileManager.writeImagesToFolder(ImageTools.toBufferedImage(imgs), new File(dir), name, ext);
+                  }
+                  catch(IOException e){
+                    System.err.println("Error occurred in writing images to folder. Stack trace below:");
+                    e.printStackTrace();
+                  }
+                }
+              });
     }
     ViewMain.getExportStage().close();
   }

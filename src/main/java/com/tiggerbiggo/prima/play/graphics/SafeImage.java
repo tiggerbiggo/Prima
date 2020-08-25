@@ -1,5 +1,6 @@
 package com.tiggerbiggo.prima.play.graphics;
 
+import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
 import com.tiggerbiggo.prima.play.core.calculation.Calculation;
 import com.tiggerbiggo.prima.play.core.calculation.Vector2;
 import java.awt.Color;
@@ -15,6 +16,7 @@ import java.io.Serializable;
 public class SafeImage implements Serializable {
 
   private transient BufferedImage img;
+  @TransferGrid
   private int width, height;
 
   /**
@@ -118,6 +120,14 @@ public class SafeImage implements Serializable {
     img.setRGB(x, y, c.getRGB());
   }
 
+  public void fillColor(Color c){
+    for (int i = 0; i < width; i++) {
+      for (int j = 0; j < height; j++) {
+        setColor(i,j,c);
+      }
+    }
+  }
+
   public int safeX(int x){
     x = x % width;
     x = Math.abs(x);
@@ -159,6 +169,12 @@ public class SafeImage implements Serializable {
 
   private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
     in.defaultReadObject();
+
+    if(width <=0 || height <= 0){
+      width = 1;
+      height = 1;
+    }
+
     img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
     try {
       int[] inArray = (int[]) in.readObject();

@@ -137,7 +137,7 @@ public class PrimaTimeline extends Canvas {
 
   private TimePoint getMouseOver(double x, double y){
     for(TimePoint p : points){
-      if(p.isClicked(x, y, getWidth(), getHeight())) return p;
+      if(p.isMouseOver(x, y, getWidth(), getHeight())) return p;
     }
     return null;
   }

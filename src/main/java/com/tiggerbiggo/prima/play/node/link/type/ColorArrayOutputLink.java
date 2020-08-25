@@ -6,6 +6,10 @@ import com.tiggerbiggo.prima.play.node.link.OutputLink;
 import java.awt.Color;
 
 public abstract class ColorArrayOutputLink extends OutputLink<Color[]> {
+  public ColorArrayOutputLink(String desc){
+    this.desc = desc;
+  }
+
   @Override
   public boolean canLink(Link other) {
     if(other == null) return false;
@@ -30,7 +34,17 @@ public abstract class ColorArrayOutputLink extends OutputLink<Color[]> {
   }
 
   @Override
-  public Color getColor(RenderParams p) {
-    return get(p.asSingleFrame())[0];
+  public Color[] getColors(RenderParams p) {
+    return get(p);
+  }
+
+  @Override
+  public String getReturnType() {
+    return "vec4";
+  }
+
+  @Override
+  public boolean isSingular() {
+    return false;
   }
 }

@@ -7,6 +7,8 @@ import com.tiggerbiggo.prima.play.core.render.RenderParams;
 import com.tiggerbiggo.prima.play.node.core.NodeInOut;
 import com.tiggerbiggo.prima.play.node.link.type.VectorArrayInputLink;
 import com.tiggerbiggo.prima.play.node.link.type.VectorArrayOutputLink;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.util.function.BiFunction;
 
 public class MultiCombineNode extends NodeInOut {
@@ -21,11 +23,11 @@ public class MultiCombineNode extends NodeInOut {
   public MultiCombineNode(CombineFunction _func) {
     func = _func;
 
-    A = new VectorArrayInputLink();
-    B = new VectorArrayInputLink();
+    A = new VectorArrayInputLink("A");
+    B = new VectorArrayInputLink("B");
     addInput(A, B);
 
-    out = new VectorArrayOutputLink() {
+    out = new VectorArrayOutputLink("Out") {
       @Override
       public Vector2[] get(RenderParams p) {
         Vector2[] gotA = A.get(p);
@@ -38,6 +40,18 @@ public class MultiCombineNode extends NodeInOut {
         }
 
         return toReturn;
+      }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        //TODO
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        //TODO
+        throw new NotImplementedException();
       }
     };
     addOutput(out);

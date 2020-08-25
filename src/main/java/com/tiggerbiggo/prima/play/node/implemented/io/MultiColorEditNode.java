@@ -8,6 +8,8 @@ import com.tiggerbiggo.prima.play.graphics.ColorAction;
 import com.tiggerbiggo.prima.play.node.core.NodeInOut;
 import com.tiggerbiggo.prima.play.node.link.type.ColorArrayInputLink;
 import com.tiggerbiggo.prima.play.node.link.type.ColorArrayOutputLink;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.awt.Color;
 
 public class MultiColorEditNode extends NodeInOut {
@@ -19,9 +21,9 @@ public class MultiColorEditNode extends NodeInOut {
   private ColorArrayOutputLink out;
 
   public MultiColorEditNode(){
-    inA = new ColorArrayInputLink();
-    inB = new ColorArrayInputLink();
-    out = new ColorArrayOutputLink() {
+    inA = new ColorArrayInputLink("A");
+    inB = new ColorArrayInputLink("B");
+    out = new ColorArrayOutputLink("Out") {
       @Override
       public Color[] get(RenderParams p) {
         Color[] A = inA.get(p);
@@ -32,6 +34,18 @@ public class MultiColorEditNode extends NodeInOut {
           toReturn[i] = action.transform(A[i], B[i]);
         }
         return toReturn;
+      }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        //TODO
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        //TODO
+        throw new NotImplementedException();
       }
     };
 

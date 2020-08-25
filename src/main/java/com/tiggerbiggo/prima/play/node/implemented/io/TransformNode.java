@@ -7,14 +7,19 @@ import com.tiggerbiggo.prima.play.core.Callback;
 import com.tiggerbiggo.prima.play.core.calculation.Vector2;
 import com.tiggerbiggo.prima.play.core.render.RenderParams;
 import com.tiggerbiggo.prima.play.node.core.NodeInOut;
+import com.tiggerbiggo.prima.play.node.link.type.VectorArrayInputLink;
+import com.tiggerbiggo.prima.play.node.link.type.VectorArrayOutputLink;
 import com.tiggerbiggo.prima.play.node.link.type.VectorInputLink;
 import com.tiggerbiggo.prima.play.node.link.type.VectorOutputLink;
 import com.tiggerbiggo.prima.view.sample.components.Knob;
 import java.util.Arrays;
 import java.util.function.BiFunction;
+import java.util.zip.ZipEntry;
+
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class TransformNode extends NodeInOut {
 
@@ -22,25 +27,67 @@ public class TransformNode extends NodeInOut {
   private TransformFunctions function;
 
   private VectorInputLink input;
+  private VectorArrayInputLink AInput;
   private VectorOutputLink output;
+  private VectorArrayOutputLink AOutput;
 
   @TransferGrid
   private double lerpPercent = 1;
 
   private TransformNode(TransformFunctions _function) {
     this.function = _function;
-    input = new VectorInputLink();
-    addInput(input);
+    input = new VectorInputLink("Static Input");
+    AInput = new VectorArrayInputLink("Animated Input");
+    addInput(input, AInput);
 
-    output = new VectorOutputLink() {
+    output = new VectorOutputLink("Static Output") {
       @Override
       public Vector2 get(RenderParams p) {
         Vector2 raw = input.get(p);
         Vector2 transformed = function.apply(raw.X(), raw.Y());
         return raw.lerp(transformed, lerpPercent);
       }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        //TODO
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        //TODO
+        throw new NotImplementedException();
+      }
     };
-    addOutput(output);
+
+    AOutput = new VectorArrayOutputLink("Animated Output") {
+      @Override
+      public Vector2[] get(RenderParams p) {
+        Vector2[] raw = AInput.get(p);
+        Vector2[] transformed = new Vector2[raw.length];
+
+        for(int i=0; i<raw.length; i++){
+          transformed[i] = function.apply(raw[i].X(), raw[i].Y());
+          transformed[i] = raw[i].lerp(transformed[i], lerpPercent);
+        }
+
+        return transformed;
+      }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        //TODO
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        //TODO
+        throw new NotImplementedException();
+      }
+    };
+    addOutput(output, AOutput);
   }
 
   public TransformNode() {
@@ -133,6 +180,12 @@ enum TransformFunctions {
     return new Vector2(x * x, y * y);
   }),NORMALIZE((x, y) -> {
     return new Vector2(x, y).normalize();
+  }),
+  ABS((x,y) -> {
+    return new Vector2(Math.abs(x), Math.abs(y));
+  }),
+  MOD1((x,y) -> {
+    return new Vector2(x % 1f, y % 1f);
   });
 
   BiFunction<Double, Double, Vector2> func;

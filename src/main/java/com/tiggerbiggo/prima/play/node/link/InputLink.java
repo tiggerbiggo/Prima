@@ -7,8 +7,13 @@ public abstract class InputLink<T> extends Link{
 
   public abstract boolean link(OutputLink<?> toLink);
 
+
   public void unlink() {
     currentLink = null;
+  }
+
+  public boolean isLinked() {
+    return currentLink != null;
   }
 
   public T get(RenderParams p){
@@ -19,4 +24,10 @@ public abstract class InputLink<T> extends Link{
   }
 
   public abstract T defaultValue(RenderParams p);
+
+  public String getMethodName(){
+    return currentLink.getMethodName();
+  }
+
+  public OutputLink getCurrentLink(){return currentLink;}
 }

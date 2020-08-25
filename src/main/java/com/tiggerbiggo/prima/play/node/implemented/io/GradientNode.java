@@ -15,6 +15,7 @@ import java.awt.Color;
 import java.lang.reflect.Field;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class GradientNode extends NodeInOut {
 
@@ -29,14 +30,14 @@ public class GradientNode extends NodeInOut {
   ColorArrayOutputLink out;
 
   public GradientNode() {
-    inputLink = new VectorArrayInputLink();
+    inputLink = new VectorArrayInputLink("Input");
 
-    A = new ColorInputLink();
-    B = new ColorInputLink();
+    A = new ColorInputLink("Color A");
+    B = new ColorInputLink("Color B");
 
     addInput(inputLink, A, B);
 
-    out = new ColorArrayOutputLink() {
+    out = new ColorArrayOutputLink("Out") {
       @Override
       public Color[] get(RenderParams p) {
         Vector2[] in = inputLink.get(p);
@@ -48,6 +49,18 @@ public class GradientNode extends NodeInOut {
             toReturn[i] = SimpleGradient.evaluate(in[i], A.get(p), B.get(p), true);
         }
         return toReturn;
+      }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        s.append("vec4 " + getMethodName() + "{\n");
+        s.append("  return mix(").append(A.getMethodName()+","+B.getMethodName());
+        s.append(",fract(length(").append(inputLink.getMethodName()).append(")));\n}\n");
+      }
+
+      @Override
+      public String getMethodName() {
+        return "Gradient_"+hashCode()+"()";
       }
     };
     addOutput(out);

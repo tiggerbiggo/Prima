@@ -5,6 +5,8 @@ import com.tiggerbiggo.prima.play.core.render.RenderParams;
 import com.tiggerbiggo.prima.play.node.core.NodeInOut;
 import com.tiggerbiggo.prima.play.node.link.type.VectorArrayOutputLink;
 import com.tiggerbiggo.prima.play.node.link.type.VectorInputLink;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.util.function.Function;
 
 public class DualAnimateNode extends NodeInOut {
@@ -17,12 +19,12 @@ public class DualAnimateNode extends NodeInOut {
   public DualAnimateNode(Function<Double, Double> _func) {
     this.func = _func;
 
-    inA = new VectorInputLink();
-    inB = new VectorInputLink();
+    inA = new VectorInputLink("A");
+    inB = new VectorInputLink("B");
 
     addInput(inA, inB);
 
-    out = new VectorArrayOutputLink() {
+    out = new VectorArrayOutputLink("Out") {
       @Override
       public Vector2[] get(RenderParams p) {
         Vector2 A, B;
@@ -33,6 +35,18 @@ public class DualAnimateNode extends NodeInOut {
           toReturn[i] = A.lerp(B, func.apply((double) i / p.frameNum()));
         }
         return toReturn;
+      }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        //TODO
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        //TODO
+        throw new NotImplementedException();
       }
     };
     addOutput(out);

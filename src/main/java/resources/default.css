@@ -1,6 +1,7 @@
 * {
   -my-outline: '#f4b700';
   -my-nodebg: '#777777';
+  -my-nodebg_ic: '#ff0000';
   -my-nodebgSelected: '#888888';
   -my-darkbg: '#333333';
   -my-accent: '#825636';
@@ -21,6 +22,10 @@
   -fx-background-color: -my-nodebg;
   -fx-background-radius: 10;
   -fx-padding: 10;
+}
+
+.GUINode.NodeIncomplete{
+    -fx-border-color: -my-nodebg_ic;
 }
 
 .NodeSelected{

@@ -23,6 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class VideoLoadNode extends NodeHasOutput {
   private transient File file;
@@ -43,11 +44,20 @@ public class VideoLoadNode extends NodeHasOutput {
   final String heightString = "Height: ";
 
   public VideoLoadNode() {
-    out = new ImageArrayOutputLink() {
+    out = new ImageArrayOutputLink("Out") {
       @Override
       public SafeImage[] get(RenderParams p) {
         if(imgs == null) return ImageTools.blankArray();
         return imgs;
+      }
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        throw new NotImplementedException();
       }
     };
     addOutput(out);

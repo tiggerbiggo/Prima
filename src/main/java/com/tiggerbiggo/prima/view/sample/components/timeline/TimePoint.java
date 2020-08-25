@@ -1,26 +1,24 @@
 package com.tiggerbiggo.prima.view.sample.components.timeline;
 
 import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
-import com.sun.istack.internal.NotNull;
 import com.tiggerbiggo.prima.play.core.calculation.Calculation;
 import java.util.Objects;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javax.annotation.Nullable;
 
 public class TimePoint {
-  private static final double RADIUS = 5;
-  private static final double DIAMETER = RADIUS * 2;
+  public static final double RADIUS = 5;
+  public static final double DIAMETER = RADIUS * 2;
 
   private Color defCol = Color.RED;
   private Color overCol = Color.YELLOW;
 
   @TransferGrid
-  private double time; //between 0 and 1
+  protected double time; //between 0 and 1
   @TransferGrid
-  private double value; // between 0 and 1
+  protected double value; // between 0 and 1
 
-  private boolean mouseOver = false;
+  protected boolean mouseOver = false;
 
   public TimePoint(double x, double y, double width, double height){
     setX(x, width);
@@ -36,22 +34,18 @@ public class TimePoint {
     this(0.5, 0.5);
   }
 
-  @Nullable
   public Color getDefaultColor() {
     return defCol;
   }
 
-  @NotNull
   public void setDefaultColor(Color defCol) {
     this.defCol = Objects.requireNonNull(defCol);
   }
 
-  @Nullable
   public Color getOverColor() {
     return overCol;
   }
 
-  @NotNull
   public void setOverColor(Color overCol) {
     this.overCol = Objects.requireNonNull(overCol);
   }
@@ -88,7 +82,7 @@ public class TimePoint {
     g.fillOval(x-RADIUS, y-RADIUS, DIAMETER, DIAMETER);
   }
 
-  public boolean isClicked(double clickX, double clickY, double width, double height){
+  public boolean isMouseOver(double clickX, double clickY, double width, double height){
     return (Math.abs(clickX - getX(width)) <= RADIUS) && (Math.abs(clickY - getY(height)) <= RADIUS);
   }
 
@@ -111,5 +105,4 @@ public class TimePoint {
   public void setValue(double value) {
     this.value = Calculation.clamp(0, 1, value);
   }
-
 }

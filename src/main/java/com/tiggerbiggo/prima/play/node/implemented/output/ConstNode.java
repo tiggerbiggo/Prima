@@ -5,6 +5,7 @@ import com.tiggerbiggo.prima.play.core.calculation.Vector2;
 import com.tiggerbiggo.prima.play.core.render.RenderParams;
 import com.tiggerbiggo.prima.play.node.core.INodeHasOutput;
 import com.tiggerbiggo.prima.play.node.link.OutputLink;
+import com.tiggerbiggo.prima.play.node.link.type.VectorArrayOutputLink;
 import com.tiggerbiggo.prima.play.node.link.type.VectorOutputLink;
 
 public class ConstNode implements INodeHasOutput {
@@ -32,16 +33,49 @@ public class ConstNode implements INodeHasOutput {
     }
   }
 
-  private VectorOutputLink out = new VectorOutputLink() {
+  private VectorOutputLink out = new VectorOutputLink("Out") {
     @Override
     public Vector2 get(RenderParams p) {
       return value;
     }
+
+    @Override
+    public void generateGLSLMethod(StringBuilder s) {
+      s.append("vec2 ConstSingle_"+hashCode()+"(){\nreturn "+value+";\n}");
+    }
+
+    @Override
+    public String getMethodName() {
+      return "ConstSingle_"+hashCode()+"()";
+    }
   };
+
+  private VectorArrayOutputLink outA = new VectorArrayOutputLink("Animated Out") {
+    @Override
+    public Vector2[] get(RenderParams p) {
+      Vector2[] toReturn = new Vector2[p.frameNum()];
+
+      for(int i=0;i<p.frameNum();i++){
+        toReturn[i] = value;
+      }
+      return toReturn;
+    }
+
+    @Override
+    public void generateGLSLMethod(StringBuilder s) {
+      s.append("vec2 ConstMulti_"+hashCode()+"(){\nreturn "+value+";\n}");
+    }
+
+    @Override
+    public String getMethodName() {
+      return "ConstMulti_"+hashCode()+"()";
+    }
+  };
+
 
   @Override
   public OutputLink<?>[] getOutputs() {
-    return new OutputLink[]{out};
+    return new OutputLink[]{out, outA};
   }
 
   @Override

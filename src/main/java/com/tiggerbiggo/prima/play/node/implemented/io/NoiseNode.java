@@ -8,6 +8,7 @@ import com.tiggerbiggo.prima.play.node.core.NodeInOut;
 import com.tiggerbiggo.prima.play.node.link.type.VectorInputLink;
 import com.tiggerbiggo.prima.play.node.link.type.VectorOutputLink;
 import com.tiggerbiggo.prima.play.node.link.type.defaults.MapGenDefaultLink;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class NoiseNode extends NodeInOut{
 
@@ -24,10 +25,10 @@ public class NoiseNode extends NodeInOut{
     z = 0;
     type = NoiseType.SIMPLEX;
 
-    mapIn = new MapGenDefaultLink();
+    mapIn = new MapGenDefaultLink("Position (Does not apply to white noise!)");
     addInput(mapIn);
 
-    out = new VectorOutputLink() {
+    out = new VectorOutputLink("Out") {
       @Override
       public Vector2 get(RenderParams p) {
         switch(type){
@@ -38,6 +39,18 @@ public class NoiseNode extends NodeInOut{
             return new Vector2(n);
         }
         return Vector2.ZERO;
+      }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        //TODO
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        //TODO
+        throw new NotImplementedException();
       }
     };
     addOutput(out);

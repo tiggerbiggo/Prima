@@ -1,6 +1,8 @@
 package com.tiggerbiggo.prima.play.core.calculation;
 
 import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
+import com.tiggerbiggo.prima.play.node.link.type.VectorArrayInputLink;
+
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
@@ -284,6 +286,24 @@ public class Vector2 implements Serializable {
   }
 
   /**
+   * Calculates the maximum value for the X and Y components of this vector and the one supplied.
+   * @param other Second vector
+   * @return Vector2(max(x1, x2), max(y1, y2))
+   */
+  public Vector2 max(Vector2 other){
+    return new Vector2(Math.max(x, other.x), Math.max(y, other.y));
+  }
+
+  /**
+   * Calculates the minimum value for the X and Y components of this vector and the one supplied.
+   * @param other Second vector
+   * @return Vector2(min(x1, x2), min(y1, y2))
+   */
+  public Vector2 min(Vector2 other){
+    return new Vector2(Math.min(x, other.x), Math.min(y, other.y));
+  }
+
+  /**
    * Subtracts this vector from another
    *
    * @param other Second vector
@@ -360,12 +380,16 @@ public class Vector2 implements Serializable {
         Double.compare(vector2.y, y) == 0;
   }
 
-  public static Vector2[] blankArray(int n){
+  public static Vector2[] makeArray(int n, Vector2 val){
     Vector2[] toReturn = new Vector2[n];
     for(int i=0; i<n; i++){
-      toReturn[i] = ZERO;
+      toReturn[i] = val;
     }
     return toReturn;
+  }
+
+  public static Vector2[] blankArray(int n){
+    return makeArray(n, ZERO);
   }
 
   public static Vector2[] simpleCycle(int n){
@@ -386,7 +410,7 @@ public class Vector2 implements Serializable {
   public static final Vector2 ONE = new Vector2(1);
   public static final Vector2 MINUSONE = new Vector2(-1);
   public static final Vector2 TWO = new Vector2(2);
-  public static final Vector2 MINUSTWO = new Vector2(-2);
+  public static final Vector2 MINUSTWO   = new Vector2(-2);
   public static final Vector2 UP         = new Vector2(0, 1);
   public static final Vector2 DOWN       = new Vector2(0, -1);
   public static final Vector2 LEFT       = new Vector2(-1, 0);

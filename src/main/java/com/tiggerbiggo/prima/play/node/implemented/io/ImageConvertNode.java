@@ -25,6 +25,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class ImageConvertNode extends NodeInOut{
 
@@ -48,12 +49,12 @@ public class ImageConvertNode extends NodeInOut{
   private ColorArrayOutputLink animColOut;
 
   public ImageConvertNode(){
-    pos = new MapGenDefaultLink();
-    animPos = new VectorArrayInputLink();
-    img = new ImageInputLink();
+    pos = new MapGenDefaultLink("Static Position Input");
+    animPos = new VectorArrayInputLink("Animated Position Input");
+    img = new ImageInputLink("Image");
     addInput(pos, animPos, img);
 
-    vecOut = new VectorOutputLink() {
+    vecOut = new VectorOutputLink("Static Output") {
       @Override
       public Vector2 get(RenderParams p) {
         Color sample = colOut.get(p);
@@ -62,9 +63,21 @@ public class ImageConvertNode extends NodeInOut{
             convertX.convertColor(sample),
             convertY.convertColor(sample));
       }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        //TODO
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        //TODO
+        throw new NotImplementedException();
+      }
     };
 
-    animVecOut = new VectorArrayOutputLink() {
+    animVecOut = new VectorArrayOutputLink("Animated Output") {
       @Override
       public Vector2[] get(RenderParams p) {
         Vector2[] toReturn = new Vector2[p.frameNum()];
@@ -74,9 +87,21 @@ public class ImageConvertNode extends NodeInOut{
         }
         return toReturn;
       }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        //TODO
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        //TODO
+        throw new NotImplementedException();
+      }
     };
 
-    colOut = new ColorOutputLink() {
+    colOut = new ColorOutputLink("Static Color Output") {
       @Override
       public Color get(RenderParams p) {
         SafeImage currentImage = img.get(p);
@@ -85,9 +110,21 @@ public class ImageConvertNode extends NodeInOut{
 
         return currentImage.getColor(currentImage.denormVectorAndLoop(position, xLoop, yLoop));
       }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        //TODO
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        //TODO
+        throw new NotImplementedException();
+      }
     };
 
-    animColOut = new ColorArrayOutputLink() {
+    animColOut = new ColorArrayOutputLink("Animated Colour Output") {
       @Override
       public Color[] get(RenderParams p) {
         Color[] toReturn = new Color[p.frameNum()];
@@ -97,6 +134,18 @@ public class ImageConvertNode extends NodeInOut{
           toReturn[i] = currentImage.getColor(currentImage.denormVectorAndLoop(positions[i], xLoop, yLoop));
         }
         return toReturn;
+      }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        //TODO
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        //TODO
+        throw new NotImplementedException();
       }
     };
     addOutput(vecOut, animVecOut, colOut, animColOut);

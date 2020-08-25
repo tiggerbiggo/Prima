@@ -13,6 +13,7 @@ import com.tiggerbiggo.prima.view.guinode.GUIOutputLink;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Serializable;
 import java.lang.annotation.Annotation;
 import java.nio.charset.Charset;
 import java.nio.file.Files;

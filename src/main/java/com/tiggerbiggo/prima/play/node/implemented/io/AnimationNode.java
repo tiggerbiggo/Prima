@@ -18,10 +18,10 @@ public class AnimationNode extends NodeInOut {
   private VectorArrayOutputLink animated;
 
   public AnimationNode() {
-    toAnimate = new VectorInputLink();
+    toAnimate = new VectorInputLink("In");
     addInput(toAnimate);
 
-    animated = new VectorArrayOutputLink() {
+    animated = new VectorArrayOutputLink("Out") {
       @Override
       public Vector2[] get(RenderParams p) {
         Vector2 start = toAnimate.get(p);
@@ -34,6 +34,24 @@ public class AnimationNode extends NodeInOut {
         }
 
         return toReturn;
+      }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        /*
+        * vec2 Animation_XXXX(){
+        *   return <toAnimMethod> + iLocalTime;
+        * }
+        *
+        * */
+
+        s.append("vec2 Animation_"+hashCode()+"(){\n");
+        s.append("  return " + toAnimate.getMethodName() + " + localTime;\n}\n");
+      }
+
+      @Override
+      public String getMethodName() {
+        return "Animation_"+hashCode()+"()";
       }
     };
     addOutput(animated);

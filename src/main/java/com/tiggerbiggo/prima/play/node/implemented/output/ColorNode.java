@@ -17,6 +17,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.AnchorPane;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class ColorNode extends NodeHasOutput {
 
@@ -41,13 +42,31 @@ public class ColorNode extends NodeHasOutput {
   public ColorNode(){
     c = Color.BLACK;
 
-    out = new ColorOutputLink() {
+    out = new ColorOutputLink("Static Color") {
       @Override
       public Color get(RenderParams p) {
         return c;
       }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        /*vec4
+        *
+        * */
+
+        s.append("vec4 ColorSingleOut_")
+         .append(hashCode())
+         .append("(){\n return ")
+         .append(ColorTools.colorAsVec4(c))
+         .append(";\n}");
+      }
+
+      @Override
+      public String getMethodName() {
+        return "ColorSingleOut_"+hashCode()+"()";
+      }
     };
-    animOut = new ColorArrayOutputLink() {
+    animOut = new ColorArrayOutputLink("Animated Color") {
       @Override
       public Color[] get(RenderParams p) {
         Color[] toReturn = new Color[p.frameNum()];
@@ -55,6 +74,24 @@ public class ColorNode extends NodeHasOutput {
           toReturn[i] = c;
         }
         return toReturn;
+      }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        /*vec4
+         *
+         * */
+
+        s.append("vec4 ColorMultiOut_")
+                .append(hashCode())
+                .append("(){\n  return ")
+                .append(ColorTools.colorAsVec4(c))
+                .append(";\n}");
+      }
+
+      @Override
+      public String getMethodName() {
+        return "ColorMultiOut_"+hashCode()+"()";
       }
     };
     addOutput(out, animOut);

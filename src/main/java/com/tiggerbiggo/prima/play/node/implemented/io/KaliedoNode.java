@@ -6,6 +6,7 @@ import com.tiggerbiggo.prima.play.core.render.RenderParams;
 import com.tiggerbiggo.prima.play.node.core.NodeInOut;
 import com.tiggerbiggo.prima.play.node.link.type.VectorInputLink;
 import com.tiggerbiggo.prima.play.node.link.type.VectorOutputLink;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class KaliedoNode extends NodeInOut {
 
@@ -22,10 +23,10 @@ public class KaliedoNode extends NodeInOut {
     rotationPoint = _rotationPoint;
     rotationNum = _rotationNum;
 
-    map = new VectorInputLink();
+    map = new VectorInputLink("Position Input");
     addInput(map);
 
-    out = new VectorOutputLink() {
+    out = new VectorOutputLink("Out") {
       @Override
       public Vector2 get(RenderParams p) {
         Vector2 point;
@@ -49,6 +50,18 @@ public class KaliedoNode extends NodeInOut {
         point = point.subtract(rotationPoint);
 
         return point;
+      }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        //TODO
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        //TODO
+        throw new NotImplementedException();
       }
     };
     addOutput(out);

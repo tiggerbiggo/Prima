@@ -5,6 +5,8 @@ import com.tiggerbiggo.prima.play.core.render.RenderParams;
 import com.tiggerbiggo.prima.play.node.core.NodeInOut;
 import com.tiggerbiggo.prima.play.node.link.type.ColorArrayInputLink;
 import com.tiggerbiggo.prima.play.node.link.type.ColorArrayOutputLink;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.awt.Color;
 
 public class SuperSampleNode extends NodeInOut {
@@ -18,10 +20,10 @@ public class SuperSampleNode extends NodeInOut {
   public SuperSampleNode(int _factor) {
     this.factor = _factor;
 
-    input = new ColorArrayInputLink();
+    input = new ColorArrayInputLink("In");
     addInput(input);
 
-    output = new ColorArrayOutputLink() {
+    output = new ColorArrayOutputLink("Out") {
       @Override
       public Color[] get(RenderParams p) {
         int width = p.width() * factor;
@@ -64,6 +66,18 @@ public class SuperSampleNode extends NodeInOut {
         }
 
         return toReturn;
+      }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        //TODO
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        //TODO
+        throw new NotImplementedException();
       }
     };
     addOutput(output);

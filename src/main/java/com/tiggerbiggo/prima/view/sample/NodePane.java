@@ -8,6 +8,7 @@ import com.tiggerbiggo.prima.play.node.implemented.BasicRenderNode;
 import com.tiggerbiggo.prima.view.guinode.GUINode;
 import com.tiggerbiggo.prima.view.sample.components.NodePopup;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import javafx.event.EventHandler;
@@ -137,5 +138,9 @@ public class NodePane extends Pane {
 
   public BasicRenderNode getRenderNode() {
     return renderNode;
+  }
+
+  public List<GUINode> getReadOnlyNodeList(){
+    return Collections.unmodifiableList(nodeList);
   }
 }

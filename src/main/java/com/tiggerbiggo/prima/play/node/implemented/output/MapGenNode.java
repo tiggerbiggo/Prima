@@ -46,13 +46,25 @@ public class MapGenNode implements INodeHasOutput {
    * the image, effectively returning the appropriate point to make a coordinate map inputLink the
    * resulting image
    */
-  private VectorOutputLink vecOut = new VectorOutputLink() {
+  private VectorOutputLink vecOut = new VectorOutputLink("Out") {
     @Override
     public Vector2 get(RenderParams p) {
       return new Vector2(
           aX + (p.x() * (dx / p.width())),
           aY + (p.y() * (dy / p.height()))
       );
+    }
+
+    @Override
+    public void generateGLSLMethod(StringBuilder s) {
+      s.append("vec2 " + getMethodName() + "{\n");
+      s.append("  return localUV;\n");
+      s.append("}\n");
+    }
+
+    @Override
+    public String getMethodName() {
+      return "MapGen_"+hashCode()+"()";
     }
   };
 

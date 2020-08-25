@@ -1,12 +1,18 @@
 package com.tiggerbiggo.prima.play.node.link.type;
 
 import com.tiggerbiggo.prima.play.core.render.RenderParams;
+import com.tiggerbiggo.prima.play.graphics.ColorTools;
 import com.tiggerbiggo.prima.play.graphics.SafeImage;
 import com.tiggerbiggo.prima.play.node.link.Link;
 import com.tiggerbiggo.prima.play.node.link.OutputLink;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.awt.Color;
 
 public abstract class ImageArrayOutputLink extends OutputLink<SafeImage[]>{
+  public ImageArrayOutputLink(String desc){
+    this.desc = desc;
+  }
 
   @Override
   public boolean canLink(Link other) {
@@ -29,7 +35,17 @@ public abstract class ImageArrayOutputLink extends OutputLink<SafeImage[]>{
   }
 
   @Override
-  public Color getColor(RenderParams p) {
-    return Color.BLACK;//TODO: Change this
+  public Color[] getColors(RenderParams p) {
+    return ColorTools.colorArray(p.frameNum());//TODO: Change this
+  }
+
+  @Override
+  public String getReturnType() {
+    throw new NotImplementedException();
+  }
+
+  @Override
+  public boolean isSingular() {
+    return false;
   }
 }

@@ -1,64 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<FlowPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tiggerbiggo.prima.view.sample.control.flow.FlowController">
+
+<FlowPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="NodePane" stylesheets="@default.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tiggerbiggo.prima.view.sample.control.flow.FlowController">
    <children>
-      <VBox>
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@default.css">
          <children>
-            <HBox VBox.vgrow="ALWAYS">
-               <children>
-                  <FlowPane>
-                     <children>
-                        <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
-                           <content>
-                              <AnchorPane>
-                                 <children>
-                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                                    <Canvas height="200.0" width="200.0" />
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </ScrollPane>
-                     </children>
-                  </FlowPane>
-                  <VBox maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <HBox prefHeight="40.0" prefWidth="200.0">
+            <SplitPane dividerPositions="0.5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="NodePane">
+               <items>
+                  <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@default.css">
+                     <content>
+                        <AnchorPane stylesheets="@default.css">
                            <children>
-                              <Button fx:id="upButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#movePointUp" prefHeight="40.0" prefWidth="40.0" styleClass="buttonMid" text="▲" />
-                              <Button fx:id="downButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#movePointDown" prefHeight="40.0" prefWidth="40.0" styleClass="buttonMid" text="▼" />
-                              <Button fx:id="visButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#toggleVisibility" prefHeight="40.0" prefWidth="40.0" styleClass="buttonMid" text="⏺" />
-                              <Button fx:id="delButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deletePoint" prefHeight="40.0" prefWidth="40.0" styleClass="buttonMid" text="❌" />
-                              <Button fx:id="addButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addPoint" prefHeight="40.0" prefWidth="40.0" styleClass="buttonMid" text="➕" />
+                              <ImageView fx:id="imageView" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                              <Canvas height="200.0" width="200.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+                  <VBox maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="NodePane" stylesheets="@default.css">
+                     <children>
+                        <HBox alignment="CENTER" stylesheets="@default.css">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#loadMask" prefHeight="40.0" styleClass="buttonLeft" stylesheets="@default.css" text="Load Mask..." />
+                              <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#loadSeed" prefHeight="40.0" styleClass="buttonRight" stylesheets="@default.css" text="Load Seed..." />
                            </children>
                         </HBox>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
-                           <content>
-                              <VBox>
-                                 <children>
-                                    <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" style="-fx-background-color: #eeeeee; -fx-border-color: #dddddd; -fx-border-width: 1;">
-                                       <padding>
-                                          <Insets left="6.0" right="6.0" />
-                                       </padding>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                           </content>
-                        </ScrollPane>
+                        <HBox>
+                           <children>
+                              <Label fx:id="widthLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="40.0" text="Width: " textAlignment="CENTER" HBox.hgrow="ALWAYS" />
+                              <Label fx:id="heightLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="40.0" text="Height:" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <Button fx:id="executeButton" maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" text="Execute" />
                      </children>
                   </VBox>
-               </children>
-            </HBox>
-            <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" />
+               </items>
+            </SplitPane>
+            <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" stylesheets="@default.css" />
          </children>
       </VBox>
    </children>

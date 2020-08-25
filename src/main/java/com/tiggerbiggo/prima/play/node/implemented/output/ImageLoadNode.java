@@ -23,6 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class ImageLoadNode extends NodeHasOutput {
 
@@ -36,12 +37,12 @@ public class ImageLoadNode extends NodeHasOutput {
 
   private transient ImageOutputLink out;
 
-  private transient SafeImage img = null;
+  private SafeImage img = null;
 
   private transient Label nameLabel, widthLabel, heightLabel;
 
   public ImageLoadNode() {
-    out = new ImageOutputLink() {
+    out = new ImageOutputLink("Image") {
       @Override
       public SafeImage get(RenderParams p) {
         if (img != null) {
@@ -49,6 +50,16 @@ public class ImageLoadNode extends NodeHasOutput {
         } else {
           return ImageTools.blankImage();
         }
+      }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        throw new NotImplementedException();
       }
     };
     addOutput(out);

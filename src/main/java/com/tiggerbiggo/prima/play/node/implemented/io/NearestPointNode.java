@@ -7,6 +7,7 @@ import com.tiggerbiggo.prima.play.node.link.type.PointInputLink;
 import com.tiggerbiggo.prima.play.node.link.type.VectorInputLink;
 import com.tiggerbiggo.prima.play.node.link.type.VectorOutputLink;
 import com.tiggerbiggo.prima.play.node.link.type.defaults.MapGenDefaultLink;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class NearestPointNode extends NodeInOut {
 
@@ -16,11 +17,11 @@ public class NearestPointNode extends NodeInOut {
   private VectorOutputLink out;
 
   public NearestPointNode(){
-    mapIn = new MapGenDefaultLink();
-    points = new PointInputLink();
+    mapIn = new MapGenDefaultLink("Position");
+    points = new PointInputLink("Points");
     addInput(mapIn, points);
 
-    out = new VectorOutputLink() {
+    out = new VectorOutputLink("Out") {
       @Override
       public Vector2 get(RenderParams p) {
         Vector2 map = mapIn.get(p);
@@ -37,6 +38,18 @@ public class NearestPointNode extends NodeInOut {
           }
         }
         return nearest;//.add(map);
+      }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        //TODO
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        //TODO
+        throw new NotImplementedException();
       }
     };
     addOutput(out);

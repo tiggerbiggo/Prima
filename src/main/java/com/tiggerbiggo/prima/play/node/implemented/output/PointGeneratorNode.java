@@ -6,6 +6,8 @@ import com.tiggerbiggo.prima.play.core.render.RenderID;
 import com.tiggerbiggo.prima.play.core.render.RenderParams;
 import com.tiggerbiggo.prima.play.node.core.NodeHasOutput;
 import com.tiggerbiggo.prima.play.node.link.type.PointOutputLink;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.util.HashMap;
 import java.util.function.Function;
 
@@ -20,7 +22,7 @@ public class PointGeneratorNode extends NodeHasOutput {
   private PointOutputLink out;
 
   public PointGeneratorNode(){
-    out = new PointOutputLink() {
+    out = new PointOutputLink("Out") {
       @Override
       public Vector2[] get(RenderParams pa) {
         Vector2[] points = new Vector2[pointNumber];
@@ -30,6 +32,15 @@ public class PointGeneratorNode extends NodeHasOutput {
         }
 
         return points;
+      }
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        throw new NotImplementedException();
       }
     };
     addOutput(out);

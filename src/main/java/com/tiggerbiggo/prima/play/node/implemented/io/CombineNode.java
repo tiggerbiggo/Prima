@@ -21,14 +21,35 @@ public class CombineNode extends NodeInOut {
   public CombineNode(CombineFunction _func) {
     func = _func;
 
-    A = new VectorInputLink();
-    B = new VectorInputLink();
+    A = new VectorInputLink("A");
+    B = new VectorInputLink("B");
     addInput(A, B);
 
-    out = new VectorOutputLink() {
+    out = new VectorOutputLink("Out") {
       @Override
       public Vector2 get(RenderParams p) {
         return func.apply(A.get(p), B.get(p));
+      }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        /*
+         vec2 Combine_x(){
+              vec2 A = <A method here>;
+              vec2 B = <B method here>;
+              return A <operator> B;
+          }
+         */
+
+        s.append("vec2 Combine_" + hashCode() + "(){\n");
+        s.append("  vec2 A = " + A.getMethodName() + ";\n");
+        s.append("  vec2 B = " + B.getMethodName() + ";\n");
+        s.append("  return A " + func.getOperatorChar() + "B;\n}");
+      }
+
+      @Override
+      public String getMethodName() {
+        return "Combine_" + hashCode() + "()";
       }
     };
     addOutput(out);
@@ -37,12 +58,6 @@ public class CombineNode extends NodeInOut {
   public CombineNode() {
     this(CombineFunction.ADD);
   }
-
-
-  public static BiFunction<Vector2, Vector2, Vector2> ADD = Vector2::add;
-  public static BiFunction<Vector2, Vector2, Vector2> SUB = Vector2::subtract;
-  public static BiFunction<Vector2, Vector2, Vector2> MUL = Vector2::multiply;
-  public static BiFunction<Vector2, Vector2, Vector2> DIV = Vector2::divide;
 
   @Override
   public String getName() {

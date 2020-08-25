@@ -1,7 +1,13 @@
 package com.tiggerbiggo.prima.play.core.render;
 
 public class RenderParams {
-  private int width, height, x, y, frameNum;
+
+  private int width;
+  private int height;
+  private int x;
+  private int y;
+  private int frameNum;
+
   private RenderID id;
 
   public RenderParams(int width, int height, int x, int y, int frameNum, RenderID id) {

@@ -2,12 +2,16 @@ package com.tiggerbiggo.prima.play.node.link.type;
 
 import com.tiggerbiggo.prima.play.core.calculation.Vector2;
 import com.tiggerbiggo.prima.play.core.render.RenderParams;
+import com.tiggerbiggo.prima.play.graphics.ColorTools;
 import com.tiggerbiggo.prima.play.graphics.SimpleGradient;
 import com.tiggerbiggo.prima.play.node.link.Link;
 import com.tiggerbiggo.prima.play.node.link.OutputLink;
 import java.awt.Color;
 
 public abstract class VectorOutputLink extends OutputLink<Vector2> {
+  public VectorOutputLink(String desc){
+    this.desc = desc;
+  }
   @Override
   public boolean canLink(Link other) {
     if(other == null) return false;
@@ -28,7 +32,17 @@ public abstract class VectorOutputLink extends OutputLink<Vector2> {
   }
 
   @Override
-  public Color getColor(RenderParams p) {
-    return SimpleGradient.evaluate(get(p), Color.BLACK, Color.WHITE, true);
+  public Color[] getColors(RenderParams p) {
+    return ColorTools.colorArray(p.frameNum(), SimpleGradient.evaluate(get(p), Color.BLACK, Color.WHITE, true));
+  }
+
+  @Override
+  public String getReturnType() {
+    return "vec2";
+  }
+
+  @Override
+  public boolean isSingular() {
+    return true;
   }
 }

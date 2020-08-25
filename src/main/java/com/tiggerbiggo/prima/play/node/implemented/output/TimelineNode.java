@@ -9,6 +9,7 @@ import com.tiggerbiggo.prima.view.sample.components.timeline.PrimaTimeline;
 import com.tiggerbiggo.prima.view.sample.components.timeline.TimePoint;
 import java.util.List;
 import javafx.scene.Node;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class TimelineNode extends NodeHasOutput{
   transient PrimaTimeline timeline;
@@ -19,7 +20,7 @@ public class TimelineNode extends NodeHasOutput{
   List<TimePoint> points;
 
   public TimelineNode() {
-    out = new NumberArrayOutputLink() {
+    out = new NumberArrayOutputLink("Out") {
       @Override
       public Double[] get(RenderParams p) {
         Double[] toReturn = new Double[p.frameNum()];
@@ -27,6 +28,15 @@ public class TimelineNode extends NodeHasOutput{
           toReturn[i] = timeline.evaluate((double)i/p.frameNum());
         }
         return toReturn;
+      }
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        throw new NotImplementedException();
       }
     };
     addOutput(out);

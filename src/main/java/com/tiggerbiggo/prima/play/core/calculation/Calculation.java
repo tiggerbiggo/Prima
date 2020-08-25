@@ -90,4 +90,25 @@ public class Calculation {
   public static double modLoop(double in, boolean loop) {
     return modLoop(in, 1, loop);
   }
+
+  public static double[] makeArray(int n, double val){
+    double[] toReturn = new double[n];
+    for(int i=0; i<n; i++){
+      toReturn[i] = val;
+    }
+    return toReturn;
+  }
+
+  public static double[] fromDoubleArray(Double[] in){
+    double[] toReturn = new double[in.length];
+
+    for(int i=0; i<in.length; i++){
+      if(in[i] == null){
+        toReturn[i] = 0;
+        continue;
+      }
+      toReturn[i] = in[i];
+    }
+    return toReturn;
+  }
 }

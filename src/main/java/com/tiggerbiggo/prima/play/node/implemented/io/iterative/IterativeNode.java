@@ -4,8 +4,11 @@ import ch.hephaistos.utilities.loki.util.annotations.TransferGrid;
 import com.tiggerbiggo.prima.play.core.calculation.Vector2;
 import com.tiggerbiggo.prima.play.core.render.RenderParams;
 import com.tiggerbiggo.prima.play.node.core.NodeInOut;
+import com.tiggerbiggo.prima.play.node.implemented.output.MapGenNode;
 import com.tiggerbiggo.prima.play.node.link.type.VectorInputLink;
 import com.tiggerbiggo.prima.play.node.link.type.VectorOutputLink;
+import com.tiggerbiggo.prima.play.node.link.type.defaults.MapGenDefaultLink;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public abstract class IterativeNode extends NodeInOut {
 
@@ -18,10 +21,10 @@ public abstract class IterativeNode extends NodeInOut {
   IterativeNode(int _iter) {
     this.iter = _iter;
 
-    in = new VectorInputLink();
+    in = new MapGenDefaultLink(4, 4, -2, -2, "Input");
     addInput(in);
 
-    out = new VectorOutputLink() {
+    out = new VectorOutputLink("Out") {
       @Override
       public Vector2 get(RenderParams p) {
         Vector2 z = initZ(p);
@@ -33,6 +36,18 @@ public abstract class IterativeNode extends NodeInOut {
           }
         }
         return onBound(z, iter);
+      }
+
+      @Override
+      public void generateGLSLMethod(StringBuilder s) {
+        //TODO
+        throw new NotImplementedException();
+      }
+
+      @Override
+      public String getMethodName() {
+        //TODO
+        throw new NotImplementedException();
       }
     };
     addOutput(out);
