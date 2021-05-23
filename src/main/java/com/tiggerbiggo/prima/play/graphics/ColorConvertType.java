@@ -7,13 +7,13 @@ public enum ColorConvertType{
   H(ColorTools::getHue),
   S(ColorTools::getSaturation),
   V(ColorTools::getBrightness),
-  R(c -> c.getRed()/255d),
-  G(c -> c.getGreen()/255d),
-  B(c -> c.getBlue()/255d);
+  R(c -> c.getRed()/255f),
+  G(c -> c.getGreen()/255f),
+  B(c -> c.getBlue()/255f);
 
-  Function<Color, Double> convertFunction;
+  Function<Color, Float> convertFunction;
 
-  ColorConvertType(Function<Color, Double> _convertFunction){
+  ColorConvertType(Function<Color, Float> _convertFunction){
     convertFunction = _convertFunction;
   }
 

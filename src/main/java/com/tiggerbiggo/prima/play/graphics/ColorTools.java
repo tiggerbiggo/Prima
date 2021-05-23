@@ -2,6 +2,7 @@ package com.tiggerbiggo.prima.play.graphics;
 
 import com.tiggerbiggo.prima.play.core.calculation.Calculation;
 import java.awt.Color;
+import java.util.Random;
 
 /**
  * Contains various static methods for calculating things like Hue, Saturation, Brightness, etc.
@@ -56,7 +57,7 @@ public class ColorTools {
    * @param in The colour to calculate
    * @return The brightness value of the colour, between 0 and 1
    */
-  public static double getBrightness(Color in) {
+  public static float getBrightness(Color in) {
     return getMax(in) / 255.0f;
   }
 
@@ -66,8 +67,8 @@ public class ColorTools {
    * @param in The colour to calculate
    * @return The saturation value of the colour, between 0 and 1
    */
-  public static double getSaturation(Color in) {
-    double min, max;
+  public static float getSaturation(Color in) {
+    float min, max;
     min = getMin(in);
     max = getMax(in);
 
@@ -84,21 +85,21 @@ public class ColorTools {
    * @param in The colour to calculate
    * @return The hue of the colour, between 0 and 1
    */
-  public static double getHue(Color in) {
+  public static float getHue(Color in) {
     if (getSaturation(in) == 0) {
       return 0;
     }
 
-    double min, max, diff;
+    float min, max, diff;
     min = getMin(in);
     max = getMax(in);
     diff = max - min;
 
-    double redc = (max - in.getRed()) / diff;
-    double greenc = (max - in.getGreen()) / diff;
-    double bluec = (max - in.getBlue()) / diff;
+    float redc = (max - in.getRed()) / diff;
+    float greenc = (max - in.getGreen()) / diff;
+    float bluec = (max - in.getBlue()) / diff;
 
-    double hue;
+    float hue;
 
     if (in.getRed() == max) {
       hue = bluec - greenc;
@@ -174,11 +175,32 @@ public class ColorTools {
     );
   }
 
+  /**Avoids exceptions, makes a color that is clamped properly.
+   *
+   * @param r
+   * @param g
+   * @param b
+   * @return
+   */
   public static Color constrain(int r, int g, int b){
     return new Color(
         Math.min(255, Math.max(0, r)),
         Math.min(255, Math.max(0, g)),
         Math.min(255, Math.max(0, b))
+    );
+  }
+  /**Avoids exceptions, makes a color that is clamped properly from float values (0-1 range).
+   *
+   * @param r
+   * @param g
+   * @param b
+   * @return
+   */
+  public static Color constrain(float r, float g, float b){
+    return new Color(
+        Math.min(1, Math.max(0, r)),
+        Math.min(1, Math.max(0, g)),
+        Math.min(1, Math.max(0, b))
     );
   }
 
@@ -205,6 +227,17 @@ public class ColorTools {
         c1.getBlue() * c2.getBlue()
     );
   }
+  public static Color fMultiply(Color c1, Color c2){
+    return constrain(
+            fGetRed(c1) * fGetRed(c2),
+            fGetGreen(c1) * fGetGreen(c2),
+            fGetBlue(c1) * fGetBlue(c2)
+    );
+  }
+
+  public static Color fMultiply(Color c1, int i){
+    return fMultiply(c1, constrain(i,i,i));
+  }
 
   public static Color divide(Color c1, Color c2){
     if(c2.getRed() == 0 || c2.getGreen() == 0 || c2.getBlue() == 0){
@@ -214,6 +247,17 @@ public class ColorTools {
         c1.getRed() / c2.getRed(),
         c1.getGreen() / c2.getGreen(),
         c1.getBlue() / c2.getBlue()
+    );
+  }
+
+  public static Color fDivide(Color c1, Color c2){
+    if(c2.getRed() == 0 || c2.getGreen() == 0 || c2.getBlue() == 0){
+      return c1;
+    }
+    return constrain(
+            fGetRed(c1) / fGetRed(c2),
+            fGetGreen(c1) / fGetGreen(c2),
+            fGetBlue(c1) / fGetBlue(c2)
     );
   }
 
@@ -237,6 +281,38 @@ public class ColorTools {
     float g = c.getGreen()/255f;
     float b = c.getBlue()/255f;
     return "vec4("+r+","+g+","+b+",0)";
+  }
+
+  public static Color randomColor(Random r){
+    return new Color(
+            r.nextInt(255),
+            r.nextInt(255),
+            r.nextInt(255)
+    );
+  }
+
+  public static Color fromHexString(String s) {
+    s = s.trim().toLowerCase();
+    if(s.length() != 6) return null;
+    try{
+      int r = Integer.parseInt(s.substring(0,2), 16);
+      int g = Integer.parseInt(s.substring(2,4), 16);
+      int b = Integer.parseInt(s.substring(4,6), 16);
+      return constrain(r, g, b);
+    }
+    catch(NumberFormatException ex){
+      return null;
+    }
+  }
+
+  public static float fGetRed(Color c){
+    return c.getRed() / 255f;
+  }
+  public static float fGetGreen(Color c){
+    return c.getGreen() / 255f;
+  }
+  public static float fGetBlue(Color c){
+    return c.getBlue() / 255f;
   }
 }
 

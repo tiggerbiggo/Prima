@@ -96,7 +96,6 @@ public class AnalysisNode extends NodeHasInput {
 
   @Override
   public void onLinked() {
-    System.out.println("LONK");
     updateSlider();
     refreshPreview();
   }

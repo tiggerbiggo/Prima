@@ -101,7 +101,7 @@ public class TransformNode extends NodeInOut {
 
   @Override
   public String getDescription() {
-    return "Transforms a given Vector using a given Function object.";
+    return "Transforms an input using the specified operation.";
   }
 
   @Override

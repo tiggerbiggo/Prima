@@ -5,7 +5,8 @@ import com.tiggerbiggo.prima.play.node.link.InputLink;
 import com.tiggerbiggo.prima.play.node.link.Link;
 import com.tiggerbiggo.prima.play.node.link.OutputLink;
 
-public class NumberInputLink extends InputLink<Double> {
+public class NumberInputLink extends InputLink<Float> {
+  public NumberInputLink(String desc){this.desc = desc;}
   @Override
   public boolean link(OutputLink toLink) {
     if (canLink(toLink)) {
@@ -22,8 +23,8 @@ public class NumberInputLink extends InputLink<Double> {
   }
 
   @Override
-  public Double defaultValue(RenderParams p) {
-    return 0.0;
+  public Float defaultValue(RenderParams p) {
+    return (float)0.0;
   }
 
   @Override

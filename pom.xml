@@ -81,11 +81,16 @@
     <artifactId>reflections</artifactId>
     <version>0.9.11</version>
   </dependency>
-    <dependency>
-      <groupId>com.github.tiggerbiggo</groupId>
-      <artifactId>loki</artifactId>
-      <version>d09238dfeb</version>
-    </dependency>
+  <dependency>
+    <groupId>com.github.tiggerbiggo</groupId>
+    <artifactId>loki</artifactId>
+    <version>d09238dfeb</version>
+  </dependency>
+  <dependency>
+    <groupId>com.github.tommyettinger</groupId>
+    <artifactId>make-some-noise</artifactId>
+    <version>f631dcf843</version>
+  </dependency>
     <!--<dependency>-->
       <!--<groupId>org.openjfx</groupId>-->
       <!--<artifactId>javafx-controls</artifactId>-->

@@ -1,0 +1,10 @@
+|Prim-p7|
+0@com.tiggerbiggo.prima.play.node.implemented.output.MapGenNode@{"aX":0.0,"aY":0.0,"dx":6.0,"dy":6.0}@18@0
+1@com.tiggerbiggo.prima.play.node.implemented.BasicRenderNode@{}@1039@0
+2@com.tiggerbiggo.prima.play.node.implemented.io.GradientNode@{"hueCycle":true}@863@0
+3@com.tiggerbiggo.prima.play.node.implemented.output.CommentNode@{"comment":"The image you linked up in Tutorial 0 is what I call the \"Hello World\" image, since it\u0027s the simplest one you can make other than pure black.\n\nTo make it a bit more interesting, we can add more nodes to the tree. There are 2 ways of doing this, and both use the Right mouse button.","x":217.0,"y":189.0}@17@216
+4@com.tiggerbiggo.prima.play.node.implemented.output.CommentNode@{"comment":"First, try right clicking in empty space to bring up the complete node list.\n\nEach node has a different function, for this case we can scroll through the list and pick a \"Transform Node\". Clicking the name will add it to the panel. Hovering will give a description.\n\nWe want the output of the Map Gen Node to go into the Transform node\u0027s input, so link them by dragging them together.","x":237.0,"y":243.0}@286@217
+5@com.tiggerbiggo.prima.play.node.implemented.output.CommentNode@{"comment":"Next, right click on the light blue output of the Transform Node.\n\nRight clicking on an input or output will give you a list of only the nodes that can connect to it. Clicking on one adds it to the panel, and links it to the input or output you selected.\n\nAdd an Animation Node from that dropdown. It should automatically link to the Transform Node.","x":229.0,"y":224.0}@570@216
+6@com.tiggerbiggo.prima.play.node.implemented.output.CommentNode@{"comment":"Finally, link up the dark blue inputs and outputs from the Animation Node to the Gradient Node.\n\nFeel free to experiment at this point with some different parameters for the various nodes on screen, including changing the transform type and the animation type. Remember you need to re-render the image by clicking on the preview box in the bottom right.\n\nOnce you are ready to move on, load tutorial 2.","x":296.0,"y":204.0}@847@157
+-
+2@0@1@0

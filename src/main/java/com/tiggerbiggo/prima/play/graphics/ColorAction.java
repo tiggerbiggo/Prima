@@ -6,8 +6,10 @@ import java.util.function.BiFunction;
 public enum ColorAction{
   ADD("Add", ColorTools::add),
   SUB("Subtract", ColorTools::subtract),
-  MUL("Multiply", ColorTools::multiply),
-  DIV("Divide", ColorTools::divide),
+  MUL("IMultiply", ColorTools::multiply),
+  DIV("IDivide", ColorTools::divide),
+  FMUL("FMultiply", ColorTools::fMultiply),
+  FDIV("FDivide", ColorTools::fDivide),
   INV("Invert", (c1, c2) -> {return ColorTools.invert(c1);});
 
   String name;

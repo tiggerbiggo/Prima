@@ -81,6 +81,14 @@ public class Vector2 implements Serializable {
     this.y = y;
   }
 
+  public void setX(double x){
+    this.x = x;
+  }
+
+  public void setY(double y){
+    this.y = y;
+  }
+
   public double X() {
     return x;
   }

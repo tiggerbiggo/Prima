@@ -1,13 +1,13 @@
-0@com.tiggerbiggo.prima.primaplay.node.implemented.MapGenNode@{"aX":0.0,"aY":0.0,"dx":6.0,"dy":6.0}@17@22
-1@com.tiggerbiggo.prima.primaplay.node.implemented.BasicRenderNode@{}@1101@54
-2@com.tiggerbiggo.prima.primaplay.node.implemented.io.GradientNode@{"hueCycle":true}@899@87
-3@com.tiggerbiggo.prima.primaplay.node.implemented.io.AnimationNode@{}@648@43
-4@com.tiggerbiggo.prima.primaplay.node.implemented.io.TransformNode@{"function":"SINSIN"}@335@76
-5@com.tiggerbiggo.prima.primaplay.node.implemented.output.ColorNode@{"r":255,"g":255,"b":102}@601@155
-6@com.tiggerbiggo.prima.primaplay.node.implemented.output.CommentNode@{"comment":"Great, so we have a more interesting image, but it\u0027s stuck as just rainbow colours. Maybe we want something a little bit more refined.\n\nAs you can see, I\u0027ve added a \"Color Node\", but it\u0027s not showing up in the image because \"Hue Cycle\" on this gradient node is ticked (This is what gives the rainbows). This overrides the incoming colours, so we just need to untick it.\n\nSo we have a color in one link, and since we do not yet have a link for the other color the node defaults to using black, therefore we get a yellow and black image. (You can link the same input to multiple outputs, so you could just link the first color node to both color inputs, but then you\u0027d just get all yellow instead...)\n\nEvery input has a default value when nothing is connected to it, but these default values are normally not very interesting. Add a new color node and link it up to the other color input on the gradient node. Now we can change both of the colors in our images!\n\nGet comfortable with changing these colors, then load Tutorial 3 which covers the Map Gen Node.","x":559.0,"y":432.0}@34@311
+|Prim-p7|
+0@com.tiggerbiggo.prima.play.node.implemented.output.MapGenNode@{"aX":0.0,"aY":0.0,"dx":6.0,"dy":6.0}@18@0
+1@com.tiggerbiggo.prima.play.node.implemented.BasicRenderNode@{}@1039@0
+2@com.tiggerbiggo.prima.play.node.implemented.io.GradientNode@{"hueCycle":true}@863@0
+3@com.tiggerbiggo.prima.play.node.implemented.output.CommentNode@{"comment":"Now it\u0027s time to make our image look like something other than a rainbow.\n\nThe Gradient Node is what gives this image the Color. Right now it\u0027s set to \"Hue Cycle\" mode, meaning it will take the values given to it and turn them into a hue, with full saturation. If we want to use different colours, we can use the 2 white inputs on the Gradient node to choose some.","x":280.0,"y":195.0}@267@200
+4@com.tiggerbiggo.prima.play.node.implemented.io.TransformNode@{"function":"SINSIN","lerpPercent":1.0}@335@0
+5@com.tiggerbiggo.prima.play.node.implemented.io.AnimationNode@{"func":"SIMPLE"}@567@0
+6@com.tiggerbiggo.prima.play.node.implemented.output.CommentNode@{"comment":"Right click on the white inputs, and link a Color Node to each. Pick a color by clicking on the square, and once you\u0027re ready to see the animation with your colors, untick the Hue Cycle box and re-render the animation.\n\nOnce you are done, move on to Tutorial 3.","x":212.0,"y":186.0}@781@141
 -
 2@0@1@0
-3@0@2@0
-5@0@2@1
-4@0@3@0
+5@0@2@0
 0@0@4@0
+4@0@5@0

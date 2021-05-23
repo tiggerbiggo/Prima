@@ -12,6 +12,9 @@ public class MapGenNode implements INodeHasOutput {
   @TransferGrid
   private double aX, aY, dx, dy;
 
+  @TransferGrid
+  private boolean zeroCheck = false;
+
   /**
    * Constructs a new MapGenNode with the given Vectors
    *
@@ -49,10 +52,25 @@ public class MapGenNode implements INodeHasOutput {
   private VectorOutputLink vecOut = new VectorOutputLink("Out") {
     @Override
     public Vector2 get(RenderParams p) {
-      return new Vector2(
-          aX + (p.x() * (dx / p.width())),
-          aY + (p.y() * (dy / p.height()))
-      );
+      if(!zeroCheck) {
+        return new Vector2(
+                aX + (p.x() * (dx / p.width())),
+                aY + (p.y() * (dy / p.height()))
+        );
+      }
+      else{
+        Vector2 v = new Vector2(
+                aX + (p.x() * (dx / p.width())),
+                aY + (p.y() * (dy / p.height()))
+        );
+        if(v.X() == 0.0){
+          v.setX(aX + ((p.x()+1) * (dx / p.width())));
+        }
+        if(v.Y() == 0.0){
+          v.setY(aY + ((p.y()+1) * (dy / p.height())));
+        }
+        return v;
+      }
     }
 
     @Override

@@ -13,6 +13,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -59,6 +60,8 @@ public class NodePopup extends Popup {
         INode node = clazz.newInstance();
         if(filter.test(node)){
           NodeMenuItem item = new NodeMenuItem(node.getName(), clazz);
+          Tooltip desc = new Tooltip(node.getDescription());
+          Tooltip.install(item, desc);
           item.setOnAction(event -> {
             try {
               Point2D p = parent.screenToLocal(x, y);

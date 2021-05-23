@@ -9,14 +9,18 @@ import com.tiggerbiggo.prima.play.node.link.type.ColorInputLink;
 import com.tiggerbiggo.prima.play.node.link.type.ColorOutputLink;
 import com.tiggerbiggo.prima.view.sample.components.Knob;
 import javafx.scene.Node;
+import javafx.scene.layout.HBox;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.*;
+import java.lang.reflect.Field;
 
 public class HueCycleNode extends NodeInOut {
 
     private ColorInputLink in;
     private ColorOutputLink out;
+
+    transient Knob k;
 
     @TransferGrid
     private double hueToAdd = 1;
@@ -27,7 +31,11 @@ public class HueCycleNode extends NodeInOut {
         out = new ColorOutputLink("Out") {
             @Override
             public Color get(RenderParams p) {
-                return Color.BLACK;
+                Color c = in.get(p);
+                float h = ColorTools.getHue(c);
+                float s = ColorTools.getSaturation(c);
+                float b = ColorTools.getBrightness(c);
+                return Color.getHSBColor((float)(h+k.getValue())%1,s,b);
             }
 
             @Override
@@ -40,6 +48,10 @@ public class HueCycleNode extends NodeInOut {
                 throw new NotImplementedException();
             }
         };
+
+        addInput(in);
+
+        addOutput(out);
     }
 
     @Override
@@ -54,8 +66,16 @@ public class HueCycleNode extends NodeInOut {
 
     @Override
     public Node getFXNode(ChangeListener listener) {
-        Knob k = new Knob(0,1);
+        k = new Knob(0,1);
+        k.setValue(hueToAdd);
 
-        return null;
+        k.setChangeListener(new ChangeListener() {
+            @Override
+            public void onObjectValueChanged(Field field, Object o, Object o1, Object o2) {
+                hueToAdd = k.getValue();
+            }
+        });
+
+        return new HBox(k);
     }
 }

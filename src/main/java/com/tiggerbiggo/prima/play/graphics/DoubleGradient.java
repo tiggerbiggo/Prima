@@ -52,9 +52,18 @@ public class DoubleGradient extends Gradient implements Serializable {
     x = Calculation.modLoop(x, loop);
     y = Calculation.modLoop(y, loop);
 
+    double r = x;
+    double g = y;
+    double b = (x+y)/2;
+
+    Color col = new Color(0,0,0);
+    col = ColorTools.add(col, ColorTools.fMultiply(cx, (int)(r*255)));
+    col = ColorTools.add(col, ColorTools.fMultiply(cy, (int)(g*255)));
+    col = ColorTools.add(col, o);
+
     Color lx, ly;
     lx = ColorTools.colorLerp(o, cx, x);
     ly = ColorTools.colorLerp(o, cy, y);
-    return ColorTools.colorLerp(lx, ly, Calculation.modLoop(x + y, loop));
+    return col;//ColorTools.colorLerp(lx, ly, Calculation.modLoop(x + y, loop));
   }
 }

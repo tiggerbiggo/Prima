@@ -66,6 +66,11 @@ enum PointGenType{
   }),
   SPOINK2(i -> {
     return new Vector2((i*0.11) % 1, (i * 0.01) % 1);
+  }),
+  SIRCLE3(i -> {
+    if(i == 0) return Vector2.ZERO;
+    i-=1;
+    return new Vector2(Math.sin(i*Math.PI*0.25*2), Math.cos(i*Math.PI*0.25*2));
   });
 
   private Function<Integer, Vector2> func;

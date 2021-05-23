@@ -104,7 +104,7 @@ public class MainController implements Initializable, ChangeListener {
     previewPane.getChildren().add(view);
 
     previewPane.setOnMouseClicked(e -> {
-      nodePane.renderAsync(200, 200, 60, "Preview Render", new RenderCallback() {
+      nodePane.renderAsync(200, 200, 800, "Preview Render", new RenderCallback() {
         @Override
         public void callback(SafeImage[] imgs) {
           view.setImgs(imgs);
@@ -200,6 +200,7 @@ public class MainController implements Initializable, ChangeListener {
         Optional<ButtonType> result = a.showAndWait();
         if (result.isPresent() && result.get().equals(ButtonType.YES)) {
           resetLayout();
+          setCurrentFile(null);
         }
       }
     });

@@ -60,12 +60,28 @@ public class SafeImage implements Serializable {
     return in.multiply(sizeAsVector());
   }
 
+  public Vector2 denormVector(float x, float y){
+    return denormVector(new Vector2(x, y));
+  }
+
   public Vector2 denormVectorAndLoop(Vector2 in, boolean xLoop, boolean yLoop){
     in = new Vector2(
         Calculation.modLoop(in.X(), xLoop),
         Calculation.modLoop(in.Y(), yLoop)
     );
     return denormVector(in);
+  }
+
+  public Color getColorInterp(Vector2 in){
+    Vector2 floor = new Vector2(in.iX(), in.iY()); //intentionally truncate
+    Vector2 remainder = in.subtract(floor);
+    Color[] cols = new Color[4];
+    for (int i = 0; i < 2; i++) {
+      for (int j = 0; j < 2; j++) {
+        cols[j+(2*i)] = getColor(floor.add(new Vector2(j, i)));
+      }
+    }
+    return null;
   }
 
   /**
@@ -187,5 +203,15 @@ public class SafeImage implements Serializable {
     } catch (IOException | ClassNotFoundException e) {
       img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
     }
+  }
+
+  public SafeImage clone(){
+    SafeImage toReturn = new SafeImage(width, height);
+    for (int i = 0; i < width; i++) {
+      for (int j = 0; j < height; j++) {
+        toReturn.img.setRGB(i,j,img.getRGB(i,j));
+      }
+    }
+    return toReturn;
   }
 }

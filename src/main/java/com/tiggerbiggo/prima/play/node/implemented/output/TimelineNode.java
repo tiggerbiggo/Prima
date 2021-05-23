@@ -49,7 +49,7 @@ public class TimelineNode extends NodeHasOutput{
 
   @Override
   public String getDescription() {
-    return "Allows times to be lined";
+    return "X axis is time, Y axis is output 0 - 1.\n\nDouble click to add and remove points";
   }
 
   @Override

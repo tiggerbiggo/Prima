@@ -31,6 +31,7 @@ public class ViewMain extends Application {
   private static Stage previewStage;
   private static Stage pointStage;
   private static Stage flowStage;
+  private static Stage fourierStage;
 
   private static final String CSS_STRING = ViewMain.class.getResource("/default.css").toString();
 
@@ -76,9 +77,19 @@ public class ViewMain extends Application {
     s.getStylesheets().add(CSS_STRING);
     flowStage.setScene(s);
 
+    root = FXMLLoader.load(getClass().getResource("/FourierWindow.fxml"));
+    fourierStage = new Stage();
+    s = new Scene(root, 500, 500);
+    s.getStylesheets().add(CSS_STRING);
+    fourierStage.setScene(s);
+
+    fourierStage.show();
+
     primaryStage.show();
     //flowStage.show();
     //pointStage.show();
+
+    fourierStage.requestFocus();
 
     hackTooltipStartTiming();
   }

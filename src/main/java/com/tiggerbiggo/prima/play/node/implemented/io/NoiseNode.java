@@ -5,9 +5,11 @@ import com.tiggerbiggo.prima.play.core.calculation.SimplexNoise;
 import com.tiggerbiggo.prima.play.core.calculation.Vector2;
 import com.tiggerbiggo.prima.play.core.render.RenderParams;
 import com.tiggerbiggo.prima.play.node.core.NodeInOut;
+import com.tiggerbiggo.prima.play.node.link.type.NumberOutputLink;
 import com.tiggerbiggo.prima.play.node.link.type.VectorInputLink;
 import com.tiggerbiggo.prima.play.node.link.type.VectorOutputLink;
 import com.tiggerbiggo.prima.play.node.link.type.defaults.MapGenDefaultLink;
+import make.some.noise.Noise;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class NoiseNode extends NodeInOut{
@@ -18,27 +20,33 @@ public class NoiseNode extends NodeInOut{
   @TransferGrid
   NoiseType type;
 
+  Noise noise = new Noise();
+
   VectorInputLink mapIn;
-  VectorOutputLink out;
+  VectorInputLink zwIn;
+  NumberOutputLink singleOut;
 
   public NoiseNode() {
     z = 0;
     type = NoiseType.SIMPLEX;
 
     mapIn = new MapGenDefaultLink("Position (Does not apply to white noise!)");
+
     addInput(mapIn);
 
-    out = new VectorOutputLink("Out") {
+    singleOut = new NumberOutputLink("Out") {
       @Override
-      public Vector2 get(RenderParams p) {
+      public Float get(RenderParams p) {
+        Vector2 xy = mapIn.get(p);
+        Vector2 zw = zwIn.get(p);
+
         switch(type){
           case WHITE:
-            return new Vector2(Math.random(), Math.random());
+            return (float) Math.random();
           case SIMPLEX:
-            double n = SimplexNoise.noise(mapIn.get(p), z);
-            return new Vector2(n);
+            return noise.getSimplex(xy.fX(), xy.fY(), zw.fX(), zw.fY());
         }
-        return Vector2.ZERO;
+        return (float)0;
       }
 
       @Override
@@ -53,7 +61,7 @@ public class NoiseNode extends NodeInOut{
         throw new NotImplementedException();
       }
     };
-    addOutput(out);
+    addOutput(singleOut);
   }
 
   @Override

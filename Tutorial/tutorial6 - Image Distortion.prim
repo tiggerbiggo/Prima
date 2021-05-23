@@ -1,18 +1,20 @@
-0@com.tiggerbiggo.prima.primaplay.node.implemented.BasicRenderNode@{}@1270@99
-1@com.tiggerbiggo.prima.primaplay.node.implemented.io.GradientNode@{"hueCycle":false}@1050@96
-2@com.tiggerbiggo.prima.primaplay.node.implemented.io.AnimationNode@{}@742@30
-3@com.tiggerbiggo.prima.primaplay.node.implemented.output.CommentNode@{"comment":"Notice that i\u0027ve connected both of the colour outputs to the Gradient Node now. This means that when you load your image with the ... button, all you will see is the still image since it\u0027s cycling between the same 2 colours in every pixel. Pretty boring right?\n\nSuspend your disbelief for a moment, What i\u0027m going to introduce now is the concept of image distortion.","x":364.0,"y":220.0}@14@331
-4@com.tiggerbiggo.prima.primaplay.node.implemented.MapGenNode@{"aX":0.0,"aY":0.0,"dx":3.0,"dy":3.0}@27@33
-5@com.tiggerbiggo.prima.primaplay.node.implemented.io.TransformNode@{"function":"SINSIN"}@360@33
-6@com.tiggerbiggo.prima.primaplay.node.implemented.output.ImageLoadNode@{"filename":""}@451@418
-7@com.tiggerbiggo.prima.primaplay.node.implemented.io.ImageConvertNode@{"convertX":"V","convertY":"V"}@784@168
-8@com.tiggerbiggo.prima.primaplay.node.implemented.output.CommentNode@{"comment":"Link the output from the Transform Node into the input of the Image Convert Node and refresh the image.","x":238.0,"y":100.0}@435@189
-9@com.tiggerbiggo.prima.primaplay.node.implemented.output.CommentNode@{"comment":"You should see a distorted version of your input file.\n\nBefore you linked up the blue input on the image converter, it defaults to u/v coordinates, meaning each pixel in the output animation corresponds directly to the x, y in the image itself. When you link something to the blue input it then uses those x, y coordinates instead. Effectively we end up distorting the still image using whatever input we give it.\n\nTry changing the transform mode, you should see some interesting effects. To understand how this relates to the image, try flipping the \"Hue Cycle\" box to see the raw colours to get a better idea of how the coordinates relate to the image.\n\nIn the next tutorial I will explain how to use images as value inputs to use as custom maps.","x":356.0,"y":390.0}@791@373
+|Prim-p7|
+0@com.tiggerbiggo.prima.play.node.implemented.BasicRenderNode@{}@1270@99
+1@com.tiggerbiggo.prima.play.node.implemented.io.GradientNode@{"hueCycle":false}@1050@96
+2@com.tiggerbiggo.prima.play.node.implemented.io.AnimationNode@{"func":"SIMPLE"}@742@30
+3@com.tiggerbiggo.prima.play.node.implemented.output.CommentNode@{"comment":"Notice that i\u0027ve connected both of the colour outputs to the Gradient Node now. This means that when you load your image with the ... button, all you will see is the still image since it\u0027s cycling between the same 2 colours in every pixel. I\u0027m only doing this to show you the transformation, before animation is applied.","x":364.0,"y":165.0}@9@270
+4@com.tiggerbiggo.prima.play.node.implemented.output.MapGenNode@{"aX":0.0,"aY":0.0,"dx":6.0,"dy":6.0}@27@33
+5@com.tiggerbiggo.prima.play.node.implemented.io.TransformNode@{"function":"SINSIN","lerpPercent":1.0}@360@33
+6@com.tiggerbiggo.prima.play.node.implemented.output.ImageLoadNode@{"filename":""}@451@418
+7@com.tiggerbiggo.prima.play.node.implemented.io.ImageConvertNode@{"convertX":"V","convertY":"V","xLoop":false,"yLoop":false}@784@168
+8@com.tiggerbiggo.prima.play.node.implemented.output.CommentNode@{"comment":"Link the Light Blue output from the Transform Node into the matching colored input of the Image Convert Node and refresh the image.","x":238.0,"y":100.0}@435@210
+9@com.tiggerbiggo.prima.play.node.implemented.output.CommentNode@{"comment":"You should see a distorted version of your input file once you link up the light blue output of the transform to the converter.\n\nBefore you linked up the light blue input on the image converter, it defaults to u/v coordinates, meaning each pixel in the output animation corresponds directly to the x, y in the image itself. When you link something to the blue input it then uses those x, y coordinates instead. Effectively we end up distorting the still image using whatever input we give it.\n\nTry changing the transform mode, you should see some interesting effects. To understand how this relates to the image, try flipping the \"Hue Cycle\" box to see the raw colours to get a better idea of how the coordinates relate to the image.\n\nThe final tutorial will show you how to animate this kind of warping.","x":356.0,"y":366.0}@791@373
+10@com.tiggerbiggo.prima.play.node.implemented.output.CommentNode@{"comment":"Due to the way that Prima loads images you will need to load up your image manually, sorry. Feel free to save a copy of the tutorial file though, and it will remember.","x":248.0,"y":107.0}@442@566
 -
 1@0@0@0
 2@0@1@0
-7@1@1@1
-7@1@1@2
+7@2@1@1
+7@2@1@2
 5@0@2@0
 4@0@5@0
-6@0@7@1
+6@0@7@2

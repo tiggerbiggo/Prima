@@ -24,6 +24,8 @@ public class PolarNode extends NodeHasOutput {
   private boolean loopAngle = false;
   @TransferGrid
   private boolean spiral = false;
+  @TransferGrid
+  private boolean cylinder = false;
 
   @TransferGrid
   private double zoom = 1;
@@ -52,9 +54,18 @@ public class PolarNode extends NodeHasOutput {
 
 
         //x = theta, y=radius
-        angle *= stretch;
-        xy = new Vector2(angle, xy.magnitude() * zoom);
-        if(spiral) xy = xy.add(0, percentRound);
+        if(!cylinder) {
+          angle *= stretch;
+          xy = new Vector2(angle, xy.magnitude() * zoom);
+          if (spiral) xy = xy.add(0, percentRound);
+        }
+        else{
+          //cylinder mode
+          xy = new Vector2(xy.Y(), xy.X());
+          xy = xy.multiply(stretch);
+        }
+
+
 
         return xy;
       }
@@ -95,6 +106,10 @@ public class PolarNode extends NodeHasOutput {
     spiral_check.setSelected(spiral);
     spiral_check.setOnAction(e -> spiral = spiral_check.isSelected());
 
+    final CheckBox cylinder_check = new CheckBox("Cylinder");
+    cylinder_check.setSelected(cylinder);
+    cylinder_check.setOnAction(e -> cylinder = cylinder_check.isSelected());
+
     final Spinner<Double> zoom_amnt = new Spinner<>(0, 10, zoom);
     zoom_amnt.valueProperty().addListener(e -> zoom = zoom_amnt.getValue());
     zoom_amnt.setEditable(true);
@@ -103,6 +118,6 @@ public class PolarNode extends NodeHasOutput {
     stretch_amnt.valueProperty().addListener(e -> stretch = stretch_amnt.getValue());
     stretch_amnt.setEditable(true);
 
-    return new VBox(use_radians, loop_angle, spiral_check, new HBox(zoom_amnt, new Label("Zoom")), new HBox(stretch_amnt, new Label("Stretch")));
+    return new VBox(use_radians, loop_angle, spiral_check, cylinder_check, new HBox(zoom_amnt, new Label("Zoom")), new HBox(stretch_amnt, new Label("Stretch")));
   }
 }

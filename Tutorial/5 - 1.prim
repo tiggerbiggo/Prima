@@ -1,0 +1,20 @@
+|Prim-p7|
+0@com.tiggerbiggo.prima.play.node.implemented.BasicRenderNode@{}@1270@99
+1@com.tiggerbiggo.prima.play.node.implemented.io.GradientNode@{"hueCycle":false}@1050@96
+2@com.tiggerbiggo.prima.play.node.implemented.io.AnimationNode@{"func":"SIMPLE"}@742@30
+3@com.tiggerbiggo.prima.play.node.implemented.output.CommentNode@{"comment":"So here we have a simple image set up, the same kind of thing as in the previous tutorials. To introduce you to the concept of adding images to Prima, the simplest thing to do is to just add the image as a \"background\" layer.\n\nNotice the new node, Image Load Node. This node is responsible for loading images from your hard drive into Prima. Due to the way Prima currently saves images (it saves the path to the file on your hard drive) I cannot pre-load the image for you, but you should be able to find an image that works. \n\nFor now anything will do, but later on textural images will work best and experimentation is a must :D","x":379.0,"y":256.0}@18@303
+4@com.tiggerbiggo.prima.play.node.implemented.output.MapGenNode@{"aX":0.0,"aY":0.0,"dx":12.0,"dy":12.0}@27@33
+5@com.tiggerbiggo.prima.play.node.implemented.io.TransformNode@{"function":"SINSIN","lerpPercent":0.7829999999999998}@360@33
+6@com.tiggerbiggo.prima.play.node.implemented.output.ColorNode@{"r":51,"g":77,"b":179}@622@118
+7@com.tiggerbiggo.prima.play.node.implemented.output.ImageLoadNode@{"filename":""}@454@305
+8@com.tiggerbiggo.prima.play.node.implemented.io.ImageConvertNode@{"convertX":"V","convertY":"V","xLoop":false,"yLoop":false}@765@277
+9@com.tiggerbiggo.prima.play.node.implemented.output.CommentNode@{"comment":"The Image Convert Node is responsible for taking images and turning them into stuff Prima can use. For now, we only need to worry about 2 links:\n\nGreen IN (Image in)\nWhite OUT (Color out)\n\nThe Image Load node plugs into the Convert node, then from there the white output of the converter goes into the Color input of the gradient node, replacing one of the Colors that are already plugged in. Don\u0027t worry about any of the other links on the converter, they are for later.","x":394.0,"y":222.0}@478@521
+10@com.tiggerbiggo.prima.play.node.implemented.output.CommentNode@{"comment":"Once this is all linked up, update the preview and you should see your image with a moving overlay. What we have done is replaced one of the Color inputs of the gradient with the color coming from the image. \n\nThis isn\u0027t the most interesting thing we can do with images though, this is just to help you understand how the white Color output from the Image Converter works.\n\nThe next tutorial covers warping an image around spatially.","x":349.0,"y":211.0}@999@360
+11@com.tiggerbiggo.prima.play.node.implemented.output.ColorNode@{"r":179,"g":230,"b":230}@822@179
+-
+1@0@0@0
+2@0@1@0
+6@0@1@1
+11@0@1@2
+5@0@2@0
+4@0@5@0

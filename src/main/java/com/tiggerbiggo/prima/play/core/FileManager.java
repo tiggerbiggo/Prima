@@ -37,11 +37,11 @@ import org.jcodec.scale.AWTUtil;
 public class FileManager {
 
   public static void writeGif(BufferedImage[] imgSequence, int BufferedImageType,
-      int timeBetweenFramesMS, boolean loop, File file) {
+                              int timeBetweenFramesMS, boolean loop, File file) {
     try {
       try (ImageOutputStream output = new FileImageOutputStream(file)) {
         GifSequenceWriter writer = new GifSequenceWriter(output, BufferedImageType,
-            timeBetweenFramesMS, loop);
+                timeBetweenFramesMS, loop);
         for (BufferedImage B : imgSequence) {
           writer.writeToSequence(B);
         }
@@ -57,7 +57,7 @@ public class FileManager {
 
 
   public static void writeVideo(BufferedImage[] imgSequence, File file, int timesToLoop){
-    if(timesToLoop <= 0)return;
+    if(timesToLoop <= 0)timesToLoop = 1;
 
     SeekableByteChannel out = null;
     try {

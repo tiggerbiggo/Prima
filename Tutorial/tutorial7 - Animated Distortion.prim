@@ -1,0 +1,14 @@
+|Prim-p7|
+0@com.tiggerbiggo.prima.play.node.implemented.BasicRenderNode@{}@1270@99
+1@com.tiggerbiggo.prima.play.node.implemented.io.AnimationNode@{"func":"SIMPLE"}@573@34
+2@com.tiggerbiggo.prima.play.node.implemented.output.CommentNode@{"comment":"Comparing this node setup to the last, it\u0027s quite similar except this time i\u0027ve linked the animated output into the converter, allowing us to animate the warping over time.\n\nWe also removed the gradient node since we can now just use the Color directly from the converter to the output.\n\nLoad your image and take a look :D\n\nThis is the last Tutorial for now. More to come!","x":365.0,"y":193.0}@309@181
+3@com.tiggerbiggo.prima.play.node.implemented.output.MapGenNode@{"aX":0.0,"aY":0.0,"dx":6.0,"dy":6.0}@27@33
+4@com.tiggerbiggo.prima.play.node.implemented.io.TransformNode@{"function":"SINSIN","lerpPercent":0.7339999999999998}@360@33
+5@com.tiggerbiggo.prima.play.node.implemented.io.ImageConvertNode@{"convertX":"V","convertY":"V","xLoop":false,"yLoop":false}@938@132
+6@com.tiggerbiggo.prima.play.node.implemented.output.ImageLoadNode@{"filename":""}@499@443
+-
+5@3@0@0
+4@0@1@0
+3@0@4@0
+1@0@5@1
+6@0@5@2

@@ -13,6 +13,7 @@ import java.util.List;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -126,7 +127,12 @@ public class GUINode extends AnchorPane {
 
       GUINode thisNode = this;
 
-      layoutGrid.addColumn(0, new Label(node.getName()), node.getFXNode(listener));
+      Label title = new Label(node.getName());
+
+      Tooltip description = new Tooltip(node.getDescription());
+      Tooltip.install(title, description);
+
+      layoutGrid.addColumn(0, title, node.getFXNode(listener));
 
       toBack();
     } else {

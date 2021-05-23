@@ -26,12 +26,12 @@ public class ColorMaskNode extends NodeInOut{
   private ColorArrayOutputLink out;
 
   public ColorMaskNode(){
-    colorA = new ColorArrayInputLink("A");
-    colorB = new ColorArrayInputLink("B");
-    maskIn = new NumberArrayInputLink("C");
+    colorA = new ColorArrayInputLink("Color A");
+    colorB = new ColorArrayInputLink("Color B");
+    maskIn = new NumberArrayInputLink("Mask\n(clamped 0.0 - 1.0)");
     addInput(colorA, colorB, maskIn);
 
-    out = new ColorArrayOutputLink("Out") {
+    out = new ColorArrayOutputLink("Color Out") {
       @Override
       public Color[] get(RenderParams p) {
         //for each frame:
@@ -75,6 +75,6 @@ public class ColorMaskNode extends NodeInOut{
 
   @Override
   public String getDescription() {
-    return "";
+    return "Interpolates between colors A and B, based on the Mask input (clamped 0.0 - 1.0)";
   }
 }
